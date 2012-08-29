@@ -53,7 +53,7 @@ public class MessageData implements Serializable {
 
   private byte[][] serviceIndications;
 
-  private IdentitySetType identitySet;
+  private IdentitySetType[] identitySets;
   private String serverName;
   private RequestedDomainType requestedDomain;
 
@@ -73,9 +73,7 @@ public class MessageData implements Serializable {
 
       this.dataReferences = udr.getDataReferences();
       this.serviceIndications = udr.getServiceIndications();
-      if(udr.hasIdentitySet()) {
-        this.identitySet = udr.getIdentitySet();        
-      }
+      this.identitySets = udr.getIdentitySets();        
       if(udr.hasServerName()) {
         this.serverName = udr.getServerName();
       }
@@ -165,10 +163,10 @@ public class MessageData implements Serializable {
   }
 
   /**
-   * @return the identitySet
+   * @return the identitySets
    */
-  public IdentitySetType getIdentitySet() {
-    return identitySet;
+  public IdentitySetType[] getIdentitySets() {
+    return identitySets;
   }
 
   /**

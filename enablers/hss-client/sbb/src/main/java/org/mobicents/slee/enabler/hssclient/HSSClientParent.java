@@ -45,11 +45,11 @@ public interface HSSClientParent {
    * 
    * @param publicIdentity the IMS Public User Identity or Public Service Identity value from the original request (if any)
    * @param msisdn the MSISDN value from the original request (if any)
-   * @param identitySet the Identity-Set value, identifying which identities to retrieve, from the original request
+   * @param identitySets the Identity-Set values, identifying which identities to retrieve, from the original request
    * @param resultCode the Diameter Result-Code received in the answer
    * @param data a String containing the XML for the received data
    */
-  public void deliverIMSPublicIdentity(String publicIdentity, byte[] msisdn, int identitySet, long resultCode, String data);
+  public void deliverIMSPublicIdentity(String publicIdentity, byte[] msisdn, int[] identitySets, long resultCode, String data);
 
   /**
    * Callback method to deliver the IMS User State data requested in getIMSUserState(..)

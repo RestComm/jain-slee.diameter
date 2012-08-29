@@ -51,14 +51,14 @@ public interface HSSClientChild {
    * 
    * @param publicIdentity the IMS Public User Identity or Public Service Identity value (if any)
    * @param msisdn the MSISDN value (if any)
-   * @param identitySet the Identity-Set value identifying which identities to retrieve, from the following values:
+   * @param identitySets the Identity-Set value identifying which identities to retrieve, from the following values:
    *                    ALL_IDENTITIES (0), REGISTERED_IDENTITIES (1), IMPLICIT_IDENTITIES (2)
    * @param destinationRealm the Diameter realm to which the request is to be sent to
    * @param destinationHost (optional parameter) the Diameter host (in the specified realm) to which the request is to be sent to
    * @return a String representing the sent request Session-Id for possible matching
    * @throws IOException
    */
-  public String getIMSPublicIdentity(String publicIdentity, byte[] msisdn, int identitySet, String destinationRealm, String destinationHost) throws IOException;
+  public String getIMSPublicIdentity(String publicIdentity, byte[] msisdn, int[] identitySets, String destinationRealm, String destinationHost) throws IOException;
 
   /**
    * Sends an User-Data-Request for IMS User State, using the following access key:

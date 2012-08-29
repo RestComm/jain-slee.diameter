@@ -618,8 +618,12 @@ public abstract class HSSClientChildSbb implements Sbb, HSSClientChild {
       getParent().deliverRepositoryData(udrData.getPublicIdentity(), udrData.getServiceIndications(), resultCode, data);
       break;
     case DataReferenceType._IMS_PUBLIC_IDENTITY:
-      IdentitySetType identitySet = udrData.getIdentitySet();
-      getParent().deliverIMSPublicIdentity(udrData.getPublicIdentity(), udrData.getMsisdn(), identitySet != null ? identitySet.getValue() : null, resultCode, data);
+      IdentitySetType[] identitySets = udrData.getIdentitySets();
+      int[] intIdentitySets = new int[identitySets.length];
+      for(int i = 0; i < identitySets.length; i++) {
+      	intIdentitySets[i] = identitySets[i].getValue();
+      }
+      getParent().deliverIMSPublicIdentity(udrData.getPublicIdentity(), udrData.getMsisdn(), intIdentitySets, resultCode, data);
       break;
     case DataReferenceType._IMS_USER_STATE:
       getParent().deliverIMSUserState(udrData.getPublicIdentity(), resultCode, data);
