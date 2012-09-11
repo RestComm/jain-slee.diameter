@@ -23,6 +23,7 @@
 package org.mobicents.slee.enabler.hssclient.example;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import javax.slee.ActivityContextInterface;
 import javax.slee.CreateException;
@@ -152,15 +153,16 @@ public abstract class HSSClientParentSbb implements Sbb, HSSClientParent {
   }
 
   @Override
-  public void deliverIMSPublicIdentity(String publicIdentity, byte[] msisdn, int identitySet, long resultCode, String data) {
-    if (tracer.isInfoEnabled()) {
-      String dataType = "IMS Public Identity";
-      tracer.info((publicIdentity != null ? publicIdentity : new String(msisdn)) + "/" + identitySet + " '" + dataType + "' delivery: Result-Code = '" + resultCode + "'");
-      if (data != null) {
-        tracer.info("User-Data: " + data);
-      }
-    }
-  }
+	public void deliverIMSPublicIdentity(String publicIdentity, byte[] msisdn,
+			int[] identitySets, long resultCode, String data) {
+	  if (tracer.isInfoEnabled()) {
+	      String dataType = "IMS Public Identity";
+	      tracer.info((publicIdentity != null ? publicIdentity : new String(msisdn)) + "/" + Arrays.asList(identitySets) + " '" + dataType + "' delivery: Result-Code = '" + resultCode + "'");
+	      if (data != null) {
+	        tracer.info("User-Data: " + data);
+	      }
+	    }
+	}
 
   @Override
   public void deliverIMSUserState(String publicIdentity, long resultCode, String data) {
