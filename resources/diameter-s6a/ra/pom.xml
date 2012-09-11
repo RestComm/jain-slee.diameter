@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.mobicents.servers.diameter.resources</groupId>
     <artifactId>s6a-parent</artifactId>
-		<version>2.8.0-SNAPSHOT</version>
+		<version>6.1.0-TelScale-SNAPSHOT</version>
   </parent>
 
   <artifactId>s6a-ra</artifactId>

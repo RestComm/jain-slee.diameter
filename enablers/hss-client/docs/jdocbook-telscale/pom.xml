@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.mobicents.servers.jainslee.enablers</groupId>
 		<artifactId>hss-client-docs</artifactId>
-		<version>2.8.0-SNAPSHOT</version>
+		<version>6.1.0-TelScale-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>hss-client-docs-jdocbook-telscale</artifactId>
@@ -30,8 +30,7 @@
 								<configuration>
 									<tasks>
 										<!-- copy docs -->
-										<copy overwrite="true"
-											todir="${release.dir}/docs/enablers/hss-client/user-guide">
+										<copy overwrite="true" todir="${release.dir}/docs/enablers/hss-client/user-guide">
 											<fileset dir="${basedir}/target/docbook/publish" />
 										</copy>
 									</tasks>
