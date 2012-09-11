@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
 			<artifactId>sh-common-library</artifactId>
-			<version>${mobicents.diameter.resources.sh-common.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<!-- components -->
 		<dependency>

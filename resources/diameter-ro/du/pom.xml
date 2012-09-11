@@ -16,7 +16,7 @@
 		<dependency>
 			<groupId>org.mobicents.servers.diameter.resources</groupId>
 			<artifactId>cca-common-library</artifactId>
-			<version>${mobicents.diameter.resources.cca-common.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<!-- components -->
 		<dependency>

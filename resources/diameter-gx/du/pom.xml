@@ -19,7 +19,7 @@
 		<!-- package, and it should be put into a common deployable unit instead -->
 		<!-- common library -->
 		<!-- <dependency> <groupId>org.mobicents.servers.diameter.resources</groupId> 
-			<artifactId>cca-common-library</artifactId> <version>${mobicents.diameter.resources.cca-common.version}</version> 
+			<artifactId>cca-common-library</artifactId> <version>${project.version}</version> 
 			</dependency> -->
 
 		<!-- components -->

@@ -15,12 +15,12 @@
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
 			<artifactId>sh-common-events</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
 			<artifactId>base-common-ratype</artifactId>
-			<version>${mobicents.diameter.resources.base-common.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 

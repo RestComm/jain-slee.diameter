@@ -23,8 +23,6 @@
   </modules>
 
   <properties>
-    <!-- Mobicents Diameter Components Versions -->
-    <mobicents.diameter.resources.cca-common.version>${project.version}</mobicents.diameter.resources.cca-common.version>
 	<!-- Documentation Related Properties -->
     <docs.profile>mobicents</docs.profile>
     <docs.ra.name>Diameter Ro</docs.ra.name>

@@ -16,12 +16,12 @@
 		<dependency>
 			<groupId>${pom.groupId}</groupId> 
 			<artifactId>gq-events</artifactId> 
-			<version>${pom.version}</version> 
+			<version>${project.version}</version> 
 		</dependency>
 		<dependency>
 			<groupId>org.mobicents.servers.diameter.resources</groupId>
 			<artifactId>base-common-ratype</artifactId>
-			<version>${mobicents.diameter.resources.base-common.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 
