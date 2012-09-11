@@ -1,3 +1,30 @@
+# SLEE
+
+enablers/hss-client/docs/sources-mobicents/src/
+enablers/hss-client/docs/sources-telscale/src/
+resources/diameter-base/docs/sources-mobicents/src/
+resources/diameter-base/docs/sources-telscale/src/
+resources/diameter-cca/docs/sources-mobicents/src/
+resources/diameter-cca/docs/sources-telscale/src/
+resources/diameter-cx-dx/docs/sources-mobicents/src/
+resources/diameter-cx-dx/docs/sources-telscale/src/
+resources/diameter-gq/docs/sources-mobicents/src/
+resources/diameter-gq/docs/sources-telscale/src/
+resources/diameter-gx/docs/sources-mobicents/src/
+resources/diameter-gx/docs/sources-telscale/src/
+resources/diameter-rf/docs/sources-mobicents/src/
+resources/diameter-rf/docs/sources-telscale/src/
+resources/diameter-ro/docs/sources-mobicents/src/
+resources/diameter-ro/docs/sources-telscale/src/
+resources/diameter-rx/docs/sources-mobicents/src/
+resources/diameter-rx/docs/sources-telscale/src/
+resources/diameter-s6a/docs/sources-mobicents/src/
+resources/diameter-s6a/docs/sources-telscale/src/
+resources/diameter-sh-client/docs/sources-mobicents/src/
+resources/diameter-sh-client/docs/sources-telscale/src/
+resources/diameter-sh-server/docs/sources-mobicents/src/
+resources/diameter-sh-server/docs/sources-telscale/src/
+
 # Java compiled #
 #################
 *.class
