@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.mobicents</groupId>
 		<artifactId>mobicents-parent</artifactId>
-		<version>2.23-SNAPSHOT</version>
+		<version>6.1.2.GA-TelScale</version>
 	</parent>
 	
 	<groupId>org.mobicents.servers.jainslee.diameter</groupId>
@@ -14,29 +14,26 @@
 	<packaging>pom</packaging>
 	
 	<modules>
-		<module>resources/diameter-base</module>
-		<module>resources/diameter-sh-client</module>
-		<module>resources/diameter-sh-server</module>
-		<module>resources/diameter-cca</module>
-		<module>resources/diameter-gx</module>
-		<module>resources/diameter-cx-dx</module>
-		<module>resources/diameter-rf</module>
-		<module>resources/diameter-ro</module>
-		<module>resources/diameter-gq</module>
-		<module>resources/diameter-rx</module>
-		<module>resources/diameter-s6a</module>										
-		<module>enablers/hss-client</module>
+		<!-- modules are defined on profiles -->
 	</modules>
-		
-	<scm>
-		<connection>scm:git:https://code.google.com/p/jain-slee.diameter/</connection>
-		<developerConnection>scm:git:https://code.google.com/p/jain-slee.diameter/</developerConnection>
-		<url>https://code.google.com/p/jain-slee.diameter/</url>
-	</scm>     
 			
 	<profiles>
 		<profile>
 			<id>maven-release</id>
+			<modules>
+				<module>resources/diameter-base</module>
+				<module>resources/diameter-sh-client</module>
+				<module>resources/diameter-sh-server</module>
+				<module>resources/diameter-cca</module>
+				<module>resources/diameter-gx</module>
+				<module>resources/diameter-cx-dx</module>
+				<module>resources/diameter-rf</module>
+				<module>resources/diameter-ro</module>
+				<module>resources/diameter-gq</module>
+				<module>resources/diameter-rx</module>
+				<module>resources/diameter-s6a</module>										
+				<module>enablers/hss-client</module>
+			</modules>
 			<build>
 				<plugins>
 					<plugin>
@@ -50,25 +47,60 @@
 				</plugins>
 			</build>		
 		</profile>
-	</profiles>	
+		<profile>
+			<id>release</id>
+			<modules>
+				<module>resources/diameter-base</module>
+				<module>resources/diameter-sh-client</module>
+				<module>resources/diameter-sh-server</module>
+				<module>resources/diameter-cca</module>
+				<module>resources/diameter-gx</module>
+				<module>resources/diameter-cx-dx</module>
+				<module>resources/diameter-rf</module>
+				<module>resources/diameter-ro</module>
+				<module>resources/diameter-gq</module>
+				<module>resources/diameter-rx</module>
+				<module>resources/diameter-s6a</module>										
+				<module>enablers/hss-client</module>
+			</modules>			
+		</profile>
+	</profiles>
+		
+	<scm>
+		<connection>scm:git:https://code.google.com/p/jain-slee.diameter/</connection>
+		<developerConnection>scm:git:https://code.google.com/p/jain-slee.diameter/</developerConnection>
+		<url>https://code.google.com/p/jain-slee.diameter/</url>
+	</scm>     
 	
 	<!-- dupe info from parent, but it's only way to retrieve the parent without checkout -->
 
 	<repositories>
-                <repository>
-                        <id>mobicents-public-repository-group</id>
-                        <name>Mobicents Public Maven Repository Group</name>
-                        <url>https://oss.sonatype.org/content/groups/public</url>
-                        <layout>default</layout>
-                        <releases>
-                                <enabled>true</enabled>
-                                <updatePolicy>never</updatePolicy>
-                        </releases>
-                        <snapshots>
-                                <enabled>true</enabled>
-                                <updatePolicy>never</updatePolicy>
-                        </snapshots>
-                </repository>
-        </repositories>
+            <repository>
+                  <id>telscale-releases-repository</id>
+                  <name>TelScale Releases Repository</name>
+                  <url>http://telestax.artifactoryonline.com/telestax/releases</url>
+                  <releases>
+                    <enabled>true</enabled>
+                    <updatePolicy>never</updatePolicy>
+                  </releases>
+                  <snapshots>
+                    <enabled>false</enabled>
+                    <updatePolicy>never</updatePolicy>
+                  </snapshots>                            
+            </repository>
+            <repository>
+                  <id>telscale-snapshots-repository</id>
+                  <name>TelScale Snapshots Repository</name>
+                  <url>http://telestax.artifactoryonline.com/telestax/snapshots</url>
+                  <releases>
+                    <enabled>false</enabled>
+                    <updatePolicy>never</updatePolicy>
+                  </releases>
+                  <snapshots>
+                    <enabled>true</enabled>
+                    <updatePolicy>never</updatePolicy>
+                  </snapshots>                            
+            </repository>                
+    </repositories>
 	
 </project>

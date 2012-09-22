@@ -1,5 +1,5 @@
 # SLEE
-
+${release.dir}
 enablers/hss-client/docs/sources-mobicents/src/
 enablers/hss-client/docs/sources-telscale/src/
 resources/diameter-base/docs/sources-mobicents/src/
