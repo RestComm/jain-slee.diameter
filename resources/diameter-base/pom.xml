@@ -25,8 +25,8 @@
 
   <properties>
     <!-- Mobicents Diameter Components Versions -->
-    <mobicents.diameter.jdiameter.version>1.5.9.0-build538-SNAPSHOT</mobicents.diameter.jdiameter.version>
-    <mobicents.diameter.mux.version>1.4.1-SNAPSHOT</mobicents.diameter.mux.version>
+    <mobicents.diameter.jdiameter.version>6.1.1.GA-TelScale</mobicents.diameter.jdiameter.version>
+    <mobicents.diameter.mux.version>6.1.1.GA-TelScale</mobicents.diameter.mux.version>
     <mobicents.slee.version>${project.version}</mobicents.slee.version>
     <!-- Documentation Related Properties -->
     <docs.profile>mobicents</docs.profile>
