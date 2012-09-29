@@ -11,8 +11,8 @@
 		id="ra_clustering_failover">
 		<title>Failover</title>
 		<para>
-			The Diameter stack used by the &THIS.PLATFORM; JAIN SLEE &THIS.RA; Resource Adaptor supports application session failover, with specific session state being replicated, thus only available for Application sessions.
-			Failover of application activities is transparent to SLEE applications. This means that SLEE applications must be in charge of properly adapting its state machine to recover generic session on node failure.
+			The Diameter stack used by the &THIS.PLATFORM; JAIN SLEE &THIS.RA; Resource Adaptor supports application session failover, with specific session state being replicated. This is only available for Application sessions.
+			Failover of application activities is transparent to SLEE applications. This means that SLEE applications must adapt its state machine to recover generic session on node failure.
 		</para>
 	</section>
 	<section

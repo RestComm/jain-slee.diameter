@@ -66,27 +66,27 @@ public interface DiameterProvider {
 			</varlistentry>
 			<varlistentry>
 				<term>public DiameterActivity createActivity() throws CreateActivityException;</term>
-				<listitem><para>This method creates a new activity to send and receive Diameter messages.</para></listitem>
+				<listitem><para>This method creates a new activity for sending and receiving Diameter messages.</para></listitem>
 			</varlistentry>
 			<varlistentry>
 				<term>public DiameterActivity createActivity(DiameterIdentity destinationHost, DiameterIdentity destinationRealm) throws CreateActivityException;</term>
-				<listitem><para>This method creates a new activity to send and receive Diameter messages.</para></listitem>
+				<listitem><para>This method creates a new activity for sending and receiving receive Diameter messages.</para></listitem>
 			</varlistentry>
 			<varlistentry>
 				<term>public AccountingClientSessionActivity createAccountingClientSessionActivity() throws CreateActivityException;</term>
-				<listitem><para>This method create a new activity to send Diameter Accounting request messages.</para></listitem>
+				<listitem><para>This method creates a new activity for sending Diameter Accounting request messages.</para></listitem>
 			</varlistentry>
 			<varlistentry>
 				<term>public AccountingClientSessionActivity createAccountingClientSessionActivity(DiameterIdentity destinationHost, DiameterIdentity destinationRealm) throws CreateActivityException ;</term>
-				<listitem><para>This method create a new activity to send Diameter Accounting request messages.</para></listitem>
+				<listitem><para>This method creates a new activity for sending Diameter Accounting request messages.</para></listitem>
 			</varlistentry>
 			<varlistentry>
 				<term>public AuthClientSessionActivity createAuthenticationClientSessionActivity() throws CreateActivityException;</term>
-				<listitem><para>This method create a new activity to send Diameter Authorization request messages.</para></listitem>
+				<listitem><para>This method create a new activity for sending Diameter Authorization request messages.</para></listitem>
 			</varlistentry>
 			<varlistentry>
 				<term>public AuthClientSessionActivity createAuthenticationClientSessionActivity(DiameterIdentity destinationHost, DiameterIdentity destinationRealm)throws CreateActivityException;</term>
-				<listitem><para>This method create a new activity to send Diameter Authorization request messages.</para></listitem>
+				<listitem><para>This method creates a new activity for sending Diameter Authorization request messages.</para></listitem>
 			</varlistentry>
 			<varlistentry>
 				<term>public DiameterMessage sendSyncRequest(DiameterMessage message) throws IOException;</term>
@@ -94,11 +94,11 @@ public interface DiameterProvider {
 			</varlistentry>
 			<varlistentry>
 				<term>public DiameterIdentity[] getConnectedPeers();</term>
-				<listitem><para>This method returns the identities of peers this Diameter resource adaptor is connected to.</para></listitem>
+				<listitem><para>This method returns the identities of peers the Diameter resource adaptor is connected to.</para></listitem>
 			</varlistentry>
 			<varlistentry>
 				<term>public int getPeerCount();</term>
-				<listitem><para>This method returns the number of peers this Diameter resource adaptor is connected to.</para></listitem>
+				<listitem><para>This method returns the number of peers the Diameter resource adaptor is connected to.</para></listitem>
 			</varlistentry>
 		</variablelist>
 	</para>
