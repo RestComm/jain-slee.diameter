@@ -106,12 +106,16 @@ public abstract class HSSClientChildSbb implements Sbb, HSSClientChild {
     return activity.getSessionId();
   }
 
-  public String getIMSPublicIdentity(String publicIdentity, byte[] msisdn, int identitySet, String destinationRealm, String destinationHost) throws IOException {
+  public String getIMSPublicIdentity(String publicIdentity, byte[] msisdn, int[] identitySets, String destinationRealm, String destinationHost) throws IOException {
     UserIdentityAvp publicIdentityAvp = createUserIdentityAvp(publicIdentity, msisdn);
 
     UserDataRequest udr = diameterShClientMessageFactory.createUserDataRequest(publicIdentityAvp, DataReferenceType.IMS_PUBLIC_IDENTITY);
     udr.setAuthSessionState(AuthSessionStateType.NO_STATE_MAINTAINED);
-    udr.setIdentitySet(IdentitySetType.fromInt(identitySet));
+    IdentitySetType[] typeIdentitySets = new IdentitySetType[identitySets.length];
+    for(int i = 0; i < identitySets.length; i++) {
+      typeIdentitySets[i] = IdentitySetType.fromInt(identitySets[i]);
+    }
+    udr.setIdentitySets(typeIdentitySets);
 
     // Set destination -- Realm is mandatory, host is optional
     udr.setDestinationRealm(new DiameterIdentity(destinationRealm));
