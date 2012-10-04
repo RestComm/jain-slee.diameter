@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.mobicents.servers.jainslee.enablers</groupId>
 		<artifactId>hss-client</artifactId>
-		<version>6.1.1.GA-TelScale</version>
+		<version>6.1.2-TelScale-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>hss-client-sbb</artifactId>
