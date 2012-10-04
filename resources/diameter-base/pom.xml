@@ -27,9 +27,8 @@
     <!-- Mobicents Diameter Components Versions -->
     <mobicents.diameter.jdiameter.version>6.1.1.GA-TelScale</mobicents.diameter.jdiameter.version>
     <mobicents.diameter.mux.version>6.1.1.GA-TelScale</mobicents.diameter.mux.version>
-    <mobicents.slee.version>${project.version}</mobicents.slee.version>
+    <mobicents.slee.version>6.1.1.GA-TelScale</mobicents.slee.version>
     <!-- Documentation Related Properties -->
-    <docs.profile>mobicents</docs.profile>
     <docs.ra.name>Diameter Base</docs.ra.name>
     <docs.ra.dirname>diameter-base</docs.ra.dirname>
     <docs.bookid>DIAMETER_BASE</docs.bookid>
