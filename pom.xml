@@ -16,6 +16,16 @@
 	<modules>
 		<!-- modules are defined on profiles -->
 	</modules>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.mobicents.servers.jainslee.api</groupId>
+				<artifactId>jain-slee-11-ext</artifactId>
+				<version>6.1.1.GA-TelScale</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 			
 	<profiles>
 		<profile>
