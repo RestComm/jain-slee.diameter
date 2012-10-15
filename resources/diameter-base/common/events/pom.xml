@@ -2,28 +2,28 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.mobicents.servers.diameter.resources</groupId>
-		<artifactId>base-common-parent</artifactId>
+		<groupId>org.mobicents.resources</groupId>
+		<artifactId>mobicents-slee-ra-diameter-base-common</artifactId>
 		<version>2.8.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>base-common-events</artifactId>
+	<artifactId>mobicents-slee-ra-diameter-base-common-events</artifactId>
 
 	<name>Mobicents :: Diameter Resources :: ${pom.artifactId}</name>
 
 	<dependencies>
 		<dependency>
-			<groupId>org.mobicents.servers.diameter</groupId>
+			<groupId>org.mobicents.diameter</groupId>
 			<artifactId>mobicents-diameter-mux-jar</artifactId>
 			<version>${mobicents.diameter.mux.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.mobicents.servers.diameter</groupId>
+			<groupId>org.mobicents.diameter</groupId>
 			<artifactId>jdiameter-api</artifactId>
 			<version>${mobicents.diameter.jdiameter.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.mobicents.servers.diameter</groupId>
+			<groupId>org.mobicents.diameter</groupId>
 			<artifactId>jdiameter-impl</artifactId>
 			<version>${mobicents.diameter.jdiameter.version}</version>
 		</dependency>

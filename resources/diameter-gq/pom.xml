@@ -12,13 +12,14 @@
 		<relativePath>../..</relativePath>
 	</parent>
 
-	<groupId>org.mobicents.servers.diameter.resources</groupId>
-	<artifactId>gq-parent</artifactId>
+	<groupId>org.mobicents.resources</groupId>
+	<artifactId>mobicents-slee-ra-diameter-gq</artifactId>
 
 	<modules>
 		<module>ratype</module>
 		<module>events</module>
 		<module>ra</module>
+		<module>testsuite</module>
 		<module>du</module>
 	</modules>
 
@@ -28,7 +29,7 @@
 		<docs.ra.name>Diameter Gq</docs.ra.name>
 		<docs.ra.dirname>diameter-gq</docs.ra.dirname>
 		<docs.bookid>DIAMETER_GQ</docs.bookid>
-	 </properties>
+	</properties>
 
 	<profiles>
 		<profile>
@@ -43,7 +44,7 @@
 			<modules>
 				<module>docs</module>
 				<module>release</module>
-			</modules>			
+			</modules>
 		</profile>
 	</profiles>
 
