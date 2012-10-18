@@ -1,16 +1,16 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	
+
 	<modelVersion>4.0.0</modelVersion>
-	
+
 	<parent>
-		<groupId>org.mobicents.servers.diameter.resources</groupId>
+		<groupId>org.mobicents.resources</groupId>
 		<artifactId>mobicents-slee-ra-diameter-cca-docs</artifactId>
 		<version>6.1.2-TelScale-SNAPSHOT</version>
 	</parent>
-	
+
 	<artifactId>mobicents-slee-ra-diameter-cca-docs-sources-telscale</artifactId>
-			
+
 	<properties>
 		<THIS.PLATFORM>Telscale</THIS.PLATFORM>
 		<JEE.PLATFORM>JBoss Application Server</JEE.PLATFORM>
@@ -24,10 +24,10 @@
 	<build>
 		<resources>
 			<resource>
-        		<directory>${basedir}/src/main/resources</directory>
-        		<filtering>true</filtering>
-      		</resource>
-      	</resources>
+						<directory>${basedir}/src/main/resources</directory>
+						<filtering>true</filtering>
+					</resource>
+				</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -49,7 +49,7 @@
 									<overWrite>true</overWrite>
 									<outputDirectory>${basedir}/src/main/resources</outputDirectory>
 								</artifactItem>
-							</artifactItems>							
+							</artifactItems>
 						</configuration>
 					</execution>
 				</executions>
@@ -75,5 +75,5 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>

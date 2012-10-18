@@ -3,12 +3,12 @@
 	<packaging>pom</packaging>
 
 	<parent>
-		<groupId>org.mobicents.servers.diameter.resources</groupId>
-		<artifactId>gq-parent</artifactId>
+		<groupId>org.mobicents.resources</groupId>
+		<artifactId>mobicents-slee-ra-diameter-gq</artifactId>
 		<version>6.1.2-TelScale-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>gq-ra-release</artifactId>
+	<artifactId>mobicents-slee-ra-diameter-gq-ra-release</artifactId>
 
 	<name>Mobicents :: Diameter Resources :: ${pom.artifactId}</name>
 

@@ -3,12 +3,12 @@
 	<packaging>pom</packaging>
 
 	<parent>
-		<groupId>org.mobicents.servers.diameter.resources</groupId>
-		<artifactId>sh-client-parent</artifactId>
+		<groupId>org.mobicents.resources</groupId>
+		<artifactId>mobicents-slee-ra-diameter-sh-client</artifactId>
 		<version>6.1.2-TelScale-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>sh-client-ra-release</artifactId>
+	<artifactId>mobicents-slee-ra-diameter-sh-client-ra-release</artifactId>
 
 	<name>Mobicents :: Diameter Resources :: ${pom.artifactId}</name>
 

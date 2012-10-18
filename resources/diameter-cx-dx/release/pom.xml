@@ -3,12 +3,12 @@
 	<packaging>pom</packaging>
 
 	<parent>
-		<groupId>org.mobicents.servers.diameter.resources</groupId>
-		<artifactId>cx-dx-parent</artifactId>
+		<groupId>org.mobicents.resources</groupId>
+		<artifactId>mobicents-slee-ra-diameter-cx-dx</artifactId>
 		<version>6.1.2-TelScale-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>cx-dx-ra-release</artifactId>
+	<artifactId>mobicents-slee-ra-diameter-cx-dx-ra-release</artifactId>
 
 	<name>Mobicents :: Diameter Resources :: ${pom.artifactId}</name>
 

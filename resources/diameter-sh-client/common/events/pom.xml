@@ -2,19 +2,19 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-    <groupId>org.mobicents.servers.diameter.resources</groupId>
-  	<artifactId>sh-common-parent</artifactId>
-    <version>6.1.2-TelScale-SNAPSHOT</version>
+		<groupId>org.mobicents.resources</groupId>
+		<artifactId>mobicents-slee-ra-diameter-sh-common</artifactId>
+		<version>6.1.2-TelScale-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>sh-common-events</artifactId>
+	<artifactId>mobicents-slee-ra-diameter-sh-common-events</artifactId>
 
 	<name>Mobicents :: Diameter Resources :: ${pom.artifactId}</name>
 
 	<dependencies>
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
-			<artifactId>base-common-events</artifactId>
+			<artifactId>mobicents-slee-ra-diameter-base-common-events</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

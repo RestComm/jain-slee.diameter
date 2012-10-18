@@ -2,40 +2,44 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.mobicents.servers.diameter.resources</groupId>
-		<artifactId>gx-parent</artifactId>
+		<groupId>org.mobicents.resources</groupId>
+		<artifactId>mobicents-slee-ra-diameter-gx</artifactId>
 		<version>6.1.2-TelScale-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>gx-ra-DU</artifactId>
+	<artifactId>mobicents-slee-ra-diameter-gx-ra-DU</artifactId>
 
 	<name>Mobicents :: Diameter Resources :: ${pom.artifactId}</name>
 
 	<dependencies>
-		<!-- This has been commented out since it was already included in the Ro-RA, 
+		<!-- This has been commented out since it was already included in the Ro-RA,
 			and hence caused it to be impossible to deploy both at the same time. -->
-		<!-- This also means that we now NEED to have another DU deployed in the 
+		<!-- This also means that we now NEED to have another DU deployed in the
 			SLEE that already contains this package. The Ro-RA should also ommit this -->
 		<!-- package, and it should be put into a common deployable unit instead -->
 		<!-- common library -->
-		<!-- <dependency> <groupId>org.mobicents.servers.diameter.resources</groupId> 
-			<artifactId>cca-common-library</artifactId> <version>${project.version}</version> 
-			</dependency> -->
+		<!--
+		<dependency>
+			<groupId>org.mobicents.resources</groupId>
+			<artifactId>mobicents-slee-ra-diameter-cca-common-library</artifactId>
+			<version>${project.version}</version>
+		</dependency>
+		-->
 
 		<!-- components -->
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
-			<artifactId>gx-events</artifactId>
+			<artifactId>mobicents-slee-ra-diameter-gx-events</artifactId>
 			<version>${pom.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
-			<artifactId>gx-ratype</artifactId>
+			<artifactId>mobicents-slee-ra-diameter-gx-ratype</artifactId>
 			<version>${pom.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
-			<artifactId>gx-ra</artifactId>
+			<artifactId>mobicents-slee-ra-diameter-gx-ra</artifactId>
 			<version>${pom.version}</version>
 		</dependency>
 	</dependencies>

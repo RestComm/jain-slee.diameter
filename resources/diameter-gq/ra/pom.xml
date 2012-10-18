@@ -1,24 +1,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-	<modelVersion>4.0.0</modelVersion> 
+
+	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
-		<groupId>org.mobicents.servers.diameter.resources</groupId> 
-		<artifactId>gq-parent</artifactId> 
+		<groupId>org.mobicents.resources</groupId>
+		<artifactId>mobicents-slee-ra-diameter-gq</artifactId>
 		<version>6.1.2-TelScale-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>gq-ra</artifactId> 
+	<artifactId>mobicents-slee-ra-diameter-gq-ra</artifactId>
 
-	<name>Mobicents :: Diameter Resources :: ${pom.artifactId}</name> 
+	<name>Mobicents :: Diameter Resources :: ${pom.artifactId}</name>
 
 	<dependencies>
 		<dependency>
-			<groupId>${pom.groupId}</groupId> 
-			<artifactId>gq-ratype</artifactId> 
-			<version>${project.version}</version> 
+			<groupId>${pom.groupId}</groupId>
+			<artifactId>mobicents-slee-ra-diameter-gq-ratype</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>org.mobicents.servers.diameter.resources</groupId>
-			<artifactId>base-common-ra</artifactId>
+			<groupId>org.mobicents.resources</groupId>
+			<artifactId>mobicents-slee-ra-diameter-base-common-ra</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<!--dependency>

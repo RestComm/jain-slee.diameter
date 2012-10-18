@@ -2,19 +2,19 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.mobicents.servers.diameter.resources</groupId>
-		<artifactId>base-common-parent</artifactId>
+		<groupId>org.mobicents.resources</groupId>
+		<artifactId>mobicents-slee-ra-diameter-base-common</artifactId>
 		<version>6.1.2-TelScale-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>base-common-ra</artifactId>
+	<artifactId>mobicents-slee-ra-diameter-base-common-ra</artifactId>
 
 	<name>Mobicents :: Diameter Resources :: ${pom.artifactId}</name>
 
 	<dependencies>
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
-			<artifactId>base-common-ratype</artifactId>
+			<artifactId>mobicents-slee-ra-diameter-base-common-ratype</artifactId>
 			<version>${pom.version}</version>
 		</dependency>
 		<dependency>

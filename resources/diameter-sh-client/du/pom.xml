@@ -2,12 +2,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.mobicents.servers.diameter.resources</groupId>
-		<artifactId>sh-client-parent</artifactId>
+		<groupId>org.mobicents.resources</groupId>
+		<artifactId>mobicents-slee-ra-diameter-sh-client</artifactId>
 		<version>6.1.2-TelScale-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>sh-client-ra-DU</artifactId>
+	<artifactId>mobicents-slee-ra-diameter-sh-client-ra-DU</artifactId>
 
 	<name>Mobicents :: Diameter Resources :: ${pom.artifactId}</name>
 
@@ -15,23 +15,23 @@
 		<!-- common library -->
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
-			<artifactId>sh-common-library</artifactId>
+			<artifactId>mobicents-slee-ra-diameter-sh-common-library</artifactId>
 			<version>${pom.version}</version>
 		</dependency>
 		<!-- components -->
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
-			<artifactId>sh-client-events</artifactId>
+			<artifactId>mobicents-slee-ra-diameter-sh-client-events</artifactId>
 			<version>${pom.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
-			<artifactId>sh-client-ratype</artifactId>
+			<artifactId>mobicents-slee-ra-diameter-sh-client-ratype</artifactId>
 			<version>${pom.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
-			<artifactId>sh-client-ra</artifactId>
+			<artifactId>mobicents-slee-ra-diameter-sh-client-ra</artifactId>
 			<version>${pom.version}</version>
 		</dependency>
 	</dependencies>

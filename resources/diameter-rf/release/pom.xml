@@ -3,12 +3,12 @@
 	<packaging>pom</packaging>
 
 	<parent>
-		<groupId>org.mobicents.servers.diameter.resources</groupId>
-		<artifactId>rf-parent</artifactId>
+		<groupId>org.mobicents.resources</groupId>
+		<artifactId>mobicents-slee-ra-diameter-rf</artifactId>
 		<version>6.1.2-TelScale-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>rf-ra-release</artifactId>
+	<artifactId>mobicents-slee-ra-diameter-rf-ra-release</artifactId>
 
 	<name>Mobicents :: Diameter Resources :: ${pom.artifactId}</name>
 
@@ -51,5 +51,5 @@
 			</build>
 		</profile>
 	</profiles>
-	
+
 </project>
