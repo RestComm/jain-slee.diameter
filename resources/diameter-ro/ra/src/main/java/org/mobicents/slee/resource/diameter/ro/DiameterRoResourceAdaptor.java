@@ -648,7 +648,12 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
    */
   @Override
   public void startActivityRemoveTimer(DiameterActivityHandle handle) {
-    this.activities.startActivityRemoveTimer(handle);
+    try {
+      this.activities.startActivityRemoveTimer(handle);
+    }
+    catch (Exception e) {
+      tracer.warning("Failed to start activity remove timer.", e);
+    }
   }
 
   /**
@@ -656,7 +661,12 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
    */
   @Override
   public void stopActivityRemoveTimer(DiameterActivityHandle handle) {
-    this.activities.stopActivityRemoveTimer(handle);
+    try {
+      this.activities.stopActivityRemoveTimer(handle);
+    }
+    catch (Exception e) {
+      tracer.warning("Failed to stop activity remove timer.", e);
+    }
   }
 
   /**
