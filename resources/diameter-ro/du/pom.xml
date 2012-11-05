@@ -2,36 +2,36 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.mobicents.servers.diameter.resources</groupId>
-		<artifactId>ro-parent</artifactId>
+		<groupId>org.mobicents.resources</groupId>
+		<artifactId>mobicents-slee-ra-diameter-ro</artifactId>
 		<version>2.8.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>ro-ra-DU</artifactId>
+	<artifactId>mobicents-slee-ra-diameter-ro-ra-DU</artifactId>
 
 	<name>Mobicents :: Diameter Resources :: ${pom.artifactId}</name>
 
 	<dependencies>
 		<!-- common library -->
 		<dependency>
-			<groupId>org.mobicents.servers.diameter.resources</groupId>
-			<artifactId>cca-common-library</artifactId>
+			<groupId>org.mobicents.resources</groupId>
+			<artifactId>mobicents-slee-ra-diameter-cca-common-library</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 		<!-- components -->
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
-			<artifactId>ro-events</artifactId>
+			<artifactId>mobicents-slee-ra-diameter-ro-events</artifactId>
 			<version>${pom.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
-			<artifactId>ro-ratype</artifactId>
+			<artifactId>mobicents-slee-ra-diameter-ro-ratype</artifactId>
 			<version>${pom.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
-			<artifactId>ro-ra</artifactId>
+			<artifactId>mobicents-slee-ra-diameter-ro-ra</artifactId>
 			<version>${pom.version}</version>
 		</dependency>
 	</dependencies>

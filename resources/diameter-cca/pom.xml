@@ -9,14 +9,15 @@
 		<relativePath>../..</relativePath>
 	</parent>
 
-	<groupId>org.mobicents.servers.diameter.resources</groupId>
-	<artifactId>cca-parent</artifactId>
+	<groupId>org.mobicents.resources</groupId>
+	<artifactId>mobicents-slee-ra-diameter-cca</artifactId>
 
 	<modules>
 		<module>common</module>
 		<module>events</module>
 		<module>ratype</module>
 		<module>ra</module>
+		<module>testsuite</module>
 		<module>du</module>
 	</modules>
 
@@ -41,7 +42,7 @@
 			<modules>
 				<module>docs</module>
 				<module>release</module>
-			</modules>			
+			</modules>
 		</profile>
 	</profiles>
 
