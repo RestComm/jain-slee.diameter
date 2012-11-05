@@ -22,7 +22,6 @@
 
 package org.mobicents.slee.resource.diameter;
 
-import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
 
 import javax.slee.facilities.Tracer;
@@ -37,6 +36,7 @@ import org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptorContext;
 import org.mobicents.slee.resource.cluster.FaultTolerantTimer;
 import org.mobicents.slee.resource.cluster.FaultTolerantTimerTask;
 import org.mobicents.slee.resource.cluster.FaultTolerantTimerTaskData;
+import org.mobicents.slee.resource.cluster.FaultTolerantTimerTaskFactory;
 import org.mobicents.slee.resource.cluster.ReplicatedData;
 import org.mobicents.slee.resource.diameter.base.DiameterActivityHandle;
 import org.mobicents.slee.resource.diameter.base.DiameterActivityImpl;
@@ -49,6 +49,8 @@ import org.mobicents.slee.resource.diameter.base.DiameterActivityImpl;
  */
 public abstract class AbstractClusteredDiameterActivityManagement implements DiameterActivityManagement {
 
+  private static final int TIMER_THREADS = 4;
+
   protected Tracer tracer;
 
   protected Stack diameterStack;
@@ -59,12 +61,12 @@ public abstract class AbstractClusteredDiameterActivityManagement implements Dia
   protected long delay;
 
   public AbstractClusteredDiameterActivityManagement(FaultTolerantResourceAdaptorContext ftRAContext, long delay,Tracer tracer, Stack diameterStack, SleeTransactionManager sleeTxManager, ReplicatedData<String, DiameterActivity> replicatedData) {
-    super();
     this.tracer = tracer;
     this.diameterStack = diameterStack;
     this.sleeTxManager = sleeTxManager;
     this.replicatedData = replicatedData;
     this.faultTolerantTimer = ftRAContext.getFaultTolerantTimer();
+    this.faultTolerantTimer.configure(new DiameterTimerTaskFactory(), TIMER_THREADS);
     this.delay = delay;
   }
 
@@ -142,7 +144,12 @@ public abstract class AbstractClusteredDiameterActivityManagement implements Dia
   public void startActivityRemoveTimer(DiameterActivityHandle handle) {
     DiameterActivity da = this.get(handle);
     if(da != null) {
-      this.faultTolerantTimer.schedule(new ActivityRemovalFaultTolerantTimerTask(handle), delay, TimeUnit.MILLISECONDS);
+      DiameterFaultTolerantTimerTaskData data = new DiameterFaultTolerantTimerTaskData(handle.getId());
+      ActivityRemovalFaultTolerantTimerTask task = new ActivityRemovalFaultTolerantTimerTask(data);
+      this.faultTolerantTimer.schedule(task, delay, TimeUnit.MILLISECONDS);
+      if(tracer.isFineEnabled()) {
+        tracer.fine("Scheduled Activity Remove Timer for ACH ID '" + handle.getId() + "' with delay of " + delay + "ms");
+      }
     }
   }
 
@@ -151,6 +158,9 @@ public abstract class AbstractClusteredDiameterActivityManagement implements Dia
     if(da != null) {
       synchronized (da) {
         this.faultTolerantTimer.cancel(handle.getId());
+        if(tracer.isFineEnabled()) {
+          tracer.fine("Canceled Activity Remove Timer for ACH ID '" + handle.getId() + "'");
+        }
       }
     }
   }
@@ -166,8 +176,8 @@ public abstract class AbstractClusteredDiameterActivityManagement implements Dia
   private final class ActivityRemovalFaultTolerantTimerTask implements FaultTolerantTimerTask {
     private final FaultTolerantTimerTaskData taskData;
 
-    public ActivityRemovalFaultTolerantTimerTask(DiameterActivityHandle handle) {
-      this.taskData = new DiameterTimerTaskData(handle.getId());
+    public ActivityRemovalFaultTolerantTimerTask(FaultTolerantTimerTaskData data) {
+      this.taskData = data;
     }
 
     /* (non-Javadoc)
@@ -198,22 +208,11 @@ public abstract class AbstractClusteredDiameterActivityManagement implements Dia
     }
   }
 
-  private final class DiameterTimerTaskData implements FaultTolerantTimerTaskData {
+  private final class DiameterTimerTaskFactory implements FaultTolerantTimerTaskFactory {
 
-    private static final long serialVersionUID = 1L;
-
-    private final String sessionId;
-
-    public DiameterTimerTaskData(String sessionId) {
-      this.sessionId = sessionId;
-    }
-
-    /* (non-Javadoc)
-     * @see org.mobicents.slee.resource.cluster.FaultTolerantTimerTaskData#getTaskID()
-     */
     @Override
-    public Serializable getTaskID() {
-      return this.sessionId;
+    public FaultTolerantTimerTask getTask(FaultTolerantTimerTaskData data) {
+      return new ActivityRemovalFaultTolerantTimerTask(data);
     }
   }
 
