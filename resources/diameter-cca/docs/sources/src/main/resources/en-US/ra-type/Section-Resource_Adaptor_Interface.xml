@@ -9,8 +9,8 @@
 
 	<title>Resource Adaptor Interface</title>
 
-	<para>Resource Adaptor SBB Interface provides SBBs with means of
-		accessing RA objects required for interaction in DIAMETER world. It
+	<para>Resource Adaptor SBB Interface provides SBBs with ways to access
+		RA objects that are required for interaction in the DIAMETER world. It
 		is defined as follows:</para>
 	<programlisting language="Java" role="JAVA">
 	

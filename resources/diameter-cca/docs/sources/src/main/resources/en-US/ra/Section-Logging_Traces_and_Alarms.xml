@@ -12,7 +12,7 @@
 	<section id="ra_tracers">
 		<title>Tracers</title>
 		<para>Each Resource Adaptor Entity uses a single JAIN SLEE 1.1 Tracer, named <literal>DiameterCCAResourceAdaptor</literal>.
-		The related Log4j Logger category, which can be used to change the Tracer level from Log4j configuration, is <literal>javax.slee.RAEntityNotification[entity=DiameterCCAResourceAdaptor]</literal>.</para>
+		The related Log4j Logger category, <literal>javax.slee.RAEntityNotification[entity=DiameterCCAResourceAdaptor]</literal>, can be used to change the Tracer level from Log4j configuration.</para>
 	</section>	
 	
 	<section id="ra_alarms">

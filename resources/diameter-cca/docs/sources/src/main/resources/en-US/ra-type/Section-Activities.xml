@@ -25,7 +25,7 @@
 					requests.  
 				</para>
 				<para>
-					This activity type can be created with call to one of
+					This activity type can be created with a call to one of the
 					methods
 					of
 					CreditControlProvider. It ends once underlying credit control
