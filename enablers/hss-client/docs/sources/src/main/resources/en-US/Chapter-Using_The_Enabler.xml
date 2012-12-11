@@ -1,17 +1,20 @@
 <?xml version='1.0'?>
-<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [<!ENTITY % BOOK_ENTITIES SYSTEM "JAIN_SLEE_Enabler_HSS_Client_User_Guide.ent">%BOOK_ENTITIES;]>
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "JAIN_SLEE_Enabler_HSS_Client_User_Guide.ent">
+%BOOK_ENTITIES;
+]>
 
 <chapter id="using_the_enabler">
 
 	<title>Using the &THIS.PLATFORM; JAIN SLEE &THIS.ENABLER; Enabler</title>
 	
-	<para>In the last chapter we integrated the Enabler in the JAIN SLEE Service's Sbb, the Parent Sbb, in this chapter it is explained how to use the Enabler's Sbb, the Child Sbb.</para>
+	<para>In the previous chapter we integrated the Enabler in the JAIN SLEE Service's Sbb and the Parent Sbb. In this chapter, you will learn how to use the Enabler's Sbb and the Child Sbb.</para>
 	
 	<section id="the_child_sbblocalobject_interface">
 		
 		<title>The Child's SbbLocalObject Interface</title>
 		
-		<para>The &THIS.PLATFORM; JAIN SLEE &THIS.ENABLER; Enabler Sbb, the Child Sbb, implements the <literal>org.mobicents.slee.enabler.hssclient.HSSClientChildSbbLocalObject</literal>, which extends the <literal>org.mobicents.slee.SbbLocalObjectExt</literal> and <literal>org.mobicents.slee.enabler.hssclient.HSSClientChild</literal> interfaces, the latter declares the methods which can be used to interact with the HSS:</para>
+		<para>The &THIS.PLATFORM; JAIN SLEE &THIS.ENABLER; Enabler Sbb and the Child Sbb implement the <literal>org.mobicents.slee.enabler.hssclient.HSSClientChildSbbLocalObject</literal>, which extends the <literal>org.mobicents.slee.SbbLocalObjectExt</literal> and the <literal>org.mobicents.slee.enabler.hssclient.HSSClientChild</literal> interfaces. The the latter declares the methods which can be used to interact with the HSS:</para>
 		
 		<programlisting language="Java" role="JAVA"><![CDATA[
 package org.mobicents.slee.enabler.hssclient;

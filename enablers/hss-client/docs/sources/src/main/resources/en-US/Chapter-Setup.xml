@@ -10,14 +10,14 @@
 
 	<section id="preinstall_requirements_and_prerequisites">
 		<title>Pre-Install Requirements and Prerequisites</title>
-		<para>Ensure that the following requirements have been met before continuing with the install.</para>
+		<para>Ensure that the following requirements have been met before continuing with the installation.</para>
 		<section id="hardware_requirements">
 			<title>Hardware Requirements</title>
 			<para>The Enabler doesn't change the &THIS.PLATFORM; JAIN SLEE Hardware Requirements, refer to &THIS.PLATFORM; JAIN SLEE documentation for more information.</para>
 		</section>
 		<section id="software_prerequisites">
 			<title>Software Prerequisites</title>
-			<para>The Enabler requires &THIS.PLATFORM; JAIN SLEE properly set, with the Diameter Base and Sh-Client Resource Adaptors deployed.</para>
+			<para>The Enabler requires that &THIS.PLATFORM; JAIN SLEE is properly set, with the Diameter Base and Sh-Client Resource Adaptors deployed.</para>
 		</section>
 	</section>	
 	
@@ -33,7 +33,7 @@
 				    <important>
 				    	<para>Git is used to manage Mobicents JAIN SLEE source code. Instructions for downloading, installing and using Git can be found at <ulink url="http://git-scm.com/" /></para>
 				    </important>
-				    <para>Use Git to checkout a specific release source, the Git repository URL is &THIS.SOURCE_CODE_URL; , then switch to the specific release version, lets consider &THIS.VERSION;.</para>
+				    <para>Use Git to checkout a specific release source from the Git repository URL at &THIS.SOURCE_CODE_URL;. Choose the appropriate  release version like in the follow example: &THIS.VERSION;.</para>
 				    <programlisting>
 				    [usr]$ git clone &THIS.SOURCE_CODE_URL; mobicents-jain-slee-diameter
 				    [usr]$ cd mobicents-jain-slee-diameter
@@ -50,14 +50,14 @@
 				    [usr]$ cd enablers/&THIS.ENABLER.DIRNAME;
 				    [usr]$ mvn install
 				    </programlisting>
-				    <para>Once the process finishes you should have the <literal>deployable-unit</literal> jar file in the <filename>target</filename> directory, if &THIS.PLATFORM; JAIN SLEE is installed and environment variable JBOSS_HOME is pointing to its underlying &JEE.PLATFORM; directory, then the deployable unit jar will also be deployed in the container.</para>
+				    <para>Once the build is completed, you should have the <literal>deployable-unit</literal> jar file in the <filename>target</filename> directory. If &THIS.PLATFORM; JAIN SLEE is installed and environment variable JBOSS_HOME is pointing to its underlying &JEE.PLATFORM; directory, the deployable unit jar will also be deployed in the container.</para>
   				</step>
 			</procedure>
 		</section>	
 		
 		<section id="master_source_building">
 			<title>Development Master Source Building</title>
-			<para>Similar process as for <xref linkend="release_source_building"/>, the only change is the Git reference should be the <literal>master</literal>. The <literal>git checkout tags/&THIS.VERSION;</literal> command should not be performed. If already performed, the following should be used in order to switch back to the master:</para>
+			<para>This is a similar procedure to <xref linkend="release_source_building"/>. The Git reference branch should be the <literal>master</literal>. The <literal>git checkout tags/&THIS.VERSION;</literal> command should not be performed. If you are not in the git master branch, do the following: </para>
 		    <programlisting>
 		    [usr]$ git checkout master
 			</programlisting>
@@ -67,11 +67,11 @@
 	
 	<section id="install">
 		<title>Installing &THIS.PLATFORM; JAIN SLEE &THIS.ENABLER; Enabler</title>
-		<para>To install the Enabler simply execute provided ant script <filename>build.xml</filename> default target:</para>
+		<para>To install the Enabler, you must run the ant command at the root directory containing the <filename>build.xml</filename> file as shown below:</para>
 		<programlisting>
 		[usr]$ ant
 		</programlisting>
-		<para>The script will copy the Enabler's deployable unit jar to the <literal>default</literal> &THIS.PLATFORM; JAIN SLEE server profile deploy directory, to deploy to another server profile use the argument <literal>-Dnode=</literal>.</para>
+		<para>The script will copy the Enabler's deployable unit jar to the <literal>default</literal> &THIS.PLATFORM; JAIN SLEE server/default/deploy directory. To deploy to another server profile use the argument <literal>-Dnode=</literal>.</para>
 		<important>
 			<para>This procedure also installs the Enabler's dependencies.</para>
 		</important>
@@ -83,7 +83,7 @@
 		<programlisting>
 		[usr]$ ant undeploy-all
 		</programlisting>
-		<para>The script will delete the Enabler's deployable unit jar from the <literal>default</literal> &THIS.PLATFORM; JAIN SLEE server profile deploy directory, to undeploy from another server profile use the argument <literal>-Dnode=</literal>.</para>
+		<para>The script will delete the Enabler's deployable unit jar from the <literal>default</literal> &THIS.PLATFORM; JAIN SLEE server/default/deploy directory, to undeploy from another server profile use the argument <literal>-Dnode=</literal>.</para>
 		<important>
 			<para>This procedure also uninstalls the Enabler's dependencies.</para>
 		</important>
