@@ -30,8 +30,7 @@
 		</varlistentry>
 	</variablelist>
 	
-	<para>
-		All activities define methods required to properly function and	expose necessary information to	<acronym>JAIN SLEE</acronym> services.
+	<para>All activities define the methods that are required to ensure correct functionality and to expose necessary information to <acronym>JAIN SLEE</acronym> services.
 		Gq' Server Activity is defined as follows:
 	</para>
 	
