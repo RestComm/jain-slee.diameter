@@ -29,8 +29,8 @@
 	</variablelist>
 	
 	<para>
-		All activities define methods required to properly function and	expose necessary information to	<acronym>JAIN SLEE</acronym> services.
-		Common part for both Client and Server Activity is defined as follows:
+		All activities define the methods that are required to ensure correct functionality and to 	expose necessary information to	<acronym>JAIN SLEE</acronym> services.
+		Common functions for both Client and Server Activity are defined as follows:
 	</para>
 	
 	<programlisting role="JAVA" language="Java">
