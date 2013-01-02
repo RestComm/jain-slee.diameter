@@ -22,11 +22,11 @@ Memory is only needed to store the Resource Adaptor state. Therefore, the faster
 		</section>
 		<section id="software_prerequisites">
 			<title>Software Prerequisites</title>
-			<para>
 
-The RA requires that &THIS.PLATFORM; is correctly set and that Mobicents Diameter Multiplexer (<acronym>MUX</acronym>), which includes the stack and the Mobicents is correctly installed.
 
- </para>		
+<para>The RA requires that &THIS.PLATFORM; JAIN SLEE correctly set and Mobicents Diameter Multiplexer (<acronym>MUX</acronym>), which includes the stack, and &THIS.PLATFORM; Diameter Base RA to be properly installed.</para>			
+
+ 		
 		</section>
 	</section>	
 	
