@@ -78,9 +78,9 @@ The RA requires that &THIS.PLATFORM; is correctly set and that Mobicents Diamete
 		</programlisting>
 
 <para>
-The script will copy the RA deployable unit jar to the <literal>default</literal> &THIS.PLATFORM; server/default/deploy directory. To deploy to another server profile, use the argument -Dnode=.
+The script will copy the RA deployable unit jar to the <literal>default</literal> &THIS.PLATFORM; server/default/deploy directory. To deploy to another server profile, use the argument <literal>-Dnode=</literal>.
 </para>
-		<para>The script will copy the RA deployable unit jar to the <literal>default</literal> &THIS.PLATFORM; JAIN SLEE server profile deploy directory, to deploy to another server profile use the argument <literal>-Dnode=</literal>.</para>
+ 
 	</section>
 	
 	<section id="uninstall">
