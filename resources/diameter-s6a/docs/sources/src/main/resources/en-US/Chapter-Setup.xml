@@ -13,12 +13,16 @@
 		<para>Ensure that the following requirements have been met before continuing with the install.</para>
 		<section id="hardware_requirements">
 			<title>Hardware Requirements</title>
-			<para>The Resource Adaptor hardware's main concern is RAM memory and Java Heap size, the more the better. For instance, while the underlying &THIS.PLATFORM; JAIN SLEE may run with 1GB of RAM, 8GB is needed to achieve performance higher than 800 new requests per second.</para>
-			<para>Of course, memory is only needed to store the Resource Adaptor state, the faster the CPU more requests per second are supported, yet no particular CPU is a real requirement to use the RA.</para>
+
+<para>RAM and Java Heap size are very important with regards to Resource Adaptor. The more the RAM, the better the performance will be. For instance, while the underlying &THIS.PLATFORM;  JAIN SLEE may run with 1GB of RAM, 8GB is needed to achieve performance higher than 800 new requests per second</para>
+
+<para>Memory is only needed to store the Resource Adaptor state. Therefore, the faster the CPU, the more requests per second can be quickly processed. That said, there is no minimum specified CPU speed required to use the RA.</para>
+
+
 		</section>
 		<section id="software_prerequisites">
 			<title>Software Prerequisites</title>
-			<para>The RA requires &THIS.PLATFORM; JAIN SLEE properly set and Mobicents Diameter Multiplexer (<acronym>MUX</acronym>), which includes the stack, &THIS.PLATFORM; Diameter Base RA and &THIS.PLATFORM; Diameter CCA RA to be properly installed too.</para>
+			<para>The RA requires &THIS.PLATFORM; JAIN SLEE correctly set and Mobicents Diameter Multiplexer (<acronym>MUX</acronym>), which includes the stack, &THIS.PLATFORM; Diameter Base RA and &THIS.PLATFORM; Diameter CCA RA to be properly installed.</para>
 		</section>
 	</section>	
 	
@@ -34,7 +38,10 @@
 				    <important>
 				    	<para>Git is used to manage Mobicents JAIN SLEE source code. Instructions for downloading, installing and using Git can be found at <ulink url="http://git-scm.com/" /></para>
 				    </important>
-				    <para>Use Git to checkout a specific release source, the Git repository URL is &THIS.SOURCE_CODE_URL; , then switch to the specific release version, lets consider &THIS.VERSION;.</para>
+
+<para>Use Git to checkout a specific release source. The Git repository URL is located at &THIS.SOURCE_CODE_URL;. Choose the desired release version as can be seen in the following example &THIS.VERSION;.</para>
+
+ 
 				    <programlisting>
 				    [usr]$ git clone &THIS.SOURCE_CODE_URL; mobicents-jain-slee-diameter
 				    [usr]$ cd mobicents-jain-slee-diameter
@@ -51,7 +58,7 @@
 				    [usr]$ cd resources/&THIS.RA.DIRNAME;
 				    [usr]$ mvn install
 				    </programlisting>
-				    <para>Once the process finishes you should have the <literal>deployable-unit</literal> jar file in the <filename>target</filename> directory, if &THIS.PLATFORM; JAIN SLEE is installed and environment variable JBOSS_HOME is pointing to its underlying &JEE.PLATFORM; directory, then the deployable unit jar will also be deployed in the container.</para>
+				    <para>Once the build is completed, you should have the <literal>deployable-unit</literal> jar file in the <filename>target</filename> directory, if &THIS.PLATFORM; JAIN SLEE is installed and environment variable JBOSS_HOME is pointing to its underlying &JEE.PLATFORM; directory, then the deployable unit jar will also be deployed in the container.</para>
   				</step>
 			</procedure>
 		</section>	
@@ -72,7 +79,11 @@
 		<programlisting>
 		[usr]$ ant
 		</programlisting>
-		<para>The script will copy the RA deployable unit jar to the <literal>default</literal> &THIS.PLATFORM; JAIN SLEE server profile deploy directory, to deploy to another server profile use the argument <literal>-Dnode=</literal>.</para>
+
+<para>
+ The script will copy the RA deployable unit jar to the <literal>default</literal> &THIS.PLATFORM; server/default/deploy directory. To deploy to another server profile, use the  argument <literal>-Dnode=</literal>.
+ </para>
+
 	</section>
 	
 	<section id="uninstall">
