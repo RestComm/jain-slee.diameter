@@ -26,6 +26,13 @@
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
+		<dependencies>
+			<dependency>
+				<groupId>org.mobicents.servers.jainslee.api</groupId>
+				<artifactId>jain-slee-11-ext</artifactId>
+				<version>1.0.0.FINAL</version>
+			</dependency>
+		</dependencies>
 	</dependencyManagement>
 
 	<profiles>
