@@ -25,8 +25,6 @@
 				<artifactId>mobicents-slee-ra-diameter-sh-client-ratype</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-		</dependencies>
-		<dependencies>
 			<dependency>
 				<groupId>org.mobicents.servers.jainslee.api</groupId>
 				<artifactId>jain-slee-11-ext</artifactId>
