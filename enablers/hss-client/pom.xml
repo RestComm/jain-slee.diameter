@@ -21,8 +21,8 @@
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
-				<groupId>org.mobicents.servers.diameter.resources</groupId>
-				<artifactId>sh-client-ratype</artifactId>
+				<groupId>org.mobicents.resources</groupId>
+				<artifactId>mobicents-slee-ra-diameter-sh-client-ratype</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
