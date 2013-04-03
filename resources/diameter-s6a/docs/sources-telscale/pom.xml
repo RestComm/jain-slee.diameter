@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.mobicents.resources</groupId>
 		<artifactId>mobicents-slee-ra-diameter-s6a-docs</artifactId>
-		<version>6.1.2-TelScale-SNAPSHOT</version>
+		<version>6.1.2.GA-TelScale</version>
 	</parent>
 
 	<artifactId>mobicents-slee-ra-diameter-s6a-docs-sources-telscale</artifactId>
