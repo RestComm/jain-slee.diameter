@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.mobicents.resources</groupId>
 		<artifactId>mobicents-slee-ra-diameter-cx-dx</artifactId>
-		<version>6.1.2.GA-TelScale</version>
+		<version>6.1.3-TelScale-SNAPSHOT</version>
 	</parent>
 
 	<artifactId>mobicents-slee-ra-diameter-cx-dx-ra-DU</artifactId>
