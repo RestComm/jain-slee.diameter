@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.mobicents.servers.jainslee.enablers</groupId>
 		<artifactId>hss-client-docs</artifactId>
-		<version>6.1.3-TelScale-SNAPSHOT</version>
+		<version>6.1.2.GA-TelScale</version>
 	</parent>
 
 	<artifactId>hss-client-docs-sources-telscale</artifactId>
