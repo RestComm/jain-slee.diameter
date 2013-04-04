@@ -32,7 +32,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  * 7.3.3  Terminal-Information
  * 
  * The Terminal-Information AVP is of type Grouped. This AVP shall contain the information about
- * the user’s terminal.
+ * the user's terminal.
  * 
  * AVP format
  * Terminal Information ::= < AVP header: 1401 10415 >

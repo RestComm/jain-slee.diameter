@@ -59,12 +59,12 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  *                       [ Roaming-Restricted-Due-To-Unsupported-Feature ]
  *                      *[ AVP ]
  * 
- * The AMBR included in this grouped AVP shall include the AMBR associated to the user’s
+ * The AMBR included in this grouped AVP shall include the AMBR associated to the user's
  * subscription (UE-AMBR); Max-Requested-Bandwidth-UL and Max-Requested-Bandwidth-DL within this
  * AVP shall not both be set to "0".
  * 
  * The APN-OI-Replacement included in this grouped AVP shall include the UE level 
- * APN-OI-Replacement associated to the user’s subscription.
+ * APN-OI-Replacement associated to the user's subscription.
  * </pre>
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>

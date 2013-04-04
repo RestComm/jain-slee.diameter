@@ -66,7 +66,7 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
  * QCI_9 (9)
  *   This value shall be used to indicate standardized characteristics associated with standardized QCI value 9 from 3GPP TS 23.203 [7].
  * 
- * The QCI values 0, 10 Ð 255 are divided for usage as follows:
+ * The QCI values 0, 10 - 255 are divided for usage as follows:
  *   0: Reserved
  *   10-127: Reserved
  *   128-254: Operator specific
