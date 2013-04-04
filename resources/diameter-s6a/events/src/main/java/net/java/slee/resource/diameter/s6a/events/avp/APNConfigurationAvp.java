@@ -32,7 +32,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  * 7.3.35 APN-Configuration
  * 
  * The APN-Configuration AVP is of type Grouped. It shall contain the information related to the
- * user’s subscribed APN configurations. The Context-Identifier in the APN-Configuration AVP shall
+ * user's subscribed APN configurations. The Context-Identifier in the APN-Configuration AVP shall
  * identify that APN configuration, and it shall not have a value of zero. Furthermore, the 
  * Context-Identifier in the APN-Configuration AVP shall uniquely identify the EPS APN
  * configuration per subscription. For a particular EPS user having multiple APN configurations, 

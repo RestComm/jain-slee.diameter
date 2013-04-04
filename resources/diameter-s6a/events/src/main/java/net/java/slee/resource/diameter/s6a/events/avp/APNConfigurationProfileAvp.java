@@ -33,7 +33,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  * 
  * The APN-Configuration-Profile AVP is of type Grouped. It shall contain the information related
  * to the user's subscribed APN configurations for EPS. The Context-Identifier AVP within it shall
- * that identify the per subscriber’s default APN configuration.
+ * that identify the per subscriber's default APN configuration.
  * 
  * The AVP format shall conform to:
  * APN-Configuration-Profile ::= < AVP header: 1429 10415 >

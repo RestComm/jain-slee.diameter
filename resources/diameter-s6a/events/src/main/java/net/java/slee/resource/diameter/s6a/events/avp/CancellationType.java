@@ -40,7 +40,7 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
  * This value is used when the Cancel Location is sent to the previous SGSN due to a received Update Location message from a new SGSN.
  * 
  *   CONNECTED_NOT_REACHABLE_FOR_PAGING (2)
- * This value is used when the Cancel Location is sent to the current MME or SGSN due to withdrawal of the user’s subscription by the HSS operator.
+ * This value is used when the Cancel Location is sent to the current MME or SGSN due to withdrawal of the user's subscription by the HSS operator.
  * 
  *   CONNECTED_REACHABLE_FOR_PAGING (3)
  * This value is used by an IWF when interworking with a pre-Rel-8 HSS.
