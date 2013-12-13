@@ -105,7 +105,6 @@ public class RoClientSessionActivityImpl extends RoSessionActivityImpl implement
     // fetchCurrentState(ccr);
 
     DiameterMessageImpl msg = (DiameterMessageImpl) ccr;
-    ccr.setCcRequestType(CcRequestType.EVENT_REQUEST);
     validateState(ccr);
     try {
       session.sendCreditControlRequest(new RoCreditControlRequestImpl((Request) msg.getGenericData()));
@@ -127,7 +126,6 @@ public class RoClientSessionActivityImpl extends RoSessionActivityImpl implement
    */
   public void sendInitialRoCreditControlRequest(RoCreditControlRequest ccr) throws IOException {
     // FIXME: should this affect FSM ?
-    ccr.setCcRequestType(CcRequestType.INITIAL_REQUEST);
 
     validateState(ccr);
 
@@ -149,9 +147,6 @@ public class RoClientSessionActivityImpl extends RoSessionActivityImpl implement
    * @see net.java.slee.resource.diameter.ro.RoClientSessionActivity#sendUpdateRoCreditControlRequest(net.java.slee.resource.diameter.ro.events.RoCreditControlRequest)
    */
   public void sendUpdateRoCreditControlRequest(RoCreditControlRequest ccr) throws IOException {
-    // FIXME: Should this come already in the CCR?
-    ccr.setCcRequestType(CcRequestType.UPDATE_REQUEST);
-
     validateState(ccr);
 
     DiameterMessageImpl msg = (DiameterMessageImpl) ccr;
@@ -173,9 +168,6 @@ public class RoClientSessionActivityImpl extends RoSessionActivityImpl implement
    */
   public void sendTerminationRoCreditControlRequest(RoCreditControlRequest ccr) throws IOException {
     // This should not be used to terminate sub-sessions!
-
-    // FIXME: Should this come already in the CCR?
-    ccr.setCcRequestType(CcRequestType.TERMINATION_REQUEST);
 
     validateState(ccr);
 
