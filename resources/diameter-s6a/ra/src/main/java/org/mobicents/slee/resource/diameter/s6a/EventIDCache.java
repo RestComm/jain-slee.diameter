@@ -26,11 +26,18 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+
 import javax.slee.EventTypeID;
 import javax.slee.facilities.EventLookupFacility;
 import javax.slee.resource.FireableEventType;
+
 import net.java.slee.resource.diameter.s6a.events.AuthenticationInformationRequest;
+import net.java.slee.resource.diameter.s6a.events.CancelLocationRequest;
+import net.java.slee.resource.diameter.s6a.events.DeleteSubscriberDataRequest;
+import net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest;
+import net.java.slee.resource.diameter.s6a.events.NotifyRequest;
 import net.java.slee.resource.diameter.s6a.events.PurgeUERequest;
+import net.java.slee.resource.diameter.s6a.events.ResetRequest;
 import net.java.slee.resource.diameter.s6a.events.UpdateLocationRequest;
 
 import org.jdiameter.api.Message;
@@ -45,8 +52,13 @@ public class EventIDCache {
         Map<Integer, String> eventsTemp = new HashMap<Integer, String>();
 
         eventsTemp.put(AuthenticationInformationRequest.COMMAND_CODE, S6A_PACKAGE_PREFIX + "AuthenticationInformation");
-        eventsTemp.put(UpdateLocationRequest.COMMAND_CODE, S6A_PACKAGE_PREFIX + "UpdateLocation");
+        eventsTemp.put(CancelLocationRequest.COMMAND_CODE, S6A_PACKAGE_PREFIX + "CancelLocation");
+        eventsTemp.put(DeleteSubscriberDataRequest.COMMAND_CODE, S6A_PACKAGE_PREFIX + "DeleteSubscriberData");
+        eventsTemp.put(InsertSubscriberDataRequest.COMMAND_CODE, S6A_PACKAGE_PREFIX + "InsertSubscriberData");
+        eventsTemp.put(NotifyRequest.COMMAND_CODE, S6A_PACKAGE_PREFIX + "Notify");
         eventsTemp.put(PurgeUERequest.COMMAND_CODE, S6A_PACKAGE_PREFIX + "PurgeUE");
+        eventsTemp.put(ResetRequest.COMMAND_CODE, S6A_PACKAGE_PREFIX + "Reset");
+        eventsTemp.put(UpdateLocationRequest.COMMAND_CODE, S6A_PACKAGE_PREFIX + "UpdateLocation");
 
         eventNames = Collections.unmodifiableMap(eventsTemp);
     }

@@ -919,7 +919,7 @@ public class DiameterS6aResourceAdaptor implements ResourceAdaptor, DiameterList
             break;
         }
 
-        ((org.jdiameter.server.impl.app.s6a.S6aServerSessionImpl) session).processRequest(request);
+        ((org.jdiameter.client.impl.app.s6a.S6aClientSessionImpl) session).processRequest(request);
       }
 
       return activity;
