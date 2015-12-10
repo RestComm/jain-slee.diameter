@@ -26,7 +26,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 
 /**
  * Defines an interface representing the APN-Configuration grouped AVP type.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
  * 7.3.35 APN-Configuration
@@ -41,7 +41,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  * The AVP format shall conform to:
  * APN-Configuration ::= < AVP header: 1430 10415 >
  *                       { Context-Identifier }
- *                   * 2 [ Served-Party-IP-Address ]
+ *                      *[ Served-Party-IP-Address ]
  *                       { PDN-Type }
  *                       { Service-Selection}
  *                       [ EPS-Subscribed-QoS Profile ]
@@ -53,6 +53,11 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  *                       [ AMBR ]
  *                      *[ Specific-APN-Info ]
  *                       [ APN-OI-Replacement ]
+ *                       [ SIPTO-Permission ]      //R12
+ *                       [ LIPA-Permission ]       //R12
+ *                       [ Restoration-Priority ]  //R12
+ *                       [ SIPTO-Local-Network-Permission ] //R12
+ *                       [ WLAN-offloadability ]   //R12
  *                      *[ AVP ]
  * </pre>
  * 
@@ -63,53 +68,97 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  */
 public interface APNConfigurationAvp extends GroupedAvp {
 
-  public boolean hasContextIdentifier();
-  public long getContextIdentifier();
-  public void setContextIdentifier(long contextIdentifier);
+    public boolean hasContextIdentifier();
 
-  public boolean hasPDNType();
-  public void setPDNType(PDNType pt);
-  public PDNType getPDNType();
+    public long getContextIdentifier();
 
-  public boolean hasServiceSelection();
-  public String getServiceSelection();
-  public void setServiceSelection(String serviceSelection);
+    public void setContextIdentifier(long contextIdentifier);
 
-  public boolean hasEPSSubscribedQoSProfile();
-  public EPSSubscribedQoSProfileAvp getEPSSubscribedQoSProfile();
-  public void setEPSSubscribedQoSProfile(EPSSubscribedQoSProfileAvp qp);
+    public boolean hasPDNType();
 
-  public boolean hasVPLMNDynamicAddressAllowed();
-  public VPLMNDynamicAddressAllowed getVPLMNDynamicAddressAllowed();
-  public void setVPLMNDynamicAddressAllowed(VPLMNDynamicAddressAllowed daa);
+    public void setPDNType(PDNType pt);
 
-  public boolean hasPDNGWAllocationType();
-  public PDNGWAllocationType getPDNGWAllocationType();
-  public void setPDNGWAllocationType(PDNGWAllocationType at);
+    public PDNType getPDNType();
 
-  public boolean hasAMBR();
-  public AMBRAvp getAMBR();
-  public void setAMBR(AMBRAvp ambr);
+    public boolean hasServiceSelection();
 
-  /**
-   * Returns true if the MIP6-Agent-Info AVP is present in the message.
-   * 
-   * @return true if the MIP6-Agent-Info AVP is present in the message, false otherwise
-   */
-  public boolean hasMIP6AgentInfo();
+    public String getServiceSelection();
 
-  /**
-   * Returns the value of the MIP6-Agent-Info AVP, of type Grouped.
-   * 
-   * @return the value of the MIP6-Agent-Info AVP or null if it has not been set on this message
-   */
-  public MIP6AgentInfoAvp getMIP6AgentInfo();
+    public void setServiceSelection(String serviceSelection);
 
-  /**
-   * Sets the value of the MIP6-Agent-Info AVP, of type Grouped.
-   * 
-   * @param mip the new value for the MIP6-Agent-Info AVP
-   */
-  public void setMIP6AgentInfo(MIP6AgentInfoAvp mip);
+    public boolean hasEPSSubscribedQoSProfile();
+
+    public EPSSubscribedQoSProfileAvp getEPSSubscribedQoSProfile();
+
+    public void setEPSSubscribedQoSProfile(EPSSubscribedQoSProfileAvp qp);
+
+    public boolean hasVPLMNDynamicAddressAllowed();
+
+    public VPLMNDynamicAddressAllowed getVPLMNDynamicAddressAllowed();
+
+    public void setVPLMNDynamicAddressAllowed(VPLMNDynamicAddressAllowed daa);
+
+    public boolean hasPDNGWAllocationType();
+
+    public PDNGWAllocationType getPDNGWAllocationType();
+
+    public void setPDNGWAllocationType(PDNGWAllocationType at);
+
+    public boolean hasAMBR();
+
+    public AMBRAvp getAMBR();
+
+    public void setAMBR(AMBRAvp ambr);
+
+    /**
+     * Returns true if the MIP6-Agent-Info AVP is present in the message.
+     *
+     * @return true if the MIP6-Agent-Info AVP is present in the message, false otherwise
+     */
+    public boolean hasMIP6AgentInfo();
+
+    /**
+     * Returns the value of the MIP6-Agent-Info AVP, of type Grouped.
+     *
+     * @return the value of the MIP6-Agent-Info AVP or null if it has not been set on this message
+     */
+    public MIP6AgentInfoAvp getMIP6AgentInfo();
+
+    /**
+     * Sets the value of the MIP6-Agent-Info AVP, of type Grouped.
+     *
+     * @param mip the new value for the MIP6-Agent-Info AVP
+     */
+    public void setMIP6AgentInfo(MIP6AgentInfoAvp mip);
+
+    public boolean hasSIPTOPermission();
+
+    public SIPTOPermission getSIPTOPermission();
+
+    public void setSIPTOPermission(SIPTOPermission siptoPermission);
+
+    public boolean hasLIPAPermission();
+
+    public LIPAPermission getLIPAPermission();
+
+    public void setLIPAPermission(LIPAPermission lipaPermission);
+
+    public boolean hasRestorationPriority();
+
+    public long getRestorationPriority();
+
+    public void setRestorationPriority(long restorationPriority);
+
+    public boolean hasSIPTOLocalNetworkPermission();
+
+    public long getSIPTOLocalNetworkPermission();
+
+    public void setSIPTOLocalNetworkPermission(long siptoLocalNetworkPermission);
+
+    public boolean hasWLANoffloadability();
+
+    public WLANoffloadabilityAvp getWLANoffloadability();
+
+    public void setWLANoffloadability(WLANoffloadabilityAvp wlaNoffloadability);
 
 }

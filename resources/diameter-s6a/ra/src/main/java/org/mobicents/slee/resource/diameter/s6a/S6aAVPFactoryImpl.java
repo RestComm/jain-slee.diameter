@@ -22,56 +22,15 @@
 
 package org.mobicents.slee.resource.diameter.s6a;
 
-import static net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes.*;
 import net.java.slee.resource.diameter.base.DiameterAvpFactory;
 import net.java.slee.resource.diameter.base.events.avp.AvpUtilities;
 import net.java.slee.resource.diameter.s6a.S6aAVPFactory;
-import net.java.slee.resource.diameter.s6a.events.avp.AMBRAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.APNConfigurationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.APNConfigurationProfileAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.ActiveAPNAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.AllocationRetentionPriorityAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.AuthenticationInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EPSLocationInformationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EPSSubscribedQoSProfileAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EPSUserStateAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EUTRANVectorAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MIP6AgentInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MIPHomeAgentHostAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MMELocationInformationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MMEUserStateAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.RequestedEUTRANAuthenticationInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.RequestedUTRANGERANAuthenticationInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SGSNLocationInformationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SGSNUserStateAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SpecificAPNInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.TerminalInformationAvp;
+import net.java.slee.resource.diameter.s6a.events.avp.*;
 
 import org.mobicents.slee.resource.diameter.base.DiameterAvpFactoryImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.AMBRAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.APNConfigurationAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.APNConfigurationProfileAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.ActiveAPNAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.AllocationRetentionPriorityAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.AuthenticationInfoAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.EPSLocationInformationAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.EPSSubscribedQoSProfileAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.EPSUserStateAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.EUTRANVectorAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.MIP6AgentInfoAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.MIPHomeAgentHostAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.MMELocationInformationAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.MMEUserStateAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.RequestedEUTRANAuthenticationInfoAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.RequestedUTRANGERANAuthenticationInfoAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.SGSNLocationInformationAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.SGSNUserStateAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.SpecificAPNInfoAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.TerminalInformationAvpImpl;
+import org.mobicents.slee.resource.diameter.s6a.events.avp.*;
+
+import static net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes.*;
 
 /**
  * Diameter S6a Reference Point AVP Factory. Implementation for {@link S6aAVPFactory}
@@ -81,103 +40,190 @@ import org.mobicents.slee.resource.diameter.s6a.events.avp.TerminalInformationAv
  */
 public class S6aAVPFactoryImpl extends DiameterAvpFactoryImpl implements S6aAVPFactory {
 
-  // TODO: Add helper create methods for the composite AVPs
-  protected DiameterAvpFactory baseAvpFactory;
+    // TODO: Add helper create methods for the composite AVPs
+    protected DiameterAvpFactory baseAvpFactory;
 
-  public S6aAVPFactoryImpl(final DiameterAvpFactory baseAvpFactory) {
-    this.baseAvpFactory = baseAvpFactory;
-  }
+    public S6aAVPFactoryImpl(final DiameterAvpFactory baseAvpFactory) {
+        this.baseAvpFactory = baseAvpFactory;
+    }
 
-  public DiameterAvpFactory getBaseFactory() {
-    return this.baseAvpFactory;
-  }
+    public DiameterAvpFactory getBaseFactory() {
+        return this.baseAvpFactory;
+    }
 
-  public ActiveAPNAvp createActiveAPN() {
-    return (ActiveAPNAvp) AvpUtilities.createAvp(ACTIVE_APN, S6A_VENDOR_ID, null, ActiveAPNAvpImpl.class);
-  }
+    public ActiveAPNAvp createActiveAPN() {
+        return (ActiveAPNAvp) AvpUtilities.createAvp(ACTIVE_APN, S6A_VENDOR_ID, null, ActiveAPNAvpImpl.class);
+    }
 
-  public AllocationRetentionPriorityAvp createAllocationRetentionPriority() {
-    return (AllocationRetentionPriorityAvp) AvpUtilities.createAvp(ALLOCATION_RETENTION_POLICY, S6A_VENDOR_ID, null, AllocationRetentionPriorityAvpImpl.class);
-  }
+    public AllocationRetentionPriorityAvp createAllocationRetentionPriority() {
+        return (AllocationRetentionPriorityAvp) AvpUtilities.createAvp(ALLOCATION_RETENTION_POLICY, S6A_VENDOR_ID, null, AllocationRetentionPriorityAvpImpl.class);
+    }
 
-  public AMBRAvp createAMBR() {
-    return (AMBRAvp) AvpUtilities.createAvp(AMBR, S6A_VENDOR_ID, null, AMBRAvpImpl.class);
-  }
+    public AMBRAvp createAMBR() {
+        return (AMBRAvp) AvpUtilities.createAvp(AMBR, S6A_VENDOR_ID, null, AMBRAvpImpl.class);
+    }
 
-  public APNConfigurationAvp createAPNConfiguration() {
-    return (APNConfigurationAvp) AvpUtilities.createAvp(APN_CONFIGURATION, S6A_VENDOR_ID, null, APNConfigurationAvpImpl.class);
-  }
+    public APNConfigurationAvp createAPNConfiguration() {
+        return (APNConfigurationAvp) AvpUtilities.createAvp(APN_CONFIGURATION, S6A_VENDOR_ID, null, APNConfigurationAvpImpl.class);
+    }
 
-  public APNConfigurationProfileAvp createAPNConfigurationProfile() {
-    return (APNConfigurationProfileAvp) AvpUtilities.createAvp(APN_CONFIGURATION_PROFILE, S6A_VENDOR_ID, null, APNConfigurationProfileAvpImpl.class);
-  }
+    public APNConfigurationProfileAvp createAPNConfigurationProfile() {
+        return (APNConfigurationProfileAvp) AvpUtilities.createAvp(APN_CONFIGURATION_PROFILE, S6A_VENDOR_ID, null, APNConfigurationProfileAvpImpl.class);
+    }
 
-  public AuthenticationInfoAvp createAuthenticationInfo() {
-    return (AuthenticationInfoAvp) AvpUtilities.createAvp(AUTHENTICATION_INFO, S6A_VENDOR_ID, null, AuthenticationInfoAvpImpl.class);
-  }
+    public AreaScopeAvp createAreaScopeAvp() {
+        return (AreaScopeAvp) AvpUtilities.createAvp(AREA_SCOPE, S6A_VENDOR_ID, null, AreaScopeAvpImpl.class);
+    }
 
-  public EPSLocationInformationAvp createEPSLocationInformation() {
-    return (EPSLocationInformationAvp) AvpUtilities.createAvp(EPS_LOCATION_INFORMATION, S6A_VENDOR_ID, null, EPSLocationInformationAvpImpl.class);
-  }
+    public AuthenticationInfoAvp createAuthenticationInfo() {
+        return (AuthenticationInfoAvp) AvpUtilities.createAvp(AUTHENTICATION_INFO, S6A_VENDOR_ID, null, AuthenticationInfoAvpImpl.class);
+    }
 
-  public EPSSubscribedQoSProfileAvp createEPSSubscribedQoSProfile() {
-    return (EPSSubscribedQoSProfileAvp) AvpUtilities.createAvp(EPS_SUBSCRIBED_QOS_PROFILE, S6A_VENDOR_ID, null, EPSSubscribedQoSProfileAvpImpl.class);
-  }
+    public CallBarringInfoAvp createCallBarringInforList() {
+        return (CallBarringInfoAvp) AvpUtilities.createAvp(CALL_BARRING_INFO, S6A_VENDOR_ID, null, CallBarringInfoAvpImpl.class);
+    }
 
-  public EPSUserStateAvp createEPSUserState() {
-    return (EPSUserStateAvp) AvpUtilities.createAvp(EPS_USER_STATE, S6A_VENDOR_ID, null, EPSUserStateAvpImpl.class);
-  }
+    public CSGSubscriptionDataAvp createCSGSubscriptionData() {
+        return (CSGSubscriptionDataAvp) AvpUtilities.createAvp(CSG_SUBSCRIPTION_DATA, S6A_VENDOR_ID, null, CSGSubscriptionDataAvpImpl.class);
+    }
 
-  public EUTRANVectorAvp createEUTRANVector() {
-    return (EUTRANVectorAvp) AvpUtilities.createAvp(EUTRAN_VECTOR, S6A_VENDOR_ID, null, EUTRANVectorAvpImpl.class);
-  }
+    public EPSLocationInformationAvp createEPSLocationInformation() {
+        return (EPSLocationInformationAvp) AvpUtilities.createAvp(EPS_LOCATION_INFORMATION, S6A_VENDOR_ID, null, EPSLocationInformationAvpImpl.class);
+    }
 
-  public MIP6AgentInfoAvp createMIP6AgentInfo() {
-    return (MIP6AgentInfoAvp) AvpUtilities.createAvp(MIP6_AGENT_INFO, null, MIP6AgentInfoAvpImpl.class);
-  }
+    public EPSSubscribedQoSProfileAvp createEPSSubscribedQoSProfile() {
+        return (EPSSubscribedQoSProfileAvp) AvpUtilities.createAvp(EPS_SUBSCRIBED_QOS_PROFILE, S6A_VENDOR_ID, null, EPSSubscribedQoSProfileAvpImpl.class);
+    }
 
-  public MIPHomeAgentHostAvp createMIPHomeAgentHost() {
-    return (MIPHomeAgentHostAvp) AvpUtilities.createAvp(MIP_HOME_AGENT_HOST, null, MIPHomeAgentHostAvpImpl.class);
-  }
+    public EPSUserStateAvp createEPSUserState() {
+        return (EPSUserStateAvp) AvpUtilities.createAvp(EPS_USER_STATE, S6A_VENDOR_ID, null, EPSUserStateAvpImpl.class);
+    }
 
-  public MMELocationInformationAvp createMMELocationInformation() {
-    return (MMELocationInformationAvp) AvpUtilities.createAvp(MME_LOCATION_INFORMATION, S6A_VENDOR_ID, null, MMELocationInformationAvpImpl.class);
-  }
+    public EquivalentPLMNListAvp createEquivalentPLMNList() {
+        return (EquivalentPLMNListAvp) AvpUtilities.createAvp(EQUIVALENT_PLMN_LIST, S6A_VENDOR_ID, null, EquivalentPLMNListAvpImpl.class);
+    }
 
-  public MMEUserStateAvp createMMEUserState() {
-    return (MMEUserStateAvp) AvpUtilities.createAvp(MME_USER_STATE, S6A_VENDOR_ID, null, MMEUserStateAvpImpl.class);
-  }
+    public EUTRANVectorAvp createEUTRANVector() {
+        return (EUTRANVectorAvp) AvpUtilities.createAvp(EUTRAN_VECTOR, S6A_VENDOR_ID, null, EUTRANVectorAvpImpl.class);
+    }
 
-  public RequestedEUTRANAuthenticationInfoAvp createRequestedEUTRANAuthenticationInfo() {
-    return (RequestedEUTRANAuthenticationInfoAvp) AvpUtilities.createAvp(REQUESTED_EUTRAN_AUTHENTICATION_INFO, S6A_VENDOR_ID, null, RequestedEUTRANAuthenticationInfoAvpImpl.class);
-  }
+    public ExternalClientAvp createExternalClient() {
+        return (ExternalClientAvp) AvpUtilities.createAvp(EXTERNAL_CLIENT, S6A_VENDOR_ID, null, ExternalClientAvpImpl.class);
+    }
 
-  public RequestedUTRANGERANAuthenticationInfoAvp createRequestedUTRANGERANAuthenticationInfo() {
-    return (RequestedUTRANGERANAuthenticationInfoAvp) AvpUtilities.createAvp(REQUESTED_UTRAN_GERAN_AUTHENTICATION_INFO, S6A_VENDOR_ID, null, RequestedUTRANGERANAuthenticationInfoAvpImpl.class);
-  }
+    public GERANVectorAvp createGERANVector() {
+        return (GERANVectorAvp) AvpUtilities.createAvp(GERAN_VECTOR, S6A_VENDOR_ID, null, GERANVectorAvpImpl.class);
+    }
 
-  public SGSNLocationInformationAvp createSGSNLocationInformation() {
-    return (SGSNLocationInformationAvp) AvpUtilities.createAvp(SGSN_LOCATION_INFORMATION, S6A_VENDOR_ID, null, SGSNLocationInformationAvpImpl.class);
-  }
+    public GPRSSubscriptionDataAvp createGPRSSubscriptionData() {
+        return (GPRSSubscriptionDataAvp) AvpUtilities.createAvp(GPRS_SUBSCRIPTION_DATA, S6A_VENDOR_ID, null, GPRSSubscriptionDataAvpImpl.class);
+    }
 
-  public SGSNUserStateAvp createSGSNUserState() {
-    return (SGSNUserStateAvp) AvpUtilities.createAvp(SGSN_USER_STATE, S6A_VENDOR_ID, null, SGSNUserStateAvpImpl.class);
-  }
+    public LCSInfoAvp createLCSInfo() {
+        return (LCSInfoAvp) AvpUtilities.createAvp(LCS_INFO, S6A_VENDOR_ID, null, LCSInfoAvpImpl.class);
+    }
 
-  public SpecificAPNInfoAvp createSpecificAPNInfo() {
-    return (SpecificAPNInfoAvp) AvpUtilities.createAvp(SPECIFIC_APN_INFO, S6A_VENDOR_ID, null, SpecificAPNInfoAvpImpl.class);
-  }
+    public LCSPrivacyExceptionAvp createLCSPrivacyException() {
+        return (LCSPrivacyExceptionAvp) AvpUtilities.createAvp(LCS_PRIVACYEXCEPTION, S6A_VENDOR_ID, null, LCSPrivacyExceptionAvpImpl.class);
+    }
 
-  public SubscriptionDataAvp createSubscriptionData() {
-    return (SubscriptionDataAvp) AvpUtilities.createAvp(SUBSCRIPTION_DATA, S6A_VENDOR_ID, null, SubscriptionDataAvpImpl.class);
-  }
+    public LocalTimeZoneAvp createLocalTimeZone() {
+        return (LocalTimeZoneAvp) AvpUtilities.createAvp(LOCAL_TIME_ZONE, S6A_VENDOR_ID, null, LocalTimeZoneAvpImpl.class);
+    }
 
-  public SupportedFeaturesAvp createSupportedFeatures() {
-    return (SupportedFeaturesAvp) AvpUtilities.createAvp(SUPPORTED_FEATURES, S6A_VENDOR_ID, null, SupportedFeaturesAvpImpl.class);
-  }
+    public MDTConfigurationAvp createMDTConfigurationAvp() {
+        return (MDTConfigurationAvp) AvpUtilities.createAvp(MDT_CONFIGURATION, S6A_VENDOR_ID, null, MDTConfigurationAvpImpl.class);
+    }
 
-  public TerminalInformationAvp createTerminalInformation() {
-    return (TerminalInformationAvp) AvpUtilities.createAvp(TERMINAL_INFORMATION, S6A_VENDOR_ID, null, TerminalInformationAvpImpl.class);
-  }
+    public MIP6AgentInfoAvp createMIP6AgentInfo() {
+        return (MIP6AgentInfoAvp) AvpUtilities.createAvp(MIP6_AGENT_INFO, null, MIP6AgentInfoAvpImpl.class);
+    }
 
+    public MIPHomeAgentHostAvp createMIPHomeAgentHost() {
+        return (MIPHomeAgentHostAvp) AvpUtilities.createAvp(MIP_HOME_AGENT_HOST, null, MIPHomeAgentHostAvpImpl.class);
+    }
+
+    public MMELocationInformationAvp createMMELocationInformation() {
+        return (MMELocationInformationAvp) AvpUtilities.createAvp(MME_LOCATION_INFORMATION, S6A_VENDOR_ID, null, MMELocationInformationAvpImpl.class);
+    }
+
+    public MMEUserStateAvp createMMEUserState() {
+        return (MMEUserStateAvp) AvpUtilities.createAvp(MME_USER_STATE, S6A_VENDOR_ID, null, MMEUserStateAvpImpl.class);
+    }
+
+    public MOLRAvp createMOLR() {
+        return (MOLRAvp) AvpUtilities.createAvp(MO_LR, S6A_VENDOR_ID, null, MOLRAvpImpl.class);
+    }
+
+    public PDPContextAvp createPDPContext() {
+        return (PDPContextAvp) AvpUtilities.createAvp(PDP_CONTEXT, S6A_VENDOR_ID, null, PDPContextAvpImpl.class);
+    }
+
+    public ProSeAllowedPLMNAvp createProSeAllowedPLMN() {
+        return (ProSeAllowedPLMNAvp) AvpUtilities.createAvp(PROSE_ALLOWED_PLMN, S6A_VENDOR_ID, null, ProSeAllowedPLMNAvpImpl.class);
+    }
+
+    public ProSESubscriptionDataAvp createProSeSubscriptionData() {
+        return (ProSESubscriptionDataAvp) AvpUtilities.createAvp(PROSE_SUBSCRIPTION_DATA, S6A_VENDOR_ID, null, ProSeSubscriptionDataAvpImpl.class);
+    }
+
+    public RequestedEUTRANAuthenticationInfoAvp createRequestedEUTRANAuthenticationInfo() {
+        return (RequestedEUTRANAuthenticationInfoAvp) AvpUtilities.createAvp(REQUESTED_EUTRAN_AUTHENTICATION_INFO, S6A_VENDOR_ID, null, RequestedEUTRANAuthenticationInfoAvpImpl.class);
+    }
+
+    public RequestedUTRANGERANAuthenticationInfoAvp createRequestedUTRANGERANAuthenticationInfo() {
+        return (RequestedUTRANGERANAuthenticationInfoAvp) AvpUtilities.createAvp(REQUESTED_UTRAN_GERAN_AUTHENTICATION_INFO, S6A_VENDOR_ID, null, RequestedUTRANGERANAuthenticationInfoAvpImpl.class);
+    }
+
+    public ServiceTypeAvp createServiceType() {
+        return (ServiceTypeAvp) AvpUtilities.createAvp(SERVICE_TYPE, S6A_VENDOR_ID, null, ServiceTypeAvpImpl.class);
+    }
+
+    public SGSNLocationInformationAvp createSGSNLocationInformation() {
+        return (SGSNLocationInformationAvp) AvpUtilities.createAvp(SGSN_LOCATION_INFORMATION, S6A_VENDOR_ID, null, SGSNLocationInformationAvpImpl.class);
+    }
+
+    public SGSNUserStateAvp createSGSNUserState() {
+        return (SGSNUserStateAvp) AvpUtilities.createAvp(SGSN_USER_STATE, S6A_VENDOR_ID, null, SGSNUserStateAvpImpl.class);
+    }
+
+    public SpecificAPNInfoAvp createSpecificAPNInfo() {
+        return (SpecificAPNInfoAvp) AvpUtilities.createAvp(SPECIFIC_APN_INFO, S6A_VENDOR_ID, null, SpecificAPNInfoAvpImpl.class);
+    }
+
+    public SubscriptionDataAvp createSubscriptionData() {
+        return (SubscriptionDataAvp) AvpUtilities.createAvp(SUBSCRIPTION_DATA, S6A_VENDOR_ID, null, SubscriptionDataAvpImpl.class);
+    }
+
+    public SupportedFeaturesAvp createSupportedFeatures() {
+        return (SupportedFeaturesAvp) AvpUtilities.createAvp(SUPPORTED_FEATURES, S6A_VENDOR_ID, null, SupportedFeaturesAvpImpl.class);
+    }
+
+    public TeleserviceListAvp createTeleserviceList(){
+        return (TeleserviceListAvp) AvpUtilities.createAvp(TELESERVICE_LIST, S6A_VENDOR_ID, null, TeleserviceListAvpImpl.class);
+    }
+
+    public TerminalInformationAvp createTerminalInformation() {
+        return (TerminalInformationAvp) AvpUtilities.createAvp(TERMINAL_INFORMATION, S6A_VENDOR_ID, null, TerminalInformationAvpImpl.class);
+    }
+
+    public TraceDataAvp createTraceData() {
+        return (TraceDataAvp) AvpUtilities.createAvp(TRACE_DATA, S6A_VENDOR_ID, null, TraceDataAvpImpl.class);
+    }
+
+    public UserCSGInformationAvp createUserCSGInformation() {
+        return (UserCSGInformationAvp) AvpUtilities.createAvp(USER_CSG_INFORMATION, S6A_VENDOR_ID, null, UserCSGInformationAvpImpl.class);
+    }
+
+    public UTRANVectorAvp createUTRANVector() {
+        return (UTRANVectorAvp) AvpUtilities.createAvp(UTRAN_VECTOR, S6A_VENDOR_ID, null, UTRANVectorAvpImpl.class);
+    }
+
+    public VPLMNCSGSubscriptionDataAvp createVPLMNCSGSubscriptionData() {
+        return (VPLMNCSGSubscriptionDataAvp) AvpUtilities.createAvp(VPLMN_CSG_SUBSCRIPTION_DATA, S6A_VENDOR_ID, null, VPLMNCSGSubscriptionDataAvpImpl.class);
+    }
+
+    public WLANoffloadabilityAvp createWLANoffloadability() {
+        return (WLANoffloadabilityAvp) AvpUtilities.createAvp(WLAN_OFFLOADABILITY, S6A_VENDOR_ID, null, WLANoffloadabilityAvpImpl.class);
+    }
 }

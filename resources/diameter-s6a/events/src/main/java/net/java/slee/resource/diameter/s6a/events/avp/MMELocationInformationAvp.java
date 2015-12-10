@@ -26,7 +26,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 
 /**
  * Defines an interface representing the MME-Location-Information grouped AVP type.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
  * 7.3.115  MME-Location-Information
@@ -41,6 +41,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  *                              [ Geodetic-Information ]
  *                              [ Current-Location-Retrieved ]
  *                              [ Age-Of-Location-Information ]
+ *                              [ User-CSG-Information ]
  *                             *[ AVP ]
  * </pre>
  * 
@@ -180,4 +181,8 @@ public interface MMELocationInformationAvp extends GroupedAvp {
    */
   public long getAgeOfLocationInformation();
 
+
+  public boolean hasUserCSGInformation();
+  public UserCSGInformationAvp getUserCSGInformation();
+  public void setUserCSGInformation(UserCSGInformationAvp userCSGInformation);
 }

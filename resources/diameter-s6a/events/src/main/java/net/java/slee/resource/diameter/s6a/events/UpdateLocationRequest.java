@@ -28,15 +28,11 @@ import net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 import net.java.slee.resource.diameter.base.events.avp.ProxyInfoAvp;
 import net.java.slee.resource.diameter.base.events.avp.VendorSpecificApplicationIdAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.ActiveAPNAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.HomogeneousSupportOfIMSVoiceOverPSSessions;
-import net.java.slee.resource.diameter.s6a.events.avp.RATType;
-import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.TerminalInformationAvp;
+import net.java.slee.resource.diameter.s6a.events.avp.*;
 
 /**
  * Defines an interface representing the Update-Location-Request message.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
  * 7.2.3  Update-Location-Request (ULR) Command
@@ -53,15 +49,22 @@ import net.java.slee.resource.diameter.s6a.events.avp.TerminalInformationAvp;
  *                                 [ Destination-Host ]
  *                                 { Destination-Realm }
  *                                 { User-Name }
+ *                                 [ OC-Supported-Features ]    //draft
  *                                *[ Supported-Features ]
  *                                 [ Terminal-Information ]
  *                                 { RAT-Type }
  *                                 { ULR-Flags }
+ *                                 [ UE-SRVCC-Capability ]      //R12
  *                                 { Visited-PLMN-Id }
  *                                 [ SGSN-Number ] 
  *                                 [ Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions ] 
  *                                 [ GMLC-Address ]
  *                                *[ Active-APN ]
+ *                                 [ Equivalent-PLMN-List ]     //R12
+ *                                 [ MME-Number-for-MT-SMS ]    //R12
+ *                                 [ SMS-Register-Request ]     //R12
+ *                                 [ SGs-MME-Identity ]         //R12
+ *                                 [ Coupled-Node-Diameter-ID ] //R12
  *                                *[ AVP ]
  *                                *[ Proxy-Info ]
  *                                *[ Route-Record ]
@@ -72,314 +75,428 @@ import net.java.slee.resource.diameter.s6a.events.avp.TerminalInformationAvp;
  * @author <a href="mailto:richard.good@smilecoms.com"> Richard Good </a>
  * @author <a href="mailto:paul.carter-brown@smilecoms.com"> Paul Carter-Brown </a>
  */
-public interface UpdateLocationRequest extends DiameterMessage {
+    public interface UpdateLocationRequest extends DiameterMessage {
+    public static final int COMMAND_CODE = 316;
 
-  public static final int COMMAND_CODE = 316;
+    /**
+    * Returns true if the Vendor-Specific-Application-Id AVP is present in the message.
+    *
+    * @return true if the Vendor-Specific-Application-Id AVP is present in the message, false otherwise
+    */
+    public boolean hasVendorSpecificApplicationId();
 
-  /**
-   * Returns true if the Vendor-Specific-Application-Id AVP is present in the message.
-   * 
-   * @return true if the Vendor-Specific-Application-Id AVP is present in the message, false otherwise
-   */
-  public boolean hasVendorSpecificApplicationId();
+    /**
+    * Returns the value of the Vendor-Specific-Application-Id AVP, of type Grouped.
+    *
+    * @return the value of the Vendor-Specific-Application-Id AVP or null if it has not been set on this message
+    */
+    public VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
 
-  /**
-   * Returns the value of the Vendor-Specific-Application-Id AVP, of type Grouped.
-   * 
-   * @return the value of the Vendor-Specific-Application-Id AVP or null if it has not been set on this message
-   */
-  public VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
+    /**
+    * Sets the value of the Vendor-Specific-Application-Id AVP, of type Grouped.
+    *
+    * @param vendorSpecificApplicationId the new value for the Vendor-Specific-Application-Id AVP
+    */
+    public void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
 
-  /**
-   * Sets the value of the Vendor-Specific-Application-Id AVP, of type Grouped.
-   * 
-   * @param vendorSpecificApplicationId the new value for the Vendor-Specific-Application-Id AVP
-   */
-  public void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
+    /**
+    * Returns true if the Auth-Session-State AVP is present in the message.
+    *
+    * @return true if the Auth-Session-State AVP is present in the message, false otherwise
+    */
+    public boolean hasAuthSessionState();
 
-  /**
-   * Returns true if the Auth-Session-State AVP is present in the message.
-   * 
-   * @return true if the Auth-Session-State AVP is present in the message, false otherwise
-   */
-  public boolean hasAuthSessionState();
+    /**
+    * Returns the value of the Auth-Session-State AVP, of type Enumerated.
+    *
+    * @return the value of the Auth-Session-State AVP, of type Enumerated
+    */
+    public AuthSessionStateType getAuthSessionState();
 
-  /**
-   * Returns the value of the Auth-Session-State AVP, of type Enumerated.
-   * 
-   * @return the value of the Auth-Session-State AVP, of type Enumerated
-   */
-  public AuthSessionStateType getAuthSessionState();
+    /**
+    * Sets the value of the Auth-Session-State AVP, of type Enumerated.
+    *
+    * @param authSessionState
+    */
+    public void setAuthSessionState(AuthSessionStateType authSessionState);
 
-  /**
-   * Sets the value of the Auth-Session-State AVP, of type Enumerated.
-   * 
-   * @param authSessionState
-   */
-  public void setAuthSessionState(AuthSessionStateType authSessionState);
+    /**
+    * Returns true if the User-Name AVP is present in the message.
+    *
+    * @return
+    */
+    public boolean hasUserName();
 
-  /**
-   * Returns true if the User-Name AVP is present in the message.
-   * 
-   * @return
-   */
-  public boolean hasUserName();
+    /**
+    * Returns the value of the User-Name AVP, of type UTF8String.
+    *
+    * @return
+    */
+    public String getUserName();
 
-  /**
-   * Returns the value of the User-Name AVP, of type UTF8String.
-   * 
-   * @return
-   */
-  public String getUserName();
+    /**
+    * Sets the value of the User-Name AVP, of type UTF8String.
+    *
+    * @param userName
+    */
+    public void setUserName(String userName);
 
-  /**
-   * Sets the value of the User-Name AVP, of type UTF8String.
-   * 
-   * @param userName
-   */
-  public void setUserName(String userName);
+    /**
+    * Set a single instance value of the Supported-Features AVP, of type Grouped.
+    *
+    * @param supportedFeatures
+    */
+    public void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
 
-  /**
-   * Set a single instance value of the Supported-Features AVP, of type Grouped.
-   * 
-   * @param supportedFeatures
-   */
-  public void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
+    /**
+    * Set multiple instance value of the Supported-Features AVP, of type Grouped.
+    *
+    * @param supportedFeatureses
+    */
+    public void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
 
-  /**
-   * Set multiple instance value of the Supported-Features AVP, of type Grouped.
-   * 
-   * @param supportedFeatureses
-   */
-  public void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
+    /**
+    * Returns the value of the Supported-Features AVP, of type Grouped.
+    *
+    * @return
+    */
+    public SupportedFeaturesAvp[] getSupportedFeatureses();
 
-  /**
-   * Returns the value of the Supported-Features AVP, of type Grouped.
-   * 
-   * @return
-   */
-  public SupportedFeaturesAvp[] getSupportedFeatureses();
+    /**
+    * Returns true if the Terminal-Information AVP is present in the message.
+    *
+    * @return true if the Terminal-Information AVP is present in the message, false otherwise
+    */
+    public boolean hasTerminalInformation();
 
-  /**
-   * Returns true if the Terminal-Information AVP is present in the message.
-   * 
-   * @return true if the Terminal-Information AVP is present in the message, false otherwise
-   */
-  public boolean hasTerminalInformation();
+    /**
+    * Returns the value of the Terminal-Information AVP, of type Grouped.
+    *
+    * @return the value of the Terminal-Information AVP or null if it has not been set on this message
+    */
+    public TerminalInformationAvp getTerminalInformation();
 
-  /**
-   * Returns the value of the Terminal-Information AVP, of type Grouped.
-   * 
-   * @return the value of the Terminal-Information AVP or null if it has not been set on this message
-   */
-  public TerminalInformationAvp getTerminalInformation();
+    /**
+    * Sets the value of the Terminal-Information AVP, of type Grouped.
+    *
+    * @param terminalInformation
+    */
+    public void setTerminalInformation(TerminalInformationAvp terminalInformation);
 
-  /**
-   * Sets the value of the Terminal-Information AVP, of type Grouped.
-   * 
-   * @param terminalInformation
-   */
-  public void setTerminalInformation(TerminalInformationAvp terminalInformation);
+    /**
+    * Returns true if the RAT-Type AVP is present in the message.
+    *
+    * @return true if the RAT-Type AVP is present in the message, false otherwise
+    */
+    public boolean hasRATType();
 
-  /**
-   * Returns true if the RAT-Type AVP is present in the message.
-   * 
-   * @return true if the RAT-Type AVP is present in the message, false otherwise
-   */
-  public boolean hasRATType();
+    /**
+    * Returns the value of the RAT-Type AVP, of type Enumerated.
+    *
+    * @return the value of the RAT-Type AVP or null if it has not been set on this message
+    */
+    public RATType getRATType();
 
-  /**
-   * Returns the value of the RAT-Type AVP, of type Enumerated.
-   * 
-   * @return the value of the RAT-Type AVP or null if it has not been set on this message
-   */
-  public RATType getRATType();
+    /**
+    * Sets the value of the RAT-Type AVP, of type Enumerated.
+    *
+    * @param ratType
+    */
+    public void setRATType(RATType ratType);
 
-  /**
-   * Sets the value of the RAT-Type AVP, of type Enumerated.
-   * 
-   * @param ratType
-   */
-  public void setRATType(RATType ratType);
+    /**
+    * Returns true if the ULR-Flags AVP is present in the message.
+    *
+    * @return true if the ULR-Flags AVP is present in the message, false otherwise
+    */
+    public boolean hasULRFlags();
 
-  /**
-   * Returns true if the ULR-Flags AVP is present in the message.
-   * 
-   * @return true if the ULR-Flags AVP is present in the message, false otherwise
-   */
-  public boolean hasULRFlags();
+    /**
+    * Returns the value of the ULR-Flags AVP, of type Unsigned32.
+    *
+    * @return the value of the ULR-Flags AVP or null if it has not been set on this message
+    */
+    public long getULRFlags();
 
-  /**
-   * Returns the value of the ULR-Flags AVP, of type Unsigned32.
-   * 
-   * @return the value of the ULR-Flags AVP or null if it has not been set on this message
-   */
-  public long getULRFlags();
+    /**
+    * Sets the value of the ULR-Flags AVP, of type Unsigned32.
+    *
+    * @param ulrFlags
+    */
+    public void setULRFlags(long ulrFlags);
 
-  /**
-   * Sets the value of the ULR-Flags AVP, of type Unsigned32.
-   * 
-   * @param ulrFlags
-   */
-  public void setULRFlags(long ulrFlags);
+    /**
+    * Returns true if the Visited-PLMN-Id AVP is present in the message.
+    *
+    * @return true if the Visited-PLMN-Id AVP is present in the message, false otherwise
+    */
+    boolean hasVisitedPLMNId();
 
-  /**
-   * Returns true if the Visited-PLMN-Id AVP is present in the message.
-   * 
-   * @return true if the Visited-PLMN-Id AVP is present in the message, false otherwise
-   */
-  boolean hasVisitedPLMNId();
+    /**
+    * Returns the value of the Visited-PLMN-Id AVP, of type OctetString.
+    *
+    * @return the value of the Visited-PLMN-Id AVP or null if it has not been set on this message
+    */
+    byte[] getVisitedPLMNId();
 
-  /**
-   * Returns the value of the Visited-PLMN-Id AVP, of type OctetString.
-   * 
-   * @return the value of the Visited-PLMN-Id AVP or null if it has not been set on this message
-   */
-  byte[] getVisitedPLMNId();
+    /**
+    * Sets the value of the Visited-PLMN-Id AVP, of type OctetString.
+    *
+    * @param visitedPLMNId
+    */
+    void setVisitedPLMNId(byte[] visitedPLMNId);
 
-  /**
-   * Sets the value of the Visited-PLMN-Id AVP, of type OctetString.
-   * 
-   * @param visitedPLMNId
-   */
-  void setVisitedPLMNId(byte[] visitedPLMNId);
+    /**
+    * Returns true if the SGSN-Number AVP is present in the message.
+    *
+    * @return true if the SGSN-Number AVP is present in the message, false otherwise
+    */
+    public boolean hasSGSNNumber();
 
-  /**
-   * Returns true if the SGSN-Number AVP is present in the message.
-   * 
-   * @return true if the SGSN-Number AVP is present in the message, false otherwise
-   */
-  public boolean hasSGSNNumber();
+    /**
+    * Returns the value of the SGSN-Number AVP, of type OctetString.
+    *
+    * @return the value of the SGSN-Number AVP or null if it has not been set on this message
+    */
+    public byte[] getSGSNNumber();
 
-  /**
-   * Returns the value of the SGSN-Number AVP, of type OctetString.
-   * 
-   * @return the value of the SGSN-Number AVP or null if it has not been set on this message
-   */
-  public byte[] getSGSNNumber();
+    /**
+    * Sets the value of the SGSN-Number AVP, of type OctetString.
+    *
+    * @param sgsnNumber
+    */
+    public void setSGSNNumber(byte[] sgsnNumber);
 
-  /**
-   * Sets the value of the SGSN-Number AVP, of type OctetString.
-   * 
-   * @param sgsnNumber
-   */
-  public void setSGSNNumber(byte[] sgsnNumber);
+    /**
+    * Returns true if the Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions AVP is present in the message.
+    *
+    * @return true if the Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions AVP is present in the message, false otherwise
+    */
+    public boolean hasHomogeneousSupportOfIMSVoiceOverPSSessions();
 
-  /**
-   * Returns true if the Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions AVP is present in the message.
-   * 
-   * @return true if the Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions AVP is present in the message, false otherwise
-   */
-  public boolean hasHomogeneousSupportOfIMSVoiceOverPSSessions();
+    /**
+    * Returns the value of the Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions AVP, of type Enumerated.
+    *
+    * @return the value of the Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions AVP or null if it has not been set on this message
+    */
+    public HomogeneousSupportOfIMSVoiceOverPSSessions getHomogeneousSupportOfIMSVoiceOverPSSessions();
 
-  /**
-   * Returns the value of the Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions AVP, of type Enumerated.
-   * 
-   * @return the value of the Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions AVP or null if it has not been set on this message
-   */
-  public HomogeneousSupportOfIMSVoiceOverPSSessions getHomogeneousSupportOfIMSVoiceOverPSSessions();
+    /**
+    * Sets the value of the Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions AVP, of type Enumerated.
+    *
+    * @param homogeneousSupportOfIMSVoiceOverPSSessions
+    */
+    public void setHomogeneousSupportOfIMSVoiceOverPSSessions(HomogeneousSupportOfIMSVoiceOverPSSessions homogeneousSupportOfIMSVoiceOverPSSessions);
 
-  /**
-   * Sets the value of the Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions AVP, of type Enumerated.
-   * 
-   * @param homogeneousSupportOfIMSVoiceOverPSSessions
-   */
-  public void setHomogeneousSupportOfIMSVoiceOverPSSessions(HomogeneousSupportOfIMSVoiceOverPSSessions homogeneousSupportOfIMSVoiceOverPSSessions);
+    /**
+    * Returns true if the GMLC-Address AVP is present in the message.
+    *
+    * @return true if the GMLC-Address AVP is present in the message, false otherwise
+    */
+    public boolean hasGMLCAddress();
 
-  /**
-   * Returns true if the GMLC-Address AVP is present in the message.
-   * 
-   * @return true if the GMLC-Address AVP is present in the message, false otherwise
-   */
-  public boolean hasGMLCAddress();
+    /**
+    * Returns the value of the GMLC-Address AVP, of type Address.
+    *
+    * @return the value of the GMLC-Address AVP or null if it has not been set on this message
+    */
+    public Address getGMLCAddress();
 
-  /**
-   * Returns the value of the GMLC-Address AVP, of type Address.
-   * 
-   * @return the value of the GMLC-Address AVP or null if it has not been set on this message
-   */
-  public Address getGMLCAddress();
+    /**
+    * Sets the value of the GMLC-Address AVP, of type Address.
+    *
+    * @param gmlcAddress
+    */
+    public void setGMLCAddress(Address gmlcAddress);
 
-  /**
-   * Sets the value of the GMLC-Address AVP, of type Address.
-   * 
-   * @param gmlcAddress
-   */
-  public void setGMLCAddress(Address gmlcAddress);
+    /**
+    * Returns true if the Active-APN AVP is present in the message.
+    *
+    * @return true if the Active-APN AVP is present in the message, false otherwise
+    */
+    public boolean hasActiveAPN();
 
-  /**
-   * Returns true if the Active-APN AVP is present in the message.
-   * 
-   * @return true if the Active-APN AVP is present in the message, false otherwise
-   */
-  public boolean hasActiveAPN();
+    /**
+    * Returns the value of the Active-APN AVP, of type Grouped.
+    *
+    * @return the value of the Active-APN AVP or null if it has not been set on this message
+    */
+    public ActiveAPNAvp getActiveAPN();
 
-  /**
-   * Returns the value of the Active-APN AVP, of type Grouped.
-   * 
-   * @return the value of the Active-APN AVP or null if it has not been set on this message
-   */
-  public ActiveAPNAvp getActiveAPN();
+    /**
+    * Sets the value of the Active-APN AVP, of type Grouped.
+    *
+    * @param activeAPN
+    */
+    public void setActiveAPN(ActiveAPNAvp activeAPN);
 
-  /**
-   * Sets the value of the Active-APN AVP, of type Grouped.
-   * 
-   * @param activeAPN
-   */
-  public void setActiveAPN(ActiveAPNAvp activeAPN);
+    /**
+    * Returns the set of Proxy-Info AVPs. The returned array contains the AVPs in the order they appear in the message.
+    * A return value of null implies that no Proxy-Info AVPs have been set.
+    * The elements in the given array are ProxyInfo objects.
+    *
+    * @return
+    */
+    public ProxyInfoAvp[] getProxyInfos();
 
-  /**
-   * Returns the set of Proxy-Info AVPs. The returned array contains the AVPs in the order they appear in the message.
-   * A return value of null implies that no Proxy-Info AVPs have been set.
-   * The elements in the given array are ProxyInfo objects.
-   * 
-   * @return
-   */
-  public ProxyInfoAvp[] getProxyInfos();
+    /**
+    * Sets a single Proxy-Info AVP in the message, of type Grouped.
+    *
+    * @param proxyInfo
+    */
+    public void setProxyInfo(ProxyInfoAvp proxyInfo);
 
-  /**
-   * Sets a single Proxy-Info AVP in the message, of type Grouped.
-   * 
-   * @param proxyInfo
-   */
-  public void setProxyInfo(ProxyInfoAvp proxyInfo);
+    /**
+    * Sets the set of Proxy-Info AVPs, with all the values in the given array.
+    * The AVPs will be added to message in the order in which they appear in the array.
+    *
+    * Note: the array must not be altered by the caller following this call, and getProxyInfos() is
+    * not guaranteed to return the same array instance, e.g. an "==" check would fail.
+    *
+    * @param proxyInfos
+    */
+    public void setProxyInfos(ProxyInfoAvp[] proxyInfos);
 
-  /**
-   * Sets the set of Proxy-Info AVPs, with all the values in the given array.
-   * The AVPs will be added to message in the order in which they appear in the array.
-   *
-   * Note: the array must not be altered by the caller following this call, and getProxyInfos() is
-   * not guaranteed to return the same array instance, e.g. an "==" check would fail.
-   *
-   * @param proxyInfos
-   */
-  public void setProxyInfos(ProxyInfoAvp[] proxyInfos);
+    /**
+    * Returns the set of Route-Record AVPs. The returned array contains the AVPs in the order they appear in the message.
+    * A return value of null implies that no Route-Record AVPs have been set.
+    * The elements in the given array are DiameterIdentity objects.
+    *
+    * @return
+    */
+    public DiameterIdentity[] getRouteRecords();
 
-  /**
-   * Returns the set of Route-Record AVPs. The returned array contains the AVPs in the order they appear in the message.
-   * A return value of null implies that no Route-Record AVPs have been set.
-   * The elements in the given array are DiameterIdentity objects.
-   * 
-   * @return
-   */
-  public DiameterIdentity[] getRouteRecords();
+    /**
+    * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
+    *
+    * @param routeRecord
+    */
+    public void setRouteRecord(DiameterIdentity routeRecord);
 
-  /**
-   * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
-   * 
-   * @param routeRecord
-   */
-  public void setRouteRecord(DiameterIdentity routeRecord);
+    /**
+    * Sets the set of Route-Record AVPs, with all the values in the given array.
+    * The AVPs will be added to message in the order in which they appear in the array.
+    *
+    * Note: the array must not be altered by the caller following this call, and getRouteRecords() is
+    * not guaranteed to return the same array instance, e.g. an "==" check would fail.
+    *
+    * @param routeRecords
+    */
+    public void setRouteRecords(DiameterIdentity[] routeRecords);
 
-  /**
-   * Sets the set of Route-Record AVPs, with all the values in the given array.
-   * The AVPs will be added to message in the order in which they appear in the array.
-   *
-   * Note: the array must not be altered by the caller following this call, and getRouteRecords() is
-   * not guaranteed to return the same array instance, e.g. an "==" check would fail.
-   *
-   * @param routeRecords
-   */
-  public void setRouteRecords(DiameterIdentity[] routeRecords);
+    /**
+     * Returns true if the UE-SRVCC-Capability AVP is present in the message.
+     *
+     * @return true if the UE-SRVCC-Capability AVP is present in the message, false otherwise
+     */
+
+    public boolean hasUESRVCCCapability();
+
+    /**
+     * Returns the UE-SRVCC-Capability object AVP. A return value of null implies that no UE-SRVCC-Capability has been
+     * set.
+     *
+     * @return
+     */
+    public UESRVCCCapability getUESRVCCCapability();
+
+    /**
+     *  Sets the UE-SRVCC-Capability AVP in the message. Type Enumerated
+     */
+    public void setUESRVCCCapability(UESRVCCCapability uesrvccCapability);
+
+    /**
+     * Returns true if the EquivalentPLMNList AVP is present on the message.
+     */
+    public boolean hasEquivalentPLMNList();
+
+    /**
+     * Returns the EquivalentPLMNList AVP of type Grouped. A return value of null implies that no EquivalentPLMNList AVP
+     * has been set.
+     * @return
+     */
+    public EquivalentPLMNListAvp getEquivalentPLMNList();
+
+    /**
+     * Sets the EquivalentPLMNList AVP in the message. Type Grouped.
+     * @param equivalentPLMNListAvp
+     */
+    public void setEquivalentPLMNList(EquivalentPLMNListAvp equivalentPLMNListAvp);
+
+
+    /**
+     * Returns true if the MMENumberForMTSMS AVP is present in the message.
+     * @return
+     */
+    public boolean hasMMENumberForMTSMS();
+
+    /**
+     * Returns the MMENumberForMTSMS AVP. A return value of null implies that no MMENumberForMTSMS has been set.
+     * @return
+     */
+    public byte[] getMMENumberForMTSMS();
+
+    /**
+     * Sets the MMENumberForMTSMS AVP in the message. Type OctectString
+     * @param mmeNumberForMTSMS
+     */
+    public void setMMENumberForMTSMS(byte[] mmeNumberForMTSMS);
+
+    /**
+     * Returns true if the SMSRegisterRequest AVP is present in the message.
+     * @return
+     */
+    public boolean hasSMSRegisterRequest();
+
+    /**
+     * Returns the SMSRegisterResquest AVP of type Enumerated. A return value of null implies that no SMSRegisterRequest
+     * has been set.
+     * @return
+     */
+    public SMSRegisterRequest getSMSRegisterRequest();
+
+    /**
+     * Sets the SMSRegisterRequest AVP in the message. Type Enumerated
+     * @param smsRegisterRequest
+     */
+    public void setSMSRegisterRequest(SMSRegisterRequest smsRegisterRequest);
+
+
+    /**
+     * Returns true if SGsMMEIdentity AVP is present in the message.
+     * @return
+     */
+    public boolean hasSGsMMEIdentity();
+
+    /**
+     * Returns the SGsMMEIdentity AVP. A return value of null implies that no SGsMMEIdentity has been set. Type UTF8String
+     * @return
+     */
+    public String getSGsMMEIdentity();
+
+    /**
+     * Sets the SGsMMEIdentity AVP in the message.
+     * @param sGsMMEIdentity
+     */
+    public void setSGsMMEIdentity(String sGsMMEIdentity);
+
+    /**
+     * Returns true if the CoupledNodeDiameterID AVP is present in the message.
+     * @return
+     */
+    public boolean hasCoupledNodeDiameterID();
+
+    /**
+     * Returns the CoupledNodeDiameterID AVP of type DiameterIdentity. A return value of null implies no CoupledNodeDiameterID
+     * has been set.
+     * @return
+     */
+    public DiameterIdentity getCoupledNodeDiameterID();
+
+    /**
+     * Sets the CoupledNodeDiameterID AVP in the message. Type DiameterIdentity.
+     * @param coupledNodeDiameterID
+     */
+    public void setCoupledNodeDiameterID(DiameterIdentity coupledNodeDiameterID);
 
 }

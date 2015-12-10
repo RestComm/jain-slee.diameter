@@ -29,12 +29,13 @@ import net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp;
 import net.java.slee.resource.diameter.base.events.avp.FailedAvp;
 import net.java.slee.resource.diameter.base.events.avp.ProxyInfoAvp;
 import net.java.slee.resource.diameter.base.events.avp.VendorSpecificApplicationIdAvp;
+import net.java.slee.resource.diameter.s6a.events.avp.ErrorDiagnostic;
 import net.java.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvp;
 import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
 
 /**
  * Defines an interface representing the Update-Location-Answer message.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
  * 7.2.4  Update-Location-Answer (ULA) Command
@@ -51,9 +52,12 @@ import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
  *                               { Auth-Session-State }
  *                               { Origin-Host }
  *                               { Origin-Realm }
+ *                               [ OC-Supported-Features ]  //draft
+ *                               [ OC-OLR]                  //draft
  *                              *[ Supported-Features ]
  *                               [ ULA-Flags ]
  *                               [ Subscription-Data ]
+ *                              *[ Reset-ID ]           //R12
  *                              *[ AVP ]
  *                              *[ Failed-AVP ]
  *                              *[ Proxy-Info ]
@@ -67,238 +71,276 @@ import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
  */
 public interface UpdateLocationAnswer extends DiameterMessage {
 
-  public static final int COMMAND_CODE = 316;
+public static final int COMMAND_CODE = 316;
 
-  /**
-   * Returns true if the Vendor-Specific-Application-Id AVP is present in the message.
-   * 
-   * @return true if the Vendor-Specific-Application-Id AVP is present in the message, false otherwise
-   */
-  public boolean hasVendorSpecificApplicationId();
+    /**
+    * Returns true if the Vendor-Specific-Application-Id AVP is present in the message.
+    *
+    * @return true if the Vendor-Specific-Application-Id AVP is present in the message, false otherwise
+    */
+    public boolean hasVendorSpecificApplicationId();
 
-  /**
-   * Returns the value of the Vendor-Specific-Application-Id AVP, of type Grouped.
-   * 
-   * @return the value of the Vendor-Specific-Application-Id AVP or null if it has not been set on this message
-   */
-  public VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
+    /**
+    * Returns the value of the Vendor-Specific-Application-Id AVP, of type Grouped.
+    *
+    * @return the value of the Vendor-Specific-Application-Id AVP or null if it has not been set on this message
+    */
+    public VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
 
-  /**
-   * Sets the value of the Vendor-Specific-Application-Id AVP, of type Grouped.
-   * 
-   * @param vendorSpecificApplicationId the new value for the Vendor-Specific-Application-Id AVP
-   */
-  public void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
+    /**
+    * Sets the value of the Vendor-Specific-Application-Id AVP, of type Grouped.
+    *
+    * @param vendorSpecificApplicationId the new value for the Vendor-Specific-Application-Id AVP
+    */
+    public void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
 
-  /**
-   * Returns true if the Result-Code AVP is present in the message.
-   * 
-   * @return
-   */
-  boolean hasResultCode();
+    /**
+    * Returns true if the Result-Code AVP is present in the message.
+    *
+    * @return
+    */
+    boolean hasResultCode();
 
-  /**
-   * Returns the value of the Result-Code AVP, of type Unsigned32.
-   * Use {@link #hasResultCode()} to check the existence of this AVP.
-   *   
-   * @return the value of the Result-Code AVP
-   */
-  long getResultCode();
+    /**
+    * Returns the value of the Result-Code AVP, of type Unsigned32.
+    * Use {@link #hasResultCode()} to check the existence of this AVP.
+    *
+    * @return the value of the Result-Code AVP
+    */
+    long getResultCode();
 
-  /**
-   * Sets the value of the Result-Code AVP, of type Unsigned32.
-   * 
-   * @param resultCode
-   */
-  void setResultCode(long resultCode);
+    /**
+    * Sets the value of the Result-Code AVP, of type Unsigned32.
+    *
+    * @param resultCode
+    */
+    void setResultCode(long resultCode);
 
-  /**
-   * Returns true if the Experimental-Result AVP is present in the message.
-   * 
-   * @return
-   */
-  public boolean hasExperimentalResult();
+    /**
+    * Returns true if the Experimental-Result AVP is present in the message.
+    *
+    * @return
+    */
+    public boolean hasExperimentalResult();
 
-  /**
-   * Returns the value of the Experimental-Result AVP, of type Grouped.
-   * Use {@link #hasExperimentalResult()} to check the existence of this AVP.
-   *   
-   * @return the value of the Experimental-Result AVP
-   */
-  public ExperimentalResultAvp getExperimentalResult();
+    /**
+    * Returns the value of the Experimental-Result AVP, of type Grouped.
+    * Use {@link #hasExperimentalResult()} to check the existence of this AVP.
+    *
+    * @return the value of the Experimental-Result AVP
+    */
+    public ExperimentalResultAvp getExperimentalResult();
 
-  /**
-   * Sets the value of the Experimental-Result AVP, of type Grouped.
-   * 
-   * @param experimentalResult
-   */
-  public void setExperimentalResult(ExperimentalResultAvp experimentalResult);
+    /**
+    * Sets the value of the Experimental-Result AVP, of type Grouped.
+    *
+    * @param experimentalResult
+    */
+    public void setExperimentalResult(ExperimentalResultAvp experimentalResult);
 
-  // FIXME: [ Error-Diagnostic ]
 
-  /**
-   * Returns true if the Auth-Session-State AVP is present in the message.
-   * 
-   * @return true if the Auth-Session-State AVP is present in the message, false otherwise
-   */
-  public boolean hasAuthSessionState();
+    /**
+    * Returns true if the Auth-Session-State AVP is present in the message.
+    *
+    * @return true if the Auth-Session-State AVP is present in the message, false otherwise
+    */
+    public boolean hasAuthSessionState();
 
-  /**
-   * Returns the value of the Auth-Session-State AVP, of type Enumerated.
-   * 
-   * @return the value of the Auth-Session-State AVP, of type Enumerated
-   */
-  public AuthSessionStateType getAuthSessionState();
+    /**
+    * Returns the value of the Auth-Session-State AVP, of type Enumerated.
+    *
+    * @return the value of the Auth-Session-State AVP, of type Enumerated
+    */
+    public AuthSessionStateType getAuthSessionState();
 
-  /**
-   * Sets the value of the Auth-Session-State AVP, of type Enumerated.
-   * 
-   * @param authSessionState
-   */
-  public void setAuthSessionState(AuthSessionStateType authSessionState);
+    /**
+    * Sets the value of the Auth-Session-State AVP, of type Enumerated.
+    *
+    * @param authSessionState
+    */
+    public void setAuthSessionState(AuthSessionStateType authSessionState);
 
-  /**
-   * Set a single instance value of the Supported-Features AVP, of type Grouped.
-   * 
-   * @param supportedFeatures
-   */
-  public void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
+    /**
+    * Set a single instance value of the Supported-Features AVP, of type Grouped.
+    *
+    * @param supportedFeatures
+    */
+    public void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
 
-  /**
-   * Set multiple instance value of the Supported-Features AVP, of type Grouped.
-   * 
-   * @param supportedFeatureses
-   */
-  public void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
+    /**
+    * Set multiple instance value of the Supported-Features AVP, of type Grouped.
+    *
+    * @param supportedFeatureses
+    */
+    public void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
 
-  /**
-   * Returns the value of the Supported-Features AVP, of type Grouped.
-   * 
-   * @return
-   */
-  public SupportedFeaturesAvp[] getSupportedFeatureses();
+    /**
+    * Returns the value of the Supported-Features AVP, of type Grouped.
+    *
+    * @return
+    */
+    public SupportedFeaturesAvp[] getSupportedFeatureses();
 
-  /**
-   * Returns true if the ULA-Flags AVP is present in the message.
-   * 
-   * @return
-   */
-  public boolean hasULAFlags();
+    /**
+    * Returns true if the ULA-Flags AVP is present in the message.
+    *
+    * @return
+    */
+    public boolean hasULAFlags();
 
-  /**
-   * Returns the value of the ULA-Flags AVP, of type Unsigned32.
-   * 
-   * @return
-   */
-  public long getULAFlags();
+    /**
+    * Returns the value of the ULA-Flags AVP, of type Unsigned32.
+    *
+    * @return
+    */
+    public long getULAFlags();
 
-  /**
-   * Sets the value of the ULA-Flags AVP, of type Unsigned32.
-   * 
-   * @param ulaFlags
-   */
-  public void setULAFlags(long ulaFlags);
+    /**
+    * Sets the value of the ULA-Flags AVP, of type Unsigned32.
+    *
+    * @param ulaFlags
+    */
+    public void setULAFlags(long ulaFlags);
 
-  /**
-   * Returns true if the Subscription-Data AVP is present in the message.
-   * 
-   * @return
-   */
-  public boolean hasSubscriptionData();
+    /**
+    * Returns true if the Subscription-Data AVP is present in the message.
+    *
+    * @return
+    */
+    public boolean hasSubscriptionData();
 
-  /**
-   * Returns the value of the Subscription-Data AVP, of type Grouped.
-   * 
-   * @return
-   */
-  public SubscriptionDataAvp getSubscriptionData();
+    /**
+    * Returns the value of the Subscription-Data AVP, of type Grouped.
+    *
+    * @return
+    */
+    public SubscriptionDataAvp getSubscriptionData();
 
-  /**
-   * Sets the value of the Subscription-Data AVP, of type Grouped.
-   * 
-   * @param subscriptionData
-   */
-  public void setSubscriptionData(SubscriptionDataAvp subscriptionData);
+    /**
+    * Sets the value of the Subscription-Data AVP, of type Grouped.
+    *
+    * @param subscriptionData
+    */
+    public void setSubscriptionData(SubscriptionDataAvp subscriptionData);
 
-  /**
-   * Returns the set of Failed-AVP AVPs. The returned array contains the AVPs in the order they
-   * appear in the message.
-   * A return value of null implies that no Failed-AVP AVPs have been set.
-   * The elements in the given array are FailedAvp objects.
-   */
-  public FailedAvp[] getFailedAvps();
+    /**
+    * Returns the set of Failed-AVP AVPs. The returned array contains the AVPs in the order they
+    * appear in the message.
+    * A return value of null implies that no Failed-AVP AVPs have been set.
+    * The elements in the given array are FailedAvp objects.
+    */
+    public FailedAvp[] getFailedAvps();
 
-  /**
-   * Sets a single Failed-AVP AVP in the message, of type Grouped.
-   * 
-   * @param failedAvp
-   */
-  public void setFailedAvp(FailedAvp failedAvp);
+    /**
+    * Sets a single Failed-AVP AVP in the message, of type Grouped.
+    *
+    * @param failedAvp
+    */
+    public void setFailedAvp(FailedAvp failedAvp);
 
-  /**
-   * Sets the set of Failed-AVP AVPs, with all the values in the given array.
-   * The AVPs will be added to message in the order in which they appear in the array.
-   *
-   * Note: the array must not be altered by the caller following this call, and getFailedAvps()
-   * is not guaranteed to return the same array instance, e.g. an "==" check would fail.
-   * 
-   * @param failedAvps
-   */
-  public void setFailedAvps(FailedAvp[] failedAvps);
+    /**
+    * Sets the set of Failed-AVP AVPs, with all the values in the given array.
+    * The AVPs will be added to message in the order in which they appear in the array.
+    *
+    * Note: the array must not be altered by the caller following this call, and getFailedAvps()
+    * is not guaranteed to return the same array instance, e.g. an "==" check would fail.
+    *
+    * @param failedAvps
+    */
+    public void setFailedAvps(FailedAvp[] failedAvps);
 
-  /**
-   * Returns the set of Proxy-Info AVPs. The returned array contains the AVPs in the order they
-   * appear in the message.
-   * A return value of null implies that no Proxy-Info AVPs have been set.
-   * The elements in the given array are ProxyInfo objects.
-   * 
-   * @return
-   */
-  public ProxyInfoAvp[] getProxyInfos();
+    /**
+    * Returns the set of Proxy-Info AVPs. The returned array contains the AVPs in the order they
+    * appear in the message.
+    * A return value of null implies that no Proxy-Info AVPs have been set.
+    * The elements in the given array are ProxyInfo objects.
+    *
+    * @return
+    */
+    public ProxyInfoAvp[] getProxyInfos();
 
-  /**
-   * Sets a single Proxy-Info AVP in the message, of type Grouped.
-   * 
-   * @param proxyInfo
-   */
-  public void setProxyInfo(ProxyInfoAvp proxyInfo);
+    /**
+    * Sets a single Proxy-Info AVP in the message, of type Grouped.
+    *
+    * @param proxyInfo
+    */
+    public void setProxyInfo(ProxyInfoAvp proxyInfo);
 
-  /**
-   * Sets the set of Proxy-Info AVPs, with all the values in the given array.
-   * The AVPs will be added to message in the order in which they appear in the array.
-   *
-   * Note: the array must not be altered by the caller following this call, and getProxyInfos() is
-   * not guaranteed to return the same array instance, e.g. an "==" check would fail.
-   *
-   * @param proxyInfos
-   */
-  public void setProxyInfos(ProxyInfoAvp[] proxyInfos);
+    /**
+    * Sets the set of Proxy-Info AVPs, with all the values in the given array.
+    * The AVPs will be added to message in the order in which they appear in the array.
+    *
+    * Note: the array must not be altered by the caller following this call, and getProxyInfos() is
+    * not guaranteed to return the same array instance, e.g. an "==" check would fail.
+    *
+    * @param proxyInfos
+    */
+    public void setProxyInfos(ProxyInfoAvp[] proxyInfos);
 
-  /**
-   * Returns the set of Route-Record AVPs. The returned array contains the AVPs in the order they appear in the message.
-   * A return value of null implies that no Route-Record AVPs have been set.
-   * The elements in the given array are DiameterIdentity objects.
-   * 
-   * @return
-   */
-  public DiameterIdentity[] getRouteRecords();
+    /**
+    * Returns the set of Route-Record AVPs. The returned array contains the AVPs in the order they appear in the message.
+    * A return value of null implies that no Route-Record AVPs have been set.
+    * The elements in the given array are DiameterIdentity objects.
+    *
+    * @return
+    */
+    public DiameterIdentity[] getRouteRecords();
 
-  /**
-   * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
-   * 
-   * @param routeRecord
-   */
-  public void setRouteRecord(DiameterIdentity routeRecord);
+    /**
+    * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
+    *
+    * @param routeRecord
+    */
+    public void setRouteRecord(DiameterIdentity routeRecord);
 
-  /**
-   * Sets the set of Route-Record AVPs, with all the values in the given array.
-   * The AVPs will be added to message in the order in which they appear in the array.
-   *
-   * Note: the array must not be altered by the caller following this call, and getRouteRecords() is
-   * not guaranteed to return the same array instance, e.g. an "==" check would fail.
-   *
-   * @param routeRecords
-   */
-  public void setRouteRecords(DiameterIdentity[] routeRecords);
+    /**
+    * Sets the set of Route-Record AVPs, with all the values in the given array.
+    * The AVPs will be added to message in the order in which they appear in the array.
+    *
+    * Note: the array must not be altered by the caller following this call, and getRouteRecords() is
+    * not guaranteed to return the same array instance, e.g. an "==" check would fail.
+    *
+    * @param routeRecords
+    */
+    public void setRouteRecords(DiameterIdentity[] routeRecords);
 
+
+    /**
+     * Returns true if ErrorDiagnostic AVP is present in the message.
+     */
+    public boolean hasErrorDiagnostic();
+
+    /**
+     * Returns the ErrorDiagnostic AVP object. Type Enumerated
+     * @return
+     */
+    public ErrorDiagnostic getErrorDiagnostic();
+
+    /**
+     * Sets the ErrorDiagnostic AVP in the message. Type Enumerated
+     * @param errorDiagnostic
+     */
+    public void setErrorDiagnostic(ErrorDiagnostic errorDiagnostic);
+
+    /*
+                R12 Methods
+     */
+
+    /**
+     * Returns true if the ResetID AVP is present in the message.
+     * @return
+     */
+    public boolean hasResetID();
+
+    /**
+     * Returns the ResetID AVP object of type OctectString.
+     * @return
+     */
+    public byte[] getResetID();
+
+    /**
+     * Sets the ResetID AVP value in the message. Type OctectString.
+     * @param resetID
+     */
+    public void setResetID(byte[] resetID);
 }

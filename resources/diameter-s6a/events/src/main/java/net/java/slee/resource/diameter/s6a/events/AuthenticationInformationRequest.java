@@ -33,13 +33,13 @@ import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
 
 /**
  * Defines an interface representing the Authentication-Information-Request message.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
  * 7.2.5  Authentication-Information-Request (AIR) Command
  * 
  * Defines an interface representing the Authentication-Information-Request message.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * < Authentication-Information-Request> ::= < Diameter Header: 318, REQ, PXY, 16777251 >
  *                                           < Session-Id >
@@ -50,6 +50,7 @@ import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
  *                                           [ Destination-Host ]
  *                                           { Destination-Realm }
  *                                           { User-Name }
+ *                                           [ OC-Supported-Features ]     //draft
  *                                          *[ Supported-Features ]
  *                                           [ Requested-EUTRAN-Authentication-Info ]
  *                                           [ Requested-UTRAN-GERAN-Authentication-Info ]

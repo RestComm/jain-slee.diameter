@@ -26,9 +26,12 @@ import static net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes
 import net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType;
 import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
 import net.java.slee.resource.diameter.s6a.events.PurgeUERequest;
+import net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes;
+import net.java.slee.resource.diameter.s6a.events.avp.EPSLocationInformationAvp;
 import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
 import org.jdiameter.api.Message;
 import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
+import org.mobicents.slee.resource.diameter.s6a.events.avp.EPSLocationInformationAvpImpl;
 import org.mobicents.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvpImpl;
 
 /**
@@ -92,9 +95,9 @@ public class PurgeUERequestImpl extends DiameterMessageImpl implements PurgeUERe
     return (SupportedFeaturesAvp[]) getAvpsAsCustom(SUPPORTED_FEATURES, S6A_VENDOR_ID, SupportedFeaturesAvpImpl.class);
   }
 
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.PurgeUERequest#setSupportedFeatures(net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp)
-   */
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.PurgeUERequest#setSupportedFeatures(net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp)
+     */
   public void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures) {
     addAvp(SUPPORTED_FEATURES, S6A_VENDOR_ID, supportedFeatures.byteArrayValue());
   }
@@ -108,4 +111,48 @@ public class PurgeUERequestImpl extends DiameterMessageImpl implements PurgeUERe
     }
   }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.PurgeUERequest#hasPURFlags()
+     */
+    public boolean hasPURFlags() {
+        return hasAvp(DiameterS6aAvpCodes.PUR_FLAGS, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.PurgeUERequest#getPURFlags()
+     */
+    public long getPURFlags() {
+        return getAvpAsUnsigned32(DiameterS6aAvpCodes.PUR_FLAGS, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.PurgeUERequest#setPURFlags(long)
+     */
+    public void setPURFlags(long purFlags) {
+        addAvp(DiameterS6aAvpCodes.PUR_FLAGS, DiameterS6aAvpCodes.S6A_VENDOR_ID, purFlags);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.PurgeUERequest#hasEPSLocationInformation)
+     */
+    public boolean hasEPSLocationInformation() {
+        return hasAvp(DiameterS6aAvpCodes.EPS_LOCATION_INFORMATION, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.PurgeUERequest#getEPSLocationInformation()
+     */
+    public EPSLocationInformationAvp getEPSLocationInformation() {
+        return (EPSLocationInformationAvp) getAvpAsCustom(DiameterS6aAvpCodes.EPS_LOCATION_INFORMATION,
+                DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                EPSLocationInformationAvpImpl.class);
+    }
+
+    /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.s6a.events.PurgeUERequest#setEPSLocationInformation(net.java.slee.resource.diameter.s6a.events.avp.EPSLocationInformationAvp)
+   */
+
+    public void setEPSLocationInformation(EPSLocationInformationAvp epsLocationInformation) {
+        addAvp(epsLocationInformation);
+    }
 }

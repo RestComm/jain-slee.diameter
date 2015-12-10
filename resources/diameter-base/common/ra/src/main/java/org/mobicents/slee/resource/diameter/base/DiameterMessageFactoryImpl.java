@@ -473,8 +473,8 @@ public class DiameterMessageFactoryImpl implements DiameterMessageFactory {
   protected Message createRawMessage(DiameterHeader header, int _commandCode, ApplicationId appId) {
 
     int commandCode = 0;
-    long endToEndId = 0;
-    long hopByHopId = 0;
+    long endToEndId = -1;
+    long hopByHopId = -1;
     
     boolean isRequest = true;
     boolean isProxiable = true;

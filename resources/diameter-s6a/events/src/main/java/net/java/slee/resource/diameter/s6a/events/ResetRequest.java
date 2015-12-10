@@ -31,14 +31,14 @@ import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
 
 /**
  * Defines an interface representing the Purge-UE-Request message.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
- * 
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
+ * <p/>
  * <pre>
  * 7.2.15 Reset-Request (RSR) Command
- * 
+ *
  * The Reset-Request (RSR) command, indicated by the Command-Code field set to 322 and the 'R' bit
  * set in the Command Flags field, is sent from HSS to MME or SGSN.
- * 
+ *
  * Message Format
  * < Reset-Request> ::=    < Diameter Header: 322, REQ, PXY, 16777251 >
  *                         < Session-Id >
@@ -50,153 +50,174 @@ import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
  *                         { Destination-Realm }
  *                        *[ Supported-Features ]
  *                        *[ User-Id ]
+ *                        *[ Reset-ID ]           //R12
  *                        *[ AVP ]
  *                        *[ Proxy-Info ]
  *                        *[ Route-Record ]
  * </pre>
- * 
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
 public interface ResetRequest extends DiameterMessage {
 
-  public static final int COMMAND_CODE = 322;
+    public static final int COMMAND_CODE = 322;
 
-  /**
-   * Returns true if the Vendor-Specific-Application-Id AVP is present in the message.
-   * 
-   * @return true if the Vendor-Specific-Application-Id AVP is present in the message, false otherwise
-   */
-  public boolean hasVendorSpecificApplicationId();
+    /**
+     * Returns true if the Vendor-Specific-Application-Id AVP is present in the message.
+     *
+     * @return true if the Vendor-Specific-Application-Id AVP is present in the message, false otherwise
+     */
+    public boolean hasVendorSpecificApplicationId();
 
-  /**
-   * Returns the value of the Vendor-Specific-Application-Id AVP, of type Grouped.
-   * 
-   * @return the value of the Vendor-Specific-Application-Id AVP or null if it has not been set on this message
-   */
-  public VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
+    /**
+     * Returns the value of the Vendor-Specific-Application-Id AVP, of type Grouped.
+     *
+     * @return the value of the Vendor-Specific-Application-Id AVP or null if it has not been set on this message
+     */
+    public VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
 
-  /**
-   * Sets the value of the Vendor-Specific-Application-Id AVP, of type Grouped.
-   * 
-   * @param vendorSpecificApplicationId the new value for the Vendor-Specific-Application-Id AVP
-   */
-  public void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
+    /**
+     * Sets the value of the Vendor-Specific-Application-Id AVP, of type Grouped.
+     *
+     * @param vendorSpecificApplicationId the new value for the Vendor-Specific-Application-Id AVP
+     */
+    public void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
 
-  /**
-   * Returns true if the Auth-Session-State AVP is present in the message.
-   * 
-   * @return true if the Auth-Session-State AVP is present in the message, false otherwise
-   */
-  public boolean hasAuthSessionState();
+    /**
+     * Returns true if the Auth-Session-State AVP is present in the message.
+     *
+     * @return true if the Auth-Session-State AVP is present in the message, false otherwise
+     */
+    public boolean hasAuthSessionState();
 
-  /**
-   * Returns the value of the Auth-Session-State AVP, of type Enumerated.
-   * 
-   * @return the value of the Auth-Session-State AVP, of type Enumerated
-   */
-  public AuthSessionStateType getAuthSessionState();
+    /**
+     * Returns the value of the Auth-Session-State AVP, of type Enumerated.
+     *
+     * @return the value of the Auth-Session-State AVP, of type Enumerated
+     */
+    public AuthSessionStateType getAuthSessionState();
 
-  /**
-   * Sets the value of the Auth-Session-State AVP, of type Enumerated.
-   * 
-   * @param authSessionState
-   */
-  public void setAuthSessionState(AuthSessionStateType authSessionState);
+    /**
+     * Sets the value of the Auth-Session-State AVP, of type Enumerated.
+     *
+     * @param authSessionState
+     */
+    public void setAuthSessionState(AuthSessionStateType authSessionState);
 
-  /**
-   * Set a single instance value of the Supported-Features AVP, of type Grouped.
-   * 
-   * @param supportedFeatures
-   */
-  public void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
+    /**
+     * Set a single instance value of the Supported-Features AVP, of type Grouped.
+     *
+     * @param supportedFeatures
+     */
+    public void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
 
-  /**
-   * Set multiple instance value of the Supported-Features AVP, of type Grouped.
-   * 
-   * @param supportedFeatureses
-   */
-  public void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
+    /**
+     * Set multiple instance value of the Supported-Features AVP, of type Grouped.
+     *
+     * @param supportedFeatureses
+     */
+    public void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
 
-  /**
-   * Returns the value of the Supported-Features AVP, of type Grouped.
-   * 
-   * @return
-   */
-  public SupportedFeaturesAvp[] getSupportedFeatureses();
+    /**
+     * Returns the value of the Supported-Features AVP, of type Grouped.
+     *
+     * @return
+     */
+    public SupportedFeaturesAvp[] getSupportedFeatureses();
 
-  /**
-   * Returns true if the User-Id AVP is present in the message.
-   * 
-   * @return
-   */
-  public boolean hasUserId();
+    /**
+     * Returns true if the User-Id AVP is present in the message.
+     *
+     * @return
+     */
+    public boolean hasUserId();
 
-  /**
-   * Returns the value of the User-Id AVP, of type UTF8String.
-   * 
-   * @return
-   */
-  public String getUserId();
+    /**
+     * Returns the value of the User-Id AVP, of type UTF8String.
+     *
+     * @return
+     */
+    public String getUserId();
 
-  /**
-   * Sets the value of the User-Id AVP, of type UTF8String.
-   * 
-   * @param userId
-   */
-  public void setUserId(String userId);
+    /**
+     * Sets the value of the User-Id AVP, of type UTF8String.
+     *
+     * @param userId
+     */
+    public void setUserId(String userId);
 
-  /**
-   * Returns the set of Proxy-Info AVPs. The returned array contains the AVPs in the order they appear in the message.
-   * A return value of null implies that no Proxy-Info AVPs have been set.
-   * The elements in the given array are ProxyInfo objects.
-   * 
-   * @return
-   */
-  public ProxyInfoAvp[] getProxyInfos();
+    /**
+     * Returns the set of Proxy-Info AVPs. The returned array contains the AVPs in the order they appear in the message.
+     * A return value of null implies that no Proxy-Info AVPs have been set.
+     * The elements in the given array are ProxyInfo objects.
+     *
+     * @return
+     */
+    public ProxyInfoAvp[] getProxyInfos();
 
-  /**
-   * Sets a single Proxy-Info AVP in the message, of type Grouped.
-   * 
-   * @param proxyInfo
-   */
-  public void setProxyInfo(ProxyInfoAvp proxyInfo);
+    /**
+     * Sets a single Proxy-Info AVP in the message, of type Grouped.
+     *
+     * @param proxyInfo
+     */
+    public void setProxyInfo(ProxyInfoAvp proxyInfo);
 
-  /**
-   * Sets the set of Proxy-Info AVPs, with all the values in the given array.
-   * The AVPs will be added to message in the order in which they appear in the array.
-   *
-   * Note: the array must not be altered by the caller following this call, and getProxyInfos() is
-   * not guaranteed to return the same array instance, e.g. an "==" check would fail.
-   *
-   * @param proxyInfos
-   */
-  public void setProxyInfos(ProxyInfoAvp[] proxyInfos);
+    /**
+     * Sets the set of Proxy-Info AVPs, with all the values in the given array.
+     * The AVPs will be added to message in the order in which they appear in the array.
+     * <p/>
+     * Note: the array must not be altered by the caller following this call, and getProxyInfos() is
+     * not guaranteed to return the same array instance, e.g. an "==" check would fail.
+     *
+     * @param proxyInfos
+     */
+    public void setProxyInfos(ProxyInfoAvp[] proxyInfos);
 
-  /**
-   * Returns the set of Route-Record AVPs. The returned array contains the AVPs in the order they appear in the message.
-   * A return value of null implies that no Route-Record AVPs have been set.
-   * The elements in the given array are DiameterIdentity objects.
-   * 
-   * @return
-   */
-  public DiameterIdentity[] getRouteRecords();
+    /**
+     * Returns the set of Route-Record AVPs. The returned array contains the AVPs in the order they appear in the message.
+     * A return value of null implies that no Route-Record AVPs have been set.
+     * The elements in the given array are DiameterIdentity objects.
+     *
+     * @return
+     */
+    public DiameterIdentity[] getRouteRecords();
 
-  /**
-   * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
-   * 
-   * @param routeRecord
-   */
-  public void setRouteRecord(DiameterIdentity routeRecord);
+    /**
+     * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
+     *
+     * @param routeRecord
+     */
+    public void setRouteRecord(DiameterIdentity routeRecord);
 
-  /**
-   * Sets the set of Route-Record AVPs, with all the values in the given array.
-   * The AVPs will be added to message in the order in which they appear in the array.
-   *
-   * Note: the array must not be altered by the caller following this call, and getRouteRecords() is
-   * not guaranteed to return the same array instance, e.g. an "==" check would fail.
-   *
-   * @param routeRecords
-   */
-  public void setRouteRecords(DiameterIdentity[] routeRecords);
+    /**
+     * Sets the set of Route-Record AVPs, with all the values in the given array.
+     * The AVPs will be added to message in the order in which they appear in the array.
+     * <p/>
+     * Note: the array must not be altered by the caller following this call, and getRouteRecords() is
+     * not guaranteed to return the same array instance, e.g. an "==" check would fail.
+     *
+     * @param routeRecords
+     */
+    public void setRouteRecords(DiameterIdentity[] routeRecords);
 
+    /**
+     * Returns true if the ResetID AVP is present in the message.
+     *
+     * @return
+     */
+    public boolean hasResetID();
+
+    /**
+     * Returns the ResetID AVP object of type OctectString.
+     *
+     * @return
+     */
+    public byte[] getResetID();
+
+    /**
+     * Sets the ResetID AVP value in the message. Type OctectString.
+     *
+     * @param resetID
+     */
+    public void setResetID(byte[] resetID);
 }

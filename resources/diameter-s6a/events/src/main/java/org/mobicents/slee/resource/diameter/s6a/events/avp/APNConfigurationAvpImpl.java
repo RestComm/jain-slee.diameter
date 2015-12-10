@@ -22,14 +22,7 @@
 
 package org.mobicents.slee.resource.diameter.s6a.events.avp;
 
-import net.java.slee.resource.diameter.s6a.events.avp.AMBRAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.APNConfigurationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes;
-import net.java.slee.resource.diameter.s6a.events.avp.EPSSubscribedQoSProfileAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MIP6AgentInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.PDNGWAllocationType;
-import net.java.slee.resource.diameter.s6a.events.avp.PDNType;
-import net.java.slee.resource.diameter.s6a.events.avp.VPLMNDynamicAddressAllowed;
+import net.java.slee.resource.diameter.s6a.events.avp.*;
 import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
 
 /**
@@ -42,108 +35,171 @@ import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
  */
 public class APNConfigurationAvpImpl extends GroupedAvpImpl implements APNConfigurationAvp {
 
-  public APNConfigurationAvpImpl() {
-    super();
-  }
+    public APNConfigurationAvpImpl() {
+        super();
+    }
 
-  public APNConfigurationAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
-    super(code, vendorId, mnd, prt, value);
-  }
+    public APNConfigurationAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
+        super(code, vendorId, mnd, prt, value);
+    }
 
-  public boolean hasContextIdentifier() {
-    return hasAvp(DiameterS6aAvpCodes.CONTEXT_IDENTIFIER, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-  }
+    public boolean hasContextIdentifier() {
+        return hasAvp(DiameterS6aAvpCodes.CONTEXT_IDENTIFIER, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
 
-  public long getContextIdentifier() {
-    return this.getAvpAsUnsigned32(DiameterS6aAvpCodes.CONTEXT_IDENTIFIER, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-  }
+    public long getContextIdentifier() {
+        return this.getAvpAsUnsigned32(DiameterS6aAvpCodes.CONTEXT_IDENTIFIER, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
 
-  public void setContextIdentifier(long contextIdentifier) {
-    addAvp(DiameterS6aAvpCodes.CONTEXT_IDENTIFIER, DiameterS6aAvpCodes.S6A_VENDOR_ID, contextIdentifier);
-  }
+    public void setContextIdentifier(long contextIdentifier) {
+        addAvp(DiameterS6aAvpCodes.CONTEXT_IDENTIFIER, DiameterS6aAvpCodes.S6A_VENDOR_ID, contextIdentifier);
+    }
 
-  public boolean hasPDNType() {
-    return hasAvp(DiameterS6aAvpCodes.PDN_TYPE, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-  }
+    public boolean hasPDNType() {
+        return hasAvp(DiameterS6aAvpCodes.PDN_TYPE, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
 
-  public void setPDNType(PDNType pt) {
-    addAvp(DiameterS6aAvpCodes.PDN_TYPE, DiameterS6aAvpCodes.S6A_VENDOR_ID, pt.getValue());
-  }
+    public void setPDNType(PDNType pt) {
+        addAvp(DiameterS6aAvpCodes.PDN_TYPE, DiameterS6aAvpCodes.S6A_VENDOR_ID, pt.getValue());
+    }
 
-  public PDNType getPDNType() {
-    return (PDNType) getAvpAsEnumerated(DiameterS6aAvpCodes.PDN_TYPE, DiameterS6aAvpCodes.S6A_VENDOR_ID, PDNType.class);
-  }
+    public PDNType getPDNType() {
+        return (PDNType) getAvpAsEnumerated(DiameterS6aAvpCodes.PDN_TYPE, DiameterS6aAvpCodes.S6A_VENDOR_ID, PDNType.class);
+    }
 
-  public boolean hasServiceSelection() {
-    return hasAvp(DiameterS6aAvpCodes.SERVICE_SELECTION);
-  }
+    public boolean hasServiceSelection() {
+        return hasAvp(DiameterS6aAvpCodes.SERVICE_SELECTION);
+    }
 
-  public String getServiceSelection() {
-    return getAvpAsUTF8String(DiameterS6aAvpCodes.SERVICE_SELECTION);
-  }
+    public String getServiceSelection() {
+        return getAvpAsUTF8String(DiameterS6aAvpCodes.SERVICE_SELECTION);
+    }
 
-  public void setServiceSelection(String serviceSelection) {
-    addAvp(DiameterS6aAvpCodes.SERVICE_SELECTION, serviceSelection);
-  }
+    public void setServiceSelection(String serviceSelection) {
+        addAvp(DiameterS6aAvpCodes.SERVICE_SELECTION, serviceSelection);
+    }
 
-  public boolean hasEPSSubscribedQoSProfile() {
-    return hasAvp(DiameterS6aAvpCodes.EPS_SUBSCRIBED_QOS_PROFILE, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-  }
+    public boolean hasEPSSubscribedQoSProfile() {
+        return hasAvp(DiameterS6aAvpCodes.EPS_SUBSCRIBED_QOS_PROFILE, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
 
-  public EPSSubscribedQoSProfileAvp getEPSSubscribedQoSProfile() {
-    return (EPSSubscribedQoSProfileAvp) getAvpAsCustom(DiameterS6aAvpCodes.EPS_SUBSCRIBED_QOS_PROFILE, DiameterS6aAvpCodes.S6A_VENDOR_ID, EPSSubscribedQoSProfileAvpImpl.class);
-  }
+    public EPSSubscribedQoSProfileAvp getEPSSubscribedQoSProfile() {
+        return (EPSSubscribedQoSProfileAvp) getAvpAsCustom(DiameterS6aAvpCodes.EPS_SUBSCRIBED_QOS_PROFILE, DiameterS6aAvpCodes.S6A_VENDOR_ID, EPSSubscribedQoSProfileAvpImpl.class);
+    }
 
-  public void setEPSSubscribedQoSProfile(EPSSubscribedQoSProfileAvp qp) {
-    addAvp(qp);
-  }
+    public void setEPSSubscribedQoSProfile(EPSSubscribedQoSProfileAvp qp) {
+        addAvp(qp);
+    }
 
-  public boolean hasVPLMNDynamicAddressAllowed() {
-    return hasAvp(DiameterS6aAvpCodes.VPLMN_DYNAMIC_ADDRESS_ALLOWED, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-  }
+    public boolean hasVPLMNDynamicAddressAllowed() {
+        return hasAvp(DiameterS6aAvpCodes.VPLMN_DYNAMIC_ADDRESS_ALLOWED, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
 
-  public VPLMNDynamicAddressAllowed getVPLMNDynamicAddressAllowed() {
-    return (VPLMNDynamicAddressAllowed) getAvpAsEnumerated(DiameterS6aAvpCodes.VPLMN_DYNAMIC_ADDRESS_ALLOWED, DiameterS6aAvpCodes.S6A_VENDOR_ID, VPLMNDynamicAddressAllowed.class);
-  }
+    public VPLMNDynamicAddressAllowed getVPLMNDynamicAddressAllowed() {
+        return (VPLMNDynamicAddressAllowed) getAvpAsEnumerated(DiameterS6aAvpCodes.VPLMN_DYNAMIC_ADDRESS_ALLOWED, DiameterS6aAvpCodes.S6A_VENDOR_ID, VPLMNDynamicAddressAllowed.class);
+    }
 
-  public void setVPLMNDynamicAddressAllowed(VPLMNDynamicAddressAllowed daa) {
-    addAvp(DiameterS6aAvpCodes.VPLMN_DYNAMIC_ADDRESS_ALLOWED, DiameterS6aAvpCodes.S6A_VENDOR_ID, daa.getValue());
-  }
+    public void setVPLMNDynamicAddressAllowed(VPLMNDynamicAddressAllowed daa) {
+        addAvp(DiameterS6aAvpCodes.VPLMN_DYNAMIC_ADDRESS_ALLOWED, DiameterS6aAvpCodes.S6A_VENDOR_ID, daa.getValue());
+    }
 
-  public boolean hasPDNGWAllocationType() {
-    return hasAvp(DiameterS6aAvpCodes.PDN_GATEWAY_ALLOCATION_TYPE, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-  }
+    public boolean hasPDNGWAllocationType() {
+        return hasAvp(DiameterS6aAvpCodes.PDN_GATEWAY_ALLOCATION_TYPE, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
 
-  public PDNGWAllocationType getPDNGWAllocationType() {
-    return (PDNGWAllocationType) getAvpAsEnumerated(DiameterS6aAvpCodes.PDN_GATEWAY_ALLOCATION_TYPE, DiameterS6aAvpCodes.S6A_VENDOR_ID, PDNGWAllocationType.class);
-  }
+    public PDNGWAllocationType getPDNGWAllocationType() {
+        return (PDNGWAllocationType) getAvpAsEnumerated(DiameterS6aAvpCodes.PDN_GATEWAY_ALLOCATION_TYPE, DiameterS6aAvpCodes.S6A_VENDOR_ID, PDNGWAllocationType.class);
+    }
 
-  public void setPDNGWAllocationType(PDNGWAllocationType at) {
-    addAvp(DiameterS6aAvpCodes.PDN_GATEWAY_ALLOCATION_TYPE, DiameterS6aAvpCodes.S6A_VENDOR_ID, at.getValue());
-  }
+    public void setPDNGWAllocationType(PDNGWAllocationType at) {
+        addAvp(DiameterS6aAvpCodes.PDN_GATEWAY_ALLOCATION_TYPE, DiameterS6aAvpCodes.S6A_VENDOR_ID, at.getValue());
+    }
 
-  public boolean hasAMBR() {
-    return hasAvp(DiameterS6aAvpCodes.AMBR, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-  }
+    public boolean hasAMBR() {
+        return hasAvp(DiameterS6aAvpCodes.AMBR, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
 
-  public AMBRAvp getAMBR() {
-    return (AMBRAvp) getAvpAsCustom(DiameterS6aAvpCodes.AMBR, DiameterS6aAvpCodes.S6A_VENDOR_ID, AMBRAvpImpl.class);
-  }
+    public AMBRAvp getAMBR() {
+        return (AMBRAvp) getAvpAsCustom(DiameterS6aAvpCodes.AMBR, DiameterS6aAvpCodes.S6A_VENDOR_ID, AMBRAvpImpl.class);
+    }
 
-  public void setAMBR(AMBRAvp ambr) {
-    addAvp(ambr);
-  }
+    public void setAMBR(AMBRAvp ambr) {
+        addAvp(ambr);
+    }
 
-  public boolean hasMIP6AgentInfo() {
-    return hasAvp(DiameterS6aAvpCodes.MIP6_AGENT_INFO);
-  }
+    public boolean hasMIP6AgentInfo() {
+        return hasAvp(DiameterS6aAvpCodes.MIP6_AGENT_INFO);
+    }
 
-  public MIP6AgentInfoAvp getMIP6AgentInfo() {
-    return (MIP6AgentInfoAvp) getAvpAsCustom(DiameterS6aAvpCodes.MIP6_AGENT_INFO, MIP6AgentInfoAvpImpl.class);
-  }
+    public MIP6AgentInfoAvp getMIP6AgentInfo() {
+        return (MIP6AgentInfoAvp) getAvpAsCustom(DiameterS6aAvpCodes.MIP6_AGENT_INFO, MIP6AgentInfoAvpImpl.class);
+    }
 
-  public void setMIP6AgentInfo(MIP6AgentInfoAvp mip) {
-    addAvp(mip);
-  }
+    public void setMIP6AgentInfo(MIP6AgentInfoAvp mip) {
+        addAvp(mip);
+    }
 
+
+    public boolean hasSIPTOPermission() {
+        return hasAvp(DiameterS6aAvpCodes.SIPTO_PERMISSION, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public SIPTOPermission getSIPTOPermission() {
+        return (SIPTOPermission) getAvpAsEnumerated(DiameterS6aAvpCodes.SIPTO_PERMISSION,
+                DiameterS6aAvpCodes.S6A_VENDOR_ID, SIPTOPermission.class);
+    }
+
+    public void setSIPTOPermission(SIPTOPermission siptoPermission) {
+        addAvp(DiameterS6aAvpCodes.SIPTO_PERMISSION, DiameterS6aAvpCodes.S6A_VENDOR_ID, siptoPermission.getValue());
+    }
+
+    public boolean hasLIPAPermission() {
+        return hasAvp(DiameterS6aAvpCodes.LIPA_PERMISSION, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public LIPAPermission getLIPAPermission() {
+        return (LIPAPermission) getAvpAsEnumerated(DiameterS6aAvpCodes.LIPA_PERMISSION,
+                DiameterS6aAvpCodes.S6A_VENDOR_ID, LIPAPermission.class);
+    }
+
+    public void setLIPAPermission(LIPAPermission lipaPermission) {
+        addAvp(DiameterS6aAvpCodes.LIPA_PERMISSION, DiameterS6aAvpCodes.S6A_VENDOR_ID, lipaPermission.getValue());
+    }
+
+    public boolean hasRestorationPriority() {
+        return hasAvp(DiameterS6aAvpCodes.RESTORATION_PRIORITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public long getRestorationPriority() {
+        return getAvpAsUnsigned32(DiameterS6aAvpCodes.RESTORATION_PRIORITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public void setRestorationPriority(long restorationPriority) {
+        addAvp(DiameterS6aAvpCodes.RESTORATION_PRIORITY, DiameterS6aAvpCodes.S6A_VENDOR_ID, restorationPriority);
+    }
+
+    public boolean hasSIPTOLocalNetworkPermission() {
+        return hasAvp(DiameterS6aAvpCodes.SIPTO_LOCAL_NETWORK_PERMISSION, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public long getSIPTOLocalNetworkPermission() {
+        return getAvpAsUnsigned32(DiameterS6aAvpCodes.SIPTO_LOCAL_NETWORK_PERMISSION, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public void setSIPTOLocalNetworkPermission(long siptoLocalNetworkPermission) {
+        addAvp(DiameterS6aAvpCodes.SIPTO_LOCAL_NETWORK_PERMISSION, DiameterS6aAvpCodes.S6A_VENDOR_ID, siptoLocalNetworkPermission);
+    }
+
+    public boolean hasWLANoffloadability() {
+        return hasAvp(DiameterS6aAvpCodes.WLAN_OFFLOADABILITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public WLANoffloadabilityAvp getWLANoffloadability() {
+        return (WLANoffloadabilityAvp) getAvpAsCustom(DiameterS6aAvpCodes.WLAN_OFFLOADABILITY,
+                                                      DiameterS6aAvpCodes.S6A_VENDOR_ID, WLANoffloadabilityAvpImpl.class);
+    }
+
+    public void setWLANoffloadability(WLANoffloadabilityAvp wlaNoffloadability) {
+        addAvp(wlaNoffloadability);
+    }
 }
