@@ -23,28 +23,7 @@
 package net.java.slee.resource.diameter.s6a;
 
 import net.java.slee.resource.diameter.base.DiameterAvpFactory;
-import net.java.slee.resource.diameter.s6a.events.avp.AMBRAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.APNConfigurationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.APNConfigurationProfileAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.ActiveAPNAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.AllocationRetentionPriorityAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.AuthenticationInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EPSLocationInformationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EPSSubscribedQoSProfileAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EPSUserStateAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EUTRANVectorAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MIP6AgentInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MIPHomeAgentHostAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MMELocationInformationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MMEUserStateAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.RequestedEUTRANAuthenticationInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.RequestedUTRANGERANAuthenticationInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SGSNLocationInformationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SGSNUserStateAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SpecificAPNInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.TerminalInformationAvp;
+import net.java.slee.resource.diameter.s6a.events.avp.*;
 
 /**
  * Factory to support the creation of Grouped AVP instances for S6a.
@@ -68,6 +47,10 @@ public interface S6aAVPFactory extends DiameterAvpFactory {
 
   public AuthenticationInfoAvp createAuthenticationInfo();
 
+  public CallBarringInforListAvp createCallBarringInforList();
+
+  public CSGSubscriptionDataAvp createCSGSubscriptionData();
+
   public EPSLocationInformationAvp createEPSLocationInformation();
 
   public EPSSubscribedQoSProfileAvp createEPSSubscribedQoSProfile();
@@ -75,6 +58,16 @@ public interface S6aAVPFactory extends DiameterAvpFactory {
   public EPSUserStateAvp createEPSUserState();
 
   public EUTRANVectorAvp createEUTRANVector();
+
+  public ExternalClientAvp createExternalClient();
+
+  public GERANVectorAvp createGERANVector();
+
+  public GPRSSubscriptionDataAvp createGPRSSubscriptionData();
+
+  public LCSInfoAvp createLCSInfo();
+
+  public LCSPrivacyExceptionAvp createLCSPrivacyException();
 
   public MIP6AgentInfoAvp createMIP6AgentInfo();
 
@@ -84,9 +77,15 @@ public interface S6aAVPFactory extends DiameterAvpFactory {
 
   public MMEUserStateAvp createMMEUserState();
 
+  public MOLRAvp createMOLR();
+
+  public PDPContextAvp createPDPContext();
+
   public RequestedEUTRANAuthenticationInfoAvp createRequestedEUTRANAuthenticationInfo();
 
   public RequestedUTRANGERANAuthenticationInfoAvp createRequestedUTRANGERANAuthenticationInfo();
+
+  public ServiceTypeAvp createServiceType();
 
   public SGSNLocationInformationAvp createSGSNLocationInformation();
 
@@ -98,6 +97,12 @@ public interface S6aAVPFactory extends DiameterAvpFactory {
 
   public SupportedFeaturesAvp createSupportedFeatures();
 
+  public TeleserviceListAvp createTeleserviceList();
+
   public TerminalInformationAvp createTerminalInformation();
+
+  public TraceDataAvp createTraceData();
+
+  public UTRANVectorAvp createUTRANVector();
 
 }

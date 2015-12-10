@@ -29,6 +29,7 @@ import net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp;
 import net.java.slee.resource.diameter.base.events.avp.FailedAvp;
 import net.java.slee.resource.diameter.base.events.avp.ProxyInfoAvp;
 import net.java.slee.resource.diameter.base.events.avp.VendorSpecificApplicationIdAvp;
+import net.java.slee.resource.diameter.s6a.events.avp.ErrorDiagnostic;
 import net.java.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvp;
 import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
 
@@ -67,7 +68,7 @@ import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
  */
 public interface UpdateLocationAnswer extends DiameterMessage {
 
-  public static final int COMMAND_CODE = 316;
+    public static final int COMMAND_CODE = 316;
 
   /**
    * Returns true if the Vendor-Specific-Application-Id AVP is present in the message.
@@ -301,4 +302,22 @@ public interface UpdateLocationAnswer extends DiameterMessage {
    */
   public void setRouteRecords(DiameterIdentity[] routeRecords);
 
+    /**
+     * Returns true if ErrorDiagnostic AVP is present in the message.
+     */
+    public boolean hasErrorDiagnostic();
+
+    /**
+     * Returns the ErrorDiagnostic AVP object. Type Enumerated
+     *
+     * @return
+     */
+    public ErrorDiagnostic getErrorDiagnostic();
+
+    /**
+     * Sets the ErrorDiagnostic AVP in the message. Type Enumerated
+     *
+     * @param errorDiagnostic
+     */
+    public void setErrorDiagnostic(ErrorDiagnostic errorDiagnostic);
 }

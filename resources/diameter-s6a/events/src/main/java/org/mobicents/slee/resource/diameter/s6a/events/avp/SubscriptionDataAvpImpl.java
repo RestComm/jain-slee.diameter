@@ -24,12 +24,18 @@ package org.mobicents.slee.resource.diameter.s6a.events.avp;
 
 import net.java.slee.resource.diameter.s6a.events.avp.AMBRAvp;
 import net.java.slee.resource.diameter.s6a.events.avp.APNConfigurationProfileAvp;
+import net.java.slee.resource.diameter.s6a.events.avp.CSGSubscriptionDataAvp;
+import net.java.slee.resource.diameter.s6a.events.avp.CallBarringInforListAvp;
 import net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes;
+import net.java.slee.resource.diameter.s6a.events.avp.GPRSSubscriptionDataAvp;
 import net.java.slee.resource.diameter.s6a.events.avp.ICSIndicator;
+import net.java.slee.resource.diameter.s6a.events.avp.LCSInfoAvp;
 import net.java.slee.resource.diameter.s6a.events.avp.NetworkAccessMode;
 import net.java.slee.resource.diameter.s6a.events.avp.RoamingRestrictedDueToUnsupportedFeature;
 import net.java.slee.resource.diameter.s6a.events.avp.SubscriberStatus;
 import net.java.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvp;
+import net.java.slee.resource.diameter.s6a.events.avp.TeleserviceListAvp;
+import net.java.slee.resource.diameter.s6a.events.avp.TraceDataAvp;
 import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
 
 /**
@@ -208,7 +214,48 @@ public class SubscriptionDataAvpImpl extends GroupedAvpImpl implements Subscript
     addAvp(DiameterS6aAvpCodes.APN_OI_REPLACEMENT, DiameterS6aAvpCodes.S6A_VENDOR_ID, apnOiReplacement);
   }
 
-  public boolean hasRATFrequencySelectionPriorityID() {
+    public boolean hasLCSInfo() {
+        return hasAvp(DiameterS6aAvpCodes.LCS_INFO, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public LCSInfoAvp getLCSInfo() {
+        return (LCSInfoAvp) getAvpAsCustom(DiameterS6aAvpCodes.LCS_INFO, DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                                           LCSInfoAvpImpl.class);
+    }
+
+    public void setLCSInfo(LCSInfoAvp lcsInfoAvp) {
+        addAvp(DiameterS6aAvpCodes.LCS_INFO, DiameterS6aAvpCodes.S6A_VENDOR_ID, lcsInfoAvp.byteArrayValue());
+    }
+
+    public boolean hasTeleserviceList() {
+        return hasAvp(DiameterS6aAvpCodes.TELESERVICE_LIST, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public TeleserviceListAvp getTeleserviceList() {
+        return (TeleserviceListAvp)getAvpAsCustom(DiameterS6aAvpCodes.TELESERVICE_LIST, DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                                                  TeleserviceListAvpImpl.class);
+    }
+
+    public void setTeleserviceList(TeleserviceListAvp teleserviceList) {
+        addAvp(DiameterS6aAvpCodes.TELESERVICE_LIST, DiameterS6aAvpCodes.S6A_VENDOR_ID, teleserviceList.byteArrayValue());
+    }
+
+    public boolean hasCallBarringInforList() {
+        return hasAvp(DiameterS6aAvpCodes.CALL_BARRING_INFOR_LIST, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public CallBarringInforListAvp getCallBarringInforList() {
+        return (CallBarringInforListAvp)getAvpAsCustom(DiameterS6aAvpCodes.CALL_BARRING_INFOR_LIST,
+                                                       DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                                                       CallBarringInforListAvpImpl.class);
+    }
+
+    public void setCallBarringInforList(CallBarringInforListAvp callBarringInforList) {
+        addAvp(DiameterS6aAvpCodes.CALL_BARRING_INFOR_LIST, DiameterS6aAvpCodes.S6A_VENDOR_ID,
+               callBarringInforList.byteArrayValue());
+    }
+
+    public boolean hasRATFrequencySelectionPriorityID() {
     return hasAvp(DiameterS6aAvpCodes.RAT_FREQUENCY_SELECTION_PRIORITY_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
   }
 
@@ -220,7 +267,50 @@ public class SubscriptionDataAvpImpl extends GroupedAvpImpl implements Subscript
     addAvp(DiameterS6aAvpCodes.RAT_FREQUENCY_SELECTION_PRIORITY_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID, rfspid);
   }
 
-  public boolean hasRoamingRestrictedDueToUnsupportedFeature() {
+    public boolean hasTraceData() {
+        return hasAvp(DiameterS6aAvpCodes.TRACE_DATA, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public TraceDataAvp getTraceData() {
+        return (TraceDataAvp) getAvpAsCustom(DiameterS6aAvpCodes.TRACE_DATA, DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                                             TraceDataAvpImpl.class);
+    }
+
+    public void setTraceData(TraceDataAvp traceData) {
+        addAvp(DiameterS6aAvpCodes.TRACE_DATA, DiameterS6aAvpCodes.S6A_VENDOR_ID, traceData.byteArrayValue());
+    }
+
+    public boolean hasGPRSSubscriptionData() {
+        return hasAvp(DiameterS6aAvpCodes.GPRS_SUBSCRIPTION_DATA, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public GPRSSubscriptionDataAvp getGPRSSubscriptionData() {
+        return (GPRSSubscriptionDataAvp) getAvpAsCustom(DiameterS6aAvpCodes.GPRS_SUBSCRIPTION_DATA,
+                                                        DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                                                        GPRSSubscriptionDataAvpImpl.class);
+    }
+
+    public void setGPRSSubscriptionData(GPRSSubscriptionDataAvp gprsSubscriptionData) {
+        addAvp(DiameterS6aAvpCodes.GPRS_SUBSCRIPTION_DATA, DiameterS6aAvpCodes.S6A_VENDOR_ID,
+               gprsSubscriptionData.byteArrayValue());
+    }
+
+    public boolean hasCSGSubscriptionData() {
+        return hasAvp(DiameterS6aAvpCodes.CSG_SUBSCRIPTION_DATA, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public CSGSubscriptionDataAvp getCSGSubscriptionData() {
+        return (CSGSubscriptionDataAvp) getAvpAsCustom(DiameterS6aAvpCodes.CSG_SUBSCRIPTION_DATA,
+                                                       DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                                                       CSGSubscriptionDataAvpImpl.class);
+    }
+
+    public void setCSGSubscriptionData(CSGSubscriptionDataAvp csgSubscriptionData) {
+        addAvp(DiameterS6aAvpCodes.CSG_SUBSCRIPTION_DATA, DiameterS6aAvpCodes.S6A_VENDOR_ID,
+               csgSubscriptionData.byteArrayValue());
+    }
+
+    public boolean hasRoamingRestrictedDueToUnsupportedFeature() {
     return hasAvp(DiameterS6aAvpCodes.ROAMING_RESTRICTED_DUE_TO_UNSUPPORTED_FEATURE, DiameterS6aAvpCodes.S6A_VENDOR_ID);
   }
 
@@ -231,5 +321,4 @@ public class SubscriptionDataAvpImpl extends GroupedAvpImpl implements Subscript
   public RoamingRestrictedDueToUnsupportedFeature getRoamingRestrictedDueToUnsupportedFeature() {
     return (RoamingRestrictedDueToUnsupportedFeature) getAvpAsEnumerated(DiameterS6aAvpCodes.ROAMING_RESTRICTED_DUE_TO_UNSUPPORTED_FEATURE, DiameterS6aAvpCodes.S6A_VENDOR_ID, RoamingRestrictedDueToUnsupportedFeature.class);
   }
-
 }

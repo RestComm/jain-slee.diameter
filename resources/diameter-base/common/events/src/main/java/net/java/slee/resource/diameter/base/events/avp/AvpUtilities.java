@@ -1449,7 +1449,7 @@ public class AvpUtilities {
    * @param avpCode the code of the AVP
    * @param vendorId the Vendor-Id of the AVP
    * @param set the Vendor-Id of the AVP
-   * @param value the value of the AVP to add
+   * @param childs the value of the AVP to add
    */
   public static AvpSet setAvpAsGrouped(Object parent, int avpCode, long vendorId, AvpSet set, DiameterAvp[] childs) {
     AvpRepresentation rep = AvpDictionary.INSTANCE.getAvp(avpCode, vendorId);
@@ -1471,7 +1471,7 @@ public class AvpUtilities {
    * @param set the AvpSet to add AVP
    * @param isMandatory the value for the mandatory bit
    * @param isProtected the value for the protected bit
-   * @param value the value of the AVP to add
+   * @param childs the value of the AVP to add
    */
   public static AvpSet setAvpAsGrouped(Object parent, int avpCode, long vendorId, AvpSet set, boolean isMandatory, boolean isProtected, DiameterAvp[] childs) {
     performPreAddOperations(parent, avpCode, vendorId, set);

@@ -103,6 +103,7 @@ public class DiameterS6aAvpCodes {
   public static final int COMPLETE_DATA_LIST_INCLUDED_INDICATOR = 1468;
   public static final int PDP_CONTEXT = 1469;
   public static final int PDP_TYPE = 1470;
+  public static final int PDP_ADDRESS = 1227;
   public static final int TGPP2_MEID = 1471;
   public static final int SPECIFIC_APN_INFO = 1472;
   public static final int LCS_INFO = 1473;
@@ -148,6 +149,8 @@ public class DiameterS6aAvpCodes {
   public static final int ERROR_DIAGNOSTIC = 1614;
   public static final int EXT_PDP_TYPE = 1620;
   public static final int EXT_PDP_ADDRESS = 1621;
+  public static final int CONFIDENTIALITY_KEY = 625;
+  public static final int INTEGRITY_KEY = 626;
 
   // Reused
   public static final int TGPP_CHARGING_CHARACTERISTICS = 13;

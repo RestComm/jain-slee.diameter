@@ -215,7 +215,7 @@ public interface AuthenticationInformationAnswer extends DiameterMessage {
   /**
    * Sets the value of the Authentication-Info AVP, of type Grouped.
    * 
-   * @param authSessionState
+   * @param authenticationInfo
    */
   public void setAuthenticationInfo(AuthenticationInfoAvp authenticationInfo);
 

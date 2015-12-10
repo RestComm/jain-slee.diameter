@@ -27,6 +27,7 @@ import net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType;
 import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
 import net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp;
 import net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer;
+import net.java.slee.resource.diameter.s6a.events.avp.ErrorDiagnostic;
 import net.java.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvp;
 import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
 import org.jdiameter.api.Message;
@@ -173,4 +174,15 @@ public class UpdateLocationAnswerImpl extends DiameterMessageImpl implements Upd
     addAvp(subscriptionData);
   }
 
+    public boolean hasErrorDiagnostic() {
+        return hasAvp(ERROR_DIAGNOSTIC, S6A_VENDOR_ID);
+    }
+
+    public ErrorDiagnostic getErrorDiagnostic() {
+        return (ErrorDiagnostic) getAvpAsEnumerated(ERROR_DIAGNOSTIC, S6A_VENDOR_ID, ErrorDiagnostic.class);
+    }
+
+    public void setErrorDiagnostic(ErrorDiagnostic errorDiagnostic) {
+        addAvp(ERROR_DIAGNOSTIC, S6A_VENDOR_ID, errorDiagnostic.getValue());
+    }
 }

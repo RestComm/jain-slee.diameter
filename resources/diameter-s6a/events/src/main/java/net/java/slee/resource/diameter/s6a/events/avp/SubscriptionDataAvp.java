@@ -114,9 +114,18 @@ public interface SubscriptionDataAvp extends GroupedAvp {
   public String getAPNOIReplacement();
   public void setAPNOIReplacement(String apnOiReplacement);
 
-  // TODO:   [ LCS-Info ]
-  // TODO:   [ Teleservice-List ]
-  // TODO:   [ Call-Barring-Infor-List ]
+  public boolean hasLCSInfo();
+  public LCSInfoAvp getLCSInfo();
+  public void setLCSInfo(LCSInfoAvp lcsInfoAvp);
+
+
+  public boolean hasTeleserviceList();
+  public TeleserviceListAvp getTeleserviceList();
+  public void setTeleserviceList(TeleserviceListAvp teleserviceList);
+
+  public boolean hasCallBarringInforList();
+  public CallBarringInforListAvp getCallBarringInforList();
+  public void setCallBarringInforList(CallBarringInforListAvp callBarringInforList);
 
   public boolean has3GPPChargingCharacteristics();
   public String get3GPPChargingCharacteristics();
@@ -134,9 +143,17 @@ public interface SubscriptionDataAvp extends GroupedAvp {
   public long getRATFrequencySelectionPriorityID();
   public void setRATFrequencySelectionPriorityID(long rfspid);
 
-  // TODO:   [ Trace-Data]
-  // TODO:   [ GPRS-Subscription-Data ]
-  // TODO:  *[ CSG-Subscription-Data ] 
+  public boolean hasTraceData();
+  public TraceDataAvp getTraceData();
+  public void setTraceData(TraceDataAvp traceData);
+
+  public boolean hasGPRSSubscriptionData();
+  public GPRSSubscriptionDataAvp getGPRSSubscriptionData();
+  public void setGPRSSubscriptionData(GPRSSubscriptionDataAvp gprsSubscriptionData);
+
+  public boolean hasCSGSubscriptionData();
+  public CSGSubscriptionDataAvp getCSGSubscriptionData();
+  public void setCSGSubscriptionData(CSGSubscriptionDataAvp csgSubscriptionData);
 
   public boolean hasRoamingRestrictedDueToUnsupportedFeature();
   public void setRoamingRestrictedDueToUnsupportedFeature(RoamingRestrictedDueToUnsupportedFeature rrdtuf);
