@@ -31,12 +31,13 @@ import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
 
 /**
  * Defines an interface representing the Delete-Subscriber-Data-Request message.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
  * 7.2.11 Delete-Subscriber-Data-Request (DSR) Command
  * 
- * The Delete-SubscriberData-Request (DSR) command, indicated by the Command-Code field set to 320 and the 'R' bit set in the Command Flags field, is sent from HSS to MME or SGSN. 
+ * The Delete-SubscriberData-Request (DSR) command, indicated by the Command-Code field set to 320 and the 'R' bit set
+ * in the Command Flags field, is sent from HSS to MME or SGSN.
  * 
  * Message Format
  * < Delete-Subscriber-Data-Request > ::=  < Diameter Header: 320, REQ, PXY, 16777251 >

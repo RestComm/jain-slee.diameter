@@ -27,7 +27,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 
 /**
  * Defines an interface representing the Active-APN grouped AVP type.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
  * 7.3.127  Active-APN

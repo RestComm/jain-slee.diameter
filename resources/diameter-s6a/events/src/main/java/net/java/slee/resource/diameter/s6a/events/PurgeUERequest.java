@@ -27,11 +27,12 @@ import net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 import net.java.slee.resource.diameter.base.events.avp.ProxyInfoAvp;
 import net.java.slee.resource.diameter.base.events.avp.VendorSpecificApplicationIdAvp;
+import net.java.slee.resource.diameter.s6a.events.avp.EPSLocationInformationAvp;
 import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
 
 /**
  * Defines an interface representing the Purge-UE-Request message.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
  * 7.2.13 Purge-UE-Request (PUR) Command
@@ -48,7 +49,9 @@ import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
  *                          [ Destination-Host ]
  *                          { Destination-Realm }
  *                          { User-Name }
+ *                         [ PUR-Flags ]
  *                         *[ Supported-Features ]
+ *                         [ EPS-Location-Information ]
  *                         *[ AVP ]
  *                         *[ Proxy-Info ]
  *                         *[ Route-Record ]
@@ -201,4 +204,40 @@ public interface PurgeUERequest extends DiameterMessage {
    */
   public void setRouteRecords(DiameterIdentity[] routeRecords);
 
+
+    /**
+     * Returns true if the PUR-Flags AVP is present in the message
+     * @return
+     */
+  public boolean hasPURFlags();
+
+    /**
+     * Returns the value of the PUR-Flag AVP, of type Unsigned32
+     * @return
+     */
+  public long getPURFlags();
+
+    /**
+     * Sets a PUR-Flags object AVP in the message.
+     * @param purFlags
+     */
+  public void setPURFlags(long purFlags);
+
+    /**
+     * Returns true if the EPS-Location-Information AVP is present in the message.
+     * @return
+     */
+  public boolean hasEPSLocationInformation();
+
+    /**
+     * Returns the vaue of the EPS-Location-Information AVP, of type Grouped.
+     * @return
+     */
+  public EPSLocationInformationAvp getEPSLocationInformation();
+
+    /**
+     * Sets the value of the EPS-Location-Information AVP in the message.
+     * @param epsLocationInformation
+     */
+  public void setEPSLocationInformation(EPSLocationInformationAvp epsLocationInformation);
 }

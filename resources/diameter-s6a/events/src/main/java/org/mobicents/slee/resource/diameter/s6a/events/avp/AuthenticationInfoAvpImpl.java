@@ -22,9 +22,7 @@
 
 package org.mobicents.slee.resource.diameter.s6a.events.avp;
 
-import net.java.slee.resource.diameter.s6a.events.avp.AuthenticationInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes;
-import net.java.slee.resource.diameter.s6a.events.avp.EUTRANVectorAvp;
+import net.java.slee.resource.diameter.s6a.events.avp.*;
 import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
 
 /**
@@ -37,26 +35,52 @@ import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
  */
 public class AuthenticationInfoAvpImpl extends GroupedAvpImpl implements AuthenticationInfoAvp {
 
-  public AuthenticationInfoAvpImpl() {
+    public AuthenticationInfoAvpImpl() {
     super();
-  }
+    }
 
-  public AuthenticationInfoAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
-    super(code, vendorId, mnd, prt, value);
-  }
+    public AuthenticationInfoAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
+        super(code, vendorId, mnd, prt, value);
+    }
 
-  @Override
-  public boolean hasEUTRANVector() {
-    return hasAvp(DiameterS6aAvpCodes.EUTRAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-  }
+    public boolean hasEUTRANVector() {
+        return hasAvp(DiameterS6aAvpCodes.EUTRAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
 
-  @Override
-  public EUTRANVectorAvp getEUTRANVector() {
-    return (EUTRANVectorAvp) getAvpAsCustom(DiameterS6aAvpCodes.EUTRAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID, EUTRANVectorAvpImpl.class);
-  }
+    public EUTRANVectorAvp getEUTRANVector() {
+        return (EUTRANVectorAvp) getAvpAsCustom(DiameterS6aAvpCodes.EUTRAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                EUTRANVectorAvpImpl.class);
+    }
 
-  @Override
-  public void setEUTRANVector(EUTRANVectorAvp EUTRANVector) {        
+    public void setEUTRANVector(EUTRANVectorAvp EUTRANVector) {
     addAvp(EUTRANVector);
-  }
+    }
+
+    public boolean hasUTRANVector() {
+        return hasAvp(DiameterS6aAvpCodes.UTRAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public UTRANVectorAvp getUTRANVector() {
+        return (UTRANVectorAvp) getAvpAsCustom(DiameterS6aAvpCodes.UTRAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                UTRANVectorAvpImpl.class);
+    }
+
+    public void setUTRANVector(UTRANVectorAvp utranVector) {
+        addAvp(utranVector);
+    }
+
+    public boolean hasGERANVector() {
+        return hasAvp(DiameterS6aAvpCodes.GERAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public GERANVectorAvp getGERANVector() {
+        return (GERANVectorAvp) getAvpAsCustom(DiameterS6aAvpCodes.GERAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                GERANVectorAvpImpl.class);
+    }
+
+    public void setGERANVector(GERANVectorAvp geranVector) {
+        addAvp(geranVector);
+    }
+
+
 }

@@ -27,25 +27,22 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
 
 /**
  * Java class representing the Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions enumerated type.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
- * 7.3.107  Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions
- * 
- * The Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions AVP is of type Enumerated. The following
- * values are defined:
- * 
- * FALSE (0)
- *   This value indicates that "IMS Voice over PS Sessions" is not supported, homogeneously, in any
- *   of the TAs or RAs associated to the serving node.
- * 
- * TRUE (1)
- *   This value indicates that "IMS Voice over PS Sessions" is supported, homogeneously, in all of
- *   the TAs or RAs associated to the serving node.
- * 
- * If this AVP is not present in the command, it indicates that there is no homogeneous support of
- * IMS Voice Over PS Sessions on all the TA/RAs of the serving node, or that the homogeneity of
- * this support is unkown to the serving node.
+ * 7.3.107 Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions
+ *
+ * The Homogeneous-Support-of-IMS-Voice-Over-PS-Sessions AVP is of type Enumerated. The following values are
+ * defined:
+ *      NOT_SUPPORTED (0)
+ *          This value indicates that "IMS Voice over PS Sessions" is not supported, homogeneously, in any of the TAs
+ *          or RAs associated to the serving node.
+ *      SUPPORTED (1)
+ *          This value indicates that "IMS Voice over PS Sessions" is supported, homogeneously, in all of the TAs or
+ *          RAs associated to the serving node.
+ *
+ * If this AVP is not present in the command, it indicates that there is no homogeneous support of IMS Voice Over PS
+ * Sessions on all the TA/RAs of the serving node, or that the homogeneity of this support is unkown to the serving node.
  * </pre>
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
@@ -54,11 +51,11 @@ public class HomogeneousSupportOfIMSVoiceOverPSSessions implements Enumerated, S
 
   private static final long serialVersionUID = 1L;
 
-  public static final int _FALSE = 0;
-  public static final int _TRUE = 1;
+  public static final int _NOT_SUPPORTED = 0;
+  public static final int _SUPPORTED = 1;
 
-  public static final HomogeneousSupportOfIMSVoiceOverPSSessions FALSE = new HomogeneousSupportOfIMSVoiceOverPSSessions(_FALSE);
-  public static final HomogeneousSupportOfIMSVoiceOverPSSessions TRUE = new HomogeneousSupportOfIMSVoiceOverPSSessions(_TRUE);
+  public static final HomogeneousSupportOfIMSVoiceOverPSSessions NOT_SUPPORTED = new HomogeneousSupportOfIMSVoiceOverPSSessions(_NOT_SUPPORTED);
+  public static final HomogeneousSupportOfIMSVoiceOverPSSessions SUPPORTED = new HomogeneousSupportOfIMSVoiceOverPSSessions(_SUPPORTED);
 
   private int value = -1;
 
@@ -68,10 +65,10 @@ public class HomogeneousSupportOfIMSVoiceOverPSSessions implements Enumerated, S
 
   public static HomogeneousSupportOfIMSVoiceOverPSSessions fromInt(int type) {
     switch (type) {
-      case _FALSE:
-        return FALSE;
-      case _TRUE:
-        return TRUE;
+      case _NOT_SUPPORTED:
+        return NOT_SUPPORTED;
+      case _SUPPORTED:
+        return SUPPORTED;
       default:
         throw new IllegalArgumentException("Invalid value: " + type);
     }
@@ -84,10 +81,10 @@ public class HomogeneousSupportOfIMSVoiceOverPSSessions implements Enumerated, S
   @Override
   public String toString() {
     switch (value) {
-      case _FALSE:
-        return "FALSE";
-      case _TRUE:
-        return "TRUE";
+      case _NOT_SUPPORTED:
+        return "NOT_SUPPORTED";
+      case _SUPPORTED:
+        return "SUPPORTED";
       default:
         return "<Invalid Value>";
     }

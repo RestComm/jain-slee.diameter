@@ -35,7 +35,7 @@ import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
 
 /**
  * Defines an interface representing the Authentication-Information-Answer message.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
  * 7.2.6  Authentication-Information-Answer (AIA) Command
@@ -52,6 +52,8 @@ import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
  *                                           { Auth-Session-State }
  *                                           { Origin-Host }
  *                                           { Origin-Realm }
+ *                                           [ OC-Supported-Features ]    //draft
+ *                                           [ OC-OLR ]                  //draft
  *                                          *[ Supported-Features ]
  *                                           [ Authentication-Info ]
  *                                          *[ AVP ]
@@ -215,7 +217,7 @@ public interface AuthenticationInformationAnswer extends DiameterMessage {
   /**
    * Sets the value of the Authentication-Info AVP, of type Grouped.
    * 
-   * @param authSessionState
+   * @param authenticationInfo
    */
   public void setAuthenticationInfo(AuthenticationInfoAvp authenticationInfo);
 

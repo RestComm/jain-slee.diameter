@@ -23,28 +23,7 @@
 package net.java.slee.resource.diameter.s6a;
 
 import net.java.slee.resource.diameter.base.DiameterAvpFactory;
-import net.java.slee.resource.diameter.s6a.events.avp.AMBRAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.APNConfigurationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.APNConfigurationProfileAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.ActiveAPNAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.AllocationRetentionPriorityAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.AuthenticationInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EPSLocationInformationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EPSSubscribedQoSProfileAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EPSUserStateAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EUTRANVectorAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MIP6AgentInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MIPHomeAgentHostAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MMELocationInformationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MMEUserStateAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.RequestedEUTRANAuthenticationInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.RequestedUTRANGERANAuthenticationInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SGSNLocationInformationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SGSNUserStateAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SpecificAPNInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.TerminalInformationAvp;
+import net.java.slee.resource.diameter.s6a.events.avp.*;
 
 /**
  * Factory to support the creation of Grouped AVP instances for S6a.
@@ -56,48 +35,92 @@ import net.java.slee.resource.diameter.s6a.events.avp.TerminalInformationAvp;
  */
 public interface S6aAVPFactory extends DiameterAvpFactory {
 
-  public ActiveAPNAvp createActiveAPN();
+    public ActiveAPNAvp createActiveAPN();
 
-  public AllocationRetentionPriorityAvp createAllocationRetentionPriority();
+    public AllocationRetentionPriorityAvp createAllocationRetentionPriority();
 
-  public AMBRAvp createAMBR();
+    public AMBRAvp createAMBR();
 
-  public APNConfigurationAvp createAPNConfiguration();
+    public APNConfigurationAvp createAPNConfiguration();
 
-  public APNConfigurationProfileAvp createAPNConfigurationProfile();
+    public APNConfigurationProfileAvp createAPNConfigurationProfile();
 
-  public AuthenticationInfoAvp createAuthenticationInfo();
+    public AreaScopeAvp createAreaScopeAvp();
 
-  public EPSLocationInformationAvp createEPSLocationInformation();
+    public AuthenticationInfoAvp createAuthenticationInfo();
 
-  public EPSSubscribedQoSProfileAvp createEPSSubscribedQoSProfile();
+    public CallBarringInfoAvp createCallBarringInforList();
 
-  public EPSUserStateAvp createEPSUserState();
+    public CSGSubscriptionDataAvp createCSGSubscriptionData();
 
-  public EUTRANVectorAvp createEUTRANVector();
+    public EPSLocationInformationAvp createEPSLocationInformation();
 
-  public MIP6AgentInfoAvp createMIP6AgentInfo();
+    public EPSSubscribedQoSProfileAvp createEPSSubscribedQoSProfile();
 
-  public MIPHomeAgentHostAvp createMIPHomeAgentHost();
+    public EPSUserStateAvp createEPSUserState();
 
-  public MMELocationInformationAvp createMMELocationInformation();
+    public EquivalentPLMNListAvp createEquivalentPLMNList();
 
-  public MMEUserStateAvp createMMEUserState();
+    public EUTRANVectorAvp createEUTRANVector();
 
-  public RequestedEUTRANAuthenticationInfoAvp createRequestedEUTRANAuthenticationInfo();
+    public ExternalClientAvp createExternalClient();
 
-  public RequestedUTRANGERANAuthenticationInfoAvp createRequestedUTRANGERANAuthenticationInfo();
+    public GERANVectorAvp createGERANVector();
 
-  public SGSNLocationInformationAvp createSGSNLocationInformation();
+    public GPRSSubscriptionDataAvp createGPRSSubscriptionData();
 
-  public SGSNUserStateAvp createSGSNUserState();
+    public LCSInfoAvp createLCSInfo();
 
-  public SpecificAPNInfoAvp createSpecificAPNInfo();
+    public LCSPrivacyExceptionAvp createLCSPrivacyException();
 
-  public SubscriptionDataAvp createSubscriptionData();
+    public LocalTimeZoneAvp createLocalTimeZone();
 
-  public SupportedFeaturesAvp createSupportedFeatures();
+    public MDTConfigurationAvp createMDTConfigurationAvp();
 
-  public TerminalInformationAvp createTerminalInformation();
+    public MIP6AgentInfoAvp createMIP6AgentInfo();
+
+    public MIPHomeAgentHostAvp createMIPHomeAgentHost();
+
+    public MMELocationInformationAvp createMMELocationInformation();
+
+    public MMEUserStateAvp createMMEUserState();
+
+    public MOLRAvp createMOLR();
+
+    public PDPContextAvp createPDPContext();
+
+    public ProSeAllowedPLMNAvp createProSeAllowedPLMN();
+
+    public ProSESubscriptionDataAvp createProSeSubscriptionData();
+
+    public RequestedEUTRANAuthenticationInfoAvp createRequestedEUTRANAuthenticationInfo();
+
+    public RequestedUTRANGERANAuthenticationInfoAvp createRequestedUTRANGERANAuthenticationInfo();
+
+    public ServiceTypeAvp createServiceType();
+
+    public SGSNLocationInformationAvp createSGSNLocationInformation();
+
+    public SGSNUserStateAvp createSGSNUserState();
+
+    public SpecificAPNInfoAvp createSpecificAPNInfo();
+
+    public SubscriptionDataAvp createSubscriptionData();
+
+    public SupportedFeaturesAvp createSupportedFeatures();
+
+    public TeleserviceListAvp createTeleserviceList();
+
+    public TerminalInformationAvp createTerminalInformation();
+
+    public TraceDataAvp createTraceData();
+
+    public UserCSGInformationAvp createUserCSGInformation();
+
+    public UTRANVectorAvp createUTRANVector();
+
+    public VPLMNCSGSubscriptionDataAvp createVPLMNCSGSubscriptionData();
+
+    public WLANoffloadabilityAvp createWLANoffloadability();
 
 }

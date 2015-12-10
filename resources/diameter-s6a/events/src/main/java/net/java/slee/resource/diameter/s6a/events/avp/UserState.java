@@ -27,7 +27,7 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
 
 /**
  * Java class representing the User-State enumerated type.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
  * 7.3.114  User-State
@@ -39,7 +39,7 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
  *   ATTACHED_REACHABLE_FOR_PAGING (2)
  *   CONNECTED_NOT_REACHABLE_FOR_PAGING (3)
  *   CONNECTED_REACHABLE_FOR_PAGING (4)
- *   NETWORK_DETERMINED_NOT_REACHABLE (5)
+ *   RESERVED (5)
  * </pre>
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
@@ -53,14 +53,14 @@ public class UserState implements Enumerated, Serializable {
   public static final int _ATTACHED_REACHABLE_FOR_PAGING      = 2;
   public static final int _CONNECTED_NOT_REACHABLE_FOR_PAGING = 3;
   public static final int _CONNECTED_REACHABLE_FOR_PAGING     = 4;
-  public static final int _NETWORK_DETERMINED_NOT_REACHABLE   = 5;
+  public static final int _RESERVED   = 5;
 
   public static final UserState DETACHED = new UserState(_DETACHED);
   public static final UserState ATTACHED_NOT_REACHABLE_FOR_PAGING = new UserState(_ATTACHED_NOT_REACHABLE_FOR_PAGING);
   public static final UserState ATTACHED_REACHABLE_FOR_PAGING = new UserState(_ATTACHED_REACHABLE_FOR_PAGING);
   public static final UserState CONNECTED_NOT_REACHABLE_FOR_PAGING = new UserState(_CONNECTED_NOT_REACHABLE_FOR_PAGING);
   public static final UserState CONNECTED_REACHABLE_FOR_PAGING = new UserState(_CONNECTED_REACHABLE_FOR_PAGING);
-  public static final UserState NETWORK_DETERMINED_NOT_REACHABLE = new UserState(_NETWORK_DETERMINED_NOT_REACHABLE);
+  public static final UserState RESERVED = new UserState(_RESERVED);
 
   private int value = -1;
 
@@ -80,8 +80,8 @@ public class UserState implements Enumerated, Serializable {
         return CONNECTED_NOT_REACHABLE_FOR_PAGING;
       case _CONNECTED_REACHABLE_FOR_PAGING:
         return CONNECTED_REACHABLE_FOR_PAGING;
-      case _NETWORK_DETERMINED_NOT_REACHABLE:
-        return NETWORK_DETERMINED_NOT_REACHABLE;
+      case _RESERVED:
+        return RESERVED;
       default:
         throw new IllegalArgumentException("Invalid value: " + type);
     }
@@ -104,8 +104,8 @@ public class UserState implements Enumerated, Serializable {
         return "CONNECTED_NOT_REACHABLE_FOR_PAGING";
       case _CONNECTED_REACHABLE_FOR_PAGING:
         return "CONNECTED_REACHABLE_FOR_PAGING";
-      case _NETWORK_DETERMINED_NOT_REACHABLE:
-        return "NETWORK_DETERMINED_NOT_REACHABLE";
+      case _RESERVED:
+        return "RESERVED";
       default:
         return "<Invalid Value>";
     }

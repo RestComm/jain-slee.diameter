@@ -629,8 +629,7 @@ public class BaseFactoriesTest {
 		Assert.assertNotNull("Created Experimental-Result AVP from objects should not be null.", erAvp1);
 
 		ExperimentalResultAvp erAvp2 = avpFactory.createExperimentalResult(erAvp1.getExtensionAvps());
-
-		Assert.assertEquals("Created Experimental-Result AVP from extension avps should be equal to original.", erAvp1, erAvp2);
+        Assert.assertEquals("Created Experimental-Result AVP from extension avps should be equal to original.", erAvp1, erAvp2);
 
 		ExperimentalResultAvp erAvp3 = avpFactory.createExperimentalResult(erAvp2.getVendorIdAVP(), erAvp2.getExperimentalResultCode());
 

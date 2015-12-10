@@ -41,31 +41,7 @@ import net.java.slee.resource.diameter.s6a.events.ResetAnswer;
 import net.java.slee.resource.diameter.s6a.events.ResetRequest;
 import net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer;
 import net.java.slee.resource.diameter.s6a.events.UpdateLocationRequest;
-import net.java.slee.resource.diameter.s6a.events.avp.AMBRAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.APNConfigurationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.APNConfigurationProfileAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.ActiveAPNAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.AllAPNConfigurationsIncludedIndicator;
-import net.java.slee.resource.diameter.s6a.events.avp.AllocationRetentionPriorityAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.AuthenticationInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes;
-import net.java.slee.resource.diameter.s6a.events.avp.EPSLocationInformationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EPSSubscribedQoSProfileAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EPSUserStateAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EUTRANVectorAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MIP6AgentInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MIPHomeAgentHostAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MMELocationInformationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.MMEUserStateAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.PDNType;
-import net.java.slee.resource.diameter.s6a.events.avp.RequestedEUTRANAuthenticationInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.RequestedUTRANGERANAuthenticationInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SGSNLocationInformationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SGSNUserStateAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SpecificAPNInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.TerminalInformationAvp;
+import net.java.slee.resource.diameter.s6a.events.avp.*;
 
 import org.jdiameter.api.ApplicationId;
 import org.jdiameter.api.Stack;
@@ -82,28 +58,7 @@ import org.mobicents.slee.resource.diameter.s6a.S6aAVPFactoryImpl;
 import org.mobicents.slee.resource.diameter.s6a.S6aClientSessionImpl;
 import org.mobicents.slee.resource.diameter.s6a.S6aMessageFactoryImpl;
 import org.mobicents.slee.resource.diameter.s6a.S6aServerSessionImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.AMBRAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.APNConfigurationAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.APNConfigurationProfileAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.ActiveAPNAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.AllocationRetentionPriorityAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.AuthenticationInfoAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.EPSLocationInformationAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.EPSSubscribedQoSProfileAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.EPSUserStateAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.EUTRANVectorAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.MIP6AgentInfoAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.MIPHomeAgentHostAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.MMELocationInformationAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.MMEUserStateAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.RequestedEUTRANAuthenticationInfoAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.RequestedUTRANGERANAuthenticationInfoAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.SGSNLocationInformationAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.SGSNUserStateAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.SpecificAPNInfoAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvpImpl;
-import org.mobicents.slee.resource.diameter.s6a.events.avp.TerminalInformationAvpImpl;
+import org.mobicents.slee.resource.diameter.s6a.events.avp.*;
 
 /**
  * Test class for JAIN SLEE Diameter S6a RA Message and AVP Factories
@@ -886,7 +841,124 @@ public class S6aFactoriesTest {
 		assertFalse("The 'T' flag should not be set in Notify-Answer", noa.getHeader().isPotentiallyRetransmitted());
 	}
 
-	@Test
+    @Test
+    public void testGettersAndSettersCSGSubscriptionData() throws Exception {
+        CSGSubscriptionDataAvp avp = s6aAvpFactory.createCSGSubscriptionData();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, CSGSubscriptionDataAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersCallBarringInforList() throws Exception {
+        CallBarringInfoAvp avp = s6aAvpFactory.createCallBarringInforList();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, CallBarringInfoAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersExternalClient() throws Exception {
+        ExternalClientAvp avp = s6aAvpFactory.createExternalClient();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, ExternalClientAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersGERANVector() throws Exception {
+        GERANVectorAvp avp = s6aAvpFactory.createGERANVector();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, GERANVectorAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersGPRSSubscriptionData() throws Exception {
+        GPRSSubscriptionDataAvp avp = s6aAvpFactory.createGPRSSubscriptionData();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, GPRSSubscriptionDataAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersLCSInfo() throws Exception {
+        LCSInfoAvp avp = s6aAvpFactory.createLCSInfo();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, LCSInfoAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersMOLR() throws Exception {
+        MOLRAvp avp = s6aAvpFactory.createMOLR();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, MOLRAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersPDPContext() throws Exception {
+        PDPContextAvp avp = s6aAvpFactory.createPDPContext();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, PDPContextAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersServiceType() throws Exception {
+        ServiceTypeAvp avp = s6aAvpFactory.createServiceType();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, ServiceTypeAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersTeleserviceList() throws Exception {
+        TeleserviceListAvp avp = s6aAvpFactory.createTeleserviceList();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, TeleserviceListAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersTraceData() throws Exception {
+        TraceDataAvp avp = s6aAvpFactory.createTraceData();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, TraceDataAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersUTRANVector() throws Exception {
+        UTRANVectorAvp avp = s6aAvpFactory.createUTRANVector();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, UTRANVectorAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersLCSPrivacyException() throws Exception {
+        LCSPrivacyExceptionAvp avp = s6aAvpFactory.createLCSPrivacyException();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, LCSPrivacyExceptionAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
 	public void testGettersAndSettersActiveAPN() throws Exception {
 		ActiveAPNAvp avp = s6aAvpFactory.createActiveAPN();
 
@@ -1084,7 +1156,25 @@ public class S6aFactoriesTest {
 		assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
 	}
 
-	@Test
+    @Test
+    public void testGettersAndSettersEquivalentPLMNList() throws Exception {
+        EquivalentPLMNListAvp avp = s6aAvpFactory.createEquivalentPLMNList();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, EquivalentPLMNListAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersLocalTimeZone() throws Exception {
+        LocalTimeZoneAvp avp = s6aAvpFactory.createLocalTimeZone();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, LocalTimeZoneAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
 	public void testMessageFactoryApplicationIdChangeULR() throws Exception {
 		long vendor = 10415L;
 		ApplicationId originalAppId = ((S6aMessageFactoryImpl) s6aMessageFactory).getApplicationId();
@@ -1579,4 +1669,65 @@ public class S6aFactoriesTest {
 		// revert back to default
 		((S6aMessageFactoryImpl) s6aMessageFactory).setApplicationId(originalAppId.getVendorId(), isAuth ? originalAppId.getAuthAppId() : originalAppId.getAcctAppId());
 	}
+
+    @Test
+    public void testGettersAndSettersAreaScope() throws Exception {
+        AreaScopeAvp avp = s6aAvpFactory.createAreaScopeAvp();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, AreaScopeAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersMDTConfiguration() throws Exception {
+        MDTConfigurationAvp avp = s6aAvpFactory.createMDTConfigurationAvp();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, MDTConfigurationAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersVPLMNCSGSubscriptionData() throws Exception {
+        VPLMNCSGSubscriptionDataAvp avp = s6aAvpFactory.createVPLMNCSGSubscriptionData();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, VPLMNCSGSubscriptionDataAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersWLANOffloadability() throws Exception {
+        WLANoffloadabilityAvp avp = s6aAvpFactory.createWLANoffloadability();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, WLANoffloadabilityAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersUserCSGInformation() throws Exception {
+        UserCSGInformationAvp avp = s6aAvpFactory.createUserCSGInformation();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, UserCSGInformationAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+    @Test
+    public void testGettersAndSettersProSeSubscriptionData() throws Exception {
+        ProSESubscriptionDataAvp avp = s6aAvpFactory.createProSeSubscriptionData();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, ProSeSubscriptionDataAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+    @Test
+    public void testGettersAndSettersProSeAllowedPLMN() throws Exception {
+        ProSeAllowedPLMNAvp avp = s6aAvpFactory.createProSeAllowedPLMN();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, ProSeAllowedPLMNAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
 }
