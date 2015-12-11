@@ -26,7 +26,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 
 /**
  * Defines an interface representing the MME-Location-Information grouped AVP type.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
  * 7.3.116  SGSN-Location-Information
@@ -43,6 +43,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  *                               [ Geodetic-Information ]
  *                               [ Current-Location-Retrieved ]
  *                               [ Age-Of-Location-Information ]
+ *                               [ User-CSG-Information ]
  *                              *[ AVP ]
  * </pre>
  * 
@@ -50,180 +51,188 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  */
 public interface SGSNLocationInformationAvp extends GroupedAvp {
 
-  /**
-   * Returns true if the Cell-Global-Identity AVP is present in the message.
-   * 
-   * @return true if the Cell-Global-Identity AVP is present in the message, false otherwise
-   */
-  public boolean hasCellGlobalIdentity();
+    /**
+     * Returns true if the Cell-Global-Identity AVP is present in the message.
+     *
+     * @return true if the Cell-Global-Identity AVP is present in the message, false otherwise
+     */
+    public boolean hasCellGlobalIdentity();
 
-  /**
-   * Sets the value of the Cell-Global-Identity AVP, of type OctetString.
-   * 
-   * @param eucgi
-   */
-  public void setCellGlobalIdentity(byte[] eucgi);
+    /**
+     * Sets the value of the Cell-Global-Identity AVP, of type OctetString.
+     *
+     * @param eucgi
+     */
+    public void setCellGlobalIdentity(byte[] eucgi);
 
-  /**
-   * Returns the value of the Cell-Global-Identity AVP, of type OctetString.
-   * A return value of null implies that the AVP has not been set.
-   * 
-   * @return
-   */
-  public byte[] getCellGlobalIdentity();
+    /**
+     * Returns the value of the Cell-Global-Identity AVP, of type OctetString.
+     * A return value of null implies that the AVP has not been set.
+     *
+     * @return
+     */
+    public byte[] getCellGlobalIdentity();
 
-  /**
-   * Returns true if the Location-Area-Identity AVP is present in the message.
-   * 
-   * @return true if the Location-Area-Identity AVP is present in the message, false otherwise
-   */
-  public boolean hasLocationAreaIdentity();
+    /**
+     * Returns true if the Location-Area-Identity AVP is present in the message.
+     *
+     * @return true if the Location-Area-Identity AVP is present in the message, false otherwise
+     */
+    public boolean hasLocationAreaIdentity();
 
-  /**
-   * Sets the value of the Location-Area-Identity AVP, of type OctetString.
-   * 
-   * @param lai
-   */
-  public void setLocationAreaIdentity(byte[] lai);
+    /**
+     * Sets the value of the Location-Area-Identity AVP, of type OctetString.
+     *
+     * @param lai
+     */
+    public void setLocationAreaIdentity(byte[] lai);
 
-  /**
-   * Returns the value of the Location-Area-Identity AVP, of type OctetString.
-   * A return value of null implies that the AVP has not been set.
-   * 
-   * @return
-   */
-  public byte[] getLocationAreaIdentity();
+    /**
+     * Returns the value of the Location-Area-Identity AVP, of type OctetString.
+     * A return value of null implies that the AVP has not been set.
+     *
+     * @return
+     */
+    public byte[] getLocationAreaIdentity();
 
-  /**
-   * Returns true if the Service-Area-Identity AVP is present in the message.
-   * 
-   * @return true if the Service-Area-Identity AVP is present in the message, false otherwise
-   */
-  public boolean hasServiceAreaIdentity();
+    /**
+     * Returns true if the Service-Area-Identity AVP is present in the message.
+     *
+     * @return true if the Service-Area-Identity AVP is present in the message, false otherwise
+     */
+    public boolean hasServiceAreaIdentity();
 
-  /**
-   * Sets the value of the Service-Area-Identity AVP, of type OctetString.
-   * 
-   * @param sai
-   */
-  public void setServiceAreaIdentity(byte[] sai);
+    /**
+     * Sets the value of the Service-Area-Identity AVP, of type OctetString.
+     *
+     * @param sai
+     */
+    public void setServiceAreaIdentity(byte[] sai);
 
-  /**
-   * Returns the value of the Service-Area-Identity AVP, of type OctetString.
-   * A return value of null implies that the AVP has not been set.
-   * 
-   * @return
-   */
-  public byte[] getServiceAreaIdentity();
+    /**
+     * Returns the value of the Service-Area-Identity AVP, of type OctetString.
+     * A return value of null implies that the AVP has not been set.
+     *
+     * @return
+     */
+    public byte[] getServiceAreaIdentity();
 
-  /**
-   * Returns true if the Routing-Area-Identity AVP is present in the message.
-   * 
-   * @return true if the Routing-Area-Identity AVP is present in the message, false otherwise
-   */
-  public boolean hasRoutingAreaIdentity();
+    /**
+     * Returns true if the Routing-Area-Identity AVP is present in the message.
+     *
+     * @return true if the Routing-Area-Identity AVP is present in the message, false otherwise
+     */
+    public boolean hasRoutingAreaIdentity();
 
-  /**
-   * Sets the value of the Routing-Area-Identity AVP, of type OctetString.
-   * 
-   * @param rai
-   */
-  public void setRoutingAreaIdentity(byte[] rai);
+    /**
+     * Sets the value of the Routing-Area-Identity AVP, of type OctetString.
+     *
+     * @param rai
+     */
+    public void setRoutingAreaIdentity(byte[] rai);
 
-  /**
-   * Returns the value of the Routing-Area-Identity AVP, of type OctetString.
-   * A return value of null implies that the AVP has not been set.
-   * 
-   * @return
-   */
-  public byte[] getRoutingAreaIdentity();
+    /**
+     * Returns the value of the Routing-Area-Identity AVP, of type OctetString.
+     * A return value of null implies that the AVP has not been set.
+     *
+     * @return
+     */
+    public byte[] getRoutingAreaIdentity();
 
-  /**
-   * Returns true if the Geographical-Information AVP is present in the message.
-   * 
-   * @return true if the Geographical-Information AVP is present in the message, false otherwise
-   */
-  public boolean hasGeographicalInformation();
+    /**
+     * Returns true if the Geographical-Information AVP is present in the message.
+     *
+     * @return true if the Geographical-Information AVP is present in the message, false otherwise
+     */
+    public boolean hasGeographicalInformation();
 
-  /**
-   * Sets the value of the Geographical-Information AVP, of type OctetString.
-   * 
-   * @param gi
-   */
-  public void setGeographicalInformation(byte[] gi);
+    /**
+     * Sets the value of the Geographical-Information AVP, of type OctetString.
+     *
+     * @param gi
+     */
+    public void setGeographicalInformation(byte[] gi);
 
-  /**
-   * Returns the value of the Geographical-Information AVP, of type OctetString.
-   * A return value of null implies that the AVP has not been set.
-   * 
-   * @return
-   */
-  public byte[] getGeographicalInformation();
+    /**
+     * Returns the value of the Geographical-Information AVP, of type OctetString.
+     * A return value of null implies that the AVP has not been set.
+     *
+     * @return
+     */
+    public byte[] getGeographicalInformation();
 
-  /**
-   * Returns true if the Geodetic-Information AVP is present in the message.
-   * 
-   * @return true if the Geodetic-Information AVP is present in the message, false otherwise
-   */
-  public boolean hasGeodeticInformation();
+    /**
+     * Returns true if the Geodetic-Information AVP is present in the message.
+     *
+     * @return true if the Geodetic-Information AVP is present in the message, false otherwise
+     */
+    public boolean hasGeodeticInformation();
 
-  /**
-   * Sets the value of the Geodetic-Information AVP, of type OctetString.
-   * 
-   * @param gi
-   */
-  public void setGeodeticInformation(byte[] gi);
+    /**
+     * Sets the value of the Geodetic-Information AVP, of type OctetString.
+     *
+     * @param gi
+     */
+    public void setGeodeticInformation(byte[] gi);
 
-  /**
-   * Returns the value of the Geodetic-Information AVP, of type OctetString.
-   * A return value of null implies that the AVP has not been set.
-   * 
-   * @return
-   */
-  public byte[] getGeodeticInformation();
+    /**
+     * Returns the value of the Geodetic-Information AVP, of type OctetString.
+     * A return value of null implies that the AVP has not been set.
+     *
+     * @return
+     */
+    public byte[] getGeodeticInformation();
 
-  /**
-   * Returns true if the Current-Location-Retrieved AVP is present in the message.
-   * 
-   * @return true if the Current-Location-Retrieved AVP is present in the message, false otherwise
-   */
-  public boolean hasCurrentLocationRetrieved();
+    /**
+     * Returns true if the Current-Location-Retrieved AVP is present in the message.
+     *
+     * @return true if the Current-Location-Retrieved AVP is present in the message, false otherwise
+     */
+    public boolean hasCurrentLocationRetrieved();
 
-  /**
-   * Sets the value of the Current-Location-Retrieved AVP, of type OctetString.
-   * 
-   * @param clr
-   */
-  public void setCurrentLocationRetrieved(CurrentLocationRetrieved clr);
+    /**
+     * Sets the value of the Current-Location-Retrieved AVP, of type OctetString.
+     *
+     * @param clr
+     */
+    public void setCurrentLocationRetrieved(CurrentLocationRetrieved clr);
 
-  /**
-   * Returns the value of the Current-Location-Retrieved AVP, of type OctetString.
-   * A return value of null implies that the AVP has not been set.
-   * 
-   * @return
-   */
-  public CurrentLocationRetrieved getCurrentLocationRetrieved();
+    /**
+     * Returns the value of the Current-Location-Retrieved AVP, of type OctetString.
+     * A return value of null implies that the AVP has not been set.
+     *
+     * @return
+     */
+    public CurrentLocationRetrieved getCurrentLocationRetrieved();
 
-  /**
-   * Returns true if the Age-Of-Location-Information AVP is present in the message.
-   * 
-   * @return true if the Age-Of-Location-Information AVP is present in the message, false otherwise
-   */
-  public boolean hasAgeOfLocationInformation();
+    /**
+     * Returns true if the Age-Of-Location-Information AVP is present in the message.
+     *
+     * @return true if the Age-Of-Location-Information AVP is present in the message, false otherwise
+     */
+    public boolean hasAgeOfLocationInformation();
 
-  /**
-   * Sets the value of the Age-Of-Location-Information AVP, of type Unsigned32.
-   * 
-   * @param aoli
-   */
-  public void setAgeOfLocationInformation(long aoli);
+    /**
+     * Sets the value of the Age-Of-Location-Information AVP, of type Unsigned32.
+     *
+     * @param aoli
+     */
+    public void setAgeOfLocationInformation(long aoli);
 
-  /**
-   * Returns the value of the Age-Of-Location-Information AVP, of type Unsigned32.
-   * A return value of null implies that the AVP has not been set.
-   * 
-   * @return
-   */
-  public long getAgeOfLocationInformation();
+    /**
+     * Returns the value of the Age-Of-Location-Information AVP, of type Unsigned32.
+     * A return value of null implies that the AVP has not been set.
+     *
+     * @return
+     */
+    public long getAgeOfLocationInformation();
 
+    /*
+       UserCSGINformation
+     */
+    public boolean hasUserCSGInformation();
+
+    public UserCSGInformationAvp getUserCSGInformation();
+
+    public void setUserCSGInformation(UserCSGInformationAvp userCSGInformation);
 }

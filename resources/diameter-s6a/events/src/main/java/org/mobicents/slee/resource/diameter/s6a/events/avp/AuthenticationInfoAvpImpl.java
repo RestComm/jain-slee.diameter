@@ -22,11 +22,7 @@
 
 package org.mobicents.slee.resource.diameter.s6a.events.avp;
 
-import net.java.slee.resource.diameter.s6a.events.avp.AuthenticationInfoAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes;
-import net.java.slee.resource.diameter.s6a.events.avp.EUTRANVectorAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.GERANVectorAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.UTRANVectorAvp;
+import net.java.slee.resource.diameter.s6a.events.avp.*;
 import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
 
 /**

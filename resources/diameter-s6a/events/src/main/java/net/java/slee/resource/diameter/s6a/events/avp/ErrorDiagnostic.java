@@ -27,11 +27,11 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
 
 /**
  * Java class representing the Error-Diagnostic enumerated type.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
- * 7.3.128  Error-Diagnostic
- * 
+ * 7.3.128 Error-Diagnostic
+ *
  * The Error-Diagnostic AVP is of type Enumerated. The following values are defined:
  *   - GPRS_DATA_SUBSCRIBED (0)
  *     This value shall be used when Experimental-Error is

@@ -128,4 +128,24 @@ public class ResetRequestImpl extends DiameterMessageImpl implements ResetReques
     addAvp(DiameterS6aAvpCodes.USER_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID, userId);
   }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.ResetRequest#hasResetID()
+     */
+    public boolean hasResetID() {
+        return hasAvp(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.ResetRequest#getResetID()
+     */
+    public byte[] getResetID() {
+        return getAvpAsOctetString(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.ResetRequest#setResetID(byte[])
+     */
+    public void setResetID(byte[] resetID) {
+        addAvp(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID, resetID);
+    }
 }

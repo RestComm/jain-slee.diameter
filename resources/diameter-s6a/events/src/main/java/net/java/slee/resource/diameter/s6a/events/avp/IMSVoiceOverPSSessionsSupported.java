@@ -27,19 +27,18 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
 
 /**
  * Defines an interface representing the IMS-Voice-Over-PS-Sessions-Supported grouped AVP type.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
- * 7.3.106  IMS-Voice-Over-PS-Sessions-Supported
- * 
+ * 7.3.106 IMS-Voice-Over-PS-Sessions-Supported
+ *
  * The IMS-Voice-Over-PS-Sessions-Supported AVP is of type Enumerated. The following values are defined:
- * 
- * ROAMING_RESTRICTED_DUE_TO_UNSUPPORTED_FEATURE (0)
- *   This value indicates that "IMS Voice over PS Sessions" is not supported by the UE's most recently used TA or RA in the serving node. 
- * TRUE (1)
- *   This value indicates that "IMS Voice over PS Sessions" is supported by the UE's most recently used TA or RA in the serving node.
- * 
- * If this AVP is not present in the command, the default value is ROAMING_RESTRICTED_DUE_TO_UNSUPPORTED_FEATURE (0).
+ *      NOT_SUPPORTED (0)
+ *          This value indicates that "IMS Voice over PS Sessions" is not supported by the UE's most recently used TA
+ *          or RA in the serving node.
+ *      SUPPORTED (1)
+ *          This value indicates that "IMS Voice over PS Sessions" is supported by the UE's most recently used TA or
+ *          RA in the serving node.
  * </pre>
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
@@ -48,11 +47,11 @@ public class IMSVoiceOverPSSessionsSupported implements Enumerated, Serializable
 
   private static final long serialVersionUID = 1L;
 
-  public static final int _ACTIVE_LOCATION_RETRIEVAL = 0;
-  public static final int _TRUE = 1;
+  public static final int _NOT_SUPPORTED = 0;
+  public static final int _SUPPORTED = 1;
 
-  public static final IMSVoiceOverPSSessionsSupported ACTIVE_LOCATION_RETRIEVAL = new IMSVoiceOverPSSessionsSupported(_ACTIVE_LOCATION_RETRIEVAL);
-  public static final IMSVoiceOverPSSessionsSupported TRUE = new IMSVoiceOverPSSessionsSupported(_TRUE);
+  public static final IMSVoiceOverPSSessionsSupported NOT_SUPPORTED = new IMSVoiceOverPSSessionsSupported(_NOT_SUPPORTED);
+  public static final IMSVoiceOverPSSessionsSupported SUPPORTED = new IMSVoiceOverPSSessionsSupported(_SUPPORTED);
 
   private int value = -1;
 
@@ -62,10 +61,10 @@ public class IMSVoiceOverPSSessionsSupported implements Enumerated, Serializable
 
   public static IMSVoiceOverPSSessionsSupported fromInt(int type) {
     switch (type) {
-      case _ACTIVE_LOCATION_RETRIEVAL:
-        return ACTIVE_LOCATION_RETRIEVAL;
-      case _TRUE:
-        return TRUE;
+      case _NOT_SUPPORTED:
+        return NOT_SUPPORTED;
+      case _SUPPORTED:
+        return SUPPORTED;
       default:
         throw new IllegalArgumentException("Invalid value: " + type);
     }
@@ -78,10 +77,10 @@ public class IMSVoiceOverPSSessionsSupported implements Enumerated, Serializable
   @Override
   public String toString() {
     switch (value) {
-      case _ACTIVE_LOCATION_RETRIEVAL:
-        return "ROAMING_RESTRICTED_DUE_TO_UNSUPPORTED_FEATURE";
-      case _TRUE:
-        return "TRUE";
+      case _NOT_SUPPORTED:
+        return "NOT_SUPPORTED";
+      case _SUPPORTED:
+        return "SUPPORTED";
       default:
         return "<Invalid Value>";
     }

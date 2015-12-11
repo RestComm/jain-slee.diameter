@@ -22,7 +22,6 @@
 
 package org.mobicents.slee.resource.diameter.s6a;
 
-import static net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes.*;
 import net.java.slee.resource.diameter.base.DiameterAvpFactory;
 import net.java.slee.resource.diameter.base.events.avp.AvpUtilities;
 import net.java.slee.resource.diameter.s6a.S6aAVPFactory;
@@ -30,6 +29,8 @@ import net.java.slee.resource.diameter.s6a.events.avp.*;
 
 import org.mobicents.slee.resource.diameter.base.DiameterAvpFactoryImpl;
 import org.mobicents.slee.resource.diameter.s6a.events.avp.*;
+
+import static net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes.*;
 
 /**
  * Diameter S6a Reference Point AVP Factory. Implementation for {@link S6aAVPFactory}
@@ -39,43 +40,47 @@ import org.mobicents.slee.resource.diameter.s6a.events.avp.*;
  */
 public class S6aAVPFactoryImpl extends DiameterAvpFactoryImpl implements S6aAVPFactory {
 
-  // TODO: Add helper create methods for the composite AVPs
-  protected DiameterAvpFactory baseAvpFactory;
+    // TODO: Add helper create methods for the composite AVPs
+    protected DiameterAvpFactory baseAvpFactory;
 
-  public S6aAVPFactoryImpl(final DiameterAvpFactory baseAvpFactory) {
-    this.baseAvpFactory = baseAvpFactory;
-  }
+    public S6aAVPFactoryImpl(final DiameterAvpFactory baseAvpFactory) {
+        this.baseAvpFactory = baseAvpFactory;
+    }
 
-  public DiameterAvpFactory getBaseFactory() {
-    return this.baseAvpFactory;
-  }
+    public DiameterAvpFactory getBaseFactory() {
+        return this.baseAvpFactory;
+    }
 
-  public ActiveAPNAvp createActiveAPN() {
-    return (ActiveAPNAvp) AvpUtilities.createAvp(ACTIVE_APN, S6A_VENDOR_ID, null, ActiveAPNAvpImpl.class);
-  }
+    public ActiveAPNAvp createActiveAPN() {
+        return (ActiveAPNAvp) AvpUtilities.createAvp(ACTIVE_APN, S6A_VENDOR_ID, null, ActiveAPNAvpImpl.class);
+    }
 
-  public AllocationRetentionPriorityAvp createAllocationRetentionPriority() {
-    return (AllocationRetentionPriorityAvp) AvpUtilities.createAvp(ALLOCATION_RETENTION_POLICY, S6A_VENDOR_ID, null, AllocationRetentionPriorityAvpImpl.class);
-  }
+    public AllocationRetentionPriorityAvp createAllocationRetentionPriority() {
+        return (AllocationRetentionPriorityAvp) AvpUtilities.createAvp(ALLOCATION_RETENTION_POLICY, S6A_VENDOR_ID, null, AllocationRetentionPriorityAvpImpl.class);
+    }
 
-  public AMBRAvp createAMBR() {
-    return (AMBRAvp) AvpUtilities.createAvp(AMBR, S6A_VENDOR_ID, null, AMBRAvpImpl.class);
-  }
+    public AMBRAvp createAMBR() {
+        return (AMBRAvp) AvpUtilities.createAvp(AMBR, S6A_VENDOR_ID, null, AMBRAvpImpl.class);
+    }
 
-  public APNConfigurationAvp createAPNConfiguration() {
-    return (APNConfigurationAvp) AvpUtilities.createAvp(APN_CONFIGURATION, S6A_VENDOR_ID, null, APNConfigurationAvpImpl.class);
-  }
+    public APNConfigurationAvp createAPNConfiguration() {
+        return (APNConfigurationAvp) AvpUtilities.createAvp(APN_CONFIGURATION, S6A_VENDOR_ID, null, APNConfigurationAvpImpl.class);
+    }
 
-  public APNConfigurationProfileAvp createAPNConfigurationProfile() {
-    return (APNConfigurationProfileAvp) AvpUtilities.createAvp(APN_CONFIGURATION_PROFILE, S6A_VENDOR_ID, null, APNConfigurationProfileAvpImpl.class);
-  }
+    public APNConfigurationProfileAvp createAPNConfigurationProfile() {
+        return (APNConfigurationProfileAvp) AvpUtilities.createAvp(APN_CONFIGURATION_PROFILE, S6A_VENDOR_ID, null, APNConfigurationProfileAvpImpl.class);
+    }
 
-  public AuthenticationInfoAvp createAuthenticationInfo() {
-    return (AuthenticationInfoAvp) AvpUtilities.createAvp(AUTHENTICATION_INFO, S6A_VENDOR_ID, null, AuthenticationInfoAvpImpl.class);
-  }
+    public AreaScopeAvp createAreaScopeAvp() {
+        return (AreaScopeAvp) AvpUtilities.createAvp(AREA_SCOPE, S6A_VENDOR_ID, null, AreaScopeAvpImpl.class);
+    }
 
-    public CallBarringInforListAvp createCallBarringInforList() {
-        return (CallBarringInforListAvp) AvpUtilities.createAvp(CALL_BARRING_INFOR_LIST, S6A_VENDOR_ID, null, CallBarringInforListAvpImpl.class);
+    public AuthenticationInfoAvp createAuthenticationInfo() {
+        return (AuthenticationInfoAvp) AvpUtilities.createAvp(AUTHENTICATION_INFO, S6A_VENDOR_ID, null, AuthenticationInfoAvpImpl.class);
+    }
+
+    public CallBarringInfoAvp createCallBarringInforList() {
+        return (CallBarringInfoAvp) AvpUtilities.createAvp(CALL_BARRING_INFO, S6A_VENDOR_ID, null, CallBarringInfoAvpImpl.class);
     }
 
     public CSGSubscriptionDataAvp createCSGSubscriptionData() {
@@ -92,6 +97,10 @@ public class S6aAVPFactoryImpl extends DiameterAvpFactoryImpl implements S6aAVPF
 
     public EPSUserStateAvp createEPSUserState() {
         return (EPSUserStateAvp) AvpUtilities.createAvp(EPS_USER_STATE, S6A_VENDOR_ID, null, EPSUserStateAvpImpl.class);
+    }
+
+    public EquivalentPLMNListAvp createEquivalentPLMNList() {
+        return (EquivalentPLMNListAvp) AvpUtilities.createAvp(EQUIVALENT_PLMN_LIST, S6A_VENDOR_ID, null, EquivalentPLMNListAvpImpl.class);
     }
 
     public EUTRANVectorAvp createEUTRANVector() {
@@ -118,6 +127,14 @@ public class S6aAVPFactoryImpl extends DiameterAvpFactoryImpl implements S6aAVPF
         return (LCSPrivacyExceptionAvp) AvpUtilities.createAvp(LCS_PRIVACYEXCEPTION, S6A_VENDOR_ID, null, LCSPrivacyExceptionAvpImpl.class);
     }
 
+    public LocalTimeZoneAvp createLocalTimeZone() {
+        return (LocalTimeZoneAvp) AvpUtilities.createAvp(LOCAL_TIME_ZONE, S6A_VENDOR_ID, null, LocalTimeZoneAvpImpl.class);
+    }
+
+    public MDTConfigurationAvp createMDTConfigurationAvp() {
+        return (MDTConfigurationAvp) AvpUtilities.createAvp(MDT_CONFIGURATION, S6A_VENDOR_ID, null, MDTConfigurationAvpImpl.class);
+    }
+
     public MIP6AgentInfoAvp createMIP6AgentInfo() {
         return (MIP6AgentInfoAvp) AvpUtilities.createAvp(MIP6_AGENT_INFO, null, MIP6AgentInfoAvpImpl.class);
     }
@@ -140,6 +157,14 @@ public class S6aAVPFactoryImpl extends DiameterAvpFactoryImpl implements S6aAVPF
 
     public PDPContextAvp createPDPContext() {
         return (PDPContextAvp) AvpUtilities.createAvp(PDP_CONTEXT, S6A_VENDOR_ID, null, PDPContextAvpImpl.class);
+    }
+
+    public ProSeAllowedPLMNAvp createProSeAllowedPLMN() {
+        return (ProSeAllowedPLMNAvp) AvpUtilities.createAvp(PROSE_ALLOWED_PLMN, S6A_VENDOR_ID, null, ProSeAllowedPLMNAvpImpl.class);
+    }
+
+    public ProSESubscriptionDataAvp createProSeSubscriptionData() {
+        return (ProSESubscriptionDataAvp) AvpUtilities.createAvp(PROSE_SUBSCRIPTION_DATA, S6A_VENDOR_ID, null, ProSeSubscriptionDataAvpImpl.class);
     }
 
     public RequestedEUTRANAuthenticationInfoAvp createRequestedEUTRANAuthenticationInfo() {
@@ -186,7 +211,19 @@ public class S6aAVPFactoryImpl extends DiameterAvpFactoryImpl implements S6aAVPF
         return (TraceDataAvp) AvpUtilities.createAvp(TRACE_DATA, S6A_VENDOR_ID, null, TraceDataAvpImpl.class);
     }
 
+    public UserCSGInformationAvp createUserCSGInformation() {
+        return (UserCSGInformationAvp) AvpUtilities.createAvp(USER_CSG_INFORMATION, S6A_VENDOR_ID, null, UserCSGInformationAvpImpl.class);
+    }
+
     public UTRANVectorAvp createUTRANVector() {
         return (UTRANVectorAvp) AvpUtilities.createAvp(UTRAN_VECTOR, S6A_VENDOR_ID, null, UTRANVectorAvpImpl.class);
+    }
+
+    public VPLMNCSGSubscriptionDataAvp createVPLMNCSGSubscriptionData() {
+        return (VPLMNCSGSubscriptionDataAvp) AvpUtilities.createAvp(VPLMN_CSG_SUBSCRIPTION_DATA, S6A_VENDOR_ID, null, VPLMNCSGSubscriptionDataAvpImpl.class);
+    }
+
+    public WLANoffloadabilityAvp createWLANoffloadability() {
+        return (WLANoffloadabilityAvp) AvpUtilities.createAvp(WLAN_OFFLOADABILITY, S6A_VENDOR_ID, null, WLANoffloadabilityAvpImpl.class);
     }
 }

@@ -27,6 +27,7 @@ import net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType;
 import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
 import net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp;
 import net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer;
+import net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes;
 import net.java.slee.resource.diameter.s6a.events.avp.ErrorDiagnostic;
 import net.java.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvp;
 import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
@@ -46,143 +47,156 @@ import org.mobicents.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvpI
  */
 public class UpdateLocationAnswerImpl extends DiameterMessageImpl implements UpdateLocationAnswer {
 
-  /**
-   * @param message
-   */
-  public UpdateLocationAnswerImpl(Message message) {
-    super(message);
-  }
-
-  /* (non-Javadoc)
-   * @see org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl#getLongName()
-   */
-  public String getLongName() {
-    return "Update-Location-Answer";
-  }
-
-  /* (non-Javadoc)
-   * @see org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl#getShortName()
-   */
-  public String getShortName() {
-    return "ULA";
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#getAuthSessionState()
-   */
-  public AuthSessionStateType getAuthSessionState() {
-    return (AuthSessionStateType) getAvpAsEnumerated(DiameterAvpCodes.AUTH_SESSION_STATE, AuthSessionStateType.class);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#getExperimentalResult()
-   */
-  public ExperimentalResultAvp getExperimentalResult() {
-    return (ExperimentalResultAvp) getAvpAsCustom(DiameterAvpCodes.EXPERIMENTAL_RESULT, ExperimentalResultAvpImpl.class);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#hasAuthSessionState()
-   */
-  public boolean hasAuthSessionState() {
-    return hasAvp(DiameterAvpCodes.AUTH_SESSION_STATE);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#hasExperimentalResult()
-   */
-  public boolean hasExperimentalResult() {
-    return hasAvp(DiameterAvpCodes.EXPERIMENTAL_RESULT);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#setAuthSessionState(net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType)
-   */
-  public void setAuthSessionState(AuthSessionStateType authSessionState) {
-    addAvp(DiameterAvpCodes.AUTH_SESSION_STATE, authSessionState.getValue());
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#setExperimentalResult(net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp)
-   */
-  public void setExperimentalResult(ExperimentalResultAvp experimentalResult) {
-    addAvp(DiameterAvpCodes.EXPERIMENTAL_RESULT, experimentalResult.byteArrayValue());
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#hasULAFlags()
-   */
-  public boolean hasULAFlags() {
-    return hasAvp(ULA_FLAGS, S6A_VENDOR_ID);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#getULAFlags()
-   */
-  public long getULAFlags() {
-    return getAvpAsUnsigned32(ULA_FLAGS, S6A_VENDOR_ID);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#setULAFlags(long)
-   */
-  public void setULAFlags(long ulaFlags) {
-    addAvp(ULA_FLAGS, S6A_VENDOR_ID, ulaFlags);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#getSupportedFeatureses()
-   */
-  public SupportedFeaturesAvp[] getSupportedFeatureses() {
-    return (SupportedFeaturesAvp[]) getAvpsAsCustom(SUPPORTED_FEATURES, S6A_VENDOR_ID, SupportedFeaturesAvpImpl.class);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#setSupportedFeatures(net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp)
-   */
-  public void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures) {
-    addAvp(SUPPORTED_FEATURES, S6A_VENDOR_ID, supportedFeatures.byteArrayValue());
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#setSupportedFeatureses(net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp[])
-   */
-  public void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses) {
-    for (SupportedFeaturesAvp supportedFeatures : supportedFeatureses) {
-      setSupportedFeatures(supportedFeatures);
+    /**
+     * @param message
+     */
+    public UpdateLocationAnswerImpl(Message message) {
+        super(message);
     }
-  }
 
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#hasSubscriptionData()
-   */
-  public boolean hasSubscriptionData() {
-    return hasAvp(SUBSCRIPTION_DATA, S6A_VENDOR_ID);
-  }
+    /* (non-Javadoc)
+     * @see org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl#getLongName()
+     */
+    public String getLongName() {
+        return "Update-Location-Answer";
+    }
 
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#getSubscriptionData()
-   */
-  public SubscriptionDataAvp getSubscriptionData() {
-    return (SubscriptionDataAvp) getAvpAsCustom(SUBSCRIPTION_DATA, S6A_VENDOR_ID, SubscriptionDataAvpImpl.class);
-  }
+    /* (non-Javadoc)
+     * @see org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl#getShortName()
+     */
+    public String getShortName() {
+        return "ULA";
+    }
 
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#setSubscriptionData(net.java.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvp)
-   */
-  public void setSubscriptionData(SubscriptionDataAvp subscriptionData) {
-    addAvp(subscriptionData);
-  }
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#getAuthSessionState()
+     */
+    public AuthSessionStateType getAuthSessionState() {
+        return (AuthSessionStateType) getAvpAsEnumerated(DiameterAvpCodes.AUTH_SESSION_STATE, AuthSessionStateType.class);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#getExperimentalResult()
+     */
+    public ExperimentalResultAvp getExperimentalResult() {
+        return (ExperimentalResultAvp) getAvpAsCustom(DiameterAvpCodes.EXPERIMENTAL_RESULT, ExperimentalResultAvpImpl.class);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#hasAuthSessionState()
+     */
+    public boolean hasAuthSessionState() {
+        return hasAvp(DiameterAvpCodes.AUTH_SESSION_STATE);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#hasExperimentalResult()
+     */
+    public boolean hasExperimentalResult() {
+        return hasAvp(DiameterAvpCodes.EXPERIMENTAL_RESULT);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#setAuthSessionState(net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType)
+     */
+    public void setAuthSessionState(AuthSessionStateType authSessionState) {
+        addAvp(DiameterAvpCodes.AUTH_SESSION_STATE, authSessionState.getValue());
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#setExperimentalResult(net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp)
+     */
+    public void setExperimentalResult(ExperimentalResultAvp experimentalResult) {
+        addAvp(DiameterAvpCodes.EXPERIMENTAL_RESULT, experimentalResult.byteArrayValue());
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#hasULAFlags()
+     */
+    public boolean hasULAFlags() {
+        return hasAvp(ULA_FLAGS, S6A_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#getULAFlags()
+     */
+    public long getULAFlags() {
+        return getAvpAsUnsigned32(ULA_FLAGS, S6A_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#setULAFlags(long)
+     */
+    public void setULAFlags(long ulaFlags) {
+        addAvp(ULA_FLAGS, S6A_VENDOR_ID, ulaFlags);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#getSupportedFeatureses()
+     */
+    public SupportedFeaturesAvp[] getSupportedFeatureses() {
+        return (SupportedFeaturesAvp[]) getAvpsAsCustom(SUPPORTED_FEATURES, S6A_VENDOR_ID, SupportedFeaturesAvpImpl.class);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#setSupportedFeatures(net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp)
+     */
+    public void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures) {
+        addAvp(SUPPORTED_FEATURES, S6A_VENDOR_ID, supportedFeatures.byteArrayValue());
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#setSupportedFeatureses(net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp[])
+     */
+    public void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses) {
+        for (SupportedFeaturesAvp supportedFeatures : supportedFeatureses) {
+            setSupportedFeatures(supportedFeatures);
+        }
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#hasSubscriptionData()
+     */
+    public boolean hasSubscriptionData() {
+        return hasAvp(SUBSCRIPTION_DATA, S6A_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#getSubscriptionData()
+     */
+    public SubscriptionDataAvp getSubscriptionData() {
+        return (SubscriptionDataAvp) getAvpAsCustom(SUBSCRIPTION_DATA, S6A_VENDOR_ID, SubscriptionDataAvpImpl.class);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#setSubscriptionData(net.java.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvp)
+     */
+    public void setSubscriptionData(SubscriptionDataAvp subscriptionData) {
+        addAvp(subscriptionData);
+    }
 
     public boolean hasErrorDiagnostic() {
-        return hasAvp(ERROR_DIAGNOSTIC, S6A_VENDOR_ID);
+        return hasAvp(DiameterS6aAvpCodes.ERROR_DIAGNOSTIC, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
     public ErrorDiagnostic getErrorDiagnostic() {
-        return (ErrorDiagnostic) getAvpAsEnumerated(ERROR_DIAGNOSTIC, S6A_VENDOR_ID, ErrorDiagnostic.class);
+        return (ErrorDiagnostic) getAvpAsEnumerated(DiameterS6aAvpCodes.ERROR_DIAGNOSTIC,
+                                                    DiameterS6aAvpCodes.S6A_VENDOR_ID, ErrorDiagnostic.class);
     }
 
     public void setErrorDiagnostic(ErrorDiagnostic errorDiagnostic) {
-        addAvp(ERROR_DIAGNOSTIC, S6A_VENDOR_ID, errorDiagnostic.getValue());
+        addAvp(DiameterS6aAvpCodes.ERROR_DIAGNOSTIC, DiameterS6aAvpCodes.S6A_VENDOR_ID, errorDiagnostic.getValue());
+    }
+
+    public boolean hasResetID() {
+        return hasAvp(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public byte[] getResetID() {
+        return getAvpAsOctetString(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public void setResetID(byte[] resetID) {
+        addAvp(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID, resetID);
     }
 }

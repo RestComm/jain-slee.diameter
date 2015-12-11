@@ -852,9 +852,9 @@ public class S6aFactoriesTest {
 
     @Test
     public void testGettersAndSettersCallBarringInforList() throws Exception {
-        CallBarringInforListAvp avp = s6aAvpFactory.createCallBarringInforList();
+        CallBarringInfoAvp avp = s6aAvpFactory.createCallBarringInforList();
 
-        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, CallBarringInforListAvpImpl.class);
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, CallBarringInfoAvpImpl.class);
 
         assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
     }
@@ -1156,7 +1156,25 @@ public class S6aFactoriesTest {
 		assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
 	}
 
-	@Test
+    @Test
+    public void testGettersAndSettersEquivalentPLMNList() throws Exception {
+        EquivalentPLMNListAvp avp = s6aAvpFactory.createEquivalentPLMNList();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, EquivalentPLMNListAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersLocalTimeZone() throws Exception {
+        LocalTimeZoneAvp avp = s6aAvpFactory.createLocalTimeZone();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, LocalTimeZoneAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
 	public void testMessageFactoryApplicationIdChangeULR() throws Exception {
 		long vendor = 10415L;
 		ApplicationId originalAppId = ((S6aMessageFactoryImpl) s6aMessageFactory).getApplicationId();
@@ -1651,4 +1669,65 @@ public class S6aFactoriesTest {
 		// revert back to default
 		((S6aMessageFactoryImpl) s6aMessageFactory).setApplicationId(originalAppId.getVendorId(), isAuth ? originalAppId.getAuthAppId() : originalAppId.getAcctAppId());
 	}
+
+    @Test
+    public void testGettersAndSettersAreaScope() throws Exception {
+        AreaScopeAvp avp = s6aAvpFactory.createAreaScopeAvp();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, AreaScopeAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersMDTConfiguration() throws Exception {
+        MDTConfigurationAvp avp = s6aAvpFactory.createMDTConfigurationAvp();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, MDTConfigurationAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersVPLMNCSGSubscriptionData() throws Exception {
+        VPLMNCSGSubscriptionDataAvp avp = s6aAvpFactory.createVPLMNCSGSubscriptionData();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, VPLMNCSGSubscriptionDataAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersWLANOffloadability() throws Exception {
+        WLANoffloadabilityAvp avp = s6aAvpFactory.createWLANoffloadability();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, WLANoffloadabilityAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+
+    @Test
+    public void testGettersAndSettersUserCSGInformation() throws Exception {
+        UserCSGInformationAvp avp = s6aAvpFactory.createUserCSGInformation();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, UserCSGInformationAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+    @Test
+    public void testGettersAndSettersProSeSubscriptionData() throws Exception {
+        ProSESubscriptionDataAvp avp = s6aAvpFactory.createProSeSubscriptionData();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, ProSeSubscriptionDataAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
+    @Test
+    public void testGettersAndSettersProSeAllowedPLMN() throws Exception {
+        ProSeAllowedPLMNAvp avp = s6aAvpFactory.createProSeAllowedPLMN();
+
+        int nFailures = S6aAvpAssistant.INSTANCE.testMethods(avp, ProSeAllowedPLMNAvpImpl.class);
+
+        assertEquals("Some methods have failed. See logs for more details.", 0, nFailures);
+    }
 }

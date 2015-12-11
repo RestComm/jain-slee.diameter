@@ -26,7 +26,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 
 /**
  * Defines an interface representing the Subscription-Data grouped AVP type.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
  * 7.3.2  Subscription-Data
@@ -38,6 +38,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  * Subscription-Data ::= < AVP header: 1400 10415 >
  *                       [ Subscriber-Status ]
  *                       [ MSISDN ]
+ *                       [ A-MSISDN ]     //R12
  *                       [ STN-SR ]
  *                       [ ICS-Indicator ]
  *                       [ Network-Access-Mode ]
@@ -48,7 +49,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  *                       [ APN-OI-Replacement ]
  *                       [ LCS-Info ]
  *                       [ Teleservice-List ]
- *                       [ Call-Barring-Infor-List ]
+ *                       [ Call-Barring-Info ]
  *                       [ 3GPP-Charging-Characteristics ] 
  *                       [ AMBR ]
  *                       [ APN-Configuration-Profile ]
@@ -57,6 +58,14 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  *                       [ GPRS-Subscription-Data ]
  *                      *[ CSG-Subscription-Data ] 
  *                       [ Roaming-Restricted-Due-To-Unsupported-Feature ]
+ *                       [ Subscribed-Periodic-RAU-TAU-Timer ] //R12
+ *                       [ MPS-Priority ]             //R12
+ *                       [ VPLMN-LIPA-Allowed ]       //R12
+ *                       [ Relay-Node-Indicator ]        //R12
+ *                       [ MDT-User-Consent ]           //R12
+ *                       [ Subscribed-VSRVCC ]         //R12
+ *                       [ ProSe-Subscription-Data ]   //PC4a protocol???
+ *                       [ Subscription-Data-Flags ]  //R12
  *                      *[ AVP ]
  * 
  * The AMBR included in this grouped AVP shall include the AMBR associated to the user's
@@ -123,9 +132,9 @@ public interface SubscriptionDataAvp extends GroupedAvp {
   public TeleserviceListAvp getTeleserviceList();
   public void setTeleserviceList(TeleserviceListAvp teleserviceList);
 
-  public boolean hasCallBarringInforList();
-  public CallBarringInforListAvp getCallBarringInforList();
-  public void setCallBarringInforList(CallBarringInforListAvp callBarringInforList);
+  public boolean hasCallBarringInfo();
+  public CallBarringInfoAvp getCallBarringInfo();
+  public void setCallBarringInfo(CallBarringInfoAvp callBarringInfo);
 
   public boolean has3GPPChargingCharacteristics();
   public String get3GPPChargingCharacteristics();
@@ -159,4 +168,39 @@ public interface SubscriptionDataAvp extends GroupedAvp {
   public void setRoamingRestrictedDueToUnsupportedFeature(RoamingRestrictedDueToUnsupportedFeature rrdtuf);
   public RoamingRestrictedDueToUnsupportedFeature getRoamingRestrictedDueToUnsupportedFeature();
 
+  public boolean hasMPSPriority();
+  public long getMPSPriority();
+  public void setMPSPriority(long mpsPriority);
+
+  public boolean hasVPLMNLIPAAllowed();
+  public VPLMNLIPAAllowed getVPLMNLIPAAllowed();
+  public void setVPLMNLIPAAllowed(VPLMNLIPAAllowed vplmnlipaAllowed);
+
+  public boolean hasSubscribedPeriodicRAUTAUTimer();
+  public long getSubscribedPeriodicRAUTAUTimer();
+  public void setSubscribedPeriodicRAUTAUTimer(long subscribedPeriodicRAUTAUTimer);
+
+  public boolean hasRelayNodeIndicator();
+  public RelayNodeIndicator getRelayNodeIndicator();
+  public void setRelayNodeIndicator(RelayNodeIndicator relayNodeIndicator);
+
+  public boolean hasMDTUserConsent();
+  public MDTUserConsent getMDTUserConsent();
+  public void setMDTUserConsent(MDTUserConsent mdtUserConsent);
+
+  public boolean hasSubscribedVSRVCC();
+  public SubscribedVSRVCC getSubscribedVSRVCC();
+  public void setSubscribedVSRVCC(SubscribedVSRVCC subscribedVSRVCC);
+
+  public boolean hasAMSISDN();
+  public byte[] getAMSISDN();
+  public void setAMSISDN(byte[] amsisdn);
+
+  public boolean hasSubscriptionDataFlags();
+  public long getSubscriptionDataFlags();
+  public void setSubscriptionDataFlags(long subscriptionDataFlags);
+
+  public boolean hasProSeSubscriptionData();
+  public ProSESubscriptionDataAvp getProSeSubscriptionData();
+  public void setProSeSubscriptionData(ProSESubscriptionDataAvp proSeSubscriptionDataAvp);
 }

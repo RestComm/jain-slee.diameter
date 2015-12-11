@@ -35,74 +35,92 @@ import net.java.slee.resource.diameter.s6a.events.avp.*;
  */
 public interface S6aAVPFactory extends DiameterAvpFactory {
 
-  public ActiveAPNAvp createActiveAPN();
+    public ActiveAPNAvp createActiveAPN();
 
-  public AllocationRetentionPriorityAvp createAllocationRetentionPriority();
+    public AllocationRetentionPriorityAvp createAllocationRetentionPriority();
 
-  public AMBRAvp createAMBR();
+    public AMBRAvp createAMBR();
 
-  public APNConfigurationAvp createAPNConfiguration();
+    public APNConfigurationAvp createAPNConfiguration();
 
-  public APNConfigurationProfileAvp createAPNConfigurationProfile();
+    public APNConfigurationProfileAvp createAPNConfigurationProfile();
 
-  public AuthenticationInfoAvp createAuthenticationInfo();
+    public AreaScopeAvp createAreaScopeAvp();
 
-  public CallBarringInforListAvp createCallBarringInforList();
+    public AuthenticationInfoAvp createAuthenticationInfo();
 
-  public CSGSubscriptionDataAvp createCSGSubscriptionData();
+    public CallBarringInfoAvp createCallBarringInforList();
 
-  public EPSLocationInformationAvp createEPSLocationInformation();
+    public CSGSubscriptionDataAvp createCSGSubscriptionData();
 
-  public EPSSubscribedQoSProfileAvp createEPSSubscribedQoSProfile();
+    public EPSLocationInformationAvp createEPSLocationInformation();
 
-  public EPSUserStateAvp createEPSUserState();
+    public EPSSubscribedQoSProfileAvp createEPSSubscribedQoSProfile();
 
-  public EUTRANVectorAvp createEUTRANVector();
+    public EPSUserStateAvp createEPSUserState();
 
-  public ExternalClientAvp createExternalClient();
+    public EquivalentPLMNListAvp createEquivalentPLMNList();
 
-  public GERANVectorAvp createGERANVector();
+    public EUTRANVectorAvp createEUTRANVector();
 
-  public GPRSSubscriptionDataAvp createGPRSSubscriptionData();
+    public ExternalClientAvp createExternalClient();
 
-  public LCSInfoAvp createLCSInfo();
+    public GERANVectorAvp createGERANVector();
 
-  public LCSPrivacyExceptionAvp createLCSPrivacyException();
+    public GPRSSubscriptionDataAvp createGPRSSubscriptionData();
 
-  public MIP6AgentInfoAvp createMIP6AgentInfo();
+    public LCSInfoAvp createLCSInfo();
 
-  public MIPHomeAgentHostAvp createMIPHomeAgentHost();
+    public LCSPrivacyExceptionAvp createLCSPrivacyException();
 
-  public MMELocationInformationAvp createMMELocationInformation();
+    public LocalTimeZoneAvp createLocalTimeZone();
 
-  public MMEUserStateAvp createMMEUserState();
+    public MDTConfigurationAvp createMDTConfigurationAvp();
 
-  public MOLRAvp createMOLR();
+    public MIP6AgentInfoAvp createMIP6AgentInfo();
 
-  public PDPContextAvp createPDPContext();
+    public MIPHomeAgentHostAvp createMIPHomeAgentHost();
 
-  public RequestedEUTRANAuthenticationInfoAvp createRequestedEUTRANAuthenticationInfo();
+    public MMELocationInformationAvp createMMELocationInformation();
 
-  public RequestedUTRANGERANAuthenticationInfoAvp createRequestedUTRANGERANAuthenticationInfo();
+    public MMEUserStateAvp createMMEUserState();
 
-  public ServiceTypeAvp createServiceType();
+    public MOLRAvp createMOLR();
 
-  public SGSNLocationInformationAvp createSGSNLocationInformation();
+    public PDPContextAvp createPDPContext();
 
-  public SGSNUserStateAvp createSGSNUserState();
+    public ProSeAllowedPLMNAvp createProSeAllowedPLMN();
 
-  public SpecificAPNInfoAvp createSpecificAPNInfo();
+    public ProSESubscriptionDataAvp createProSeSubscriptionData();
 
-  public SubscriptionDataAvp createSubscriptionData();
+    public RequestedEUTRANAuthenticationInfoAvp createRequestedEUTRANAuthenticationInfo();
 
-  public SupportedFeaturesAvp createSupportedFeatures();
+    public RequestedUTRANGERANAuthenticationInfoAvp createRequestedUTRANGERANAuthenticationInfo();
 
-  public TeleserviceListAvp createTeleserviceList();
+    public ServiceTypeAvp createServiceType();
 
-  public TerminalInformationAvp createTerminalInformation();
+    public SGSNLocationInformationAvp createSGSNLocationInformation();
 
-  public TraceDataAvp createTraceData();
+    public SGSNUserStateAvp createSGSNUserState();
 
-  public UTRANVectorAvp createUTRANVector();
+    public SpecificAPNInfoAvp createSpecificAPNInfo();
+
+    public SubscriptionDataAvp createSubscriptionData();
+
+    public SupportedFeaturesAvp createSupportedFeatures();
+
+    public TeleserviceListAvp createTeleserviceList();
+
+    public TerminalInformationAvp createTerminalInformation();
+
+    public TraceDataAvp createTraceData();
+
+    public UserCSGInformationAvp createUserCSGInformation();
+
+    public UTRANVectorAvp createUTRANVector();
+
+    public VPLMNCSGSubscriptionDataAvp createVPLMNCSGSubscriptionData();
+
+    public WLANoffloadabilityAvp createWLANoffloadability();
 
 }
