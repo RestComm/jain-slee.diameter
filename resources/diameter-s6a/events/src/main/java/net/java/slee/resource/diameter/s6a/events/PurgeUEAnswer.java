@@ -33,7 +33,7 @@ import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
 
 /**
  * Defines an interface representing the Purge-UE-Answer message.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
  * 7.2.14 Purge-UE-Answer (PUA) Command
@@ -50,6 +50,8 @@ import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
  *                         { Auth-Session-State }
  *                         { Origin-Host }
  *                         { Origin-Realm }
+ *                         [ OC-Supported-Features ]    //draft
+ *                         [ OC-OLR ]                   //draft
  *                         [ PUA-Flags ]
  *                        *[ AVP ]
  *                        *[ Failed-AVP ]

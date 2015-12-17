@@ -31,15 +31,11 @@ import net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp;
 import net.java.slee.resource.diameter.base.events.avp.FailedAvp;
 import net.java.slee.resource.diameter.base.events.avp.ProxyInfoAvp;
 import net.java.slee.resource.diameter.base.events.avp.VendorSpecificApplicationIdAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EPSLocationInformationAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.EPSUserStateAvp;
-import net.java.slee.resource.diameter.s6a.events.avp.IMSVoiceOverPSSessionsSupported;
-import net.java.slee.resource.diameter.s6a.events.avp.RATType;
-import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
+import net.java.slee.resource.diameter.s6a.events.avp.*;
 
 /**
  * Defines an interface representing the Insert-Subscriber-Data-Request message.
- * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V9.6.0) specification:
+ * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
  * 
  * <pre>
  * 7.2.10 Insert-Subscriber-Data-Answer (IDA) Command
@@ -62,6 +58,7 @@ import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
  *                                         [ IDA-Flags ] 
  *                                         [ EPS-User-State ]
  *                                         [ EPS-Location-Information ]
+ *                                         [ Local-Time-Zone ]              //R12
  *                                        *[ AVP ]
  *                                        *[ Failed-AVP ]
  *                                        *[ Proxy-Info ]
@@ -388,5 +385,27 @@ public interface InsertSubscriberDataAnswer extends DiameterMessage {
    * @param routeRecords
    */
   public void setRouteRecords(DiameterIdentity[] routeRecords);
+
+  /*
+        R12 methods
+   */
+
+    /**
+     * Returns true if the Local-Time-Zone AVP is in the message
+     * @return
+     */
+  public boolean hasLocalTimeZone();
+
+    /**
+     * Returns the LocalTimeZone AVP object, of type Grouped
+     * @return
+     */
+  public LocalTimeZoneAvp getLocalTimeZone();
+
+    /**
+     * Sets the LocalTimeZone AVP object in the message, of type Grouped.
+     * @param localTimeZoneAvp
+     */
+  public void setLocalTimeZone(LocalTimeZoneAvp localTimeZoneAvp);
 
 }

@@ -22,133 +22,153 @@
 
 package org.mobicents.slee.resource.diameter.s6a.events;
 
-import static net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes.S6A_VENDOR_ID;
-import static net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes.SUPPORTED_FEATURES;
 import net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType;
 import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
 import net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest;
 import net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes;
 import net.java.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvp;
 import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
-
 import org.jdiameter.api.Message;
 import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
 import org.mobicents.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvpImpl;
 import org.mobicents.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvpImpl;
 
+import static net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes.S6A_VENDOR_ID;
+import static net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes.SUPPORTED_FEATURES;
+
 /**
  * Implementation for {@link InsertSubscriberDataRequest}
- * 
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
 public class InsertSubscriberDataRequestImpl extends DiameterMessageImpl implements InsertSubscriberDataRequest {
 
-  /**
-   * @param message
-   */
-  public InsertSubscriberDataRequestImpl(Message message) {
-    super(message);
-  }
-
-  /*
-   * (non-Javadoc)
-   * @see org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl#getLongName()
-   */
-  public String getLongName() {
-    return "Insert-Subscriber-Data-Request";
-  }
-
-  /* (non-Javadoc)
-   * @see org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl#getShortName()
-   */
-  public String getShortName() {
-    return "IDR";
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#hasAuthSessionState()
-   */
-  public boolean hasAuthSessionState() {
-    return hasAvp(DiameterAvpCodes.AUTH_SESSION_STATE);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#getAuthSessionState()
-   */
-  public AuthSessionStateType getAuthSessionState() {
-    return (AuthSessionStateType) getAvpAsEnumerated(DiameterAvpCodes.AUTH_SESSION_STATE, AuthSessionStateType.class);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#setAuthSessionState(net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType)
-   */
-  public void setAuthSessionState(AuthSessionStateType authSessionState) {
-    addAvp(DiameterAvpCodes.AUTH_SESSION_STATE, authSessionState.getValue());
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#setSupportedFeatures(net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp)
-   */
-  public void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures) {
-    addAvp(SUPPORTED_FEATURES, S6A_VENDOR_ID, supportedFeatures.byteArrayValue());
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#setSupportedFeatureses(net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp[])
-   */
-  public void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses) {
-    for (SupportedFeaturesAvp supportedFeatures : supportedFeatureses) {
-      setSupportedFeatures(supportedFeatures);
+    /**
+     * @param message
+     */
+    public InsertSubscriberDataRequestImpl(Message message) {
+        super(message);
     }
-  }
 
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#getSupportedFeatureses()
-   */
-  public SupportedFeaturesAvp[] getSupportedFeatureses() {
-    return (SupportedFeaturesAvp[]) getAvpsAsCustom(SUPPORTED_FEATURES, S6A_VENDOR_ID, SupportedFeaturesAvpImpl.class);
-  }
+    /*
+     * (non-Javadoc)
+     * @see org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl#getLongName()
+     */
+    public String getLongName() {
+        return "Insert-Subscriber-Data-Request";
+    }
 
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#hasSubscriptionData()
-   */
-  public boolean hasSubscriptionData() {
-    return hasAvp(DiameterS6aAvpCodes.SUBSCRIPTION_DATA, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-  }
+    /* (non-Javadoc)
+     * @see org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl#getShortName()
+     */
+    public String getShortName() {
+        return "IDR";
+    }
 
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#getSubscriptionData()
-   */
-  public SubscriptionDataAvp getSubscriptionData() {
-    return (SubscriptionDataAvp) getAvpAsCustom(DiameterS6aAvpCodes.SUBSCRIPTION_DATA, DiameterS6aAvpCodes.S6A_VENDOR_ID, SubscriptionDataAvpImpl.class);
-  }
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#hasAuthSessionState()
+     */
+    public boolean hasAuthSessionState() {
+        return hasAvp(DiameterAvpCodes.AUTH_SESSION_STATE);
+    }
 
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#setSubscriptionData(net.java.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvp)
-   */
-  public void setSubscriptionData(SubscriptionDataAvp subscriptionData) {
-    addAvp(DiameterS6aAvpCodes.SUBSCRIPTION_DATA, DiameterS6aAvpCodes.S6A_VENDOR_ID, subscriptionData.byteArrayValue());
-  }
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#getAuthSessionState()
+     */
+    public AuthSessionStateType getAuthSessionState() {
+        return (AuthSessionStateType) getAvpAsEnumerated(DiameterAvpCodes.AUTH_SESSION_STATE, AuthSessionStateType.class);
+    }
 
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#hasIDRFlags()
-   */
-  public boolean hasIDRFlags() {
-    return hasAvp(DiameterS6aAvpCodes.IDR_FLAGS, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-  }
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#setAuthSessionState(net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType)
+     */
+    public void setAuthSessionState(AuthSessionStateType authSessionState) {
+        addAvp(DiameterAvpCodes.AUTH_SESSION_STATE, authSessionState.getValue());
+    }
 
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#getIDRFlags()
-   */
-  public long getIDRFlags() {
-    return getAvpAsUnsigned32(DiameterS6aAvpCodes.IDR_FLAGS, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-  }
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#setSupportedFeatures(net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp)
+     */
+    public void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures) {
+        addAvp(SUPPORTED_FEATURES, S6A_VENDOR_ID, supportedFeatures.byteArrayValue());
+    }
 
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#setIDRFlags(long)
-   */
-  public void setIDRFlags(long idrFlags) {
-    addAvp(DiameterS6aAvpCodes.IDR_FLAGS, DiameterS6aAvpCodes.S6A_VENDOR_ID, idrFlags);
-  }
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#setSupportedFeatureses(net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp[])
+     */
+    public void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses) {
+        for (SupportedFeaturesAvp supportedFeatures : supportedFeatureses) {
+            setSupportedFeatures(supportedFeatures);
+        }
+    }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#getSupportedFeatureses()
+     */
+    public SupportedFeaturesAvp[] getSupportedFeatureses() {
+        return (SupportedFeaturesAvp[]) getAvpsAsCustom(SUPPORTED_FEATURES, S6A_VENDOR_ID, SupportedFeaturesAvpImpl.class);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#hasSubscriptionData()
+     */
+    public boolean hasSubscriptionData() {
+        return hasAvp(DiameterS6aAvpCodes.SUBSCRIPTION_DATA, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#getSubscriptionData()
+     */
+    public SubscriptionDataAvp getSubscriptionData() {
+        return (SubscriptionDataAvp) getAvpAsCustom(DiameterS6aAvpCodes.SUBSCRIPTION_DATA, DiameterS6aAvpCodes.S6A_VENDOR_ID, SubscriptionDataAvpImpl.class);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#setSubscriptionData(net.java.slee.resource.diameter.s6a.events.avp.SubscriptionDataAvp)
+     */
+    public void setSubscriptionData(SubscriptionDataAvp subscriptionData) {
+        addAvp(DiameterS6aAvpCodes.SUBSCRIPTION_DATA, DiameterS6aAvpCodes.S6A_VENDOR_ID, subscriptionData.byteArrayValue());
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#hasIDRFlags()
+     */
+    public boolean hasIDRFlags() {
+        return hasAvp(DiameterS6aAvpCodes.IDR_FLAGS, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#getIDRFlags()
+     */
+    public long getIDRFlags() {
+        return getAvpAsUnsigned32(DiameterS6aAvpCodes.IDR_FLAGS, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#setIDRFlags(long)
+     */
+    public void setIDRFlags(long idrFlags) {
+        addAvp(DiameterS6aAvpCodes.IDR_FLAGS, DiameterS6aAvpCodes.S6A_VENDOR_ID, idrFlags);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#hasResetID()
+     */
+    public boolean hasResetID() {
+        return hasAvp(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#getResetID()
+     */
+    public byte[] getResetID() {
+        return getAvpAsOctetString(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.InsertSubscriberDataRequest#setResetID(byte[])
+     */
+    public void setResetID(byte[] resetID) {
+        addAvp(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID, resetID);
+    }
 }

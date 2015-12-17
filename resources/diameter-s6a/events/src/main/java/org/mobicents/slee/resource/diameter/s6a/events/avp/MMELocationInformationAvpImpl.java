@@ -26,6 +26,7 @@ import net.java.slee.resource.diameter.s6a.events.avp.CurrentLocationRetrieved;
 import net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes;
 import net.java.slee.resource.diameter.s6a.events.avp.MMELocationInformationAvp;
 
+import net.java.slee.resource.diameter.s6a.events.avp.UserCSGInformationAvp;
 import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
 
 /**
@@ -114,5 +115,18 @@ public class MMELocationInformationAvpImpl extends GroupedAvpImpl implements MME
   public long getAgeOfLocationInformation() {
     return getAvpAsUnsigned32(DiameterS6aAvpCodes.AGE_OF_LOCATION_INFORMATION, DiameterS6aAvpCodes.S6A_VENDOR_ID);
   }
+
+    public boolean hasUserCSGInformation() {
+        return hasAvp(DiameterS6aAvpCodes.USER_CSG_INFORMATION, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public UserCSGInformationAvp getUserCSGInformation() {
+        return (UserCSGInformationAvp) getAvpAsCustom(DiameterS6aAvpCodes.USER_CSG_INFORMATION,
+                                                      DiameterS6aAvpCodes.S6A_VENDOR_ID, UserCSGInformationAvpImpl.class);
+    }
+
+    public void setUserCSGInformation(UserCSGInformationAvp userCSGInformation) {
+        addAvp(userCSGInformation);
+    }
 
 }
