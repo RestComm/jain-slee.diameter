@@ -45,7 +45,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  * 
  *
  */
-public interface IdentityWithEmergencyRegistration extends GroupedAvp {
+public interface IdentitywithEmergencyRegistration extends GroupedAvp {
 
   /**
    * Returns true if the User-Name AVP is present in the message.
