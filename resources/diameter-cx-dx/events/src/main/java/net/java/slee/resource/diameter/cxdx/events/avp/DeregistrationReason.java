@@ -26,6 +26,9 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.3.16  Deregistration-Reason AVP</b>
  * The Deregistration-Reason AVP is of type Grouped, and indicates the reason for a de-registration
  * operation.

@@ -800,6 +800,21 @@ public class DiameterCxDxAvpCodes {
 
     /**
      * <pre>
+     * Name......: Priviledged-Sender-Info
+     * Code......: 652
+     * Section...: 6.3.56
+     * Type......: Enumerated
+     * Must......: V
+     * May.......: -
+     * Should....: -
+     * MustNot...: M
+     * May Encr..: No
+     * </pre>
+     */
+    public static final int PRIVILEDGED_SENDER_INDICATION = 652;
+
+    /**
+     * <pre>
      * Name......: Restoration-Info
      * Code......: 649
      * Section...: 6.3.52
@@ -812,6 +827,21 @@ public class DiameterCxDxAvpCodes {
      * </pre>
      */
     public static final int LIA_FLAGS = 653;
+
+    /**
+     * <pre>
+     * Name......: Initial-CSeq-Sequence-Number
+     * Code......: 654
+     * Section...: 6.3.49
+     * Type......: Unsigned32
+     * Must......: V
+     * May.......: -
+     * Should....: -
+     * MustNot...: M
+     * May Encr..: No
+     * </pre>
+     */
+    public static final int INITIAL_CSEQ_SEQUENCE_NUMBER = 654;
 
     /**
      * <pre>

@@ -34,13 +34,16 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 /**
  * <pre>
  * <b>6.1.11 Push-Profile-Request (PPR) Command</b>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * The Push-Profile-Request (PPR) command, indicated by the Command-Code field set to 305 and the
- * �R� bit set in the Command Flags field, is sent by a Diameter Multimedia server to a Diameter 
- * Multimedia client in order to update the subscription data and for SIP Digest authentication 
- * the authentication data of a multimedia user in the Diameter Multimedia client whenever a 
- * modification has occurred in the subscription data or digest password that constitutes the data 
+ * �R� bit set in the Command Flags field, is sent by a Diameter Multimedia server to a Diameter
+ * Multimedia client in order to update the subscription data and for SIP Digest authentication
+ * the authentication data of a multimedia user in the Diameter Multimedia client whenever a
+ * modification has occurred in the subscription data or digest password that constitutes the data
  * used by the client.
- * 
+ *
  * Message Format
  * < Push-Profile-Request > ::=    < Diameter Header: 305, REQ, PXY, 16777216 >
  *                          < Session-Id >

@@ -24,18 +24,20 @@ package net.java.slee.resource.diameter.cxdx.events.avp;
 
 /**
  * Java class to represent the Adaptations enumerated type.
- * 
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * 6.3.4 Server-Capabilities AVP
- * The Server-Capabilities AVP is of type Grouped. This AVP contains information 
+ * The Server-Capabilities AVP is of type Grouped. This AVP contains information
  * to assist the I-CSCF in the selection of an S-CSCF.
- * 
+ *
  * AVP format
  * Server-Capabilities ::= <AVP header: 603 10415>
  *   *[Mandatory-Capability]
  *   *[Optional-Capability]
  *   *[Server-Name]
  *   *[AVP]
- *   
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
  */

@@ -29,6 +29,9 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.3.45    Loose-Route-Indication AVP</b>
  * The Loose-Route-Indication AVP is of type Enumerated and indicates to the S-CSCF whether or not
  * the loose route mechanism is required to serve the registered Public User Identities. The 
@@ -45,55 +48,53 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
  */
 public class LooseRouteIndication implements Enumerated, Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  public static final int _LOOSE_ROUTE_NOT_REQUIRED = 0;
+    public static final int _LOOSE_ROUTE_NOT_REQUIRED = 0;
 
-  public static final int _LOOSE_ROUTE_REQUIRED = 1;
+    public static final int _LOOSE_ROUTE_REQUIRED = 1;
 
-  public static final LooseRouteIndication LOOSE_ROUTE_NOT_REQUIRED = new LooseRouteIndication(_LOOSE_ROUTE_NOT_REQUIRED);
+    public static final LooseRouteIndication LOOSE_ROUTE_NOT_REQUIRED = new LooseRouteIndication(_LOOSE_ROUTE_NOT_REQUIRED);
 
-  public static final LooseRouteIndication LOOSE_ROUTE_REQUIRED = new LooseRouteIndication(_LOOSE_ROUTE_REQUIRED);
+    public static final LooseRouteIndication LOOSE_ROUTE_REQUIRED = new LooseRouteIndication(_LOOSE_ROUTE_REQUIRED);
 
-  private int value = -1;
+    private int value = -1;
 
-  private LooseRouteIndication(int value) {
-    this.value = value;
-  }
-
-  public static LooseRouteIndication fromInt(int type) {
-    switch(type) {
-    case _LOOSE_ROUTE_NOT_REQUIRED: 
-      return LOOSE_ROUTE_NOT_REQUIRED;
-    case _LOOSE_ROUTE_REQUIRED: 
-      return LOOSE_ROUTE_REQUIRED;
-    default: 
-      throw new IllegalArgumentException("Invalid Loose-Route-Indication value: " + type);
+    private LooseRouteIndication(int value) {
+        this.value = value;
     }
-  }
 
-  public int getValue() {
-    return value;
-  }
-
-  public String toString() {
-    switch(value) {
-    case _LOOSE_ROUTE_NOT_REQUIRED: 
-      return "LOOSE_ROUTE_NOT_REQUIRED";
-    case _LOOSE_ROUTE_REQUIRED: 
-      return "LOOSE_ROUTE_REQUIRED";
-    default: 
-      return "<Invalid Value>";
+    public static LooseRouteIndication fromInt(int type) {
+        switch (type) {
+            case _LOOSE_ROUTE_NOT_REQUIRED:
+                return LOOSE_ROUTE_NOT_REQUIRED;
+            case _LOOSE_ROUTE_REQUIRED:
+                return LOOSE_ROUTE_REQUIRED;
+            default:
+                throw new IllegalArgumentException("Invalid Loose-Route-Indication value: " + type);
+        }
     }
-  }
 
-  private Object readResolve() throws StreamCorruptedException {
-    try {
-      return fromInt(value);
+    public int getValue() {
+        return value;
     }
-    catch (IllegalArgumentException iae) {
-      throw new StreamCorruptedException("Invalid internal state found: " + value);
-    }
-  }
 
+    public String toString() {
+        switch (value) {
+            case _LOOSE_ROUTE_NOT_REQUIRED:
+                return "LOOSE_ROUTE_NOT_REQUIRED";
+            case _LOOSE_ROUTE_REQUIRED:
+                return "LOOSE_ROUTE_REQUIRED";
+            default:
+                return "<Invalid Value>";
+        }
+    }
+
+    private Object readResolve() throws StreamCorruptedException {
+        try {
+            return fromInt(value);
+        } catch (IllegalArgumentException iae) {
+            throw new StreamCorruptedException("Invalid internal state found: " + value);
+        }
+    }
 }

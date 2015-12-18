@@ -472,7 +472,7 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
      * @return the value of the Priviledged-Sender-Indication AVP or null if it has not been set
      * on this message
      */
-    PriviledgedSenderIndication getPrivilegedSenderIndication();
+    PriviledgedSenderIndication getPriviledgedSenderIndication();
 
     /**
      * Sets the value of the Priviledged-Sender-Indication AVP, of type Enumerated

@@ -29,6 +29,9 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.3.15  Server-Assignment-Type AVP</b>
  * The Server-Assignment-Type AVP is of type Enumerated, and indicates the type of server update
  * being performed in a Server-Assignment-Request operation. The following values are defined:
@@ -70,6 +73,8 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
  * PGW_UPDATE (13)
  *   Used in the SWx protocol, defined in 3GPP TS 29.273 [18]. This value is not used in the Cx 
  *   protocol.
+ * RESTORATION (14)
+ *   Used in the SWx protocol, defined in 3GPP TS 29.273 [18]. This value is not used in the Cx protocol.
  * </pre>
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>

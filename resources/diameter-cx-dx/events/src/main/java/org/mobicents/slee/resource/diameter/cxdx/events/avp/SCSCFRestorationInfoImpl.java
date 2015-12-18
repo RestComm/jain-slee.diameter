@@ -39,63 +39,83 @@ import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
  */
 public class SCSCFRestorationInfoImpl extends GroupedAvpImpl implements SCSCFRestorationInfo {
 
-  public SCSCFRestorationInfoImpl() {
-    super();
-  }
-
-  /**
-   * @param code
-   * @param vendorId
-   * @param mnd
-   * @param prt
-   * @param value
-   */
-  public SCSCFRestorationInfoImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
-    super(code, vendorId, mnd, prt, value);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#getRestorationInfos()
-   */
-  public RestorationInfo[] getRestorationInfos() {
-    return (RestorationInfo[]) getAvpsAsCustom(RESTORATION_INFO, CXDX_VENDOR_ID, RestorationInfoImpl.class);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#getUserName()
-   */
-  public String getUserName() {
-    return getAvpAsUTF8String(DiameterAvpCodes.USER_NAME);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#hasUserName()
-   */
-  public boolean hasUserName() {
-    return hasAvp(DiameterAvpCodes.USER_NAME);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#setRestorationInfo(net.java.slee.resource.diameter.cxdx.events.avp.RestorationInfo)
-   */
-  public void setRestorationInfo(RestorationInfo restorationInfo) throws IllegalStateException {
-    addAvp(RESTORATION_INFO, CXDX_VENDOR_ID, restorationInfo.byteArrayValue());
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#setRestorationInfos(net.java.slee.resource.diameter.cxdx.events.avp.RestorationInfo[])
-   */
-  public void setRestorationInfos(RestorationInfo[] restorationInfos) throws IllegalStateException {
-    for(RestorationInfo restorationInfo : restorationInfos) {
-      setRestorationInfo(restorationInfo);
+    public SCSCFRestorationInfoImpl() {
+        super();
     }
-  }
 
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#setUserName(java.lang.String)
-   */
-  public void setUserName(String userName) throws IllegalStateException {
-    addAvp(DiameterAvpCodes.USER_NAME, userName);
-  }
+    /**
+     * @param code
+     * @param vendorId
+     * @param mnd
+     * @param prt
+     * @param value
+     */
+    public SCSCFRestorationInfoImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
+        super(code, vendorId, mnd, prt, value);
+    }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#getRestorationInfos()
+     */
+    public RestorationInfo[] getRestorationInfos() {
+        return (RestorationInfo[]) getAvpsAsCustom(RESTORATION_INFO, CXDX_VENDOR_ID, RestorationInfoImpl.class);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#getUserName()
+     */
+    public String getUserName() {
+        return getAvpAsUTF8String(DiameterAvpCodes.USER_NAME);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#hasUserName()
+     */
+    public boolean hasUserName() {
+        return hasAvp(DiameterAvpCodes.USER_NAME);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#setRestorationInfo(net.java.slee.resource.diameter.cxdx.events.avp.RestorationInfo)
+     */
+    public void setRestorationInfo(RestorationInfo restorationInfo) throws IllegalStateException {
+        addAvp(RESTORATION_INFO, CXDX_VENDOR_ID, restorationInfo.byteArrayValue());
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#setRestorationInfos(net.java.slee.resource.diameter.cxdx.events.avp.RestorationInfo[])
+     */
+    public void setRestorationInfos(RestorationInfo[] restorationInfos) throws IllegalStateException {
+        for (RestorationInfo restorationInfo : restorationInfos) {
+            setRestorationInfo(restorationInfo);
+        }
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#setUserName(java.lang.String)
+     */
+    public void setUserName(String userName) throws IllegalStateException {
+        addAvp(DiameterAvpCodes.USER_NAME, userName);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#hasSIPAuthenticationScheme()
+     */
+    public boolean hasSIPAuthenticationScheme() {
+        return hasAvp(SIP_AUTHENTICATION_SCHEME, CXDX_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#getSIPAuthenticationScheme()
+     */
+    public String getSIPAuthenticationScheme() {
+        return getAvpAsUTF8String(SIP_AUTHENTICATION_SCHEME, CXDX_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#setSIPAuthenticationScheme(java.lang.String)
+     */
+    public void setSIPAuthenticationScheme(String sipAuthenticationScheme) throws IllegalStateException {
+        addAvp(SIP_AUTHENTICATION_SCHEME, CXDX_VENDOR_ID, sipAuthenticationScheme);
+    }
 }

@@ -184,26 +184,44 @@ public class ServerAssignmentRequestImpl extends DiameterMessageImpl implements 
         addAvp(MULTIPLE_REGISTRATION_INDICATION, CXDX_VENDOR_ID, multipleRegistrationIndication.getValue());
     }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#hasSARFlags()
+     */
     public boolean hasSARFlags() {
         return hasAvp(SAR_FLAGS, CXDX_VENDOR_ID);
     }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#getSARFlags()
+     */
     public long getSARFlags() {
         return getAvpAsUnsigned32(SAR_FLAGS, CXDX_VENDOR_ID);
     }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#setSARFlags(long)
+     */
     public void setSARFlags(long sarFlags) {
         addAvp(SAR_FLAGS, CXDX_VENDOR_ID, sarFlags);
     }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#hasSessionPriority()
+     */
     public boolean hasSessionPriority() {
         return hasAvp(SESSION_PRIORITY, CXDX_VENDOR_ID);
     }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#getSessionPriority()
+     */
     public SessionPriority getSessionPriority() {
         return (SessionPriority) getAvpAsEnumerated(SESSION_PRIORITY, CXDX_VENDOR_ID, SessionPriority.class);
     }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#setSessionPriority(net.java.slee.resource.diameter.cxdx.events.avp.SessionPriority)
+     */
     public void setSessionPriority(SessionPriority sessionPriority) {
         addAvp(SESSION_PRIORITY, CXDX_VENDOR_ID, sessionPriority.getValue());
     }
@@ -217,14 +235,23 @@ public class ServerAssignmentRequestImpl extends DiameterMessageImpl implements 
         }
     }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#hasWildcardedPublicIdentity()
+     */
     public boolean hasWildcardedPublicIdentity() {
-        return hasAvp(WILDCARDED_PUBLIC_IDENTITY);
+        return hasAvp(WILDCARDED_PUBLIC_IDENTITY, CXDX_VENDOR_ID);
     }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#getWildcardedPublicIdentity()
+     */
     public String getWildcardedPublicIdentity() {
         return getAvpAsUTF8String(WILDCARDED_PUBLIC_IDENTITY, CXDX_VENDOR_ID);
     }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#setWildcardedPublicIdentity(java.lang.String)
+     */
     public void setWildcardedPublicIdentity(String wildcardedPublicIdentity) {
         addAvp(WILDCARDED_PUBLIC_IDENTITY, CXDX_VENDOR_ID, wildcardedPublicIdentity);
     }

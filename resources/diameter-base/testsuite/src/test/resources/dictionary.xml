@@ -4610,7 +4610,7 @@
         </type>
     </avpdefn>
 
-    <avpdefn name="Identity-with-Emergency-Registration" code="651" vendor-id="TGPP" mandatory="mustnot" protected="may" may-encrypt="no" vendor-bit="must" >
+    <avpdefn name="Identity-with-Emergency-Registration" code="651" vendor-id="TGPP" mandatory="must" protected="may" may-encrypt="no" vendor-bit="must" >
         <grouped>
             <avp name="User-Name" />
             <avp name="Public-Identity" />

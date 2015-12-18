@@ -35,6 +35,8 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  * Restoration-Info ::= < AVP Header: 649, 10415>
  *                  { Path }
  *                  { Contact }
+ *                  [ Initial-CSeq-Sequence-Number ]    //R12
+ *                  [ Call-ID-SIP-Header ]              //R12
  *                  [ Subscription-Info ]
  *                 *[ AVP ]
  *
@@ -45,55 +47,98 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  */
 public interface RestorationInfo extends GroupedAvp {
 
-  /**
-   * Returns true if the Path AVP is present in the message.
-   */
-  boolean hasPath();
+    /**
+     * Returns true if the Path AVP is present in the message.
+     */
+    boolean hasPath();
 
-  /**
-   * Returns the value of the Path AVP, of type OctetString.
-   * @return the value of the Path AVP or null if it has not been set on this message
-   */
-  byte[] getPath();
+    /**
+     * Returns the value of the Path AVP, of type OctetString.
+     *
+     * @return the value of the Path AVP or null if it has not been set on this message
+     */
+    byte[] getPath();
 
-  /**
-   * Sets the value of the Path AVP, of type OctetString.
-   * @throws IllegalStateException if setPath has already been called
-   */
-  void setPath(byte[] path);
+    /**
+     * Sets the value of the Path AVP, of type OctetString.
+     *
+     * @throws IllegalStateException if setPath has already been called
+     */
+    void setPath(byte[] path);
 
-  /**
-   * Returns true if the Contact AVP is present in the message.
-   */
-  boolean hasContact();
+    /**
+     * Returns true if the Contact AVP is present in the message.
+     */
+    boolean hasContact();
 
-  /**
-   * Returns the value of the Contact AVP, of type OctetString.
-   * @return the value of the Contact AVP or null if it has not been set on this message
-   */
-  byte[] getContact();
+    /**
+     * Returns the value of the Contact AVP, of type OctetString.
+     *
+     * @return the value of the Contact AVP or null if it has not been set on this message
+     */
+    byte[] getContact();
 
-  /**
-   * Sets the value of the Contact AVP, of type OctetString.
-   * @throws IllegalStateException if setContact has already been called
-   */
-  void setContact(byte[] contact);
+    /**
+     * Sets the value of the Contact AVP, of type OctetString.
+     *
+     * @throws IllegalStateException if setContact has already been called
+     */
+    void setContact(byte[] contact);
 
-  /**
-   * Returns true if the Subscription-Info AVP is present in the message.
-   */
-  boolean hasSubscriptionInfo();
+    /**
+     * Returns true if the Subscription-Info AVP is present in the message.
+     */
+    boolean hasSubscriptionInfo();
 
-  /**
-   * Returns the value of the Subscription-Info AVP, of type Grouped.
-   * @return the value of the Subscription-Info AVP or null if it has not been set on this message
-   */
-  SubscriptionInfo getSubscriptionInfo();
+    /**
+     * Returns the value of the Subscription-Info AVP, of type Grouped.
+     *
+     * @return the value of the Subscription-Info AVP or null if it has not been set on this message
+     */
+    SubscriptionInfo getSubscriptionInfo();
 
-  /**
-   * Sets the value of the Subscription-Info AVP, of type Grouped.
-   * @throws IllegalStateException if setSubscriptionInfo has already been called
-   */
-  void setSubscriptionInfo(SubscriptionInfo subscriptionInfo);
+    /**
+     * Sets the value of the Subscription-Info AVP, of type Grouped.
+     *
+     * @throws IllegalStateException if setSubscriptionInfo has already been called
+     */
+    void setSubscriptionInfo(SubscriptionInfo subscriptionInfo);
 
+    /**
+     * Returns true if the Initial-CSeq-Sequence-Number AVP is present in the message.
+     */
+    boolean hasInitialCSeqSequenceNumber();
+
+    /**
+     * Returns the value of the Initial-CSeq-Sequence-Number AVP, of type Unsigned32
+     *
+     * @return
+     */
+    long getInitialCSeqSequenceNumber();
+
+    /**
+     * Sets the value of the Initial-CSeq-Sequence-Number AVP, of type Unsigned32
+     *
+     * @throws IllegalStateException if setSubscriptionInfo has already been called
+     */
+    void setInitialCSeqSequenceNumber(long initialCSeqSequenceNumber);
+
+    /**
+     * Returns true if the Call-ID-SIP-Header AVP is present in the message.
+     */
+    boolean hasCallIDSIPHeader();
+
+    /**
+     * Returns the value of the Call-ID-SIP-Header AVP, of type OctetString
+     *
+     * @return
+     */
+    byte[] getCallIDSIPHeader();
+
+    /**
+     * Sets the value of the Call-ID-SIP-Header AVP, of type OctetString
+     *
+     * @throws IllegalStateException if setSubscriptionInfo has already been called
+     */
+    void setCallIDSIPHeader(byte[] callIDSIPHeader);
 }
