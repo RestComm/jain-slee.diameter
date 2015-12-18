@@ -30,11 +30,15 @@ import net.java.slee.resource.diameter.base.events.avp.VendorSpecificApplication
 import net.java.slee.resource.diameter.cxdx.events.avp.MultipleRegistrationIndication;
 import net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo;
 import net.java.slee.resource.diameter.cxdx.events.avp.ServerAssignmentType;
+import net.java.slee.resource.diameter.cxdx.events.avp.SessionPriority;
 import net.java.slee.resource.diameter.cxdx.events.avp.UserDataAlreadyAvailable;
 import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.1.3 Server-Assignment-Request (SAR) Command</b>
  * The Server-Assignment-Request (SAR) command, indicated by the Command-Code field set to 301 and
  * the �R� bit set in the Command Flags field, is sent by a Diameter Multimedia client to a 
@@ -51,15 +55,17 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                             [ Destination-Host ]
  *                             { Destination-Realm }
  *                             [ User-Name ]
+ *                             [ OC-Supported-Features ]
  *                            *[ Supported-Features ]
  *                            *[ Public-Identity ]
- *                             [ Wildcarded-PSI ]
- *                             [ Wildcarded-IMPU ]
+ *                             [ Wildcarded-Public-Identity ]
  *                             { Server-Name }
  *                             { Server-Assignment-Type }
  *                             { User-Data-Already-Available }
  *                             [ SCSCF-Restoration-Info ]
  *                             [ Multiple-Registration-Indication ]
+ *                             [ Session-Priority ]
+ *                             [ SAR-Flags ]
  *                            *[ AVP ]
  *                            *[ Proxy-Info ]
  *                            *[ Route-Record ]
@@ -193,36 +199,20 @@ public interface ServerAssignmentRequest extends DiameterMessage {
   void setPublicIdentities(String[] publicIdentities);
 
   /**
-   * Returns true if the Wildcarded-PSI AVP is present in the message.
+   * Returns true if the Wildcarded-Public-Identity AVP is present in the message.
    */
-  boolean hasWildcardedPSI();
+  boolean hasWildcardedPublicIdentity();
 
   /**
-   * Returns the value of the Wildcarded-PSI AVP, of type UTF8String. A 
+   * Returns the value of the Wildcarded-Public-Identity AVP, of type UTF8String. A
    * return value of null implies that the AVP has not been set.
    */
-  String getWildcardedPSI();
+  String getWildcardedPublicIdentity();
 
   /**
    * Sets the value of the Wildcarded-PSI AVP, of type UTF8String.
    */
-  void setWildcardedPSI(String wildcardedPSI);
-
-  /**
-   * Returns true if the Wildcarded-IMPU AVP is present in the message.
-   */
-  boolean hasWildcardedIMPU();
-
-  /**
-   * Returns the value of the Wildcarded-IMPU AVP, of type UTF8String. A 
-   * return value of null implies that the AVP has not been set.
-   */
-  String getWildcardedIMPU();
-
-  /**
-   * Sets the value of the Wildcarded-IMPU AVP, of type UTF8String.
-   */
-  void setWildcardedIMPU(String wildcardedIMPU);
+  void setWildcardedPublicIdentity(String wildcardedPublicIdentity);
 
   /**
    * Returns true if the Server-Name AVP is present in the message.
@@ -376,5 +366,39 @@ public interface ServerAssignmentRequest extends DiameterMessage {
    *  has already been called
    */
   void setRouteRecords(DiameterIdentity[] routeRecords);
+
+    /**
+     * Returns true if the SAR-Flags AVP is present in the message.
+     */
+    public boolean hasSARFlags();
+
+    /**
+     * Returns the value of the SAR-Flags AVP, of type Unsigned32.
+     * A return value of Long.MIN_VALUE implies that the AVP has not been set or some error has been encountered.
+     */
+    public long getSARFlags();
+
+    /**
+     * Sets the value of the SAR-Flags AVP, of type Unsigned32.
+     * @throws IllegalStateException if setUARFlags has already been called
+     */
+    public void setSARFlags(long sarFlags);
+
+    /**
+     * Returns true if the Session-Priority AVP is present in the message.
+     */
+    public boolean hasSessionPriority();
+
+    /**
+     * Returns the value of the SessionPriority AVP, of type Enumerated.
+     * A return value of Long.MIN_VALUE implies that the AVP has not been set or some error has been encountered.
+     */
+    public SessionPriority getSessionPriority();
+
+    /**
+     * Sets the value of the Session-Priority AVP, of type Enumerated.
+     * @throws IllegalStateException if setSessionPriority has already been called
+     */
+    public void setSessionPriority(SessionPriority sessionPriority);
 
 }

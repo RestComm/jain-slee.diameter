@@ -32,11 +32,12 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
- * <b>6.1.7  Multimedia-Auth-Request (MAR) Command</b>
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * The Multimedia-Auth-Request (MAR) command, indicated by the Command-Code field set to 303 and
- * the �R� bit set in the Command Flags field, is sent by a Diameter Multimedia client to a 
+ * the �R� bit set in the Command Flags field, is sent by a Diameter Multimedia client to a
  * Diameter Multimedia server in order to request security information.
- * 
+ *
  * Message Format
  * < Multimedia-Auth-Request > ::=  < Diameter Header: 303, REQ, PXY, 16777216 >
  *                             < Session-Id >
@@ -47,6 +48,7 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                             { Destination-Realm }
  *                             [ Destination-Host ]
  *                             { User-Name }
+ *                             [ OC-Supported-Features ]     //Draft
  *                            *[ Supported-Features ]
  *                             { Public-Identity }
  *                             { SIP-Auth-Data-Item }
@@ -56,7 +58,6 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                            *[ Proxy-Info ]
  *                            *[ Route-Record ]
  *
- * </pre>
  *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>

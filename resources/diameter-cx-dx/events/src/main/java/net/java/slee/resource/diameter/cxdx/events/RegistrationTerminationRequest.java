@@ -34,10 +34,13 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 /**
  * <pre>
  * <b>6.1.9  Registration-Termination-Request (RTR) Command</b>
- * The Registration-Termination-Request (RTR) command, indicated by the Command-Code field set to 
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
+ * The Registration-Termination-Request (RTR) command, indicated by the Command-Code field set to
  * 304 and the �R� bit set in the Command Flags field, is sent by a Diameter Multimedia server to 
  * a Diameter Multimedia client in order to request the de-registration of a user.
- * 
+ *
  * Message Format
  * <Registration-Termination-Request> ::=    < Diameter Header: 304, REQ, PXY, 16777216 >
  *                                    < Session-Id >

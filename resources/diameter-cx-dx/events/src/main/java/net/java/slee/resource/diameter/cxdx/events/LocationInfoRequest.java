@@ -33,12 +33,15 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.1.5 Location-Info-Request (LIR) Command</b>
  * The Location-Info-Request (LIR) command, indicated by the Command-Code field set to 302 and 
  * the �R� bit set in the Command Flags field, is sent by a Diameter Multimedia client to a 
  * Diameter Multimedia server in order to request name of the server that is currently serving 
  * the user.
- * 
+ *
  * Message Format
  * <Location-Info-Request> ::=   < Diameter Header: 302, REQ, PXY, 16777216 >
  *                         < Session-Id >
@@ -49,13 +52,13 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                         [ Destination-Host ]
  *                         { Destination-Realm }
  *                         [ Originating-Request ]
+ *                         [ OC-Supported-Features ]    //Draft
  *                        *[ Supported-Features ]
  *                         { Public-Identity }
  *                         [ User-Authorization-Type ]
  *                        *[ AVP ]
  *                        *[ Proxy-Info ]
  *                        *[ Route-Record ]
- *                        
  * </pre>
  *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>

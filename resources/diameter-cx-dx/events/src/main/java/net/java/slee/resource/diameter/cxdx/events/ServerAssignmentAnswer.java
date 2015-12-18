@@ -33,11 +33,15 @@ import net.java.slee.resource.diameter.cxdx.events.avp.AssociatedIdentities;
 import net.java.slee.resource.diameter.cxdx.events.avp.AssociatedRegisteredIdentities;
 import net.java.slee.resource.diameter.cxdx.events.avp.ChargingInformation;
 import net.java.slee.resource.diameter.cxdx.events.avp.LooseRouteIndication;
+import net.java.slee.resource.diameter.cxdx.events.avp.PriviledgedSenderIndication;
 import net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo;
 import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.1.4 Server-Assignment-Answer (SAA) Command</b>
  * The Server-Assignment-Answer (SAA) command, indicated by the Command-Code field set to 301 and
  * the �R� bit cleared in the Command Flags field, is sent by a server in response to the 
@@ -55,6 +59,8 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                            { Origin-Host }
  *                            { Origin-Realm }
  *                            [ User-Name ]
+ *                            [ OC-Supported-Features ]                 //Draft
+ *                            [ OC-OLR ]                                //Draft
  *                           *[ Supported-Features ]
  *                            [ User-Data ]
  *                            [ Charging-Information ]
@@ -63,6 +69,8 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                           *[ SCSCF-Restoration-Info ]
  *                            [ Associated-Registered-Identities ]
  *                            [ Server-Name ]
+ *                            [ Wildcarded-Public-Identity ]            //R12
+ *                            [ Priviledged-Sender-Information ]        //R12
  *                           *[ AVP ]
  *                           *[ Failed-AVP ]
  *                           *[ Proxy-Info ]
@@ -76,356 +84,400 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  */
 public interface ServerAssignmentAnswer extends DiameterMessage {
 
-  public static final int COMMAND_CODE = 301;
+    public static final int COMMAND_CODE = 301;
 
-  /**
-   * Returns true if the Vendor-Specific-Application-Id AVP is present in the
-   * message.
-   */
-  boolean hasVendorSpecificApplicationId();
+    /**
+     * Returns true if the Vendor-Specific-Application-Id AVP is present in the
+     * message.
+     */
+    boolean hasVendorSpecificApplicationId();
 
-  /**
-   * Returns the value of the Vendor-Specific-Application-Id AVP, of type
-   * Grouped.
-   * 
-   * @return the value of the Vendor-Specific-Application-Id AVP or null if it
-   *         has not been set on this message
-   */
-  VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
+    /**
+     * Returns the value of the Vendor-Specific-Application-Id AVP, of type
+     * Grouped.
+     *
+     * @return the value of the Vendor-Specific-Application-Id AVP or null if it
+     * has not been set on this message
+     */
+    VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
 
-  /**
-   * Sets the value of the Vendor-Specific-Application-Id AVP, of type
-   * Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setVendorSpecificApplicationId has already been called
-   */
-  void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
+    /**
+     * Sets the value of the Vendor-Specific-Application-Id AVP, of type
+     * Grouped.
+     *
+     * @throws IllegalStateException if setVendorSpecificApplicationId has already been called
+     */
+    void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
 
-  /**
-   * Returns true if the Result-Code AVP is present in the message.
-   * 
-   * @return
-   */
-  boolean hasResultCode();
+    /**
+     * Returns true if the Result-Code AVP is present in the message.
+     *
+     * @return
+     */
+    boolean hasResultCode();
 
-  /**
-   * Returns the value of the Result-Code AVP, of type Unsigned32.
-   * 
-   * @return
-   */
-  long getResultCode();
+    /**
+     * Returns the value of the Result-Code AVP, of type Unsigned32.
+     *
+     * @return
+     */
+    long getResultCode();
 
-  /**
-   * Sets the value of the Result-Code AVP, of type Unsigned32.
-   * 
-   * @param resultCode
-   * @throws IllegalStateException 
-   */
-  void setResultCode(long resultCode) throws IllegalStateException;
+    /**
+     * Sets the value of the Result-Code AVP, of type Unsigned32.
+     *
+     * @param resultCode
+     * @throws IllegalStateException
+     */
+    void setResultCode(long resultCode) throws IllegalStateException;
 
-  /**
-   * Returns true if the Experimental-Result AVP is present in the message.
-   */
-  boolean hasExperimentalResult();
+    /**
+     * Returns true if the Experimental-Result AVP is present in the message.
+     */
+    boolean hasExperimentalResult();
 
-  /**
-   * Returns the value of the Experimental-Result AVP, of type Grouped.
-   * 
-   * @return the value of the Experimental-Result AVP or null if it has not
-   *         been set on this message
-   */
-  ExperimentalResultAvp getExperimentalResult();
+    /**
+     * Returns the value of the Experimental-Result AVP, of type Grouped.
+     *
+     * @return the value of the Experimental-Result AVP or null if it has not
+     * been set on this message
+     */
+    ExperimentalResultAvp getExperimentalResult();
 
-  /**
-   * Sets the value of the Experimental-Result AVP, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setExperimentalResult has already been called
-   */
-  void setExperimentalResult(ExperimentalResultAvp experimentalResult);
+    /**
+     * Sets the value of the Experimental-Result AVP, of type Grouped.
+     *
+     * @throws IllegalStateException if setExperimentalResult has already been called
+     */
+    void setExperimentalResult(ExperimentalResultAvp experimentalResult);
 
-  /**
-   * Returns true if the Auth-Session-State AVP is present in the message.
-   */
-  boolean hasAuthSessionState();
+    /**
+     * Returns true if the Auth-Session-State AVP is present in the message.
+     */
+    boolean hasAuthSessionState();
 
-  /**
-   * Returns the value of the Auth-Session-State AVP, of type Enumerated. A
-   * return value of null implies that the AVP has not been set.
-   */
-  AuthSessionStateType getAuthSessionState();
+    /**
+     * Returns the value of the Auth-Session-State AVP, of type Enumerated. A
+     * return value of null implies that the AVP has not been set.
+     */
+    AuthSessionStateType getAuthSessionState();
 
-  /**
-   * Sets the value of the Auth-Session-State AVP, of type Enumerated.
-   * 
-   * @throws IllegalStateException
-   *             if setAuthSessionState has already been called
-   */
-  void setAuthSessionState(AuthSessionStateType authSessionState);
+    /**
+     * Sets the value of the Auth-Session-State AVP, of type Enumerated.
+     *
+     * @throws IllegalStateException if setAuthSessionState has already been called
+     */
+    void setAuthSessionState(AuthSessionStateType authSessionState);
 
-  /**
-   * Returns true if the User-Name AVP is present in the message.
-   */
-  boolean hasUserName();
+    /**
+     * Returns true if the User-Name AVP is present in the message.
+     */
+    boolean hasUserName();
 
-  /**
-   * Returns the value of the User-Name AVP, of type UTF8String.
-   * @return the value of the User-Name AVP or null if it has not been set on this message
-   */
-  String getUserName();
+    /**
+     * Returns the value of the User-Name AVP, of type UTF8String.
+     *
+     * @return the value of the User-Name AVP or null if it has not been set on this message
+     */
+    String getUserName();
 
-  /**
-   * Sets the value of the User-Name AVP, of type UTF8String.
-   * @throws IllegalStateException if setUserName has already been called
-   */
-  void setUserName(String userName);
+    /**
+     * Sets the value of the User-Name AVP, of type UTF8String.
+     *
+     * @throws IllegalStateException if setUserName has already been called
+     */
+    void setUserName(String userName);
 
-  /**
-   * Returns the set of Supported-Features AVPs. The returned array contains
-   * the AVPs in the order they appear in the message. A return value of null
-   * implies that no Supported-Features AVPs have been set. The elements in
-   * the given array are SupportedFeatures objects.
-   */
-  SupportedFeaturesAvp[] getSupportedFeatureses();
+    /**
+     * Returns the set of Supported-Features AVPs. The returned array contains
+     * the AVPs in the order they appear in the message. A return value of null
+     * implies that no Supported-Features AVPs have been set. The elements in
+     * the given array are SupportedFeatures objects.
+     */
+    SupportedFeaturesAvp[] getSupportedFeatureses();
 
-  /**
-   * Sets a single Supported-Features AVP in the message, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
-   */
-  void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
+    /**
+     * Sets a single Supported-Features AVP in the message, of type Grouped.
+     *
+     * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+     *                               been called
+     */
+    void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
 
-  /**
-   * Sets the set of Supported-Features AVPs, with all the values in the given
-   * array. The AVPs will be added to message in the order in which they
-   * appear in the array.
-   * 
-   * Note: the array must not be altered by the caller following this call,
-   * and getSupportedFeatureses() is not guaranteed to return the same array
-   * instance, e.g. an "==" check would fail.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
-   */
-  void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
+    /**
+     * Sets the set of Supported-Features AVPs, with all the values in the given
+     * array. The AVPs will be added to message in the order in which they
+     * appear in the array.
+     * <p/>
+     * Note: the array must not be altered by the caller following this call,
+     * and getSupportedFeatureses() is not guaranteed to return the same array
+     * instance, e.g. an "==" check would fail.
+     *
+     * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+     *                               been called
+     */
+    void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
 
-  /**
-   * Returns true if the User-Data AVP is present in the message.
-   */
-  boolean hasUserData();
+    /**
+     * Returns true if the User-Data AVP is present in the message.
+     */
+    boolean hasUserData();
 
-  /**
-   * Returns the value of the User-Data AVP, of type OctetString.
-   * @return the value of the User-Data AVP or null if it has not been set on this message
-   */
-  byte[] getUserData();
+    /**
+     * Returns the value of the User-Data AVP, of type OctetString.
+     *
+     * @return the value of the User-Data AVP or null if it has not been set on this message
+     */
+    byte[] getUserData();
 
-  /**
-   * Sets the value of the User-Data AVP, of type OctetString.
-   * @throws IllegalStateException if setUserData has already been called
-   */
-  void setUserData(byte[] userData);
+    /**
+     * Sets the value of the User-Data AVP, of type OctetString.
+     *
+     * @throws IllegalStateException if setUserData has already been called
+     */
+    void setUserData(byte[] userData);
 
-  /**
-   * Returns true if the Charging-Information AVP is present in the message.
-   */
-  boolean hasChargingInformation();
+    /**
+     * Returns true if the Charging-Information AVP is present in the message.
+     */
+    boolean hasChargingInformation();
 
-  /**
-   * Returns the value of the Charging-Information AVP, of type Grouped.
-   * @return the value of the Charging-Information AVP or null if it has not been set on this message
-   */
-  ChargingInformation getChargingInformation();
+    /**
+     * Returns the value of the Charging-Information AVP, of type Grouped.
+     *
+     * @return the value of the Charging-Information AVP or null if it has not been set on this message
+     */
+    ChargingInformation getChargingInformation();
 
-  /**
-   * Sets the value of the Charging-Information AVP, of type Grouped.
-   * @throws IllegalStateException if setChargingInformation has already been called
-   */
-  void setChargingInformation(ChargingInformation chargingInformation);
+    /**
+     * Sets the value of the Charging-Information AVP, of type Grouped.
+     *
+     * @throws IllegalStateException if setChargingInformation has already been called
+     */
+    void setChargingInformation(ChargingInformation chargingInformation);
 
-  /**
-   * Returns true if the Associated-Identities AVP is present in the message.
-   */
-  boolean hasAssociatedIdentities();
+    /**
+     * Returns true if the Associated-Identities AVP is present in the message.
+     */
+    boolean hasAssociatedIdentities();
 
-  /**
-   * Returns the value of the Associated-Identities AVP, of type Grouped.
-   * @return the value of the Associated-Identities AVP or null if it has not been set on this message
-   */
-  AssociatedIdentities getAssociatedIdentities();
+    /**
+     * Returns the value of the Associated-Identities AVP, of type Grouped.
+     *
+     * @return the value of the Associated-Identities AVP or null if it has not been set on this message
+     */
+    AssociatedIdentities getAssociatedIdentities();
 
-  /**
-   * Sets the value of the Associated-Identities AVP, of type Grouped.
-   * @throws IllegalStateException if setAssociatedIdentities has already been called
-   */
-  void setAssociatedIdentities(AssociatedIdentities associatedIdentities);
+    /**
+     * Sets the value of the Associated-Identities AVP, of type Grouped.
+     *
+     * @throws IllegalStateException if setAssociatedIdentities has already been called
+     */
+    void setAssociatedIdentities(AssociatedIdentities associatedIdentities);
 
-  /**
-   * Returns true if the Loose-Route-Indication AVP is present in the message.
-   */
-  boolean hasLooseRouteIndication();
+    /**
+     * Returns true if the Loose-Route-Indication AVP is present in the message.
+     */
+    boolean hasLooseRouteIndication();
 
-  /**
-   * Returns the value of the Loose-Route-Indication AVP, of type Enumerated. A
-   * return value of null implies that the AVP has not been set.
-   */
-  LooseRouteIndication getLooseRouteIndication();
+    /**
+     * Returns the value of the Loose-Route-Indication AVP, of type Enumerated. A
+     * return value of null implies that the AVP has not been set.
+     */
+    LooseRouteIndication getLooseRouteIndication();
 
-  /**
-   * Sets the value of the Loose-Route-Indication AVP, of type Enumerated.
-   * 
-   * @throws IllegalStateException
-   *             if setLooseRouteIndication has already been called
-   */
-  void setLooseRouteIndication(LooseRouteIndication looseRouteIndication);
+    /**
+     * Sets the value of the Loose-Route-Indication AVP, of type Enumerated.
+     *
+     * @throws IllegalStateException if setLooseRouteIndication has already been called
+     */
+    void setLooseRouteIndication(LooseRouteIndication looseRouteIndication);
 
-  /**
-   * Returns the value of the SCSCF-Restoration-Info AVP, of type Grouped.
-   * 
-   * @return the value of the SCSCF-Restoration-Info AVP or null if it has not been set on this message
-   */
-  SCSCFRestorationInfo[] getSCSCFRestorationInfos();
+    /**
+     * Returns the value of the SCSCF-Restoration-Info AVP, of type Grouped.
+     *
+     * @return the value of the SCSCF-Restoration-Info AVP or null if it has not been set on this message
+     */
+    SCSCFRestorationInfo[] getSCSCFRestorationInfos();
 
-  /**
-   * Sets the value of the SCSCF-Restoration-Info AVP, of type Grouped.
-   * 
-   * @throws IllegalStateException if setSCSCFRestorationInfo has already been called
-   */
-  void setSCSCFRestorationInfo(SCSCFRestorationInfo scscfRestorationInfo);
+    /**
+     * Sets the value of the SCSCF-Restoration-Info AVP, of type Grouped.
+     *
+     * @throws IllegalStateException if setSCSCFRestorationInfo has already been called
+     */
+    void setSCSCFRestorationInfo(SCSCFRestorationInfo scscfRestorationInfo);
 
-  /**
-   * Sets the value of the SCSCF-Restoration-Info AVP, of type Grouped.
-   * 
-   * @throws IllegalStateException if setSCSCFRestorationInfo has already been called
-   */
-  void setSCSCFRestorationInfos(SCSCFRestorationInfo[] scscfRestorationInfos);
+    /**
+     * Sets the value of the SCSCF-Restoration-Info AVP, of type Grouped.
+     *
+     * @throws IllegalStateException if setSCSCFRestorationInfo has already been called
+     */
+    void setSCSCFRestorationInfos(SCSCFRestorationInfo[] scscfRestorationInfos);
 
-  /**
-   * Returns true if the Associated-Registered-Identities AVP is present in the message.
-   */
-  boolean hasAssociatedRegisteredIdentities();
+    /**
+     * Returns true if the Associated-Registered-Identities AVP is present in the message.
+     */
+    boolean hasAssociatedRegisteredIdentities();
 
-  /**
-   * Returns the value of the Associated-Registered-Identities AVP, of type Grouped.
-   * @return the value of the Associated-Registered-Identities AVP or null if it has not been set on this message
-   */
-  AssociatedRegisteredIdentities getAssociatedRegisteredIdentities();
+    /**
+     * Returns the value of the Associated-Registered-Identities AVP, of type Grouped.
+     *
+     * @return the value of the Associated-Registered-Identities AVP or null if it has not been set on this message
+     */
+    AssociatedRegisteredIdentities getAssociatedRegisteredIdentities();
 
-  /**
-   * Sets the value of the Associated-Registered-Identities AVP, of type Grouped.
-   * @throws IllegalStateException if setAssociatedRegisteredIdentities has already been called
-   */
-  void setAssociatedRegisteredIdentities(AssociatedRegisteredIdentities associatedRegisteredIdentities);
+    /**
+     * Sets the value of the Associated-Registered-Identities AVP, of type Grouped.
+     *
+     * @throws IllegalStateException if setAssociatedRegisteredIdentities has already been called
+     */
+    void setAssociatedRegisteredIdentities(AssociatedRegisteredIdentities associatedRegisteredIdentities);
 
-  /**
-   * Returns true if the Server-Name AVP is present in the message.
-   */
-  boolean hasServerName();
+    /**
+     * Returns true if the Server-Name AVP is present in the message.
+     */
+    boolean hasServerName();
 
-  /**
-   * Returns the value of the Server-Name AVP, of type UTF8String.
-   * 
-   * @return the value of the Server-Name AVP or null if it has not been set
-   *         on this message
-   */
-  String getServerName();
+    /**
+     * Returns the value of the Server-Name AVP, of type UTF8String.
+     *
+     * @return the value of the Server-Name AVP or null if it has not been set
+     * on this message
+     */
+    String getServerName();
 
-  /**
-   * Sets the value of the Server-Name AVP, of type UTF8String.
-   * 
-   * @throws IllegalStateException
-   *             if setServerName has already been called
-   */
-  void setServerName(String serverName);
+    /**
+     * Sets the value of the Server-Name AVP, of type UTF8String.
+     *
+     * @throws IllegalStateException if setServerName has already been called
+     */
+    void setServerName(String serverName);
 
-  /**
-   * Returns the set of Failed-AVP AVPs. The returned array contains the AVPs
-   * in the order they appear in the message. A return value of null implies
-   * that no Failed-AVP AVPs have been set. The elements in the given array
-   * are FailedAvp objects.
-   */
-  FailedAvp[] getFailedAvps();
+    /**
+     * Returns the set of Failed-AVP AVPs. The returned array contains the AVPs
+     * in the order they appear in the message. A return value of null implies
+     * that no Failed-AVP AVPs have been set. The elements in the given array
+     * are FailedAvp objects.
+     */
+    FailedAvp[] getFailedAvps();
 
-  /**
-   * Sets a single Failed-AVP AVP in the message, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setFailedAvp or setFailedAvps has already been called
-   */
-  void setFailedAvp(FailedAvp failedAvp);
+    /**
+     * Sets a single Failed-AVP AVP in the message, of type Grouped.
+     *
+     * @throws IllegalStateException if setFailedAvp or setFailedAvps has already been called
+     */
+    void setFailedAvp(FailedAvp failedAvp);
 
-  /**
-   * Sets the set of Failed-AVP AVPs, with all the values in the given array.
-   * The AVPs will be added to message in the order in which they appear in
-   * the array.
-   * 
-   * Note: the array must not be altered by the caller following this call,
-   * and getFailedAvps() is not guaranteed to return the same array instance,
-   * e.g. an "==" check would fail.
-   * 
-   * @throws IllegalStateException
-   *             if setFailedAvp or setFailedAvps has already been called
-   */
-  void setFailedAvps(FailedAvp[] failedAvps);
+    /**
+     * Sets the set of Failed-AVP AVPs, with all the values in the given array.
+     * The AVPs will be added to message in the order in which they appear in
+     * the array.
+     * <p/>
+     * Note: the array must not be altered by the caller following this call,
+     * and getFailedAvps() is not guaranteed to return the same array instance,
+     * e.g. an "==" check would fail.
+     *
+     * @throws IllegalStateException if setFailedAvp or setFailedAvps has already been called
+     */
+    void setFailedAvps(FailedAvp[] failedAvps);
 
-  /**
-   * Returns the set of Proxy-Info AVPs. The returned array contains
-   * the AVPs in the order they appear in the message.
-   * A return value of null implies that no Proxy-Info AVPs have been set.
-   * The elements in the given array are ProxyInfo objects.
-   */
-  ProxyInfoAvp[] getProxyInfos();
+    /**
+     * Returns the set of Proxy-Info AVPs. The returned array contains
+     * the AVPs in the order they appear in the message.
+     * A return value of null implies that no Proxy-Info AVPs have been set.
+     * The elements in the given array are ProxyInfo objects.
+     */
+    ProxyInfoAvp[] getProxyInfos();
 
-  /**
-   * Sets a single Proxy-Info AVP in the message, of type Grouped.
-   * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
-   */
-  void setProxyInfo(ProxyInfoAvp proxyInfo);
+    /**
+     * Sets a single Proxy-Info AVP in the message, of type Grouped.
+     *
+     * @throws IllegalStateException if setProxyInfo or setProxyInfos
+     *                               has already been called
+     */
+    void setProxyInfo(ProxyInfoAvp proxyInfo);
 
-  /**
-   * Sets the set of Proxy-Info AVPs, with all the values in the given array.
-   * The AVPs will be added to message in the order in which they appear in the array.
-   *
-   * Note: the array must not be altered by the caller following this call, and
-   * getProxyInfos() is not guaranteed to return the same array instance,
-   * e.g. an "==" check would fail.
-   *
-   * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
-   */
-  void setProxyInfos(ProxyInfoAvp[] proxyInfos);
+    /**
+     * Sets the set of Proxy-Info AVPs, with all the values in the given array.
+     * The AVPs will be added to message in the order in which they appear in the array.
+     * <p/>
+     * Note: the array must not be altered by the caller following this call, and
+     * getProxyInfos() is not guaranteed to return the same array instance,
+     * e.g. an "==" check would fail.
+     *
+     * @throws IllegalStateException if setProxyInfo or setProxyInfos
+     *                               has already been called
+     */
+    void setProxyInfos(ProxyInfoAvp[] proxyInfos);
 
-  /**
-   * Returns the set of Route-Record AVPs. The returned array contains
-   * the AVPs in the order they appear in the message.
-   * A return value of null implies that no Route-Record AVPs have been set.
-   * The elements in the given array are DiameterIdentity objects.
-   */
-  DiameterIdentity[] getRouteRecords();
+    /**
+     * Returns the set of Route-Record AVPs. The returned array contains
+     * the AVPs in the order they appear in the message.
+     * A return value of null implies that no Route-Record AVPs have been set.
+     * The elements in the given array are DiameterIdentity objects.
+     */
+    DiameterIdentity[] getRouteRecords();
 
-  /**
-   * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
-   * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
-   */
-  void setRouteRecord(DiameterIdentity routeRecord);
+    /**
+     * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
+     *
+     * @throws IllegalStateException if setRouteRecord or setRouteRecords
+     *                               has already been called
+     */
+    void setRouteRecord(DiameterIdentity routeRecord);
 
-  /**
-   * Sets the set of Route-Record AVPs, with all the values in the given array.
-   * The AVPs will be added to message in the order in which they appear in the array.
-   *
-   * Note: the array must not be altered by the caller following this call, and
-   * getRouteRecords() is not guaranteed to return the same array instance,
-   * e.g. an "==" check would fail.
-   *
-   * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
-   */
-  void setRouteRecords(DiameterIdentity[] routeRecords);
+    /**
+     * Sets the set of Route-Record AVPs, with all the values in the given array.
+     * The AVPs will be added to message in the order in which they appear in the array.
+     * <p/>
+     * Note: the array must not be altered by the caller following this call, and
+     * getRouteRecords() is not guaranteed to return the same array instance,
+     * e.g. an "==" check would fail.
+     *
+     * @throws IllegalStateException if setRouteRecord or setRouteRecords
+     *                               has already been called
+     */
+    void setRouteRecords(DiameterIdentity[] routeRecords);
 
+    //R12 new AVPs
+
+    /**
+     * @return true if th Wildcarded-Public-Identity AVP is present in the message
+     */
+    boolean hasWildcardedPublicIdentity();
+
+    /**
+     * Returns the value of the Wildcarded-Public-Identity AVP , of type UTF8String
+     *
+     * @return the value of the Wildcarded-Public-Identity AVP or null if it has not been set
+     * on this message
+     */
+    String getWildcardedPublicIdentity();
+
+    /**
+     * Sets a single Wildcarded-Public-Identity AVP into the message, of type UTF8String
+     *
+     * @param wildcardedPublicIdentity the AVP value
+     */
+    void setWildcardedPublicIdentity(String wildcardedPublicIdentity);
+
+    /**
+     * Returns true if the Priviledged-Sender-Indication AVP is present in the message.
+     */
+    boolean hasPriviledgedSenderIndication();
+
+    /**
+     * Returns the value of the Priviledged-Sender-Indication AVP, of type Enumerated.
+     *
+     * @return the value of the Priviledged-Sender-Indication AVP or null if it has not been set
+     * on this message
+     */
+    PriviledgedSenderIndication getPrivilegedSenderIndication();
+
+    /**
+     * Sets the value of the Priviledged-Sender-Indication AVP, of type Enumerated
+     *
+     * @throws IllegalStateException if setPriviledgedSenderIndication has already been called
+     */
+    void setPriviledgedSenderIndication(PriviledgedSenderIndication priviledgedSenderIndication);
 }

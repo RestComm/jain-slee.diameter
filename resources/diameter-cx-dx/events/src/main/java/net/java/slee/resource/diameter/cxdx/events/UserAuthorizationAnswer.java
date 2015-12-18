@@ -34,7 +34,11 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.1.2 User-Authorization-Answer (UAA) Command</b>
+ *
  * The User-Authorization-Answer (UAA) command, indicated by the Command-Code field set to 300 and
  * the �R� bit cleared in the Command Flags field, is sent by a server in response to the 
  * User-Authorization-Request command. The Experimental-Result AVP may contain one of the values 
@@ -49,10 +53,11 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                              { Auth-Session-State }
  *                              { Origin-Host }
  *                              { Origin-Realm }
+ *                              [ OC-Supported-Features ]     //Draft
+ *                              [ OC-OLR ]                    //Draft
  *                             *[ Supported-Features ]
  *                              [ Server-Name ]
  *                              [ Server-Capabilities ]
- *                              [ Wildcarded-IMPU ]
  *                             *[ AVP ]
  *                             *[ Failed-AVP ]
  *                             *[ Proxy-Info ]

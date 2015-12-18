@@ -29,6 +29,7 @@ import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
 import net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp;
 import net.java.slee.resource.diameter.cxdx.events.RegistrationTerminationAnswer;
 import net.java.slee.resource.diameter.cxdx.events.avp.AssociatedIdentities;
+import net.java.slee.resource.diameter.cxdx.events.avp.IdentityWithEmergencyRegistration;
 import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 import org.jdiameter.api.Message;
@@ -155,4 +156,16 @@ public class RegistrationTerminationAnswerImpl extends DiameterMessageImpl imple
     }
   }
 
+    public boolean hasIdentitywithEmergencyRegistration() {
+        return hasAvp(IDENTITY_WITH_EMERGENCY_REGISTRATION, CXDX_VENDOR_ID);
+    }
+
+    public IdentityWithEmergencyRegistration getIdentityWithEmergencyRegistration() {
+        return (IdentityWithEmergencyRegistration)
+                getAvpAsCustom(IDENTITY_WITH_EMERGENCY_REGISTRATION, CXDX_VENDOR_ID, IdentityWithEmergencyRegistration.class);
+    }
+
+    public void setIdentityWithEmergencyRegistration(IdentityWithEmergencyRegistration identityWithEmergencyRegistration) {
+        addAvp(identityWithEmergencyRegistration);
+    }
 }
