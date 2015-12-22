@@ -44,7 +44,7 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *
  * <b>6.1.4 Server-Assignment-Answer (SAA) Command</b>
  * The Server-Assignment-Answer (SAA) command, indicated by the Command-Code field set to 301 and
- * the �R� bit cleared in the Command Flags field, is sent by a server in response to the 
+ * the 'R' bit cleared in the Command Flags field, is sent by a server in response to the
  * Server-Assignment-Request command. The Experimental-Result AVP may contain one of the values 
  * defined in section 6.2. If Result-Code or Experimental-Result does not inform about an error, 
  * the User-Data AVP shall contain the information that the S-CSCF needs to give service to the user.
@@ -301,6 +301,13 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
     SCSCFRestorationInfo[] getSCSCFRestorationInfos();
 
     /**
+     * Returns the value of the SCSCF-Restoration-Info AVP, of type Grouped.
+     *
+     * @return the value of the SCSCF-Restoration-Info AVP or null if it has not been set on this message
+     */
+    SCSCFRestorationInfo getSCSCFRestorationInfo();
+
+    /**
      * Sets the value of the SCSCF-Restoration-Info AVP, of type Grouped.
      *
      * @throws IllegalStateException if setSCSCFRestorationInfo has already been called
@@ -312,7 +319,7 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
      *
      * @throws IllegalStateException if setSCSCFRestorationInfo has already been called
      */
-    void setSCSCFRestorationInfos(SCSCFRestorationInfo[] scscfRestorationInfos);
+    void setSCSCFRestorationInfos(SCSCFRestorationInfo[] scscfRestorationInfo);
 
     /**
      * Returns true if the Associated-Registered-Identities AVP is present in the message.

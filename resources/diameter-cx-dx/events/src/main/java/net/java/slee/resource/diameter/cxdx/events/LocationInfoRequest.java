@@ -28,6 +28,7 @@ import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 import net.java.slee.resource.diameter.base.events.avp.ProxyInfoAvp;
 import net.java.slee.resource.diameter.base.events.avp.VendorSpecificApplicationIdAvp;
 import net.java.slee.resource.diameter.cxdx.events.avp.OriginatingRequest;
+import net.java.slee.resource.diameter.cxdx.events.avp.SessionPriority;
 import net.java.slee.resource.diameter.cxdx.events.avp.UserAuthorizationType;
 import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
@@ -38,7 +39,7 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *
  * <b>6.1.5 Location-Info-Request (LIR) Command</b>
  * The Location-Info-Request (LIR) command, indicated by the Command-Code field set to 302 and 
- * the �R� bit set in the Command Flags field, is sent by a Diameter Multimedia client to a 
+ * the 'R' bit set in the Command Flags field, is sent by a Diameter Multimedia client to a
  * Diameter Multimedia server in order to request name of the server that is currently serving 
  * the user.
  *
@@ -56,6 +57,7 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                        *[ Supported-Features ]
  *                         { Public-Identity }
  *                         [ User-Authorization-Type ]
+ *                         [ Session-Priority ]         //R12
  *                        *[ AVP ]
  *                        *[ Proxy-Info ]
  *                        *[ Route-Record ]
@@ -66,192 +68,207 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  */
 public interface LocationInfoRequest extends DiameterMessage {
 
-  public static final int COMMAND_CODE = 302;
-  
-  /**
-   * Returns true if the Vendor-Specific-Application-Id AVP is present in the
-   * message.
-   */
-  boolean hasVendorSpecificApplicationId();
+    public static final int COMMAND_CODE = 302;
 
-  /**
-   * Returns the value of the Vendor-Specific-Application-Id AVP, of type
-   * Grouped.
-   * 
-   * @return the value of the Vendor-Specific-Application-Id AVP or null if it
-   *         has not been set on this message
-   */
-  VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
+    /**
+     * Returns true if the Vendor-Specific-Application-Id AVP is present in the
+     * message.
+     */
+    boolean hasVendorSpecificApplicationId();
 
-  /**
-   * Sets the value of the Vendor-Specific-Application-Id AVP, of type
-   * Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setVendorSpecificApplicationId has already been called
-   */
-  void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
+    /**
+     * Returns the value of the Vendor-Specific-Application-Id AVP, of type
+     * Grouped.
+     *
+     * @return the value of the Vendor-Specific-Application-Id AVP or null if it
+     * has not been set on this message
+     */
+    VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
 
-  /**
-   * Returns true if the Auth-Session-State AVP is present in the message.
-   */
-  boolean hasAuthSessionState();
+    /**
+     * Sets the value of the Vendor-Specific-Application-Id AVP, of type
+     * Grouped.
+     *
+     * @throws IllegalStateException if setVendorSpecificApplicationId has already been called
+     */
+    void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
 
-  /**
-   * Returns the value of the Auth-Session-State AVP, of type Enumerated. A
-   * return value of null implies that the AVP has not been set.
-   */
-  AuthSessionStateType getAuthSessionState();
+    /**
+     * Returns true if the Auth-Session-State AVP is present in the message.
+     */
+    boolean hasAuthSessionState();
 
-  /**
-   * Sets the value of the Auth-Session-State AVP, of type Enumerated.
-   * 
-   * @throws IllegalStateException
-   *             if setAuthSessionState has already been called
-   */
-  void setAuthSessionState(AuthSessionStateType authSessionState);
+    /**
+     * Returns the value of the Auth-Session-State AVP, of type Enumerated. A
+     * return value of null implies that the AVP has not been set.
+     */
+    AuthSessionStateType getAuthSessionState();
 
-  /**
-   * Returns true if the Originating-Request AVP is present in the message.
-   */
-  boolean hasOriginatingRequest();
+    /**
+     * Sets the value of the Auth-Session-State AVP, of type Enumerated.
+     *
+     * @throws IllegalStateException if setAuthSessionState has already been called
+     */
+    void setAuthSessionState(AuthSessionStateType authSessionState);
 
-  /**
-   * Returns the value of the Originating-Request AVP, of type Enumerated. A
-   * return value of null implies that the AVP has not been set.
-   */
-  OriginatingRequest getOriginatingRequest();
+    /**
+     * Returns true if the Originating-Request AVP is present in the message.
+     */
+    boolean hasOriginatingRequest();
 
-  /**
-   * Sets the value of the Originating-Request AVP, of type Enumerated.
-   * 
-   * @throws IllegalStateException
-   *             if setOriginatingRequest has already been called
-   */
-  void setOriginatingRequest(OriginatingRequest originatingRequest);
+    /**
+     * Returns the value of the Originating-Request AVP, of type Enumerated. A
+     * return value of null implies that the AVP has not been set.
+     */
+    OriginatingRequest getOriginatingRequest();
 
-  /**
-   * Returns the set of Supported-Features AVPs. The returned array contains
-   * the AVPs in the order they appear in the message. A return value of null
-   * implies that no Supported-Features AVPs have been set. The elements in
-   * the given array are SupportedFeatures objects.
-   */
-  SupportedFeaturesAvp[] getSupportedFeatureses();
+    /**
+     * Sets the value of the Originating-Request AVP, of type Enumerated.
+     *
+     * @throws IllegalStateException if setOriginatingRequest has already been called
+     */
+    void setOriginatingRequest(OriginatingRequest originatingRequest);
 
-  /**
-   * Sets a single Supported-Features AVP in the message, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
-   */
-  void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
+    /**
+     * Returns the set of Supported-Features AVPs. The returned array contains
+     * the AVPs in the order they appear in the message. A return value of null
+     * implies that no Supported-Features AVPs have been set. The elements in
+     * the given array are SupportedFeatures objects.
+     */
+    SupportedFeaturesAvp[] getSupportedFeatureses();
 
-  /**
-   * Sets the set of Supported-Features AVPs, with all the values in the given
-   * array. The AVPs will be added to message in the order in which they
-   * appear in the array.
-   * 
-   * Note: the array must not be altered by the caller following this call,
-   * and getSupportedFeatureses() is not guaranteed to return the same array
-   * instance, e.g. an "==" check would fail.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
-   */
-  void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
+    /**
+     * Sets a single Supported-Features AVP in the message, of type Grouped.
+     *
+     * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+     *                               been called
+     */
+    void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
 
-  /**
-   * Returns true if the Public-Identity AVP is present in the message.
-   */
-  boolean hasPublicIdentity();
+    /**
+     * Sets the set of Supported-Features AVPs, with all the values in the given
+     * array. The AVPs will be added to message in the order in which they
+     * appear in the array.
+     * <p/>
+     * Note: the array must not be altered by the caller following this call,
+     * and getSupportedFeatureses() is not guaranteed to return the same array
+     * instance, e.g. an "==" check would fail.
+     *
+     * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+     *                               been called
+     */
+    void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
 
-  /**
-   * Returns the value of the Public-Identity AVP, of type UTF8String.
-   * A return value of null implies that the AVP has not been set.
-   */
-  String getPublicIdentity();
+    /**
+     * Returns true if the Public-Identity AVP is present in the message.
+     */
+    boolean hasPublicIdentity();
 
-  /**
-   * Sets the value of the Public-Identity AVP, of type UTF8String.
-   * @throws IllegalStateException if setPublicIdentity has already been called
-   */
-  void setPublicIdentity(String publicIdentity);
+    /**
+     * Returns the value of the Public-Identity AVP, of type UTF8String.
+     * A return value of null implies that the AVP has not been set.
+     */
+    String getPublicIdentity();
 
-  /**
-   * Returns true if the User-Authorization-Type AVP is present in the message.
-   */
-  boolean hasUserAuthorizationType();
+    /**
+     * Sets the value of the Public-Identity AVP, of type UTF8String.
+     *
+     * @throws IllegalStateException if setPublicIdentity has already been called
+     */
+    void setPublicIdentity(String publicIdentity);
 
-  /**
-   * Returns the value of the User-Authorization-Type AVP, of type Enumerated. A
-   * return value of null implies that the AVP has not been set.
-   */
-  UserAuthorizationType getUserAuthorizationType();
+    /**
+     * Returns true if the User-Authorization-Type AVP is present in the message.
+     */
+    boolean hasUserAuthorizationType();
 
-  /**
-   * Sets the value of the User-Authorization-Type AVP, of type Enumerated.
-   * 
-   * @throws IllegalStateException
-   *             if setAuthSessionState has already been called
-   */
-  void setUserAuthorizationType(UserAuthorizationType userAuthorizationType);
+    /**
+     * Returns the value of the User-Authorization-Type AVP, of type Enumerated. A
+     * return value of null implies that the AVP has not been set.
+     */
+    UserAuthorizationType getUserAuthorizationType();
 
-  /**
-   * Returns the set of Proxy-Info AVPs. The returned array contains
-   * the AVPs in the order they appear in the message.
-   * A return value of null implies that no Proxy-Info AVPs have been set.
-   * The elements in the given array are ProxyInfo objects.
-   */
-  ProxyInfoAvp[] getProxyInfos();
+    /**
+     * Sets the value of the User-Authorization-Type AVP, of type Enumerated.
+     *
+     * @throws IllegalStateException if setAuthSessionState has already been called
+     */
+    void setUserAuthorizationType(UserAuthorizationType userAuthorizationType);
 
-  /**
-   * Sets a single Proxy-Info AVP in the message, of type Grouped.
-   * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
-   */
-  void setProxyInfo(ProxyInfoAvp proxyInfo);
+    /**
+     * Returns the set of Proxy-Info AVPs. The returned array contains
+     * the AVPs in the order they appear in the message.
+     * A return value of null implies that no Proxy-Info AVPs have been set.
+     * The elements in the given array are ProxyInfo objects.
+     */
+    ProxyInfoAvp[] getProxyInfos();
 
-  /**
-   * Sets the set of Proxy-Info AVPs, with all the values in the given array.
-   * The AVPs will be added to message in the order in which they appear in the array.
-   *
-   * Note: the array must not be altered by the caller following this call, and
-   * getProxyInfos() is not guaranteed to return the same array instance,
-   * e.g. an "==" check would fail.
-   *
-   * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
-   */
-  void setProxyInfos(ProxyInfoAvp[] proxyInfos);
+    /**
+     * Sets a single Proxy-Info AVP in the message, of type Grouped.
+     *
+     * @throws IllegalStateException if setProxyInfo or setProxyInfos
+     *                               has already been called
+     */
+    void setProxyInfo(ProxyInfoAvp proxyInfo);
 
-  /**
-   * Returns the set of Route-Record AVPs. The returned array contains
-   * the AVPs in the order they appear in the message.
-   * A return value of null implies that no Route-Record AVPs have been set.
-   * The elements in the given array are DiameterIdentity objects.
-   */
-  DiameterIdentity[] getRouteRecords();
+    /**
+     * Sets the set of Proxy-Info AVPs, with all the values in the given array.
+     * The AVPs will be added to message in the order in which they appear in the array.
+     * <p/>
+     * Note: the array must not be altered by the caller following this call, and
+     * getProxyInfos() is not guaranteed to return the same array instance,
+     * e.g. an "==" check would fail.
+     *
+     * @throws IllegalStateException if setProxyInfo or setProxyInfos
+     *                               has already been called
+     */
+    void setProxyInfos(ProxyInfoAvp[] proxyInfos);
 
-  /**
-   * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
-   * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
-   */
-  void setRouteRecord(DiameterIdentity routeRecord);
+    /**
+     * Returns the set of Route-Record AVPs. The returned array contains
+     * the AVPs in the order they appear in the message.
+     * A return value of null implies that no Route-Record AVPs have been set.
+     * The elements in the given array are DiameterIdentity objects.
+     */
+    DiameterIdentity[] getRouteRecords();
 
-  /**
-   * Sets the set of Route-Record AVPs, with all the values in the given array.
-   * The AVPs will be added to message in the order in which they appear in the array.
-   *
-   * Note: the array must not be altered by the caller following this call, and
-   * getRouteRecords() is not guaranteed to return the same array instance,
-   * e.g. an "==" check would fail.
-   *
-   * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
-   */
-  void setRouteRecords(DiameterIdentity[] routeRecords);
+    /**
+     * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
+     *
+     * @throws IllegalStateException if setRouteRecord or setRouteRecords
+     *                               has already been called
+     */
+    void setRouteRecord(DiameterIdentity routeRecord);
 
+    /**
+     * Sets the set of Route-Record AVPs, with all the values in the given array.
+     * The AVPs will be added to message in the order in which they appear in the array.
+     * <p/>
+     * Note: the array must not be altered by the caller following this call, and
+     * getRouteRecords() is not guaranteed to return the same array instance,
+     * e.g. an "==" check would fail.
+     *
+     * @throws IllegalStateException if setRouteRecord or setRouteRecords
+     *                               has already been called
+     */
+    void setRouteRecords(DiameterIdentity[] routeRecords);
+
+
+    /**
+     * Returns true if the Public-Identity AVP is present in the message.
+     */
+    boolean hasSessionPriority();
+
+    /**
+     * Returns the value of the Public-Identity AVP, of type UTF8String.
+     * A return value of null implies that the AVP has not been set.
+     */
+    SessionPriority getSessionPriority();
+
+    /**
+     * Sets the value of the Public-Identity AVP, of type UTF8String.
+     *
+     * @throws IllegalStateException if setPublicIdentity has already been called
+     */
+    void setSessionPriority(SessionPriority sessionPriority);
 }

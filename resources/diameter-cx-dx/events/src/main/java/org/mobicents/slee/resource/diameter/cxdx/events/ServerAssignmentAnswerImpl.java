@@ -24,6 +24,7 @@ package org.mobicents.slee.resource.diameter.cxdx.events;
 
 import static net.java.slee.resource.diameter.cxdx.events.avp.DiameterCxDxAvpCodes.*;
 
+import net.java.slee.resource.diameter.base.events.DiameterMessage;
 import net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType;
 import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
 import net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp;
@@ -31,6 +32,7 @@ import net.java.slee.resource.diameter.cxdx.events.ServerAssignmentAnswer;
 import net.java.slee.resource.diameter.cxdx.events.avp.AssociatedIdentities;
 import net.java.slee.resource.diameter.cxdx.events.avp.AssociatedRegisteredIdentities;
 import net.java.slee.resource.diameter.cxdx.events.avp.ChargingInformation;
+import net.java.slee.resource.diameter.cxdx.events.avp.DiameterCxDxAvpCodes;
 import net.java.slee.resource.diameter.cxdx.events.avp.LooseRouteIndication;
 import net.java.slee.resource.diameter.cxdx.events.avp.PriviledgedSenderIndication;
 import net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo;
@@ -117,6 +119,13 @@ public class ServerAssignmentAnswerImpl extends DiameterMessageImpl implements S
      */
     public LooseRouteIndication getLooseRouteIndication() {
         return (LooseRouteIndication) getAvpAsEnumerated(LOOSE_ROUTE_INDICATION, CXDX_VENDOR_ID, LooseRouteIndication.class);
+    }
+
+    /* (non-Javadoc)
+ * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentAnswer#getSCSCFRestorationInfos()
+ */
+    public SCSCFRestorationInfo getSCSCFRestorationInfo() {
+        return (SCSCFRestorationInfo) getAvpAsCustom(SCSCF_RESTORATION_INFO, CXDX_VENDOR_ID, SCSCFRestorationInfoImpl.class);
     }
 
     /* (non-Javadoc)

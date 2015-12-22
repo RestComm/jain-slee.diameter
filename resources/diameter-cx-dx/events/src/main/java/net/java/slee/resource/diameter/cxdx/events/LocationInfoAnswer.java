@@ -34,9 +34,12 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.1.6  Location-Info-Answer (LIA) Command</b>
  * The Location-Info-Answer (LIA) command, indicated by the Command-Code field set to 302 and the
- * �R� bit cleared in the Command Flags field, is sent by a server in response to the 
+ * 'R' bit cleared in the Command Flags field, is sent by a server in response to the
  * Location-Info-Request command. The Experimental-Result AVP may contain one of the values defined
  * in section 6.2.
  *

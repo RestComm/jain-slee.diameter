@@ -35,12 +35,12 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
- * <b>6.1.10 Registration-Termination-Answer (RTA) Command</b>
- *
  * 3GPP TS 29.229 version 12.7.0 Release 12
  *
+ * <b>6.1.10 Registration-Termination-Answer (RTA) Command</b>
+ *
  * The Registration-Termination-Answer (RTA) command, indicated by the Command-Code field set to
- * 304 and the �R� bit cleared in the Command Flags field, is sent by a client in response to the
+ * 304 and the 'R' bit cleared in the Command Flags field, is sent by a client in response to the
  * Registration-Termination-Request command. The Experimental-Result AVP may contain one of the
  * values defined in section 6.2.
  *
