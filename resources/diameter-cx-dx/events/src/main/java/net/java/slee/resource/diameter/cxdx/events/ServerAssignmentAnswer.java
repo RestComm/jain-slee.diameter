@@ -301,13 +301,6 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
     SCSCFRestorationInfo[] getSCSCFRestorationInfos();
 
     /**
-     * Returns the value of the SCSCF-Restoration-Info AVP, of type Grouped.
-     *
-     * @return the value of the SCSCF-Restoration-Info AVP or null if it has not been set on this message
-     */
-    SCSCFRestorationInfo getSCSCFRestorationInfo();
-
-    /**
      * Sets the value of the SCSCF-Restoration-Info AVP, of type Grouped.
      *
      * @throws IllegalStateException if setSCSCFRestorationInfo has already been called

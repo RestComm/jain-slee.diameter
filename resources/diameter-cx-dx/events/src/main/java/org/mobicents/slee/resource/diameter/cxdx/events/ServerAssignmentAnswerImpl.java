@@ -122,13 +122,6 @@ public class ServerAssignmentAnswerImpl extends DiameterMessageImpl implements S
     }
 
     /* (non-Javadoc)
- * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentAnswer#getSCSCFRestorationInfos()
- */
-    public SCSCFRestorationInfo getSCSCFRestorationInfo() {
-        return (SCSCFRestorationInfo) getAvpAsCustom(SCSCF_RESTORATION_INFO, CXDX_VENDOR_ID, SCSCFRestorationInfoImpl.class);
-    }
-
-    /* (non-Javadoc)
      * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentAnswer#getSCSCFRestorationInfos()
      */
     public SCSCFRestorationInfo[] getSCSCFRestorationInfos() {
