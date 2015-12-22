@@ -48,51 +48,54 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  */
 public interface AuthenticationInfoAvp extends GroupedAvp {
 
-  /*
-    7.3.18 E-UTRAN-Vector
-    The E-UTRAN-Vector AVP is of type Grouped. This AVP shall contain an E-UTRAN Vector.
-    AVP format:
-    E-UTRAN-Vector ::= <AVP header: 1414 10415>
-                        [ Item-Number ]
-                        { RAND }
-                        { XRES }
-                        { AUTN }
-                        { KASME }
-                        *[AVP]
-   */
-  public boolean hasEUTRANVector();
-  public EUTRANVectorAvp getEUTRANVector();
-  public void setEUTRANVector(EUTRANVectorAvp EUTRANVector);
+    /*
+      7.3.18 E-UTRAN-Vector
+      The E-UTRAN-Vector AVP is of type Grouped. This AVP shall contain an E-UTRAN Vector.
+      AVP format:
+      E-UTRAN-Vector ::= <AVP header: 1414 10415>
+                          [ Item-Number ]
+                          { RAND }
+                          { XRES }
+                          { AUTN }
+                          { KASME }
+                          *[AVP]
+     */
+    public boolean hasEUTRANVector();
+    public void setEUTRANVector(EUTRANVectorAvp EUTRANVector);
+    public EUTRANVectorAvp[] getEUTRANVectors();
+    public void setEUTRANVectors(EUTRANVectorAvp[] eutranVectors);
 
-  /*
-    7.3.19 UTRAN-Vector
-    The UTRAN-Vector AVP is of type Grouped. This AVP shall contain an UTRAN Vector.
-    AVP format:
-    UTRAN-Vector ::= <AVP header: 1415 10415>
-                        [ Item-Number ]
-                        { RAND }
-                        { XRES }
-                        { AUTN }
-                        { Confidentiality-Key }
-                        { Integrity-Key }
-                        *[AVP]
-   */
-  public boolean hasUTRANVector();
-  public UTRANVectorAvp getUTRANVector();
-  public void setUTRANVector(UTRANVectorAvp utranVector);
+    /*
+      7.3.19 UTRAN-Vector
+      The UTRAN-Vector AVP is of type Grouped. This AVP shall contain an UTRAN Vector.
+      AVP format:
+      UTRAN-Vector ::= <AVP header: 1415 10415>
+                          [ Item-Number ]
+                          { RAND }
+                          { XRES }
+                          { AUTN }
+                          { Confidentiality-Key }
+                          { Integrity-Key }
+                          *[AVP]
+     */
+    public boolean hasUTRANVector();
+    public void setUTRANVector(UTRANVectorAvp utranVector);
+    public UTRANVectorAvp[] getUTRANVectors();
+    public void setUTRANVectors(UTRANVectorAvp[] utranVectors);
 
-  /*
-        7.3.20 GERAN-Vector
-        The GERAN-Vector AVP is of type Grouped. This AVP shall contain a GERAN Vector.
-        AVP format:
-        GERAN-Vector ::= <AVP header: 1416 10415>
-                        [ Item-Number ]
-                        { RAND }
-                        { SRES }
-                        { Kc }
-                        *[AVP]
-  */
-  public boolean hasGERANVector();
-  public GERANVectorAvp getGERANVector();
-  public void setGERANVector(GERANVectorAvp geranVector);
+    /*
+          7.3.20 GERAN-Vector
+          The GERAN-Vector AVP is of type Grouped. This AVP shall contain a GERAN Vector.
+          AVP format:
+          GERAN-Vector ::= <AVP header: 1416 10415>
+                          [ Item-Number ]
+                          { RAND }
+                          { SRES }
+                          { Kc }
+                          *[AVP]
+    */
+    public boolean hasGERANVector();
+    public void setGERANVector(GERANVectorAvp geranVector);
+    public GERANVectorAvp[] getGERANVectors();
+    public void setGERANVectors(GERANVectorAvp[] geranVectors);
 }

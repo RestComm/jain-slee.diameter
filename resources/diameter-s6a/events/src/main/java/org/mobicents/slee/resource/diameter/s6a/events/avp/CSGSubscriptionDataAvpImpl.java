@@ -76,12 +76,18 @@ public class CSGSubscriptionDataAvpImpl extends GroupedAvpImpl implements CSGSub
         return hasAvp(DiameterS6aAvpCodes.SERVICE_SELECTION);
     }
 
-    public String getServiceSelection() {
-        return getAvpAsUTF8String(DiameterS6aAvpCodes.SERVICE_SELECTION);
-    }
-
     public void setServiceSelection(String serviceSelection) {
         addAvp(DiameterS6aAvpCodes.SERVICE_SELECTION, serviceSelection);
+    }
+
+    public String[] getServiceSelections(){
+        return getAvpsAsUTF8String(DiameterS6aAvpCodes.SERVICE_SELECTION);
+    }
+
+    public void setServiceSelections(String[] serviceSelections){
+        for (String aux : serviceSelections){
+            setServiceSelection(aux);
+        }
     }
 
     public boolean hasVisitedPLMNId() {

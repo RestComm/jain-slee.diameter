@@ -53,69 +53,72 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  */
 public interface LCSPrivacyExceptionAvp extends GroupedAvp {
 
-  /*
-   7.3.87 SS-Code
-   The SS-Code AVP is of type OctetString. Octets are coded according to 3GPP TS 29.002 [24].
-   */
-  public boolean hasSSCode();
-  public byte[] getSSCode();
-  public void setSSCode(byte[] ssCode);
-
-  /*
-    7.3.88 SS-Status
-    The SS-Status AVP is of type OctetString. Octets are coded according to 3GPP TS 29.002 [24]. For details, see 3GPP
-    TS 23.011 [29].
+    /*
+     7.3.87 SS-Code
+     The SS-Code AVP is of type OctetString. Octets are coded according to 3GPP TS 29.002 [24].
      */
-  public boolean hasSSStatus();
-  public byte[] getSSStatus();
-  public void setSSStatus(byte[] ssStatus);
+    public boolean hasSSCode();
+    public byte[] getSSCode();
+    public void setSSCode(byte[] ssCode);
 
-  /*
-    7.3.89 Notification-To-UE-User
-    The Privacy-Notification-UE-User AVP is of type Enumerated. The following values are defined:
-        NOTIFY_LOCATION_ALLOWED (0)
-        NOTIFYANDVERIFY_LOCATION_ALLOWED_IF_NO_RESPONSE (1)
-        NOTIFYANDVERIFY_LOCATION_NOT_ALLOWED_IF_NO_RESPONSE (2)
-        LOCATION_NOT_ALLOWED (3)
-     */
-  public boolean hasNotificationToUEUser();
-  public NotificationToUEUser getNotificationToUEUser();
-  public void setNotificationToUEUser(NotificationToUEUser notificationToUEUser);
+    /*
+      7.3.88 SS-Status
+      The SS-Status AVP is of type OctetString. Octets are coded according to 3GPP TS 29.002 [24]. For details, see 3GPP
+      TS 23.011 [29].
+       */
+    public boolean hasSSStatus();
+    public byte[] getSSStatus();
+    public void setSSStatus(byte[] ssStatus);
 
-  /*
-    7.3.90 External-Client
-    The External-Client AVP is of type Grouped. This AVP shall contain the identities of the external clients that are
-    allowed to locate a target UE for a MT-LR.
-    */
-  public boolean hasExternalClient();
-  public ExternalClientAvp getExternalClient();
-  public void setExternalClient(ExternalClientAvp externalClientAvp);
+    /*
+      7.3.89 Notification-To-UE-User
+      The Privacy-Notification-UE-User AVP is of type Enumerated. The following values are defined:
+          NOTIFY_LOCATION_ALLOWED (0)
+          NOTIFYANDVERIFY_LOCATION_ALLOWED_IF_NO_RESPONSE (1)
+          NOTIFYANDVERIFY_LOCATION_NOT_ALLOWED_IF_NO_RESPONSE (2)
+          LOCATION_NOT_ALLOWED (3)
+       */
+    public boolean hasNotificationToUEUser();
+    public NotificationToUEUser getNotificationToUEUser();
+    public void setNotificationToUEUser(NotificationToUEUser notificationToUEUser);
 
-  /*
-    7.3.93 PLMN-Client
-    The PLMN-Client AVP is of type Enumerated. The following values are defined:
-        BROADCAST_SERVICE (0)
-        O_AND_M_HPLMN (1)
-        O_AND_M_VPLMN (2)
-        ANONYMOUS_LOCATION (3)
-        TARGET_UE_SUBSCRIBED_SERVICE (4)
-     */
-  public boolean hasPLMNClient();
-  public PLMNClient getPLMNClient();
-  public void setPLMNClient(PLMNClient plmnClient);
+    /*
+      7.3.90 External-Client
+      The External-Client AVP is of type Grouped. This AVP shall contain the identities of the external clients that are
+      allowed to locate a target UE for a MT-LR.
+      */
+    public boolean hasExternalClient();
+    public void setExternalClient(ExternalClientAvp externalClientAvp);
+    public ExternalClientAvp[] getExternalClients();
+    public void setExternalClients(ExternalClientAvp[] externalClients);
 
-  /*
-    7.3.94 Service-Type
-    The Service-Type AVP is of type Grouped. This AVP shall contain the identities of the service type of the clients that
-    are allowed to locate a target UE for an MT-LR.
-    AVP format
-    Service-Type ::= <AVP header: 1483 10415>
-        { ServiceTypeIdentity }
-        [ GMLC-Restriction ]
-        [ Notification-To-UE-User ]
-        *[AVP]
-    */
-  public boolean hasServiceType();
-  public ServiceTypeAvp getServiceType();
-  public void setServiceType(ServiceTypeAvp serviceType);
+    /*
+      7.3.93 PLMN-Client
+      The PLMN-Client AVP is of type Enumerated. The following values are defined:
+          BROADCAST_SERVICE (0)
+          O_AND_M_HPLMN (1)
+          O_AND_M_VPLMN (2)
+          ANONYMOUS_LOCATION (3)
+          TARGET_UE_SUBSCRIBED_SERVICE (4)
+       */
+    public boolean hasPLMNClient();
+    public void setPLMNClient(PLMNClient plmnClient);
+    public PLMNClient[] getPLMNClients();
+    public void setPLMNClients(PLMNClient[] plmnClients);
+
+    /*
+      7.3.94 Service-Type
+      The Service-Type AVP is of type Grouped. This AVP shall contain the identities of the service type of the clients that
+      are allowed to locate a target UE for an MT-LR.
+      AVP format
+      Service-Type ::= <AVP header: 1483 10415>
+          { ServiceTypeIdentity }
+          [ GMLC-Restriction ]
+          [ Notification-To-UE-User ]
+          *[AVP]
+      */
+    public boolean hasServiceType();
+    public void setServiceType(ServiceTypeAvp serviceType);
+    public ServiceTypeAvp[] getServiceTypes();
+    public void setServiceTypes(ServiceTypeAvp[] serviceTypes);
 }

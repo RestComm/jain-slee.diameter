@@ -50,59 +50,89 @@ public class AreaScopeAvpImpl extends GroupedAvpImpl implements AreaScopeAvp {
         return hasAvp(DiameterS6aAvpCodes.CELL_GLOBAL_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public byte[] getCellGlobalIdentity() {
-        return getAvpAsOctetString(DiameterS6aAvpCodes.CELL_GLOBAL_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-    }
-
     public void setCellGlobalIdentity(byte[] cellGlobalIdentity) {
         addAvp(DiameterS6aAvpCodes.CELL_GLOBAL_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID, cellGlobalIdentity);
+    }
+
+    public void setCellGlobalIdentities(byte[][] cellGlobalIdentities){
+        for (byte[] aux : cellGlobalIdentities){
+            setCellGlobalIdentity(aux);
+        }
+    }
+
+    public byte[][] getCellGlobalIdentities(){
+        return getAvpsAsOctetString(DiameterS6aAvpCodes.CELL_GLOBAL_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
     public boolean hasEUTRANCellGlobalIdentity() {
         return hasAvp(DiameterS6aAvpCodes.E_UTRAN_CELL_GLOBAL_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public byte[] getEUTRANCellGlobalIdentity() {
-        return getAvpAsOctetString(DiameterS6aAvpCodes.E_UTRAN_CELL_GLOBAL_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-    }
-
     public void setEUTRANCellGlobalIdentity(byte[] eutranCellGlobalIdentity) {
         addAvp(DiameterS6aAvpCodes.E_UTRAN_CELL_GLOBAL_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID, eutranCellGlobalIdentity);
+    }
+
+    public byte[][] getEUTRANCellGlobalIdentities(){
+        return getAvpsAsOctetString(DiameterS6aAvpCodes.E_UTRAN_CELL_GLOBAL_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public void setEUTRANCellGlobalIdentities(byte[][] eutranCellGlobalIdentities){
+        for (byte[] aux : eutranCellGlobalIdentities){
+            setEUTRANCellGlobalIdentity(aux);
+        }
     }
 
     public boolean hasRoutingAreaIdentity() {
         return hasAvp(DiameterS6aAvpCodes.ROUTING_AREA_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public byte[] getRoutingAreaIdentity() {
-        return getAvpAsOctetString(DiameterS6aAvpCodes.ROUTING_AREA_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-    }
-
     public void setRoutingAreaIdentity(byte[] routingAreaIdentity) {
         addAvp(DiameterS6aAvpCodes.ROUTING_AREA_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID, routingAreaIdentity);
+    }
+
+    public byte[][] getRoutingAreaIdentities(){
+        return getAvpsAsOctetString(DiameterS6aAvpCodes.ROUTING_AREA_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public void setRoutingAreaIdentities(byte[][] routingAreaIdentities){
+        for (byte[] aux : routingAreaIdentities){
+            setRoutingAreaIdentity(aux);
+        }
     }
 
     public boolean hasLocationAreaIdentity() {
         return hasAvp(DiameterS6aAvpCodes.LOCATION_AREA_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public byte[] getLocationAreaIdentity() {
-        return getAvpAsOctetString(DiameterS6aAvpCodes.LOCATION_AREA_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-    }
-
     public void setLocationAreaIdentity(byte[] locationAreaIdentity) {
         addAvp(DiameterS6aAvpCodes.LOCATION_AREA_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID, locationAreaIdentity);
+    }
+
+    public byte[][] getLocationAreaIdentities(){
+        return getAvpsAsOctetString(DiameterS6aAvpCodes.LOCATION_AREA_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public void setLocationAreaIdentities(byte[][] locationAreaIdentities){
+        for (byte[] aux: locationAreaIdentities){
+            setLocationAreaIdentity(aux);
+        }
     }
 
     public boolean hasTrackingAreaIdentity() {
         return hasAvp(DiameterS6aAvpCodes.TRACKING_AREA_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public byte[] getTrackingAreaIdentity() {
-        return getAvpAsOctetString(DiameterS6aAvpCodes.TRACKING_AREA_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-    }
-
     public void setTrackingAreaIdentity(byte[] trackingAreaIdentity) {
         addAvp(DiameterS6aAvpCodes.TRACKING_AREA_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID, trackingAreaIdentity);
+    }
+
+    public byte[][] getTrackingAreaIdentities(){
+        return getAvpsAsOctetString(DiameterS6aAvpCodes.TRACKING_AREA_IDENTITY, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public void setTrackingAreaIdentities(byte[][] trackingAreaIdentities){
+        for (byte[] aux : trackingAreaIdentities){
+            setTrackingAreaIdentity(aux);
+        }
     }
 }

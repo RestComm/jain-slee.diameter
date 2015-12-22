@@ -57,8 +57,9 @@ public interface AreaScopeAvp extends GroupedAvp {
         3GPP TS 29.002 [24].
      */
     public boolean hasCellGlobalIdentity();
-    public byte[] getCellGlobalIdentity();
     public void setCellGlobalIdentity(byte[] cellGlobalIdentity);
+    public byte[][] getCellGlobalIdentities();
+    public void setCellGlobalIdentities(byte[][] cellGlobalIdentities);
 
     /*
         7.3.117 E-UTRAN-Cell-Global-Identity
@@ -67,8 +68,9 @@ public interface AreaScopeAvp extends GroupedAvp {
         Octets are coded as described in 3GPP TS 29.002 [24].
      */
     public boolean hasEUTRANCellGlobalIdentity();
-    public byte[] getEUTRANCellGlobalIdentity();
     public void setEUTRANCellGlobalIdentity(byte[] eutranCellGlobalIdentity);
+    public byte[][] getEUTRANCellGlobalIdentities();
+    public void setEUTRANCellGlobalIdentities(byte[][] eutranCellGlobalIdentities);
 
     /*
         7.3.120 Routing-Area-Identity
@@ -77,8 +79,9 @@ public interface AreaScopeAvp extends GroupedAvp {
         in 3GPP TS 29.002 [24].
      */
     public boolean hasRoutingAreaIdentity();
-    public byte[] getRoutingAreaIdentity();
     public void setRoutingAreaIdentity(byte[] routingAreaIdentity);
+    public byte[][] getRoutingAreaIdentities();
+    public void setRoutingAreaIdentities(byte[][] routingAreaIdentities);
 
     /*
         7.3.121 Location-Area-Identity
@@ -87,8 +90,9 @@ public interface AreaScopeAvp extends GroupedAvp {
         described in 3GPP TS 29.002 [24].
      */
     public boolean hasLocationAreaIdentity();
-    public byte[] getLocationAreaIdentity();
     public void setLocationAreaIdentity(byte[] locationAreaIdentity);
+    public byte[][] getLocationAreaIdentities();
+    public void setLocationAreaIdentities(byte[][] locationAreaIdentities);
 
     /*
         7.3.118 Tracking-Area-Identity
@@ -97,6 +101,7 @@ public interface AreaScopeAvp extends GroupedAvp {
         in 3GPP TS 29.002 [24].
      */
     public boolean hasTrackingAreaIdentity();
-    public byte[] getTrackingAreaIdentity();
     public void setTrackingAreaIdentity(byte[] trackingAreaIdentity);
+    public byte[][] getTrackingAreaIdentities();
+    public void setTrackingAreaIdentities(byte[][] trackingAreaIdentities);
 }

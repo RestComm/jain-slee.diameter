@@ -70,9 +70,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         The Job-Type AVP is of type Enumerated. The possible values are those defined in 3GPP TS 32.422 [23] for Job-Type.
      */
     public boolean hasJobType();
-
     public JobType getJobType();
-
     public void setJobType(JobType jobType);
 
     /*
@@ -80,9 +78,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         The Area-Scope AVP is of type Grouped. See 3GPP TS 32.422 [23].
      */
     public boolean hasAreaScope();
-
     public AreaScopeAvp getAreaScope();
-
     public void setAreaScope(AreaScopeAvp areaScopeAvp);
 
     /*
@@ -91,9 +87,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         defined in 3GPP TS 32.422 [23]. The most significant bit is bit 8 of the first octet.
      */
     public boolean hasListOfMeasurements();
-
     public long getListOfMeasurements();
-
     public void setListOfMeasurements(long listOfMeasurements);
 
     /*
@@ -102,9 +96,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         3GPP TS 32.422 [23]. The most significant bit is bit 8 of the first octet.
      */
     public boolean hasReportingTrigger();
-
     public long getReportingTrigger();
-
     public void setReportingTrigger(long reportingTrigger);
 
     /*
@@ -113,9 +105,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         Report Interval
      */
     public boolean hasReportInterval();
-
     public ReportInterval getReportInterval();
-
     public void setReportInterval(ReportInterval reportInterval);
 
     /*
@@ -124,9 +114,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         Report Amount
      */
     public boolean hasReportAmount();
-
     public ReportAmount getReportAmount();
-
     public void setReportAmount(ReportAmount reportAmount);
 
     /*
@@ -134,9 +122,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         The Event-Threshold-RSRP AVP is of type Unsigned32. See 3GPP TS 32.422 for allowed values
      */
     public boolean hasEventThresholdRSRP();
-
     public long getEventThresholdRSRP();
-
     public void setEventThresholdRSRP(long eventThresholdRSRP);
 
     /*
@@ -144,9 +130,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         The Event-Threshold-RSRQ AVP is of type Unsigned32. See 3GPP TS 32.422 for allowed values
      */
     public boolean hasEventThresholdRSRQ();
-
     public long getEventThresholdRSRQ();
-
     public void setEventThresholdRSRQ(long eventThresholdRSRQ);
 
     /*
@@ -155,9 +139,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         Logging Interval
      */
     public boolean hasLoggingInterval();
-
     public LoggingInterval getLoggingInterval();
-
     public void setLoggingInterval(LoggingInterval loggingInterval);
 
     /*
@@ -166,9 +148,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         Logging Duration
      */
     public boolean hasLoggingDuration();
-
     public LoggingDuration getLoggingDuration();
-
     public void setLoggingDuration(LoggingDuration loggingDuration);
 
     /*
@@ -177,9 +157,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         [23] for Measurement period LTE.
      */
     public boolean hasMeasurementPeriodLTE();
-
     public MeasurementPeriodLTE getMeasurementPeriodLTE();
-
     public void setMeasurementPeriodLTE(MeasurementPeriodLTE measurementPeriodLTE);
 
     /*
@@ -188,9 +166,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         [23] for Measurement period UMTS
      */
     public boolean hasMeasurementPeriodUMTS();
-
     public MeasurementPeriodUMTS getMeasurementPeriodUMTS();
-
     public void setMeasurementPeriodUMTS(MeasurementPeriodUMTS measurementPeriodUMTS);
 
     /*
@@ -199,9 +175,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         32.422 [23] for Collection period for RRM measurements LTE.
      */
     public boolean hasCollectionPeriodRRMLTE();
-
     public CollectionPeriodRRMLTE getCollectionPeriodRRMLTE();
-
     public void setCollectionPeriodRRMLTE(CollectionPeriodRRMLTE collectionPeriodRRMLTE);
 
     /*
@@ -210,9 +184,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         32.422 [23] for Collection period for RRM measurements UMTS.
      */
     public boolean hasCollectionPeriodRRMUMTS();
-
     public CollectionPeriodRRMUMTS getCollectionPeriodRRMUMTS();
-
     public void setCollectionPeriodRRMUMTS(CollectionPeriodRRMUMTS collectionPeriodRRMUMTS);
 
     /*
@@ -221,9 +193,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         values are those defined in 3GPP TS 32.422 [23] for Positioning Method.
      */
     public boolean hasPositioningMethod();
-
     public byte[] getPositioningMethod();
-
     public void setPositioningMethod(byte[] positioningMethod);
 
     /*
@@ -232,9 +202,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         values are those defined in 3GPP TS 32.422 [23] for Measurement quantity.
      */
     public boolean hasMeasurementQuantity();
-
     public byte[] getMeasurementQuantity();
-
     public void setMeasurementQuantity(byte[] measurementQuantity);
 
     /*
@@ -242,9 +210,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         The Event-Threshold-Event-1F AVP is of type Integer32. See 3GPP TS 32.422 [23] for allowed values.
      */
     public boolean hasEventThresholdEvent1F();
-
     public int getEventThresholdEvent1F();
-
     public void setEventThresholdEvent1F(int eventThresholdEvent1F);
 
     /*
@@ -252,9 +218,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         The Event-Threshold-Event-1I AVP is of type Integer32. See 3GPP TS 32.422 [23] for allowed values
      */
     public boolean hasEventThresholdEvent1I();
-
     public int getEventThresholdEvent1I();
-
     public void setEventThresholdEvent1I(int eventThresholdEvent1I);
 
     /*
@@ -264,8 +228,7 @@ public interface MDTConfigurationAvp extends GroupedAvp {
         7.3.185/1.
      */
     public boolean hasMDTAllowedPLMNId();
-
-    public byte[] getMDTAllowedPLMNId();
-
     public void setMDTAllowedPLMNId(byte[] mdtAllowedPLMNId);
+    public byte[][] getMDTAllowedPLMNIds();
+    public void setMDTAllowedPLMNIds(byte[][] mdtAllowedPLMNIds);
 }

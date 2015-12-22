@@ -61,13 +61,19 @@ public class ProSeSubscriptionDataAvpImpl extends GroupedAvpImpl implements ProS
         return hasAvp(DiameterS6aAvpCodes.PROSE_ALLOWED_PLMN, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public ProSeAllowedPLMNAvp getProSeAllowedPLMN() {
-        return (ProSeAllowedPLMNAvp) getAvpAsCustom(DiameterS6aAvpCodes.PROSE_ALLOWED_PLMN,
-                                                    DiameterS6aAvpCodes.S6A_VENDOR_ID, ProSeAllowedPLMNAvpImpl.class);
-    }
-
     public void setProSeAllowedPLMN(ProSeAllowedPLMNAvp proSeAllowedPLMN) {
         addAvp(proSeAllowedPLMN);
+    }
+
+    public ProSeAllowedPLMNAvp[] getProSeAllowedPLMNs(){
+        return (ProSeAllowedPLMNAvp[]) getAvpsAsCustom(DiameterS6aAvpCodes.PROSE_ALLOWED_PLMN,
+                                                       DiameterS6aAvpCodes.S6A_VENDOR_ID, ProSeAllowedPLMNAvpImpl.class);
+    }
+
+    public void setProSeAllowedPLMNs(ProSeAllowedPLMNAvp[] proSeAllowedPLMNs){
+        for (ProSeAllowedPLMNAvp aux : proSeAllowedPLMNs){
+            setProSeAllowedPLMN(aux);
+        }
     }
 
     public boolean has3GPPChargingCharacteristics() {

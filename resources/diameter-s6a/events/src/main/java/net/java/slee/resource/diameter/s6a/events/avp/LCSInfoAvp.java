@@ -58,39 +58,42 @@ public interface LCSInfoAvp extends GroupedAvp {
     details on the encoding of this AVP, see 3GPP TS 23.003[3].
   */
 
-  public boolean hasGMLCNumber();
-  public byte[] getGMLCNumber();
-  public void setGMLCNumber(byte[] gmlcNumber);
+    public boolean hasGMLCNumber();
+    public void setGMLCNumber(byte[] gmlcNumber);
+    public byte[][] getGMLCNumbers();
+    public void setGMLCNumbers(byte[][] gmlcNumbers);
 
-  /*
-    7.3.86 LCS-PrivacyException
-    The LCS-PrivacyException AVP is of type Grouped. This AVP shall contain the classes of LCS Client that are allowed
-    to locate any target UE.
-    AVP format
-    LCS-PrivacyException ::= <AVP header: 1475 10415>
-                             { SS-Code }
-                             { SS-Status }
-                             [ Notification-To-UE-User ]
-                             *[ External-Client ]
-                             *[ PLMN-Client ]
-                             *[ Service-Type ]
-                             *[AVP]
-   */
-  public boolean hasLCSPrivacyException();
-  public LCSPrivacyExceptionAvp getLCSPrivacyException();
-  public void setLCSPrivacyException(LCSPrivacyExceptionAvp lcsPrivacyException);
+    /*
+      7.3.86 LCS-PrivacyException
+      The LCS-PrivacyException AVP is of type Grouped. This AVP shall contain the classes of LCS Client that are allowed
+      to locate any target UE.
+      AVP format
+      LCS-PrivacyException ::= <AVP header: 1475 10415>
+                               { SS-Code }
+                               { SS-Status }
+                               [ Notification-To-UE-User ]
+                               *[ External-Client ]
+                               *[ PLMN-Client ]
+                               *[ Service-Type ]
+                               *[AVP]
+     */
+    public boolean hasLCSPrivacyException();
+    public void setLCSPrivacyException(LCSPrivacyExceptionAvp lcsPrivacyException);
+    public LCSPrivacyExceptionAvp[] getLCSPrivacyExceptions();
+    public void setLCSPrivacyExceptions(LCSPrivacyExceptionAvp[] lcsPrivacyExceptionAvps);
 
-  /*
-    7.3.96 MO-LR
-    The MO-LR AVP is of type Grouped. This AVP shall contain the classes of MO-LR for which a subscription exists for
-    a particular UE.
-    AVP format
-          MO-LR ::= <AVP header: 1485 10415>
-                    { SS-Code }
-                    { SS-Status }
-                    *[AVP]
-   */
-  public boolean hasMOLR();
-  public MOLRAvp getMOLR();
-  public void setMOLR(MOLRAvp molrAvp);
+    /*
+      7.3.96 MO-LR
+      The MO-LR AVP is of type Grouped. This AVP shall contain the classes of MO-LR for which a subscription exists for
+      a particular UE.
+      AVP format
+            MO-LR ::= <AVP header: 1485 10415>
+                      { SS-Code }
+                      { SS-Status }
+                      *[AVP]
+     */
+    public boolean hasMOLR();
+    public void setMOLR(MOLRAvp molrAvp);
+    public MOLRAvp[] getMOLRs();
+    public void setMOLRs(MOLRAvp[] molrs);
 }

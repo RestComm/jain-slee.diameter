@@ -86,38 +86,56 @@ public class LCSPrivacyExceptionAvpImpl extends GroupedAvpImpl implements LCSPri
         return hasAvp(DiameterS6aAvpCodes.EXTERNAL_CLIENT, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public ExternalClientAvp getExternalClient() {
-        return (ExternalClientAvp) getAvpAsCustom(DiameterS6aAvpCodes.EXTERNAL_CLIENT, DiameterS6aAvpCodes.S6A_VENDOR_ID,
-                                                  ExternalClientAvpImpl.class);
-    }
-
     public void setExternalClient(ExternalClientAvp externalClientAvp) {
         addAvp(externalClientAvp);
+    }
+
+    public ExternalClientAvp[] getExternalClients(){
+        return (ExternalClientAvp[]) getAvpsAsCustom(DiameterS6aAvpCodes.EXTERNAL_CLIENT,
+                                                     DiameterS6aAvpCodes.S6A_VENDOR_ID, ExternalClientAvpImpl.class);
+    }
+
+    public void setExternalClients(ExternalClientAvp[] externalClients){
+        for (ExternalClientAvp aux : externalClients){
+            setExternalClient(aux);
+        }
     }
 
     public boolean hasPLMNClient() {
         return hasAvp(DiameterS6aAvpCodes.PLMN_CLIENT, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public PLMNClient getPLMNClient() {
-        return (PLMNClient) getAvpAsEnumerated(DiameterS6aAvpCodes.PLMN_CLIENT, DiameterS6aAvpCodes.S6A_VENDOR_ID,
-                                               PLMNClient.class);
-    }
-
     public void setPLMNClient(PLMNClient plmnClient) {
         addAvp(DiameterS6aAvpCodes.PLMN_CLIENT, DiameterS6aAvpCodes.S6A_VENDOR_ID, plmnClient.getValue());
+    }
+
+    public PLMNClient[] getPLMNClients(){
+        return (PLMNClient[]) getAvpsAsEnumerated(DiameterS6aAvpCodes.PLMN_CLIENT, DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                                                  PLMNClient.class);
+    }
+
+    public void setPLMNClients(PLMNClient[] plmnClients){
+        for (PLMNClient aux : plmnClients) {
+            setPLMNClient(aux);
+        }
     }
 
     public boolean hasServiceType() {
         return hasAvp(DiameterS6aAvpCodes.SERVICE_TYPE, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public ServiceTypeAvp getServiceType() {
-        return (ServiceTypeAvp) getAvpAsCustom(DiameterS6aAvpCodes.SERVICE_TYPE, DiameterS6aAvpCodes.S6A_VENDOR_ID,
-                                               ServiceTypeAvpImpl.class);
-    }
-
     public void setServiceType(ServiceTypeAvp serviceType) {
         addAvp(serviceType);
+    }
+
+    public ServiceTypeAvp[] getServiceTypes(){
+        return (ServiceTypeAvp[]) getAvpsAsCustom(DiameterS6aAvpCodes.SERVICE_TYPE, DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                                                  ServiceTypeAvpImpl.class);
+    }
+
+    public void setServiceTypes(ServiceTypeAvp[] serviceTypes){
+        for (ServiceTypeAvp aux : serviceTypes){
+            setServiceType(aux);
+        }
     }
 }

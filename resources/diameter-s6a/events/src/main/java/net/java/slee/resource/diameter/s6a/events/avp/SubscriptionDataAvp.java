@@ -83,124 +83,124 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  */
 public interface SubscriptionDataAvp extends GroupedAvp {
 
-  public boolean hasSubscriberStatus();
-  public void setSubscriberStatus(SubscriberStatus ss);
-  public SubscriberStatus getSubscriberStatus();
+    public boolean hasSubscriberStatus();
+    public void setSubscriberStatus(SubscriberStatus ss);
+    public SubscriberStatus getSubscriberStatus();
 
-  public boolean hasMSISDN();
-  public byte[] getMSISDN();
-  public void setMSISDN(byte[] msisdn);
+    public boolean hasMSISDN();
+    public byte[] getMSISDN();
+    public void setMSISDN(byte[] msisdn);
 
-  public boolean hasSTNSR();
-  public byte[] getSTNSR();
-  public void setSTNSR(byte[] stnsr);
+    public boolean hasSTNSR();
+    public byte[] getSTNSR();
+    public void setSTNSR(byte[] stnsr);
 
-  public boolean hasICSIndicator();
-  public ICSIndicator getICSIndicator();
-  public void setICSIndicator(ICSIndicator icsIndicator);
+    public boolean hasICSIndicator();
+    public ICSIndicator getICSIndicator();
+    public void setICSIndicator(ICSIndicator icsIndicator);
 
-  public boolean hasNetworkAccessMode();
-  public void setNetworkAccessMode(NetworkAccessMode nam);
-  public NetworkAccessMode getNetworkAccessMode();
+    public boolean hasNetworkAccessMode();
+    public void setNetworkAccessMode(NetworkAccessMode nam);
+    public NetworkAccessMode getNetworkAccessMode();
 
-  public boolean hasOperatorDeterminedBarring();
-  public long getOperatorDeterminedBarring();
-  public void setOperatorDeterminedBarring(long operatorDeterminedBarring);
+    public boolean hasOperatorDeterminedBarring();
+    public long getOperatorDeterminedBarring();
+    public void setOperatorDeterminedBarring(long operatorDeterminedBarring);
 
-  public boolean hasHPLMNODB();
-  public long getHPLMNODB();
-  public void setHPLMNODB(long hplmnOdb);
+    public boolean hasHPLMNODB();
+    public long getHPLMNODB();
+    public void setHPLMNODB(long hplmnOdb);
 
-  public byte[][] getRegionalSubscriptionZoneCodes();
-  public void setRegionalSubscriptionZoneCode(byte[] rszc);
-  public void setRegionalSubscriptionZoneCodes(byte[][] rszcs);
+    public byte[][] getRegionalSubscriptionZoneCodes();
+    public void setRegionalSubscriptionZoneCode(byte[] rszc);
+    public void setRegionalSubscriptionZoneCodes(byte[][] rszcs);
 
-  public boolean hasAccessRestrictionData();
-  public long getAccessRestrictionData();
-  public void setAccessRestrictionData(long ard);
+    public boolean hasAccessRestrictionData();
+    public long getAccessRestrictionData();
+    public void setAccessRestrictionData(long ard);
 
-  public boolean hasAPNOIReplacement();
-  public String getAPNOIReplacement();
-  public void setAPNOIReplacement(String apnOiReplacement);
+    public boolean hasAPNOIReplacement();
+    public String getAPNOIReplacement();
+    public void setAPNOIReplacement(String apnOiReplacement);
 
-  public boolean hasLCSInfo();
-  public LCSInfoAvp getLCSInfo();
-  public void setLCSInfo(LCSInfoAvp lcsInfoAvp);
+    public boolean hasLCSInfo();
+    public LCSInfoAvp getLCSInfo();
+    public void setLCSInfo(LCSInfoAvp lcsInfoAvp);
 
+    public boolean hasTeleserviceList();
+    public TeleserviceListAvp getTeleserviceList();
+    public void setTeleserviceList(TeleserviceListAvp teleserviceList);
 
-  public boolean hasTeleserviceList();
-  public TeleserviceListAvp getTeleserviceList();
-  public void setTeleserviceList(TeleserviceListAvp teleserviceList);
+    public boolean hasCallBarringInfo();
+    public CallBarringInfoAvp getCallBarringInfo();
+    public void setCallBarringInfo(CallBarringInfoAvp callBarringInfo);
 
-  public boolean hasCallBarringInfo();
-  public CallBarringInfoAvp getCallBarringInfo();
-  public void setCallBarringInfo(CallBarringInfoAvp callBarringInfo);
+    public boolean has3GPPChargingCharacteristics();
+    public String get3GPPChargingCharacteristics();
+    public void set3GPPChargingCharacteristics(String threeGPPChargingCharacteristics);
 
-  public boolean has3GPPChargingCharacteristics();
-  public String get3GPPChargingCharacteristics();
-  public void set3GPPChargingCharacteristics(String threeGPPChargingCharacteristics);
+    public boolean hasAMBR();
+    public AMBRAvp getAMBR();
+    public void setAMBR(AMBRAvp ambr);
 
-  public boolean hasAMBR();
-  public AMBRAvp getAMBR();
-  public void setAMBR(AMBRAvp ambr);
+    public boolean hasAPNConfigurationProfile();
+    public APNConfigurationProfileAvp getAPNConfigurationProfile();
+    public void setAPNConfigurationProfile(APNConfigurationProfileAvp apnconfigprofile);
 
-  public boolean hasAPNConfigurationProfile();
-  public APNConfigurationProfileAvp getAPNConfigurationProfile();
-  public void setAPNConfigurationProfile(APNConfigurationProfileAvp apnconfigprofile);
+    public boolean hasRATFrequencySelectionPriorityID();
+    public long getRATFrequencySelectionPriorityID();
+    public void setRATFrequencySelectionPriorityID(long rfspid);
 
-  public boolean hasRATFrequencySelectionPriorityID();
-  public long getRATFrequencySelectionPriorityID();
-  public void setRATFrequencySelectionPriorityID(long rfspid);
+    public boolean hasTraceData();
+    public TraceDataAvp getTraceData();
+    public void setTraceData(TraceDataAvp traceData);
 
-  public boolean hasTraceData();
-  public TraceDataAvp getTraceData();
-  public void setTraceData(TraceDataAvp traceData);
+    public boolean hasGPRSSubscriptionData();
+    public GPRSSubscriptionDataAvp getGPRSSubscriptionData();
+    public void setGPRSSubscriptionData(GPRSSubscriptionDataAvp gprsSubscriptionData);
 
-  public boolean hasGPRSSubscriptionData();
-  public GPRSSubscriptionDataAvp getGPRSSubscriptionData();
-  public void setGPRSSubscriptionData(GPRSSubscriptionDataAvp gprsSubscriptionData);
+    public boolean hasCSGSubscriptionData();
+    public void setCSGSubscriptionData(CSGSubscriptionDataAvp csgSubscriptionData);
+    public CSGSubscriptionDataAvp[] getCSGSubscriptionDatas();
+    public void setCSGSubscriptionDatas(CSGSubscriptionDataAvp[] csgSubscriptionDatas);
 
-  public boolean hasCSGSubscriptionData();
-  public CSGSubscriptionDataAvp getCSGSubscriptionData();
-  public void setCSGSubscriptionData(CSGSubscriptionDataAvp csgSubscriptionData);
+    public boolean hasRoamingRestrictedDueToUnsupportedFeature();
+    public void setRoamingRestrictedDueToUnsupportedFeature(RoamingRestrictedDueToUnsupportedFeature rrdtuf);
+    public RoamingRestrictedDueToUnsupportedFeature getRoamingRestrictedDueToUnsupportedFeature();
 
-  public boolean hasRoamingRestrictedDueToUnsupportedFeature();
-  public void setRoamingRestrictedDueToUnsupportedFeature(RoamingRestrictedDueToUnsupportedFeature rrdtuf);
-  public RoamingRestrictedDueToUnsupportedFeature getRoamingRestrictedDueToUnsupportedFeature();
+    public boolean hasMPSPriority();
+    public long getMPSPriority();
+    public void setMPSPriority(long mpsPriority);
 
-  public boolean hasMPSPriority();
-  public long getMPSPriority();
-  public void setMPSPriority(long mpsPriority);
+    public boolean hasVPLMNLIPAAllowed();
+    public VPLMNLIPAAllowed getVPLMNLIPAAllowed();
+    public void setVPLMNLIPAAllowed(VPLMNLIPAAllowed vplmnlipaAllowed);
 
-  public boolean hasVPLMNLIPAAllowed();
-  public VPLMNLIPAAllowed getVPLMNLIPAAllowed();
-  public void setVPLMNLIPAAllowed(VPLMNLIPAAllowed vplmnlipaAllowed);
+    public boolean hasSubscribedPeriodicRAUTAUTimer();
+    public long getSubscribedPeriodicRAUTAUTimer();
+    public void setSubscribedPeriodicRAUTAUTimer(long subscribedPeriodicRAUTAUTimer);
 
-  public boolean hasSubscribedPeriodicRAUTAUTimer();
-  public long getSubscribedPeriodicRAUTAUTimer();
-  public void setSubscribedPeriodicRAUTAUTimer(long subscribedPeriodicRAUTAUTimer);
+    public boolean hasRelayNodeIndicator();
+    public RelayNodeIndicator getRelayNodeIndicator();
+    public void setRelayNodeIndicator(RelayNodeIndicator relayNodeIndicator);
 
-  public boolean hasRelayNodeIndicator();
-  public RelayNodeIndicator getRelayNodeIndicator();
-  public void setRelayNodeIndicator(RelayNodeIndicator relayNodeIndicator);
+    public boolean hasMDTUserConsent();
+    public MDTUserConsent getMDTUserConsent();
+    public void setMDTUserConsent(MDTUserConsent mdtUserConsent);
 
-  public boolean hasMDTUserConsent();
-  public MDTUserConsent getMDTUserConsent();
-  public void setMDTUserConsent(MDTUserConsent mdtUserConsent);
+    public boolean hasSubscribedVSRVCC();
+    public SubscribedVSRVCC getSubscribedVSRVCC();
+    public void setSubscribedVSRVCC(SubscribedVSRVCC subscribedVSRVCC);
 
-  public boolean hasSubscribedVSRVCC();
-  public SubscribedVSRVCC getSubscribedVSRVCC();
-  public void setSubscribedVSRVCC(SubscribedVSRVCC subscribedVSRVCC);
+    public boolean hasAMSISDN();
+    public byte[] getAMSISDN();
+    public void setAMSISDN(byte[] amsisdn);
 
-  public boolean hasAMSISDN();
-  public byte[] getAMSISDN();
-  public void setAMSISDN(byte[] amsisdn);
+    public boolean hasSubscriptionDataFlags();
+    public long getSubscriptionDataFlags();
+    public void setSubscriptionDataFlags(long subscriptionDataFlags);
 
-  public boolean hasSubscriptionDataFlags();
-  public long getSubscriptionDataFlags();
-  public void setSubscriptionDataFlags(long subscriptionDataFlags);
-
-  public boolean hasProSeSubscriptionData();
-  public ProSESubscriptionDataAvp getProSeSubscriptionData();
-  public void setProSeSubscriptionData(ProSESubscriptionDataAvp proSeSubscriptionDataAvp);
+    public boolean hasProSeSubscriptionData();
+    public ProSESubscriptionDataAvp getProSeSubscriptionData();
+    public void setProSeSubscriptionData(ProSESubscriptionDataAvp proSeSubscriptionDataAvp);
 }

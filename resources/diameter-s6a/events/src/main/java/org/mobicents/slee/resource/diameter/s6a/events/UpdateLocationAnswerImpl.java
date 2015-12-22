@@ -175,28 +175,55 @@ public class UpdateLocationAnswerImpl extends DiameterMessageImpl implements Upd
         addAvp(subscriptionData);
     }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#hasErrorDiagnostic()
+     */
     public boolean hasErrorDiagnostic() {
         return hasAvp(DiameterS6aAvpCodes.ERROR_DIAGNOSTIC, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#getErrorDiagnostic()
+     */
     public ErrorDiagnostic getErrorDiagnostic() {
         return (ErrorDiagnostic) getAvpAsEnumerated(DiameterS6aAvpCodes.ERROR_DIAGNOSTIC,
-                                                    DiameterS6aAvpCodes.S6A_VENDOR_ID, ErrorDiagnostic.class);
+                DiameterS6aAvpCodes.S6A_VENDOR_ID, ErrorDiagnostic.class);
     }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#setErrorDiagnostic(ErrorDiagnostic)
+     */
     public void setErrorDiagnostic(ErrorDiagnostic errorDiagnostic) {
         addAvp(DiameterS6aAvpCodes.ERROR_DIAGNOSTIC, DiameterS6aAvpCodes.S6A_VENDOR_ID, errorDiagnostic.getValue());
     }
 
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#hasResetID()
+     */
     public boolean hasResetID() {
         return hasAvp(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public byte[] getResetID() {
-        return getAvpAsOctetString(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-    }
-
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#setResetID(byte[])
+     */
     public void setResetID(byte[] resetID) {
         addAvp(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID, resetID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#setResetIDs(byte[][])
+     */
+    public void setResetIDs(byte[][] resetIDs) {
+        for (byte[] resetId : resetIDs) {
+            setResetID(resetId);
+        }
+    }
+
+    /* (non-Javadoc)
+    * @see net.java.slee.resource.diameter.s6a.events.UpdateLocationAnswer#getResetIDs()
+    */
+    public byte[][] getResetIDs() {
+        return getAvpsAsOctetString(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 }

@@ -278,11 +278,17 @@ public class MDTConfigurationAvpImpl extends GroupedAvpImpl implements MDTConfig
         return hasAvp(DiameterS6aAvpCodes.MDT_ALLOWED_PLMN_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public byte[] getMDTAllowedPLMNId() {
-        return getAvpAsOctetString(DiameterS6aAvpCodes.MDT_ALLOWED_PLMN_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-    }
-
     public void setMDTAllowedPLMNId(byte[] mdtAllowedPLMNId) {
         addAvp(DiameterS6aAvpCodes.MDT_ALLOWED_PLMN_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID, mdtAllowedPLMNId);
+    }
+
+    public byte[][] getMDTAllowedPLMNIds(){
+        return getAvpsAsOctetString(DiameterS6aAvpCodes.MDT_ALLOWED_PLMN_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    public void setMDTAllowedPLMNIds(byte[][] mdtAllowedPLMNIds){
+        for (byte[] aux : mdtAllowedPLMNIds){
+            setMDTAllowedPLMNId(aux);
+        }
     }
 }

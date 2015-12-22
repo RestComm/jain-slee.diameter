@@ -202,4 +202,36 @@ public class APNConfigurationAvpImpl extends GroupedAvpImpl implements APNConfig
     public void setWLANoffloadability(WLANoffloadabilityAvp wlaNoffloadability) {
         addAvp(wlaNoffloadability);
     }
+
+    /* (non-Javadoc)
+    * @see net.java.slee.resource.diameter.s6a.events.avp.APNConfiguration#hasSpecificAPNInfo()
+    */
+    public boolean hasSpecificAPNInfo() {
+        return hasAvp(DiameterS6aAvpCodes.SPECIFIC_APN_INFO, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.avp.APNConfiguration#setSpecificAPNInfo(net.java.slee.resource.diameter.s6a.events.avp.SpecificAPNInfoAvp)
+     */
+    public void setSpecificAPNInfo(SpecificAPNInfoAvp specificAPNInfo) {
+        addAvp(DiameterS6aAvpCodes.SPECIFIC_APN_INFO, DiameterS6aAvpCodes.S6A_VENDOR_ID, specificAPNInfo.byteArrayValue());
+    }
+
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.avp.APNConfiguration#setSpecificAPNInfos(net.java.slee.resource.diameter.base.events.avp.SpecificAPNInfo[])
+     */
+    public void setSpecificAPNInfos(SpecificAPNInfoAvp[] specificAPNInfos) {
+        for (SpecificAPNInfoAvp aux : specificAPNInfos){
+            setSpecificAPNInfo(aux);
+        }
+    }
+
+    /* (non-Javadoc)
+     * @see net.java.slee.resource.diameter.s6a.events.avp.APNConfiguration#getSpecificAPNInfos()
+     */
+    public SpecificAPNInfoAvp[] getSpecificAPNInfos(){
+        return (SpecificAPNInfoAvp[]) getAvpsAsCustom(DiameterS6aAvpCodes.SPECIFIC_APN_INFO,
+                DiameterS6aAvpCodes.S6A_VENDOR_ID, SpecificAPNInfoAvpImpl.class);
+    }
 }

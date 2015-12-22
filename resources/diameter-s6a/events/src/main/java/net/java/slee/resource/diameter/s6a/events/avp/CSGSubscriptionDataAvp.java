@@ -74,8 +74,9 @@ public interface CSGSubscriptionDataAvp extends GroupedAvp {
         card value per 3GPP TS 23.003 [3], clause 9.1.2, and 3GPP TS 23.008 [30], clause 2.13.6).
     */
     public boolean hasServiceSelection();
-    public String getServiceSelection();
     public void setServiceSelection(String serviceSelection);
+    public String[] getServiceSelections();
+    public void setServiceSelections(String[] serviceSelection);
 
     /*
         7.3.9 Visited-PLMN-Id

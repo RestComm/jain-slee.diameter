@@ -60,8 +60,9 @@ public interface ProSESubscriptionDataAvp extends GroupedAvp {
         or monitor or both for ProSe Discovery or to use ProSe direct communication.
      */
     public boolean hasProSeAllowedPLMN();
-    public ProSeAllowedPLMNAvp getProSeAllowedPLMN();
     public void setProSeAllowedPLMN(ProSeAllowedPLMNAvp proSeAllowedPLMN);
+    public ProSeAllowedPLMNAvp[] getProSeAllowedPLMNs();
+    public void setProSeAllowedPLMNs(ProSeAllowedPLMNAvp[] proSeAllowedPLMNs);
 
     /*
      */

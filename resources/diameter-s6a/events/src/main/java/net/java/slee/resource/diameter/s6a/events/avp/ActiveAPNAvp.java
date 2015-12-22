@@ -50,109 +50,114 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  */
 public interface ActiveAPNAvp extends GroupedAvp {
 
-  /**
-   * Returns true if the Context-Identifier AVP is present in the message.
-   * 
-   * @return true if the Context-Identifier AVP is present in the message, false otherwise
-   */
-  public boolean hasContextIdentifier();
+    /**
+     * Returns true if the Context-Identifier AVP is present in the message.
+     *
+     * @return true if the Context-Identifier AVP is present in the message, false otherwise
+     */
+    public boolean hasContextIdentifier();
 
-  /**
-   * Returns the value of the Context-Identifier AVP, of type Unsigned32.
-   * 
-   * @return the value of the Context-Identifier AVP or null if it has not been set on this message
-   */
-  public long getContextIdentifier();
+    /**
+     * Returns the value of the Context-Identifier AVP, of type Unsigned32.
+     *
+     * @return the value of the Context-Identifier AVP or null if it has not been set on this message
+     */
+    public long getContextIdentifier();
 
-  /**
-   * Sets the value of the Context-Identifier AVP, of type Unsigned32.
-   * 
-   * @param contextIdentifier
-   */
-  public void setContextIdentifier(long contextIdentifier);
+    /**
+     * Sets the value of the Context-Identifier AVP, of type Unsigned32.
+     *
+     * @param contextIdentifier
+     */
+    public void setContextIdentifier(long contextIdentifier);
 
-  /**
-   * Returns true if the Service-Selection AVP is present in the message.
-   * 
-   * @return true if the Service-Selection AVP is present in the message, false otherwise
-   */
-  public boolean hasServiceSelection();
+    /**
+     * Returns true if the Service-Selection AVP is present in the message.
+     *
+     * @return true if the Service-Selection AVP is present in the message, false otherwise
+     */
+    public boolean hasServiceSelection();
 
-  /**
-   * Returns the value of the Service-Selection AVP, of type UTF8String.
-   * 
-   * @return the value of the Service-Selection AVP or null if it has not been set on this message
-   */
-  public String getServiceSelection();
+    /**
+     * Returns the value of the Service-Selection AVP, of type UTF8String.
+     *
+     * @return the value of the Service-Selection AVP or null if it has not been set on this message
+     */
+    public String getServiceSelection();
 
-  /**
-   * Sets the value of the Service-Selection AVP, of type UTF8String.
-   * 
-   * @param serviceSelection
-   */
-  public void setServiceSelection(String serviceSelection);
+    /**
+     * Sets the value of the Service-Selection AVP, of type UTF8String.
+     *
+     * @param serviceSelection
+     */
+    public void setServiceSelection(String serviceSelection);
 
-  /**
-   * Returns true if the MIP6-Agent-Info AVP is present in the message.
-   * 
-   * @return true if the MIP6-Agent-Info AVP is present in the message, false otherwise
-   */
-  public boolean hasMIP6AgentInfo();
+    /**
+     * Returns true if the MIP6-Agent-Info AVP is present in the message.
+     *
+     * @return true if the MIP6-Agent-Info AVP is present in the message, false otherwise
+     */
+    public boolean hasMIP6AgentInfo();
 
-  /**
-   * Returns the value of the MIP6-Agent-Info AVP, of type Grouped.
-   * 
-   * @return the value of the MIP6-Agent-Info AVP or null if it has not been set on this message
-   */
-  public MIP6AgentInfoAvp getMIP6AgentInfo();
+    /**
+     * Returns the value of the MIP6-Agent-Info AVP, of type Grouped.
+     *
+     * @return the value of the MIP6-Agent-Info AVP or null if it has not been set on this message
+     */
+    public MIP6AgentInfoAvp getMIP6AgentInfo();
 
-  /**
-   * Sets the value of the MIP6-Agent-Info AVP, of type Grouped.
-   * 
-   * @param mip the new value for the MIP6-Agent-Info AVP
-   */
-  public void setMIP6AgentInfo(MIP6AgentInfoAvp mip);
+    /**
+     * Sets the value of the MIP6-Agent-Info AVP, of type Grouped.
+     *
+     * @param mip the new value for the MIP6-Agent-Info AVP
+     */
+    public void setMIP6AgentInfo(MIP6AgentInfoAvp mip);
 
-  /**
-   * Returns true if the Visited-Network-Identifier AVP is present in the message.
-   * 
-   * @return true if the Visited-Network-Identifier AVP is present in the message, false otherwise
-   */
-  public boolean hasVisitedNetworkIdentifier();
+    /**
+     * Returns true if the Visited-Network-Identifier AVP is present in the message.
+     *
+     * @return true if the Visited-Network-Identifier AVP is present in the message, false otherwise
+     */
+    public boolean hasVisitedNetworkIdentifier();
 
-  /**
-   * Returns the value of the Visited-Network-Identifier AVP, of type DiameterIdentity.
-   * 
-   * @return the value of the Visited-Network-Identifier AVP or null if it has not been set on this message
-   */
-  public DiameterIdentity getVisitedNetworkIdentifier();
+    /**
+     * Returns the value of the Visited-Network-Identifier AVP, of type DiameterIdentity.
+     *
+     * @return the value of the Visited-Network-Identifier AVP or null if it has not been set on this message
+     */
+    public DiameterIdentity getVisitedNetworkIdentifier();
 
-  /**
-   * Sets the value of the Visited-Network-Identifier AVP, of type DiameterIdentity.
-   * 
-   * @param vni the new value for the Visited-Network-Identifier AVP
-   */
-  public void setVisitedNetworkIdentifier(DiameterIdentity vni);
+    /**
+     * Sets the value of the Visited-Network-Identifier AVP, of type DiameterIdentity.
+     *
+     * @param vni the new value for the Visited-Network-Identifier AVP
+     */
+    public void setVisitedNetworkIdentifier(DiameterIdentity vni);
 
-  /**
-   * Returns true if the Specific-APN-Info AVP is present in the message.
-   * 
-   * @return true if the Specific-APN-Info AVP is present in the message, false otherwise
-   */
-  public boolean hasSpecificAPNInfo();
+    /**
+     * Returns true if the Specific-APN-Info AVP is present in the message.
+     *
+     * @return true if the Specific-APN-Info AVP is present in the message, false otherwise
+     */
+    public boolean hasSpecificAPNInfo();
 
-  /**
-   * Returns the value of the Specific-APN-Info AVP, of type Grouped.
-   * 
-   * @return the value of the Specific-APN-Info AVP or null if it has not been set on this message
-   */
-  public SpecificAPNInfoAvp getSpecificAPNInfo();
+    /**
+     * Sets the value of the Specific-APN-Info AVP, of type Grouped.
+     *
+     * @param specificAPNInfo the new value for the Specific-APN-Info AVP
+     */
+    public void setSpecificAPNInfo(SpecificAPNInfoAvp specificAPNInfo);
 
-  /**
-   * Sets the value of the Specific-APN-Info AVP, of type Grouped.
-   * 
-   * @param specificAPNInfo the new value for the Specific-APN-Info AVP
-   */
-  public void setSpecificAPNInfo(SpecificAPNInfoAvp specificAPNInfo);
+    /**
+     * Returns the set of Specific-APN-Info AVPs. The returned array contains the AVPs in the order they appear in the message.
+     * A return value of null implies that no Specific-APN-Info AVPs have been set.
+     * The elements in the given array are byte objects.
+     */
+    public SpecificAPNInfoAvp[] getSpecificAPNInfos();
 
+    /**
+     * Sets the set of given Specific-APN-Infos AVPs on the message
+     * @param specificAPNInfos
+     */
+    public void setSpecificAPNInfos(SpecificAPNInfoAvp[] specificAPNInfos);
 }

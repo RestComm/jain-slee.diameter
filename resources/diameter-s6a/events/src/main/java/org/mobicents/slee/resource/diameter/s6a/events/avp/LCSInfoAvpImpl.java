@@ -47,36 +47,54 @@ public class LCSInfoAvpImpl extends GroupedAvpImpl implements LCSInfoAvp {
         return hasAvp(DiameterS6aAvpCodes.GMLC_NUMBER, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public byte[] getGMLCNumber() {
-        return getAvpAsOctetString(DiameterS6aAvpCodes.GMLC_NUMBER, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-    }
-
     public void setGMLCNumber(byte[] gmlcNumber) {
         addAvp(DiameterS6aAvpCodes.GMLC_NUMBER, DiameterS6aAvpCodes.S6A_VENDOR_ID, gmlcNumber);
     }
 
-    public boolean hasLCSPrivacyException() {
-         return hasAvp(DiameterS6aAvpCodes.LCS_PRIVACYEXCEPTION, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+    public byte[][] getGMLCNumbers() {
+        return getAvpsAsOctetString(DiameterS6aAvpCodes.GMLC_NUMBER, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public LCSPrivacyExceptionAvp getLCSPrivacyException() {
-        return (LCSPrivacyExceptionAvp) getAvpAsCustom(DiameterS6aAvpCodes.LCS_PRIVACYEXCEPTION,
-                                            DiameterS6aAvpCodes.S6A_VENDOR_ID, LCSPrivacyExceptionAvpImpl.class);
+    public void setGMLCNumbers(byte[][] gmlcNumbers) {
+        for (byte[] aux : gmlcNumbers) {
+            setGMLCNumber(aux);
+        }
+    }
+
+    public boolean hasLCSPrivacyException() {
+        return hasAvp(DiameterS6aAvpCodes.LCS_PRIVACYEXCEPTION, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
     public void setLCSPrivacyException(LCSPrivacyExceptionAvp lcsPrivacyException) {
         addAvp(lcsPrivacyException);
     }
 
+    public LCSPrivacyExceptionAvp[] getLCSPrivacyExceptions() {
+        return (LCSPrivacyExceptionAvp[]) getAvpsAsCustom(DiameterS6aAvpCodes.LCS_PRIVACYEXCEPTION,
+                DiameterS6aAvpCodes.S6A_VENDOR_ID, LCSPrivacyExceptionAvpImpl.class);
+    }
+
+    public void setLCSPrivacyExceptions(LCSPrivacyExceptionAvp[] lcsPrivacyExceptionAvps) {
+        for (LCSPrivacyExceptionAvp aux : lcsPrivacyExceptionAvps) {
+            setLCSPrivacyException(aux);
+        }
+    }
+
     public boolean hasMOLR() {
         return hasAvp(DiameterS6aAvpCodes.MO_LR, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public MOLRAvp getMOLR() {
-        return (MOLRAvp)getAvpAsCustom(DiameterS6aAvpCodes.MO_LR, DiameterS6aAvpCodes.S6A_VENDOR_ID, MOLRAvpImpl.class);
-    }
-
     public void setMOLR(MOLRAvp molrAvp) {
         addAvp(molrAvp);
+    }
+
+    public MOLRAvp[] getMOLRs() {
+        return (MOLRAvp[]) getAvpsAsCustom(DiameterS6aAvpCodes.MO_LR, DiameterS6aAvpCodes.S6A_VENDOR_ID, MOLRAvpImpl.class);
+    }
+
+    public void setMOLRs(MOLRAvp[] molrs) {
+        for (MOLRAvp aux : molrs) {
+            setMOLR(aux);
+        }
     }
 }

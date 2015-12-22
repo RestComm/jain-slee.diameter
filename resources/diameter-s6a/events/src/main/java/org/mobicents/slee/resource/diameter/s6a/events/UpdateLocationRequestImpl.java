@@ -269,4 +269,15 @@ public class UpdateLocationRequestImpl extends DiameterMessageImpl implements Up
     public void setCoupledNodeDiameterID(DiameterIdentity coupledNodeDiameterID) {
         addAvp(DiameterS6aAvpCodes.COUPLED_NODE_DIAMETER_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID, coupledNodeDiameterID);
     }
+
+    public ActiveAPNAvp[] getActiveAPNs(){
+        return (ActiveAPNAvp[])getAvpsAsCustom(DiameterS6aAvpCodes.ACTIVE_APN, DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                                               ActiveAPNAvpImpl.class);
+    }
+
+    public void setActiveAPNs(ActiveAPNAvp[] activeAPNs){
+        for (ActiveAPNAvp aux: activeAPNs){
+            setActiveAPN(aux);
+        }
+    }
 }

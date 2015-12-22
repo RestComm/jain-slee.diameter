@@ -131,34 +131,136 @@ public interface APNConfigurationAvp extends GroupedAvp {
      */
     public void setMIP6AgentInfo(MIP6AgentInfoAvp mip);
 
+    /**
+     * Returns true if the SIP-TO-Permission AVP is present in the message.
+     *
+     * @return true if the SIP-TO-Permission AVP is present in the message, false otherwise
+     */
     public boolean hasSIPTOPermission();
 
+    /**
+     * Returns the value of the SIP-TO-Permission AVP, of type Enumerated.
+     *
+     * @return the value of the SIP-TO-Permission AVP or null if it has not been set on this message
+     */
     public SIPTOPermission getSIPTOPermission();
 
+    /**
+     * Sets the value of the SIP-TO-Permission AVP, of type Grouped.
+     *
+     * @param siptoPermission the new value for the SIP-TO-Permission AVP
+     */
     public void setSIPTOPermission(SIPTOPermission siptoPermission);
 
+    /**
+     * Returns true if the LIPA-Permission AVP is present in the message.
+     *
+     * @return true if the LIPA-Permission AVP is present in the message, false otherwise
+     */
     public boolean hasLIPAPermission();
 
+    /**
+     * Returns the value of the LIPA-Permission AVP, of type Enumerated.
+     *
+     * @return the value of the LIPA-Permission AVP or null if it has not been set on this message
+     */
     public LIPAPermission getLIPAPermission();
 
+    /**
+     * Sets the value of the LIPA-Permission AVP, of type Grouped.
+     *
+     * @param lipaPermission the new value for the LIPA-Permission AVP
+     */
     public void setLIPAPermission(LIPAPermission lipaPermission);
 
+    /**
+     * Returns true if the Restoration-Priority AVP is present in the message.
+     *
+     * @return true if the Restoration-Priority AVP is present in the message, false otherwise
+     */
     public boolean hasRestorationPriority();
 
+    /**
+     * Returns the value of the Restoration-Priority AVP, of type Unsigned32.
+     *
+     * @return the value of the Restoration-Priority AVP or null if it has not been set on this message
+     */
     public long getRestorationPriority();
 
+    /**
+     * Sets the value of the Restoration-Priority AVP, of type Grouped.
+     *
+     * @param restorationPriority the new value for the Restoration-Priority AVP
+     */
     public void setRestorationPriority(long restorationPriority);
 
+    /**
+     * Returns true if the SIP-TO-Local-Network-Permission AVP is present in the message.
+     *
+     * @return true if the SIP-TO-Local-Network-Permission AVP is present in the message, false otherwise
+     */
     public boolean hasSIPTOLocalNetworkPermission();
 
+    /**
+     * Returns the value of the SIP-TO-Local-Network-Permission AVP, of type Unsigned32.
+     *
+     * @return the value of the SIP-TO-Local-Network-Permission AVP or null if it has not been set on this message
+     */
     public long getSIPTOLocalNetworkPermission();
 
+    /**
+     * Sets the value of the SIP-TO-Local-Network-Permission AVP, of type Grouped.
+     *
+     * @param siptoLocalNetworkPermission the new value for the SIP-TO-Local-Network-Permission AVP
+     */
     public void setSIPTOLocalNetworkPermission(long siptoLocalNetworkPermission);
 
+    /**
+     * Returns true if the WLAN-offloadability AVP is present in the message.
+     *
+     * @return true if the WLAN-offloadability AVP is present in the message, false otherwise
+     */
     public boolean hasWLANoffloadability();
 
+    /**
+     * Returns the value of the WLAN-offloadability AVP, of type Grouped.
+     *
+     * @return the value of the WLAN-offloadability AVP or null if it has not been set on this message
+     */
     public WLANoffloadabilityAvp getWLANoffloadability();
 
+    /**
+     * Sets the value of the WLAN-offloadability AVP, of type Grouped.
+     *
+     * @param wlaNoffloadability the new value for theWLAN-offloadability AVP
+     */
     public void setWLANoffloadability(WLANoffloadabilityAvp wlaNoffloadability);
 
+    /**
+     * Returns true if the Specific-APN-Info AVP is present in the message.
+     *
+     * @return true if the Specific-APN-Info AVP is present in the message, false otherwise
+     */
+    public boolean hasSpecificAPNInfo();
+
+    /**
+     * Sets the value of the Specific-APN-Info AVP, of type Grouped.
+     *
+     * @param specificAPNInfo the new value for the Specific-APN-Info AVP
+     */
+    public void setSpecificAPNInfo(SpecificAPNInfoAvp specificAPNInfo);
+
+    /**
+     * Returns a set with all the Specific-APN-Info AVPs present in the message.
+     *
+     * @return a set of values with Specific-APN-Info AVPs or null if it has not been set on this message
+     */
+    public SpecificAPNInfoAvp[] getSpecificAPNInfos();
+
+    /**
+     * Set of Specific-APN-Info APVs to be added into the message.
+     *
+     * @param specificAPNInfos set of Specific-APN-Info AVPs
+     */
+    public void setSpecificAPNInfos(SpecificAPNInfoAvp[] specificAPNInfos);
 }
