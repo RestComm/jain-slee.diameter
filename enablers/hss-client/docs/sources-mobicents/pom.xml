@@ -16,7 +16,7 @@
 		<JEE.PLATFORM>JBoss Application Server</JEE.PLATFORM>
 		<THIS.ISSUE_TRACKER_URL>http://code.google.com/p/jain-slee/issues/list</THIS.ISSUE_TRACKER_URL>
 		<THIS.SOURCE_CODE_URL>https://code.google.com/p/jain-slee.diameter/</THIS.SOURCE_CODE_URL>
-		<author.email.eduardo>emmartins (at) gmail.com</author.email.eduardo>		
+		<author.email.alexandre>brainslog (at) gmail.com</author.email.alexandre>
 	</properties>
 	
 	<build>
