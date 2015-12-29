@@ -28,7 +28,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 /**
  * Defines an interface representing the PDP-Context grouped AVP type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
- * 
+ *
  * <pre>
  * 7.3.74 PDP-Context
  *
@@ -56,11 +56,11 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  *  NOTE: The Ext-PDP-Address AVP may be present only if the PDP-Address AVP is present. If the Ext-PDP-Address AVP is
  *  present, then it shall not contain the same address type (IPv4 or IPv6) as the PDP-Address AVP.
  * </pre>
- * 
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:richard.good@smilecoms.com"> Richard Good </a>
  * @author <a href="mailto:paul.carter-brown@smilecoms.com"> Paul Carter-Brown </a>
- * @author <a href="mailto:oscar.perez@gmail.com"> Óscar Pérez Lozano </a>
+ * @author <a href="mailto:oscar.perez@gmail.com"> Oscar Perez Lozano </a>
  */
 public interface PDPContextAvp extends GroupedAvp {
     /*

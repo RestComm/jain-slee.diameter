@@ -29,7 +29,7 @@ import java.io.Serializable;
 /**
  * Java class representing the GMLC-Restriction enumerated type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
- * 
+ *
  * <pre>
  * 7.3.92 GMLC-Restriction
  *
@@ -37,9 +37,9 @@ import java.io.Serializable;
  *    GMLC_LIST (0)
  *    HOME_COUNTRY (1)
  * </pre>
- * 
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
- * @author <a href="mailto:oscar.perez@gmail.com"> Óscar Pérez Lozano </a>
+ * @author <a href="mailto:oscar.perez@gmail.com"> Oscar Perez Lozano </a>
  */
 public class GMLCRestriction implements Enumerated, Serializable {
 

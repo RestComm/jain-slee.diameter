@@ -29,7 +29,7 @@ import java.io.Serializable;
 /**
  * Java class representing the Subscribed-VSRVCC enumerated type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
- * 
+ *
  * <pre>
  * 7.3.150 Subscribed-VSRVCC
  *
@@ -42,7 +42,7 @@ import java.io.Serializable;
  * Absence of this AVP in ULA shall be interpreted as the user is not subscribed to the vSRVCC.
  * </pre>
  *
- * @author <a href="mailto:oscar.perez@gmail.com"> Óscar Pérez Lozano </a>
+ * @author <a href="mailto:oscar.perez@gmail.com"> Oscar Perez Lozano </a>
  */
 public class SubscribedVSRVCC implements Enumerated, Serializable {
 

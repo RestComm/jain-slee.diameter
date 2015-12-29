@@ -29,7 +29,7 @@ import java.io.Serializable;
 /**
  * Java class representing the Alert-Reason enumerated type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 32.422 V12.4.0) specification:
- * 
+ *
  * <pre>
  * 5.10.23 Measurement period LTE
  *
@@ -49,7 +49,7 @@ import java.io.Serializable;
  *  ? 1 min (6).
  * </pre>
  *
- * @author <a href="mailto:oscar.perez@gmail.com"> Óscar Pérez Lozano </a>
+ * @author <a href="mailto:oscar.perez@gmail.com"> Oscar Perez Lozano </a>
  */
 public class MeasurementPeriodLTE implements Enumerated, Serializable {
 

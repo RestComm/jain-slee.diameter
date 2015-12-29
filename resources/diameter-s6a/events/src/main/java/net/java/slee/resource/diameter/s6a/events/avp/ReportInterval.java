@@ -29,7 +29,7 @@ import java.io.Serializable;
 /**
  * Java class representing the Alert-Reason enumerated type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 32.422 V12.4.0) specification:
- * 
+ *
  * <pre>
  * 5.10.5 Report Interval
  * This parameter is mandatory if the Reporting trigger is configured for Periodic UE side measurements a(such as M1
@@ -71,8 +71,8 @@ import java.io.Serializable;
  * ? 30 min=1800000 ms (26),
  * ? 60 min=3600000 ms (27)
  * </pre>
- * 
- * @author <a href="mailto:oscar.perez@gmail.com"> Óscar Pérez Lozano </a>
+ *
+ * @author <a href="mailto:oscar.perez@gmail.com"> Oscar Perez Lozano </a>
  */
 public class ReportInterval implements Enumerated, Serializable {
 

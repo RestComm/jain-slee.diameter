@@ -27,7 +27,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 /**
  * Defines an interface representing the Area-Scope grouped AVP type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 32.299 V12.8.0) specification:
- * 
+ *
  * <pre>
  * 7.2.240A User-CSG-Information AVP
  *
@@ -42,11 +42,11 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  *                                      { CSG-Access-Mode }
  *                                      [ CSG-Membership-Indication ]
  * </pre>
- * 
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:richard.good@smilecoms.com"> Richard Good </a>
  * @author <a href="mailto:paul.carter-brown@smilecoms.com"> Paul Carter-Brown </a>
- * @author <a href="mailto:oscar.perez@gmail.com"> Óscar Pérez Lozano </a>
+ * @author <a href="mailto:oscar.perez@gmail.com"> Oscar Perez Lozano </a>
  */
 public interface UserCSGInformationAvp extends GroupedAvp {
 

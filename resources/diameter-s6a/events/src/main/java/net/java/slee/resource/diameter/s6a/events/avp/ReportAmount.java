@@ -29,7 +29,7 @@ import java.io.Serializable;
 /**
  * Java class representing the Alert-Reason enumerated type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 32.422 V12.4.0) specification:
- * 
+ *
  * <pre>
  * 5.10.6 Report Amount
  *
@@ -50,7 +50,7 @@ import java.io.Serializable;
  * ? infinity (7)
  * </pre>
  *
- * @author <a href="mailto:oscar.perez@gmail.com"> Óscar Pérez Lozano </a>
+ * @author <a href="mailto:oscar.perez@gmail.com"> Oscar Perez Lozano </a>
  */
 public class ReportAmount implements Enumerated, Serializable {
 

@@ -27,10 +27,10 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 /**
  * Defines an interface representing the LCS-Info grouped AVP type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
- * 
+ *
  * <pre>
  * 7.3.84 LCS-Info
- * 
+ *
  * The LCS-Info AVP is of type Grouped. This AVP shall contain the following LCS related information for a subscriber:
  *  - list of GMLCs in the HPLMN that are permitted to issue a call/session unrelated or call/session related MT-LR
  *    location request for this UE;
@@ -44,11 +44,11 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  *                 *[ MO-LR ]
  *                 *[AVP]
  * </pre>
- * 
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:richard.good@smilecoms.com"> Richard Good </a>
  * @author <a href="mailto:paul.carter-brown@smilecoms.com"> Paul Carter-Brown </a>
- * @author <a href="mailto:oscar.perez@gmail.com"> Óscar Pérez Lozano </a>
+ * @author <a href="mailto:oscar.perez@gmail.com"> Oscar Perez Lozano </a>
  */
 public interface LCSInfoAvp extends GroupedAvp {
 

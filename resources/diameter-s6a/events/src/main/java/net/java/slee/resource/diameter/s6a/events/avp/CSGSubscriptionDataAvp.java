@@ -29,7 +29,7 @@ import java.util.Date;
 /**
  * Defines an interface representing the CSG-Subscription-Data grouped AVP type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
- * 
+ *
  * <pre>
  *  7.3.78 CSG-Subscription-Data
  *  The CSG-Subscription-Data AVP is of type Grouped. This AVP shall contain the CSG-Id and optionally an associated
@@ -42,11 +42,11 @@ import java.util.Date;
  *     [ Visited-PLMN-Id ]
  *     *[AVP]
  * </pre>
- * 
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:richard.good@smilecoms.com"> Richard Good </a>
  * @author <a href="mailto:paul.carter-brown@smilecoms.com"> Paul Carter-Brown </a>
- * @author <a href="mailto:oscar.perez@gmail.com"> Óscar Pérez Lozano </a>
+ * @author <a href="mailto:oscar.perez@gmail.com"> Oscar Perez Lozano </a>
  */
 public interface CSGSubscriptionDataAvp extends GroupedAvp {
     /*

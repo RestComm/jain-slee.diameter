@@ -29,7 +29,7 @@ import java.io.Serializable;
 /**
  * Java class representing the Collection-Period-RRM-LTE enumerated type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 32.422 V12.4.0) specification:
- * 
+ *
  * <pre>
  * 5.10.20 Collection period for RRM measurements LTE
  *
@@ -53,7 +53,7 @@ import java.io.Serializable;
  * Some values may not be always available e.g., due to the large amount of logging they would generate in a highly
  * loaded network. The selection of a specific subset of supported values at the eNB is vendor-specific.  * </pre>
  *
- * @author <a href="mailto:oscar.perez@gmail.com"> Óscar Pérez Lozano </a>
+ * @author <a href="mailto:oscar.perez@gmail.com"> Oscar Perez Lozano </a>
  */
 public class CollectionPeriodRRMUMTS implements Enumerated, Serializable {
 

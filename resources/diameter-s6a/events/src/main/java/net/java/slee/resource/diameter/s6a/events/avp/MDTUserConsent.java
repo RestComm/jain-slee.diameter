@@ -29,7 +29,7 @@ import java.io.Serializable;
 /**
  * Java class representing the MDT-User-Consent enumerated type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
- * 
+ *
  * <pre>
  * 7.3.148 MDT-User-Consent
  *
@@ -42,7 +42,7 @@ import java.io.Serializable;
  * shall be interpreted as the MDT-User-Consent has not been modified.
  * </pre>
  *
- * @author <a href="mailto:oscar.perez@gmail.com"> Óscar Pérez Lozano </a>
+ * @author <a href="mailto:oscar.perez@gmail.com"> Oscar Perez Lozano </a>
  */
 public class MDTUserConsent implements Enumerated, Serializable {
 

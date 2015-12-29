@@ -29,7 +29,7 @@ import java.io.Serializable;
 /**
  * Java class representing the Notification-To-UE-User enumerated type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
- * 
+ *
  * <pre>
  * 7.3.89 Notification-To-UE-User AVP
  *
@@ -39,9 +39,9 @@ import java.io.Serializable;
  *     NOTIFYANDVERIFY_LOCATION_NOT_ALLOWED_IF_NO_RESPONSE (2)
  *     LOCATION_NOT_ALLOWED (3)
  * </pre>
- * 
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
- * @author <a href="mailto:oscar.perez@gmail.com"> Óscar Pérez Lozano </a>
+ * @author <a href="mailto:oscar.perez@gmail.com"> Oscar Perez Lozano </a>
  */
 public class NotificationToUEUser implements Enumerated, Serializable {
 

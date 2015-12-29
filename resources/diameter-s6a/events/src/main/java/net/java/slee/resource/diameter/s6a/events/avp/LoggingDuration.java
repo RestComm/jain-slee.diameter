@@ -29,7 +29,7 @@ import java.io.Serializable;
 /**
  * Java class representing the Alert-Reason enumerated type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 32.422 V12.4.0) specification:
- * 
+ *
  * <pre>
  * 5.10.9 Logging Duration
  * The parameter is mandatory if the the job type parameter is configured for Logged MDT. The parameter determines the
@@ -45,7 +45,7 @@ import java.io.Serializable;
  *  ? 7200 sec (5)
  * </pre>
  *
- * @author <a href="mailto:oscar.perez@gmail.com"> Óscar Pérez Lozano </a>
+ * @author <a href="mailto:oscar.perez@gmail.com"> Oscar Perez Lozano </a>
  */
 public class LoggingDuration implements Enumerated, Serializable {
 

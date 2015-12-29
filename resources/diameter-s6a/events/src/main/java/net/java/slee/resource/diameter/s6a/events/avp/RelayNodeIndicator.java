@@ -29,7 +29,7 @@ import java.io.Serializable;
 /**
  * Java class representing the Relay-Node-Indicator enumerated type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
- * 
+ *
  * <pre>
  * 7.3.147 Relay-Node-Indicator
  *
@@ -43,7 +43,7 @@ import java.io.Serializable;
  * The default value when this AVP is not present is NOT_RELAY_NODE (0).
  * </pre>
  *
- * @author <a href="mailto:oscar.perez@gmail.com"> Óscar Pérez Lozano </a>
+ * @author <a href="mailto:oscar.perez@gmail.com"> Oscar Perez Lozano </a>
  */
 public class RelayNodeIndicator implements Enumerated, Serializable {
 

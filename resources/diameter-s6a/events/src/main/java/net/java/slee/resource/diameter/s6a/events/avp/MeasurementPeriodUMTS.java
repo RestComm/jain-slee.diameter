@@ -29,7 +29,7 @@ import java.io.Serializable;
 /**
  * Java class representing the Measurement-Period-UMTS enumerated type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 32.422 V12.4.0) specification:
- * 
+ *
  * <pre>
  * 5.10.22 Measurement period UMTS
  *
@@ -59,7 +59,7 @@ import java.io.Serializable;
  *  ? 64000 ms (14).
  * </pre>
  *
- * @author <a href="mailto:oscar.perez@gmail.com"> Óscar Pérez Lozano </a>
+ * @author <a href="mailto:oscar.perez@gmail.com"> Oscar Perez Lozano </a>
  */
 public class MeasurementPeriodUMTS implements Enumerated, Serializable {
 
