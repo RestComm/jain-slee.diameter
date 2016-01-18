@@ -29,17 +29,20 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.3.26  User-Data-Already-Available AVP</b>
  * The User-Data-Already-Available AVP is of type Enumerated, and indicates to the HSS whether or
- * not the S-CSCF already has the part of the user profile that it needs to serve the user. The 
+ * not the S-CSCF already has the part of the user profile that it needs to serve the user. The
  * following values are defined:
- * 
+ *
  * USER_DATA_NOT_AVAILABLE (0)
  *   The S-CSCF does not have the data that it needs to serve the user.
  * USER_DATA_ALREADY_AVAILABLE (1)
  *   The S-CSCF already has the data that it needs to serve the user.
  * </pre>
- * 
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
  */
@@ -62,13 +65,13 @@ public class UserDataAlreadyAvailable implements Enumerated, Serializable {
   }
 
   public static UserDataAlreadyAvailable fromInt(int type) {
-    switch(type) {
-    case _USER_DATA_NOT_AVAILABLE: 
-      return USER_DATA_NOT_AVAILABLE;
-    case _USER_DATA_ALREADY_AVAILABLE: 
-      return USER_DATA_ALREADY_AVAILABLE;
-    default: 
-      throw new IllegalArgumentException("Invalid User-Data-Already-Available value: " + type);
+    switch (type) {
+      case _USER_DATA_NOT_AVAILABLE:
+        return USER_DATA_NOT_AVAILABLE;
+      case _USER_DATA_ALREADY_AVAILABLE:
+        return USER_DATA_ALREADY_AVAILABLE;
+      default:
+        throw new IllegalArgumentException("Invalid User-Data-Already-Available value: " + type);
     }
   }
 
@@ -77,13 +80,13 @@ public class UserDataAlreadyAvailable implements Enumerated, Serializable {
   }
 
   public String toString() {
-    switch(value) {
-    case _USER_DATA_NOT_AVAILABLE: 
-      return "USER_DATA_NOT_AVAILABLE";
-    case _USER_DATA_ALREADY_AVAILABLE: 
-      return "USER_DATA_ALREADY_AVAILABLE";
-    default: 
-      return "<Invalid Value>";
+    switch (value) {
+      case _USER_DATA_NOT_AVAILABLE:
+        return "USER_DATA_NOT_AVAILABLE";
+      case _USER_DATA_ALREADY_AVAILABLE:
+        return "USER_DATA_ALREADY_AVAILABLE";
+      default:
+        return "<Invalid Value>";
     }
   }
 
@@ -95,5 +98,4 @@ public class UserDataAlreadyAvailable implements Enumerated, Serializable {
       throw new StreamCorruptedException("Invalid internal state found: " + value);
     }
   }
-
 }

@@ -26,14 +26,18 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.3.46  SCSCF-Restoration-Info AVP</b>
- * The SCSCF-Restoration-Info AVP is of type Grouped and it contains the information required for 
+ * The SCSCF-Restoration-Info AVP is of type Grouped and it contains the information required for
  * an S-CSCF to handle the requests for a user.
- * 
+ *
  * AVP format
  * SCSCF-Restoration-Info ::= < AVP Header: 639, 10415>
  *                        { User-Name }
  *                      1*{ Restoration-Info }
+ *                        [ SIP-Authentication-Scheme ]   //R12
  *                       *[ AVP ]
  *
  * </pre>
@@ -49,32 +53,55 @@ public interface SCSCFRestorationInfo extends GroupedAvp {
 
   /**
    * Returns the value of the User-Name AVP, of type UTF8String.
+   *
    * @return the value of the User-Name AVP or null if it has not been set on this message
    */
   String getUserName();
 
   /**
    * Sets the value of the User-Name AVP, of type UTF8String.
+   *
    * @throws IllegalStateException if setUserName has already been called
    */
   void setUserName(String userName) throws IllegalStateException;
 
   /**
    * Returns the value of the Restoration-Info AVP, of type Grouped.
+   *
    * @return the value of the Restoration-Info AVP or null if it has not been set on this message
    */
   RestorationInfo[] getRestorationInfos();
 
   /**
    * Sets the value of the Restoration-Info AVP, of type Grouped.
+   *
    * @throws IllegalStateException if setRestorationInfo has already been called
    */
   void setRestorationInfo(RestorationInfo restorationInfo) throws IllegalStateException;
 
   /**
    * Sets the value of the Restoration-Info AVP, of type Grouped.
+   *
    * @throws IllegalStateException if setRestorationInfo has already been called
    */
   void setRestorationInfos(RestorationInfo[] restorationInfos) throws IllegalStateException;
 
+  /**
+   * Returns true if the SIP-Authentication-Scheme AVP is present in the message.
+   */
+  boolean hasSIPAuthenticationScheme();
+
+  /**
+   * Returns the value of the SIP-Authentication-Scheme AVP, of type UTF8String.
+   *
+   * @return the value of the SIP-Authentication-Scheme AVP or null if it has not been set on this message
+   */
+  String getSIPAuthenticationScheme();
+
+  /**
+   * Sets the value of the SIP-Authentication-Scheme AVP, of type UTF8String.
+   *
+   * @throws IllegalStateException if setSIP-Authentication-Scheme has already been called
+   */
+  void setSIPAuthenticationScheme(String sipAuthenticationScheme) throws IllegalStateException;
 }

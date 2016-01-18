@@ -28,17 +28,21 @@ import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 import net.java.slee.resource.diameter.base.events.avp.ProxyInfoAvp;
 import net.java.slee.resource.diameter.base.events.avp.VendorSpecificApplicationIdAvp;
 import net.java.slee.resource.diameter.cxdx.events.avp.OriginatingRequest;
+import net.java.slee.resource.diameter.cxdx.events.avp.SessionPriority;
 import net.java.slee.resource.diameter.cxdx.events.avp.UserAuthorizationType;
 import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.1.5 Location-Info-Request (LIR) Command</b>
- * The Location-Info-Request (LIR) command, indicated by the Command-Code field set to 302 and 
- * the �R� bit set in the Command Flags field, is sent by a Diameter Multimedia client to a 
- * Diameter Multimedia server in order to request name of the server that is currently serving 
+ * The Location-Info-Request (LIR) command, indicated by the Command-Code field set to 302 and
+ * the 'R' bit set in the Command Flags field, is sent by a Diameter Multimedia client to a
+ * Diameter Multimedia server in order to request name of the server that is currently serving
  * the user.
- * 
+ *
  * Message Format
  * <Location-Info-Request> ::=   < Diameter Header: 302, REQ, PXY, 16777216 >
  *                         < Session-Id >
@@ -49,13 +53,14 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                         [ Destination-Host ]
  *                         { Destination-Realm }
  *                         [ Originating-Request ]
+ *                         [ OC-Supported-Features ]    //Draft
  *                        *[ Supported-Features ]
  *                         { Public-Identity }
  *                         [ User-Authorization-Type ]
+ *                         [ Session-Priority ]         //R12
  *                        *[ AVP ]
  *                        *[ Proxy-Info ]
  *                        *[ Route-Record ]
- *                        
  * </pre>
  *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
@@ -64,7 +69,7 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 public interface LocationInfoRequest extends DiameterMessage {
 
   public static final int COMMAND_CODE = 302;
-  
+
   /**
    * Returns true if the Vendor-Specific-Application-Id AVP is present in the
    * message.
@@ -74,18 +79,17 @@ public interface LocationInfoRequest extends DiameterMessage {
   /**
    * Returns the value of the Vendor-Specific-Application-Id AVP, of type
    * Grouped.
-   * 
+   *
    * @return the value of the Vendor-Specific-Application-Id AVP or null if it
-   *         has not been set on this message
+   * has not been set on this message
    */
   VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
 
   /**
    * Sets the value of the Vendor-Specific-Application-Id AVP, of type
    * Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setVendorSpecificApplicationId has already been called
+   *
+   * @throws IllegalStateException if setVendorSpecificApplicationId has already been called
    */
   void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
 
@@ -102,9 +106,8 @@ public interface LocationInfoRequest extends DiameterMessage {
 
   /**
    * Sets the value of the Auth-Session-State AVP, of type Enumerated.
-   * 
-   * @throws IllegalStateException
-   *             if setAuthSessionState has already been called
+   *
+   * @throws IllegalStateException if setAuthSessionState has already been called
    */
   void setAuthSessionState(AuthSessionStateType authSessionState);
 
@@ -121,9 +124,8 @@ public interface LocationInfoRequest extends DiameterMessage {
 
   /**
    * Sets the value of the Originating-Request AVP, of type Enumerated.
-   * 
-   * @throws IllegalStateException
-   *             if setOriginatingRequest has already been called
+   *
+   * @throws IllegalStateException if setOriginatingRequest has already been called
    */
   void setOriginatingRequest(OriginatingRequest originatingRequest);
 
@@ -137,10 +139,9 @@ public interface LocationInfoRequest extends DiameterMessage {
 
   /**
    * Sets a single Supported-Features AVP in the message, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
+   *
+   * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+   *                               been called
    */
   void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
 
@@ -148,14 +149,13 @@ public interface LocationInfoRequest extends DiameterMessage {
    * Sets the set of Supported-Features AVPs, with all the values in the given
    * array. The AVPs will be added to message in the order in which they
    * appear in the array.
-   * 
+   * <p/>
    * Note: the array must not be altered by the caller following this call,
    * and getSupportedFeatureses() is not guaranteed to return the same array
    * instance, e.g. an "==" check would fail.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
+   *
+   * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+   *                               been called
    */
   void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
 
@@ -172,6 +172,7 @@ public interface LocationInfoRequest extends DiameterMessage {
 
   /**
    * Sets the value of the Public-Identity AVP, of type UTF8String.
+   *
    * @throws IllegalStateException if setPublicIdentity has already been called
    */
   void setPublicIdentity(String publicIdentity);
@@ -189,9 +190,8 @@ public interface LocationInfoRequest extends DiameterMessage {
 
   /**
    * Sets the value of the User-Authorization-Type AVP, of type Enumerated.
-   * 
-   * @throws IllegalStateException
-   *             if setAuthSessionState has already been called
+   *
+   * @throws IllegalStateException if setAuthSessionState has already been called
    */
   void setUserAuthorizationType(UserAuthorizationType userAuthorizationType);
 
@@ -205,21 +205,22 @@ public interface LocationInfoRequest extends DiameterMessage {
 
   /**
    * Sets a single Proxy-Info AVP in the message, of type Grouped.
+   *
    * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
+   *                               has already been called
    */
   void setProxyInfo(ProxyInfoAvp proxyInfo);
 
   /**
    * Sets the set of Proxy-Info AVPs, with all the values in the given array.
    * The AVPs will be added to message in the order in which they appear in the array.
-   *
+   * <p/>
    * Note: the array must not be altered by the caller following this call, and
    * getProxyInfos() is not guaranteed to return the same array instance,
    * e.g. an "==" check would fail.
    *
    * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
+   *                               has already been called
    */
   void setProxyInfos(ProxyInfoAvp[] proxyInfos);
 
@@ -233,22 +234,41 @@ public interface LocationInfoRequest extends DiameterMessage {
 
   /**
    * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
+   *
    * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
+   *                               has already been called
    */
   void setRouteRecord(DiameterIdentity routeRecord);
 
   /**
    * Sets the set of Route-Record AVPs, with all the values in the given array.
    * The AVPs will be added to message in the order in which they appear in the array.
-   *
+   * <p/>
    * Note: the array must not be altered by the caller following this call, and
    * getRouteRecords() is not guaranteed to return the same array instance,
    * e.g. an "==" check would fail.
    *
    * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
+   *                               has already been called
    */
   void setRouteRecords(DiameterIdentity[] routeRecords);
 
+
+  /**
+   * Returns true if the Public-Identity AVP is present in the message.
+   */
+  boolean hasSessionPriority();
+
+  /**
+   * Returns the value of the Public-Identity AVP, of type UTF8String.
+   * A return value of null implies that the AVP has not been set.
+   */
+  SessionPriority getSessionPriority();
+
+  /**
+   * Sets the value of the Public-Identity AVP, of type UTF8String.
+   *
+   * @throws IllegalStateException if setPublicIdentity has already been called
+   */
+  void setSessionPriority(SessionPriority sessionPriority);
 }

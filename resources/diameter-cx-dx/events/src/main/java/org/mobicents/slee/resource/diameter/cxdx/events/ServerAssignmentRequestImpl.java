@@ -30,6 +30,7 @@ import net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest;
 import net.java.slee.resource.diameter.cxdx.events.avp.MultipleRegistrationIndication;
 import net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo;
 import net.java.slee.resource.diameter.cxdx.events.avp.ServerAssignmentType;
+import net.java.slee.resource.diameter.cxdx.events.avp.SessionPriority;
 import net.java.slee.resource.diameter.cxdx.events.avp.UserDataAlreadyAvailable;
 import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
@@ -128,20 +129,6 @@ public class ServerAssignmentRequestImpl extends DiameterMessageImpl implements 
   }
 
   /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#getWildcardedIMPU()
-   */
-  public String getWildcardedIMPU() {
-    return getAvpAsUTF8String(WILDCARDED_IMPU, CXDX_VENDOR_ID);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#getWildcardedPSI()
-   */
-  public String getWildcardedPSI() {
-    return getAvpAsUTF8String(WILDCARDED_PSI, CXDX_VENDOR_ID);
-  }
-
-  /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#hasAuthSessionState()
    */
   public boolean hasAuthSessionState() {
@@ -184,20 +171,6 @@ public class ServerAssignmentRequestImpl extends DiameterMessageImpl implements 
   }
 
   /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#hasWildcardedIMPU()
-   */
-  public boolean hasWildcardedIMPU() {
-    return hasAvp(WILDCARDED_IMPU, CXDX_VENDOR_ID);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#hasWildcardedPSI()
-   */
-  public boolean hasWildcardedPSI() {
-    return hasAvp(WILDCARDED_PSI, CXDX_VENDOR_ID);
-  }
-
-  /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#setAuthSessionState(net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType)
    */
   public void setAuthSessionState(AuthSessionStateType authSessionState) {
@@ -212,12 +185,75 @@ public class ServerAssignmentRequestImpl extends DiameterMessageImpl implements 
   }
 
   /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#hasSARFlags()
+   */
+  public boolean hasSARFlags() {
+    return hasAvp(SAR_FLAGS, CXDX_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#getSARFlags()
+   */
+  public long getSARFlags() {
+    return getAvpAsUnsigned32(SAR_FLAGS, CXDX_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#setSARFlags(long)
+   */
+  public void setSARFlags(long sarFlags) {
+    addAvp(SAR_FLAGS, CXDX_VENDOR_ID, sarFlags);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#hasSessionPriority()
+   */
+  public boolean hasSessionPriority() {
+    return hasAvp(SESSION_PRIORITY, CXDX_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#getSessionPriority()
+   */
+  public SessionPriority getSessionPriority() {
+    return (SessionPriority) getAvpAsEnumerated(SESSION_PRIORITY, CXDX_VENDOR_ID, SessionPriority.class);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#setSessionPriority(net.java.slee.resource.diameter.cxdx.events.avp.SessionPriority)
+   */
+  public void setSessionPriority(SessionPriority sessionPriority) {
+    addAvp(SESSION_PRIORITY, CXDX_VENDOR_ID, sessionPriority.getValue());
+  }
+
+  /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#setPublicIdentities(java.lang.String[])
    */
   public void setPublicIdentities(String[] publicIdentities) {
-    for(String publicIdentity : publicIdentities) {
+    for (String publicIdentity : publicIdentities) {
       setPublicIdentity(publicIdentity);
     }
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#hasWildcardedPublicIdentity()
+   */
+  public boolean hasWildcardedPublicIdentity() {
+    return hasAvp(WILDCARDED_PUBLIC_IDENTITY, CXDX_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#getWildcardedPublicIdentity()
+   */
+  public String getWildcardedPublicIdentity() {
+    return getAvpAsUTF8String(WILDCARDED_PUBLIC_IDENTITY, CXDX_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#setWildcardedPublicIdentity(java.lang.String)
+   */
+  public void setWildcardedPublicIdentity(String wildcardedPublicIdentity) {
+    addAvp(WILDCARDED_PUBLIC_IDENTITY, CXDX_VENDOR_ID, wildcardedPublicIdentity);
   }
 
   /* (non-Javadoc)
@@ -259,7 +295,7 @@ public class ServerAssignmentRequestImpl extends DiameterMessageImpl implements 
    * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#setSupportedFeatureses(net.java.slee.resource.diameter.sh.client.events.avp.SupportedFeaturesAvp[])
    */
   public void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses) {
-    for(SupportedFeaturesAvp supportedFeatures : supportedFeatureses) {
+    for (SupportedFeaturesAvp supportedFeatures : supportedFeatureses) {
       setSupportedFeatures(supportedFeatures);
     }
   }
@@ -270,19 +306,4 @@ public class ServerAssignmentRequestImpl extends DiameterMessageImpl implements 
   public void setUserDataAlreadyAvailable(UserDataAlreadyAvailable userDataAlreadyAvailable) {
     addAvp(USER_DATA_ALREADY_AVAILABLE, CXDX_VENDOR_ID, userDataAlreadyAvailable.getValue());
   }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#setWildcardedIMPU(java.lang.String)
-   */
-  public void setWildcardedIMPU(String wildcardedIMPU) {
-    addAvp(WILDCARDED_IMPU, CXDX_VENDOR_ID, wildcardedIMPU);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentRequest#setWildcardedPSI(java.lang.String)
-   */
-  public void setWildcardedPSI(String wildcardedPSI) {
-    addAvp(WILDCARDED_PSI, CXDX_VENDOR_ID, wildcardedPSI);
-  }
-
 }

@@ -317,13 +317,6 @@ import net.java.slee.resource.diameter.s6a.events.avp.*;
     public boolean hasActiveAPN();
 
     /**
-    * Returns the value of the Active-APN AVP, of type Grouped.
-    *
-    * @return the value of the Active-APN AVP or null if it has not been set on this message
-    */
-    public ActiveAPNAvp getActiveAPN();
-
-    /**
     * Sets the value of the Active-APN AVP, of type Grouped.
     *
     * @param activeAPN
@@ -498,5 +491,21 @@ import net.java.slee.resource.diameter.s6a.events.avp.*;
      * @param coupledNodeDiameterID
      */
     public void setCoupledNodeDiameterID(DiameterIdentity coupledNodeDiameterID);
+
+
+    /**
+     * Returns a set with all the Active-APN AVPs that are in the message. Null if there is no Active-AVP defined
+     * on the message.
+     *
+     * @return
+     */
+    public ActiveAPNAvp[] getActiveAPNs();
+
+    /**
+     * Add a set of ActiveAPN AVPs into the message, of type ActiveAPNAvp.
+     *
+     * @param activeAPNs
+     */
+    public void setActiveAPNs(ActiveAPNAvp[] activeAPNs);
 
 }

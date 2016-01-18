@@ -29,12 +29,14 @@ import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
 import net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp;
 import net.java.slee.resource.diameter.cxdx.events.RegistrationTerminationAnswer;
 import net.java.slee.resource.diameter.cxdx.events.avp.AssociatedIdentities;
+import net.java.slee.resource.diameter.cxdx.events.avp.IdentitywithEmergencyRegistration;
 import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 import org.jdiameter.api.Message;
 import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
 import org.mobicents.slee.resource.diameter.base.events.avp.ExperimentalResultAvpImpl;
 import org.mobicents.slee.resource.diameter.cxdx.events.avp.AssociatedIdentitiesImpl;
+import org.mobicents.slee.resource.diameter.cxdx.events.avp.IdentitywithEmergencyRegistrationImpl;
 import org.mobicents.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvpImpl;
 
 /**
@@ -155,4 +157,16 @@ public class RegistrationTerminationAnswerImpl extends DiameterMessageImpl imple
     }
   }
 
+    public boolean hasIdentitywithEmergencyRegistration() {
+        return hasAvp(IDENTITY_WITH_EMERGENCY_REGISTRATION, CXDX_VENDOR_ID);
+    }
+
+    public IdentitywithEmergencyRegistration getIdentitywithEmergencyRegistration() {
+        return (IdentitywithEmergencyRegistration)
+                getAvpAsCustom(IDENTITY_WITH_EMERGENCY_REGISTRATION, CXDX_VENDOR_ID, IdentitywithEmergencyRegistrationImpl.class);
+    }
+
+    public void setIdentitywithEmergencyRegistration(IdentitywithEmergencyRegistration identityWithEmergencyRegistration) {
+        addAvp(IDENTITY_WITH_EMERGENCY_REGISTRATION, CXDX_VENDOR_ID, identityWithEmergencyRegistration.byteArrayValue());
+    }
 }

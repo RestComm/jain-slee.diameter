@@ -27,13 +27,13 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 /**
  * Defines an interface representing the Subscription-Data grouped AVP type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
- * 
+ *
  * <pre>
  * 7.3.2  Subscription-Data
- * 
+ *
  * The Subscription-Data AVP is of type Grouped. It shall contain the information related to the
  * user profile relevant for EPS and GERAN/UTRAN.
- * 
+ *
  * AVP format:
  * Subscription-Data ::= < AVP header: 1400 10415 >
  *                       [ Subscriber-Status ]
@@ -50,13 +50,13 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  *                       [ LCS-Info ]
  *                       [ Teleservice-List ]
  *                       [ Call-Barring-Info ]
- *                       [ 3GPP-Charging-Characteristics ] 
+ *                       [ 3GPP-Charging-Characteristics ]
  *                       [ AMBR ]
  *                       [ APN-Configuration-Profile ]
  *                       [ RAT-Frequency-Selection-Priority-ID ]
  *                       [ Trace-Data]
  *                       [ GPRS-Subscription-Data ]
- *                      *[ CSG-Subscription-Data ] 
+ *                      *[ CSG-Subscription-Data ]
  *                       [ Roaming-Restricted-Due-To-Unsupported-Feature ]
  *                       [ Subscribed-Periodic-RAU-TAU-Timer ] //R12
  *                       [ MPS-Priority ]             //R12
@@ -67,15 +67,15 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  *                       [ ProSe-Subscription-Data ]   //PC4a protocol???
  *                       [ Subscription-Data-Flags ]  //R12
  *                      *[ AVP ]
- * 
+ *
  * The AMBR included in this grouped AVP shall include the AMBR associated to the user's
  * subscription (UE-AMBR); Max-Requested-Bandwidth-UL and Max-Requested-Bandwidth-DL within this
  * AVP shall not both be set to "0".
- * 
- * The APN-OI-Replacement included in this grouped AVP shall include the UE level 
+ *
+ * The APN-OI-Replacement included in this grouped AVP shall include the UE level
  * APN-OI-Replacement associated to the user's subscription.
  * </pre>
- * 
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
  * @author <a href="mailto:richard.good@smilecoms.com"> Richard Good </a>
@@ -127,7 +127,6 @@ public interface SubscriptionDataAvp extends GroupedAvp {
   public LCSInfoAvp getLCSInfo();
   public void setLCSInfo(LCSInfoAvp lcsInfoAvp);
 
-
   public boolean hasTeleserviceList();
   public TeleserviceListAvp getTeleserviceList();
   public void setTeleserviceList(TeleserviceListAvp teleserviceList);
@@ -161,8 +160,9 @@ public interface SubscriptionDataAvp extends GroupedAvp {
   public void setGPRSSubscriptionData(GPRSSubscriptionDataAvp gprsSubscriptionData);
 
   public boolean hasCSGSubscriptionData();
-  public CSGSubscriptionDataAvp getCSGSubscriptionData();
   public void setCSGSubscriptionData(CSGSubscriptionDataAvp csgSubscriptionData);
+  public CSGSubscriptionDataAvp[] getCSGSubscriptionDatas();
+  public void setCSGSubscriptionDatas(CSGSubscriptionDataAvp[] csgSubscriptionDatas);
 
   public boolean hasRoamingRestrictedDueToUnsupportedFeature();
   public void setRoamingRestrictedDueToUnsupportedFeature(RoamingRestrictedDueToUnsupportedFeature rrdtuf);

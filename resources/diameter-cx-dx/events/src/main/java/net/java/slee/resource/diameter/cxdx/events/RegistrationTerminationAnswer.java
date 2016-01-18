@@ -30,16 +30,20 @@ import net.java.slee.resource.diameter.base.events.avp.FailedAvp;
 import net.java.slee.resource.diameter.base.events.avp.ProxyInfoAvp;
 import net.java.slee.resource.diameter.base.events.avp.VendorSpecificApplicationIdAvp;
 import net.java.slee.resource.diameter.cxdx.events.avp.AssociatedIdentities;
+import net.java.slee.resource.diameter.cxdx.events.avp.IdentitywithEmergencyRegistration;
 import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.1.10 Registration-Termination-Answer (RTA) Command</b>
- * The Registration-Termination-Answer (RTA) command, indicated by the Command-Code field set to 
- * 304 and the �R� bit cleared in the Command Flags field, is sent by a client in response to the
- * Registration-Termination-Request command. The Experimental-Result AVP may contain one of the 
+ *
+ * The Registration-Termination-Answer (RTA) command, indicated by the Command-Code field set to
+ * 304 and the 'R' bit cleared in the Command Flags field, is sent by a client in response to the
+ * Registration-Termination-Request command. The Experimental-Result AVP may contain one of the
  * values defined in section 6.2.
- * 
+ *
  * Message Format
  * <Registration-Termination-Answer> ::=   < Diameter Header: 304, PXY, 16777216 >
  *                                   < Session-Id >
@@ -51,6 +55,7 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                                   { Origin-Realm }
  *                                   [ Associated-Identities ]
  *                                  *[ Supported-Features ]
+ *                                  [ Identity-with-Emergency-Registration ]    //R12
  *                                  *[ AVP ]
  *                                  *[ Failed-AVP ]
  *                                  *[ Proxy-Info ]
@@ -74,40 +79,39 @@ public interface RegistrationTerminationAnswer extends DiameterMessage {
   /**
    * Returns the value of the Vendor-Specific-Application-Id AVP, of type
    * Grouped.
-   * 
+   *
    * @return the value of the Vendor-Specific-Application-Id AVP or null if it
-   *         has not been set on this message
+   * has not been set on this message
    */
   VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
 
   /**
    * Sets the value of the Vendor-Specific-Application-Id AVP, of type
    * Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setVendorSpecificApplicationId has already been called
+   *
+   * @throws IllegalStateException if setVendorSpecificApplicationId has already been called
    */
   void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
 
   /**
    * Returns true if the Result-Code AVP is present in the message.
-   * 
+   *
    * @return
    */
   boolean hasResultCode();
 
   /**
    * Returns the value of the Result-Code AVP, of type Unsigned32.
-   * 
+   *
    * @return
    */
   long getResultCode();
 
   /**
    * Sets the value of the Result-Code AVP, of type Unsigned32.
-   * 
+   *
    * @param resultCode
-   * @throws IllegalStateException 
+   * @throws IllegalStateException
    */
   void setResultCode(long resultCode) throws IllegalStateException;
 
@@ -118,17 +122,16 @@ public interface RegistrationTerminationAnswer extends DiameterMessage {
 
   /**
    * Returns the value of the Experimental-Result AVP, of type Grouped.
-   * 
+   *
    * @return the value of the Experimental-Result AVP or null if it has not
-   *         been set on this message
+   * been set on this message
    */
   ExperimentalResultAvp getExperimentalResult();
 
   /**
    * Sets the value of the Experimental-Result AVP, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setExperimentalResult has already been called
+   *
+   * @throws IllegalStateException if setExperimentalResult has already been called
    */
   void setExperimentalResult(ExperimentalResultAvp experimentalResult);
 
@@ -145,9 +148,8 @@ public interface RegistrationTerminationAnswer extends DiameterMessage {
 
   /**
    * Sets the value of the Auth-Session-State AVP, of type Enumerated.
-   * 
-   * @throws IllegalStateException
-   *             if setAuthSessionState has already been called
+   *
+   * @throws IllegalStateException if setAuthSessionState has already been called
    */
   void setAuthSessionState(AuthSessionStateType authSessionState);
 
@@ -158,12 +160,14 @@ public interface RegistrationTerminationAnswer extends DiameterMessage {
 
   /**
    * Returns the value of the Associated-Identities AVP, of type Grouped.
+   *
    * @return the value of the Associated-Identities AVP or null if it has not been set on this message
    */
   AssociatedIdentities getAssociatedIdentities();
 
   /**
    * Sets the value of the Associated-Identities AVP, of type Grouped.
+   *
    * @throws IllegalStateException if setAssociatedIdentities has already been called
    */
   void setAssociatedIdentities(AssociatedIdentities associatedIdentities);
@@ -178,10 +182,9 @@ public interface RegistrationTerminationAnswer extends DiameterMessage {
 
   /**
    * Sets a single Supported-Features AVP in the message, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
+   *
+   * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+   *                               been called
    */
   void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
 
@@ -189,14 +192,13 @@ public interface RegistrationTerminationAnswer extends DiameterMessage {
    * Sets the set of Supported-Features AVPs, with all the values in the given
    * array. The AVPs will be added to message in the order in which they
    * appear in the array.
-   * 
+   * <p/>
    * Note: the array must not be altered by the caller following this call,
    * and getSupportedFeatureses() is not guaranteed to return the same array
    * instance, e.g. an "==" check would fail.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
+   *
+   * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+   *                               been called
    */
   void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
 
@@ -210,9 +212,8 @@ public interface RegistrationTerminationAnswer extends DiameterMessage {
 
   /**
    * Sets a single Failed-AVP AVP in the message, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setFailedAvp or setFailedAvps has already been called
+   *
+   * @throws IllegalStateException if setFailedAvp or setFailedAvps has already been called
    */
   void setFailedAvp(FailedAvp failedAvp);
 
@@ -220,13 +221,12 @@ public interface RegistrationTerminationAnswer extends DiameterMessage {
    * Sets the set of Failed-AVP AVPs, with all the values in the given array.
    * The AVPs will be added to message in the order in which they appear in
    * the array.
-   * 
+   * <p/>
    * Note: the array must not be altered by the caller following this call,
    * and getFailedAvps() is not guaranteed to return the same array instance,
    * e.g. an "==" check would fail.
-   * 
-   * @throws IllegalStateException
-   *             if setFailedAvp or setFailedAvps has already been called
+   *
+   * @throws IllegalStateException if setFailedAvp or setFailedAvps has already been called
    */
   void setFailedAvps(FailedAvp[] failedAvps);
 
@@ -240,21 +240,22 @@ public interface RegistrationTerminationAnswer extends DiameterMessage {
 
   /**
    * Sets a single Proxy-Info AVP in the message, of type Grouped.
+   *
    * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
+   *                               has already been called
    */
   void setProxyInfo(ProxyInfoAvp proxyInfo);
 
   /**
    * Sets the set of Proxy-Info AVPs, with all the values in the given array.
    * The AVPs will be added to message in the order in which they appear in the array.
-   *
+   * <p/>
    * Note: the array must not be altered by the caller following this call, and
    * getProxyInfos() is not guaranteed to return the same array instance,
    * e.g. an "==" check would fail.
    *
    * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
+   *                               has already been called
    */
   void setProxyInfos(ProxyInfoAvp[] proxyInfos);
 
@@ -268,22 +269,41 @@ public interface RegistrationTerminationAnswer extends DiameterMessage {
 
   /**
    * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
+   *
    * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
+   *                               has already been called
    */
   void setRouteRecord(DiameterIdentity routeRecord);
 
   /**
    * Sets the set of Route-Record AVPs, with all the values in the given array.
    * The AVPs will be added to message in the order in which they appear in the array.
-   *
+   * <p/>
    * Note: the array must not be altered by the caller following this call, and
    * getRouteRecords() is not guaranteed to return the same array instance,
    * e.g. an "==" check would fail.
    *
    * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
+   *                               has already been called
    */
   void setRouteRecords(DiameterIdentity[] routeRecords);
+
+  /**
+   * Returns true if the Identity-with-Emergency-Registration AVP is present in the message.
+   */
+  public boolean hasIdentitywithEmergencyRegistration();
+
+  /**
+   * Returns the value of the Identity-with-Emergency-Registration AVP, of type Enumerated. A
+   * return value of null implies that the AVP has not been set.
+   */
+  public IdentitywithEmergencyRegistration getIdentitywithEmergencyRegistration();
+
+  /**
+   * Sets the Identity-with-Emergency-Registration AVP
+   *
+   * @param identityWithEmergencyRegistration
+   */
+  public void setIdentitywithEmergencyRegistration(IdentitywithEmergencyRegistration identityWithEmergencyRegistration);
 
 }

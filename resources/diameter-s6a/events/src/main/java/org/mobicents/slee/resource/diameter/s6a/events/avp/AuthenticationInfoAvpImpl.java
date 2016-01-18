@@ -47,40 +47,56 @@ public class AuthenticationInfoAvpImpl extends GroupedAvpImpl implements Authent
         return hasAvp(DiameterS6aAvpCodes.EUTRAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public EUTRANVectorAvp getEUTRANVector() {
-        return (EUTRANVectorAvp) getAvpAsCustom(DiameterS6aAvpCodes.EUTRAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID,
-                EUTRANVectorAvpImpl.class);
-    }
-
     public void setEUTRANVector(EUTRANVectorAvp EUTRANVector) {
     addAvp(EUTRANVector);
+    }
+
+    public EUTRANVectorAvp[] getEUTRANVectors(){
+        return (EUTRANVectorAvp[]) getAvpsAsCustom(DiameterS6aAvpCodes.EUTRAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                                                   EUTRANVectorAvpImpl.class);
+    }
+
+    public void setEUTRANVectors(EUTRANVectorAvp[] eutranVectors){
+        for (EUTRANVectorAvp aux : eutranVectors){
+            setEUTRANVector(aux);
+        }
     }
 
     public boolean hasUTRANVector() {
         return hasAvp(DiameterS6aAvpCodes.UTRAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public UTRANVectorAvp getUTRANVector() {
-        return (UTRANVectorAvp) getAvpAsCustom(DiameterS6aAvpCodes.UTRAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID,
-                UTRANVectorAvpImpl.class);
-    }
-
     public void setUTRANVector(UTRANVectorAvp utranVector) {
         addAvp(utranVector);
+    }
+
+    public UTRANVectorAvp[] getUTRANVectors(){
+        return (UTRANVectorAvp[]) getAvpsAsCustom(DiameterS6aAvpCodes.UTRAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                                                  UTRANVectorAvpImpl.class);
+    }
+
+    public void setUTRANVectors(UTRANVectorAvp[] utranVectors){
+        for (UTRANVectorAvp aux : utranVectors){
+            setUTRANVector(aux);
+        }
     }
 
     public boolean hasGERANVector() {
         return hasAvp(DiameterS6aAvpCodes.GERAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public GERANVectorAvp getGERANVector() {
-        return (GERANVectorAvp) getAvpAsCustom(DiameterS6aAvpCodes.GERAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID,
-                GERANVectorAvpImpl.class);
-    }
-
     public void setGERANVector(GERANVectorAvp geranVector) {
         addAvp(geranVector);
     }
 
+    public void setGERANVectors(GERANVectorAvp[] geranVectors){
+        for (GERANVectorAvp aux : geranVectors){
+            setGERANVector(aux);
+        }
+    }
 
+    public GERANVectorAvp[] getGERANVectors(){
+        return (GERANVectorAvp[]) getAvpsAsCustom(DiameterS6aAvpCodes.GERAN_VECTOR, DiameterS6aAvpCodes.S6A_VENDOR_ID,
+                                                  GERANVectorAvpImpl.class);
+    }
 }

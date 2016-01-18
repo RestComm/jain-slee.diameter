@@ -27,7 +27,9 @@ import static net.java.slee.resource.diameter.cxdx.events.avp.DiameterCxDxAvpCod
 import net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType;
 import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
 import net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest;
+import net.java.slee.resource.diameter.cxdx.events.avp.DiameterCxDxAvpCodes;
 import net.java.slee.resource.diameter.cxdx.events.avp.OriginatingRequest;
+import net.java.slee.resource.diameter.cxdx.events.avp.SessionPriority;
 import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 import net.java.slee.resource.diameter.cxdx.events.avp.UserAuthorizationType;
 
@@ -36,9 +38,9 @@ import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
 import org.mobicents.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvpImpl;
 
 /**
- * 
+ *
  * LocationInfoRequestImpl.java
- * 
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
  */
@@ -46,9 +48,8 @@ public class LocationInfoRequestImpl extends DiameterMessageImpl implements Loca
 
   /**
    * Constructor.
-   * 
-   * @param message
-   *          the Message object to be wrapped
+   *
+   * @param message the Message object to be wrapped
    */
   public LocationInfoRequestImpl(Message message) {
     super(message);
@@ -66,7 +67,7 @@ public class LocationInfoRequestImpl extends DiameterMessageImpl implements Loca
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest#getAuthSessionState()
    */
   public AuthSessionStateType getAuthSessionState() {
@@ -75,7 +76,7 @@ public class LocationInfoRequestImpl extends DiameterMessageImpl implements Loca
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest#getOriginatingRequest()
    */
   public OriginatingRequest getOriginatingRequest() {
@@ -84,7 +85,7 @@ public class LocationInfoRequestImpl extends DiameterMessageImpl implements Loca
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest#getPublicIdentity()
    */
   public String getPublicIdentity() {
@@ -93,7 +94,7 @@ public class LocationInfoRequestImpl extends DiameterMessageImpl implements Loca
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest#getSupportedFeatureses()
    */
   public SupportedFeaturesAvp[] getSupportedFeatureses() {
@@ -102,7 +103,7 @@ public class LocationInfoRequestImpl extends DiameterMessageImpl implements Loca
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest#getUserAuthorizationType()
    */
   public UserAuthorizationType getUserAuthorizationType() {
@@ -111,7 +112,7 @@ public class LocationInfoRequestImpl extends DiameterMessageImpl implements Loca
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest#hasAuthSessionState()
    */
   public boolean hasAuthSessionState() {
@@ -120,7 +121,7 @@ public class LocationInfoRequestImpl extends DiameterMessageImpl implements Loca
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest#hasOriginatingRequest()
    */
   public boolean hasOriginatingRequest() {
@@ -129,7 +130,7 @@ public class LocationInfoRequestImpl extends DiameterMessageImpl implements Loca
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest#hasPublicIdentity()
    */
   public boolean hasPublicIdentity() {
@@ -138,7 +139,7 @@ public class LocationInfoRequestImpl extends DiameterMessageImpl implements Loca
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest#hasUserAuthorizationType()
    */
   public boolean hasUserAuthorizationType() {
@@ -147,16 +148,16 @@ public class LocationInfoRequestImpl extends DiameterMessageImpl implements Loca
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest#setAuthSessionState(net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType)
-   */
+  s<<<<<<     */
   public void setAuthSessionState(AuthSessionStateType authSessionState) {
     addAvp(DiameterAvpCodes.AUTH_SESSION_STATE, authSessionState.getValue());
   }
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest#setOriginatingRequest(net.java.slee.resource.diameter.cxdx.events.avp.OriginatingRequest)
    */
   public void setOriginatingRequest(OriginatingRequest originatingRequest) {
@@ -165,7 +166,7 @@ public class LocationInfoRequestImpl extends DiameterMessageImpl implements Loca
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest#setPublicIdentity(java.lang.String)
    */
   public void setPublicIdentity(String publicIdentity) {
@@ -174,7 +175,7 @@ public class LocationInfoRequestImpl extends DiameterMessageImpl implements Loca
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest#setSupportedFeatures(net.java.slee.resource.diameter.sh.client.events.avp.SupportedFeaturesAvp)
    */
   public void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures) {
@@ -183,22 +184,34 @@ public class LocationInfoRequestImpl extends DiameterMessageImpl implements Loca
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest#setSupportedFeatureses(net.java.slee.resource.diameter.sh.client.events.avp.SupportedFeaturesAvp[])
    */
   public void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses) {
-    for(SupportedFeaturesAvp supportedFeatures : supportedFeatureses) {
+    for (SupportedFeaturesAvp supportedFeatures : supportedFeatureses) {
       setSupportedFeatures(supportedFeatures);
     }
   }
 
   /*
    * (non-Javadoc)
-   * 
+   *
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoRequest#setUserAuthorizationType(net.java.slee.resource.diameter.cxdx.events.avp.UserAuthorizationType)
    */
   public void setUserAuthorizationType(UserAuthorizationType userAuthorizationType) {
     addAvp(USER_AUTHORIZATION_TYPE, CXDX_VENDOR_ID, userAuthorizationType.getValue());
   }
 
+  public boolean hasSessionPriority(){
+    return hasAvp(DiameterCxDxAvpCodes.SESSION_PRIORITY, DiameterCxDxAvpCodes.CXDX_VENDOR_ID);
+  }
+
+  public SessionPriority getSessionPriority(){
+    return (SessionPriority) getAvpAsEnumerated(DiameterCxDxAvpCodes.SESSION_PRIORITY,
+      DiameterCxDxAvpCodes.CXDX_VENDOR_ID, SessionPriority.class);
+  }
+
+  public void setSessionPriority(SessionPriority sessionPriority){
+    addAvp(DiameterCxDxAvpCodes.SESSION_PRIORITY, DiameterCxDxAvpCodes.CXDX_VENDOR_ID, sessionPriority.getValue());
+  }
 }

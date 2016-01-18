@@ -333,14 +333,22 @@ public static final int COMMAND_CODE = 316;
     public boolean hasResetID();
 
     /**
-     * Returns the ResetID AVP object of type OctectString.
-     * @return
-     */
-    public byte[] getResetID();
-
-    /**
      * Sets the ResetID AVP value in the message. Type OctectString.
      * @param resetID
      */
     public void setResetID(byte[] resetID);
+
+
+    /**
+     * Returns the set of Reset-ID AVPs. The returned array contains the AVPs in the order they appear in the message.
+     * A return value of null implies that no Reset-ID AVPs have been set.
+     * The elements in the given array are byte objects.
+     */
+    public byte[][] getResetIDs();
+
+    /**
+     * Sets the set of given Reset-ID AVPs on the message
+     * @param resetIDs
+     */
+    public void setResetIDs(byte[][] resetIDs);
 }

@@ -105,13 +105,6 @@ public class UserAuthorizationAnswerImpl extends DiameterMessageImpl implements 
   }
 
   /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.UserAuthorizationAnswer#getWildcardedIMPU()
-   */
-  public String getWildcardedIMPU() {
-    return getAvpAsUTF8String(WILDCARDED_IMPU, CXDX_VENDOR_ID);
-  }
-
-  /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.cxdx.events.UserAuthorizationAnswer#hasAuthSessionState()
    */
   public boolean hasAuthSessionState() {
@@ -137,13 +130,6 @@ public class UserAuthorizationAnswerImpl extends DiameterMessageImpl implements 
    */
   public boolean hasServerName() {
     return hasAvp(SERVER_NAME, CXDX_VENDOR_ID);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.UserAuthorizationAnswer#hasWildcardedIMPU()
-   */
-  public boolean hasWildcardedIMPU() {
-    return hasAvp(WILDCARDED_IMPU, CXDX_VENDOR_ID);
   }
 
   /* (non-Javadoc)
@@ -189,12 +175,4 @@ public class UserAuthorizationAnswerImpl extends DiameterMessageImpl implements 
       setSupportedFeatures(supportedFeatures);
     }
   }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.UserAuthorizationAnswer#setWildcardedIMPU(java.lang.String)
-   */
-  public void setWildcardedIMPU(String wildcardedIMPU) {
-    addAvp(WILDCARDED_IMPU, CXDX_VENDOR_ID, wildcardedIMPU);
-  }
-
 }

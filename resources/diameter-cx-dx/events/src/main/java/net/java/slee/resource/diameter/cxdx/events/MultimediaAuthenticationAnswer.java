@@ -34,12 +34,15 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+
  * <b>6.1.8  Multimedia-Auth-Answer (MAA) Command</b>
+ *
  * The Multimedia-Auth-Answer (MAA) command, indicated by the Command-Code field set to 303 and the
- * �R� bit cleared in the Command Flags field, is sent by a server in response to the 
- * Multimedia-Auth-Request command. The Experimental-Result AVP may contain one of the values 
+ * 'R' bit cleared in the Command Flags field, is sent by a server in response to the
+ * Multimedia-Auth-Request command. The Experimental-Result AVP may contain one of the values
  * defined in section 6.2.
- * 
+ *
  * Message Format
  * < Multimedia-Auth-Answer > ::=  < Diameter Header: 303, PXY, 16777216 >
  *                            < Session-Id >
@@ -50,15 +53,18 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                            { Origin-Host }
  *                            { Origin-Realm }
  *                            [ User-Name ]
+ *                            [ OC-Supported-Features ]     //Draft
+ *                            [ OC-OLR ]                    //Draft
  *                           *[ Supported-Features ]
  *                            [ Public-Identity ]
  *                            [ SIP-Number-Auth-Items ]
  *                           *[ SIP-Auth-Data-Item ]
- *                            [ Wildcarded-IMPU ]
  *                           *[ AVP ]
  *                           *[ Failed-AVP ]
  *                           *[ Proxy-Info ]
  *                           *[ Route-Record ]
+ * Deleted on R12
+ *                            [ Wildcarded-IMPU ]
  *
  * </pre>
  *
@@ -255,22 +261,6 @@ public interface MultimediaAuthenticationAnswer extends DiameterMessage {
    * @throws IllegalStateException if setSIPAuthDataItem has already been called
    */
   void setSIPAuthDataItems(SIPAuthDataItem[] sipAuthDataItems);
-
-  /**
-   * Returns true if the Wildcarded-IMPU AVP is present in the message.
-   */
-  boolean hasWildcardedIMPU();
-
-  /**
-   * Returns the value of the Wildcarded-IMPU AVP, of type UTF8String. A 
-   * return value of null implies that the AVP has not been set.
-   */
-  String getWildcardedIMPU();
-
-  /**
-   * Sets the value of the Wildcarded-IMPU AVP, of type UTF8String.
-   */
-  void setWildcardedIMPU(String wildcardedIMPU);
 
   /**
    * Returns the set of Failed-AVP AVPs. The returned array contains the AVPs

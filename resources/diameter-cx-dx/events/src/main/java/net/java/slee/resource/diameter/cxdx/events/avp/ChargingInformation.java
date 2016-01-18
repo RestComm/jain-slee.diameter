@@ -27,10 +27,13 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.3.19  Charging-Information AVP</b>
- * The Charging-Information is of type Grouped, and contains the addresses of the charging 
+ * The Charging-Information is of type Grouped, and contains the addresses of the charging
  * functions.
- * 
+ *
  * AVP format
  * Charging-Information :: = < AVP Header : 618 10415 >
  *                      [ Primary-Event-Charging-Function-Name ]
@@ -38,7 +41,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  *                      [ Primary-Charging-Collection-Function-Name ]
  *                      [ Secondary-Charging-Collection-Function-Name ]
  *                     *[ AVP ]
- *  
+ *
  * </pre>
  *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
@@ -59,6 +62,7 @@ public interface ChargingInformation extends GroupedAvp {
 
   /**
    * Sets the value of the Primary-Event-Charging-Function-Name AVP, of type DiameterURI.
+   *
    * @throws IllegalStateException if setPrimaryEventChargingFunctionName has already been called
    */
   void setPrimaryEventChargingFunctionName(DiameterURI primaryEventChargingFunctionName);
@@ -76,6 +80,7 @@ public interface ChargingInformation extends GroupedAvp {
 
   /**
    * Sets the value of the Secondary-Event-Charging-Function-Name AVP, of type DiameterURI.
+   *
    * @throws IllegalStateException if setSecondaryEventChargingFunctionName has already been called
    */
   void setSecondaryEventChargingFunctionName(DiameterURI secondaryEventChargingFunctionName);
@@ -93,6 +98,7 @@ public interface ChargingInformation extends GroupedAvp {
 
   /**
    * Sets the value of the Primary-Charging-Collection-Function-Name AVP, of type DiameterURI.
+   *
    * @throws IllegalStateException if setPrimaryChargingCollectionFunctionName has already been called
    */
   void setPrimaryChargingCollectionFunctionName(DiameterURI primaryChargingCollectionFunctionName);
@@ -110,8 +116,8 @@ public interface ChargingInformation extends GroupedAvp {
 
   /**
    * Sets the value of the Secondary-Charging-Collection-Function-Name AVP, of type DiameterURI.
+   *
    * @throws IllegalStateException if setSecondaryChargingCollectionFunctionName has already been called
    */
   void setSecondaryChargingCollectionFunctionName(DiameterURI secondaryChargingCollectionFunctionName);
-
 }

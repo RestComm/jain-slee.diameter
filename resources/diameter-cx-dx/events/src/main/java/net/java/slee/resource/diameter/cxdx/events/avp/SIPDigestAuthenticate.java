@@ -26,6 +26,9 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.3.36  SIP-Digest-Authenticate AVP</b>
  * The SIP-Digest-Authenticate is of type Grouped and it contains a reconstruction of either the
  * SIP WWW-Authenticate or Proxy-Authentication header fields specified in IETF RFC 2617 [14].

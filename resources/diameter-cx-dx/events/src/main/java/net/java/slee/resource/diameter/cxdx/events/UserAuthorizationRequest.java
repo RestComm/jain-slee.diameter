@@ -32,9 +32,12 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.1.1  User-Authorization-Request (UAR) Command</b>
  * The User-Authorization-Request (UAR) command, indicated by the Command-Code field set to 300 
- * and the �R� bit set in the Command Flags field, is sent by a Diameter Multimedia client to a 
+ * and the 'R' bit set in the Command Flags field, is sent by a Diameter Multimedia client to a
  * Diameter Multimedia server in order to request the authorization of the registration of a 
  * multimedia user.
  *  
@@ -48,6 +51,7 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                                [ Destination-Host ]
  *                                { Destination-Realm }
  *                                { User-Name }
+ *                                [ OC-Supported-Features ]     //Draft
  *                               *[ Supported-Features ]
  *                                { Public-Identity }
  *                                { Visited-Network-Identifier }

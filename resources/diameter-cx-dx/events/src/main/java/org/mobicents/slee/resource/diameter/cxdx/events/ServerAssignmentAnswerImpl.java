@@ -24,6 +24,7 @@ package org.mobicents.slee.resource.diameter.cxdx.events;
 
 import static net.java.slee.resource.diameter.cxdx.events.avp.DiameterCxDxAvpCodes.*;
 
+import net.java.slee.resource.diameter.base.events.DiameterMessage;
 import net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType;
 import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
 import net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp;
@@ -31,7 +32,9 @@ import net.java.slee.resource.diameter.cxdx.events.ServerAssignmentAnswer;
 import net.java.slee.resource.diameter.cxdx.events.avp.AssociatedIdentities;
 import net.java.slee.resource.diameter.cxdx.events.avp.AssociatedRegisteredIdentities;
 import net.java.slee.resource.diameter.cxdx.events.avp.ChargingInformation;
+import net.java.slee.resource.diameter.cxdx.events.avp.DiameterCxDxAvpCodes;
 import net.java.slee.resource.diameter.cxdx.events.avp.LooseRouteIndication;
+import net.java.slee.resource.diameter.cxdx.events.avp.PriviledgedSenderIndication;
 import net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo;
 import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
@@ -255,7 +258,7 @@ public class ServerAssignmentAnswerImpl extends DiameterMessageImpl implements S
    * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentAnswer#setSCSCFRestorationInfos(net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo[])
    */
   public void setSCSCFRestorationInfos(SCSCFRestorationInfo[] scscfRestorationInfos) {
-    for(SCSCFRestorationInfo scscfRestorationInfo : scscfRestorationInfos) {
+    for (SCSCFRestorationInfo scscfRestorationInfo : scscfRestorationInfos) {
       setSCSCFRestorationInfo(scscfRestorationInfo);
     }
   }
@@ -278,7 +281,7 @@ public class ServerAssignmentAnswerImpl extends DiameterMessageImpl implements S
    * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentAnswer#setSupportedFeatureses(net.java.slee.resource.diameter.sh.client.events.avp.SupportedFeaturesAvp[])
    */
   public void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses) {
-    for(SupportedFeaturesAvp supportedFeatures : supportedFeatureses) {
+    for (SupportedFeaturesAvp supportedFeatures : supportedFeatureses) {
       setSupportedFeatures(supportedFeatures);
     }
   }
@@ -290,4 +293,46 @@ public class ServerAssignmentAnswerImpl extends DiameterMessageImpl implements S
     addAvp(USER_DATA, CXDX_VENDOR_ID, userData);
   }
 
+  /* (non-Javadoc)
+* @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentAnswer#hasWildcardedPublicIdentity()
+*/
+public boolean hasWildcardedPublicIdentity() {
+  return hasAvp(WILDCARDED_PUBLIC_IDENTITY, CXDX_VENDOR_ID);
+}
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentAnswer#getWildcardedPublicIdentity()
+   */
+  public String getWildcardedPublicIdentity() {
+    return getAvpAsUTF8String(WILDCARDED_PUBLIC_IDENTITY, CXDX_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentAnswer#setWildcardedPublicIdentity(java.lang.String)
+   */
+  public void setWildcardedPublicIdentity(String wildcardedPublicIdentity) {
+    addAvp(WILDCARDED_PUBLIC_IDENTITY, CXDX_VENDOR_ID, wildcardedPublicIdentity);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentAnswer#hasPriviledgedSenderIndication()
+   */
+  public boolean hasPriviledgedSenderIndication() {
+    return hasAvp(PRIVILEDGED_SENDER_INDICATION, CXDX_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentAnswer#getPriviledgedSenderIndication()
+   */
+  public PriviledgedSenderIndication getPriviledgedSenderIndication() {
+    return (PriviledgedSenderIndication)
+    getAvpAsEnumerated(PRIVILEDGED_SENDER_INDICATION, CXDX_VENDOR_ID, PriviledgedSenderIndication.class);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.ServerAssignmentAnswer#setPriviledgedSenderIndication(PriviledgedSenderIndication)
+   */
+  public void setPriviledgedSenderIndication(PriviledgedSenderIndication priviledgedSenderIndication) {
+    addAvp(PRIVILEDGED_SENDER_INDICATION, CXDX_VENDOR_ID, priviledgedSenderIndication.getValue());
+  }
 }
