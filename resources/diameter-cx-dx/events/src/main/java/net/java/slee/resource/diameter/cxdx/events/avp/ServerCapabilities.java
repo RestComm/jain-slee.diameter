@@ -24,18 +24,20 @@ package net.java.slee.resource.diameter.cxdx.events.avp;
 
 /**
  * Java class to represent the Adaptations enumerated type.
- * 
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * 6.3.4 Server-Capabilities AVP
- * The Server-Capabilities AVP is of type Grouped. This AVP contains information 
+ * The Server-Capabilities AVP is of type Grouped. This AVP contains information
  * to assist the I-CSCF in the selection of an S-CSCF.
- * 
+ *
  * AVP format
  * Server-Capabilities ::= <AVP header: 603 10415>
  *   *[Mandatory-Capability]
  *   *[Optional-Capability]
  *   *[Server-Name]
  *   *[AVP]
- *   
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
  */
@@ -44,34 +46,34 @@ public interface ServerCapabilities extends net.java.slee.resource.diameter.base
   /**
    * Returns the value of the Mandatory-Capability AVP, of type Unsigned32. A return value of null implies that the AVP has not been set.
    */
-  abstract long[] getMandatoryCapabilities(); 
+  abstract long[] getMandatoryCapabilities();
 
   /**
    * Returns the value of the Optional-Capability AVP, of type Unsigned32. A return value of null implies that the AVP has not been set.
    */
-  abstract long[] getOptionalCapabilities(); 
+  abstract long[] getOptionalCapabilities();
 
   /**
    * Returns the value of the Server-Name AVP, of type UTF8String. A return value of null implies that the AVP has not been set.
    */
-  abstract String[] getServerNames(); 
+  abstract String[] getServerNames();
 
-  /**
-   * Sets the value of the Mandatory-Capability AVP, of type Unsigned32. 
-   */
-  abstract void setMandatoryCapability(long mandatoryCapability); 
-  
   /**
    * Sets the value of the Mandatory-Capability AVP, of type Unsigned32.
    */
-  abstract void setMandatoryCapabilities(long[] mandatoryCapabilities); 
+  abstract void setMandatoryCapability(long mandatoryCapability);
+
+  /**
+   * Sets the value of the Mandatory-Capability AVP, of type Unsigned32.
+   */
+  abstract void setMandatoryCapabilities(long[] mandatoryCapabilities);
 
   /**
    * Sets the value of the Optional-Capability AVP, of type Unsigned32.
    */
   abstract void setOptionalCapability(long optionalCapability);
-  
-  /** 
+
+  /**
    * Sets the value of the Optional-Capability AVP, of type Unsigned32.
    */
   abstract void setOptionalCapabilities(long[] optionalCapabilities);
@@ -80,8 +82,8 @@ public interface ServerCapabilities extends net.java.slee.resource.diameter.base
    * Returns the value of the Server-Name AVP, of type UTF8String. A return value of null implies that the AVP has not been set.
    */
   abstract void setServerName(String serverName);
-  
-  /** 
+
+  /**
    * Returns the value of the Server-Name AVP, of type UTF8String. A return value of null implies that the AVP has not been set.
    */
   abstract void setServerNames(String[] serverNames);

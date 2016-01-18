@@ -29,6 +29,9 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.3.34 Originating-Request AVP</b>
  * The Originating-Request AVP is of type Enumerated and indicates to the HSS that the request is 
  * related to an AS originating SIP request in the Location-Information-Request operation. The 

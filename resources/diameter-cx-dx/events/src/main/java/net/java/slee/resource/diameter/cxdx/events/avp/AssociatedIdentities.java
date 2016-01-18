@@ -26,15 +26,18 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.3.33  Associated-Identities AVP</b>
  * The Associated-Identities AVP is of type Grouped and it contains the private user identities
  * associated to an IMS subscription.
- * 
+ *
  * AVP format
  * Associated-Identities ::= < AVP header: 632, 10415 >
  *                       *[ User-Name ]
  *                       *[ AVP ]
- * 
+ *
  * </pre>
  *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
@@ -44,18 +47,21 @@ public interface AssociatedIdentities extends GroupedAvp {
 
   /**
    * Returns the value of the User-Name AVP, of type UTF8String.
+   *
    * @return the value of the User-Name AVP or null if it has not been set on this message
    */
   String[] getUserNames();
 
   /**
    * Sets the value of the User-Name AVP, of type UTF8String.
+   *
    * @throws IllegalStateException if setUserName has already been called
    */
   void setUserName(String userName);
 
   /**
    * Sets the value of the User-Name AVP, of type UTF8String.
+   *
    * @throws IllegalStateException if setUserName has already been called
    */
   void setUserNames(String[] userNames);

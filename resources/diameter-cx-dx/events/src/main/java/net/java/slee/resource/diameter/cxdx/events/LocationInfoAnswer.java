@@ -34,12 +34,15 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.1.6  Location-Info-Answer (LIA) Command</b>
  * The Location-Info-Answer (LIA) command, indicated by the Command-Code field set to 302 and the
- * �R� bit cleared in the Command Flags field, is sent by a server in response to the 
+ * 'R' bit cleared in the Command Flags field, is sent by a server in response to the
  * Location-Info-Request command. The Experimental-Result AVP may contain one of the values defined
  * in section 6.2.
- * 
+ *
  * Message Format
  * <Location-Info-Answer> ::=    < Diameter Header: 302, PXY, 16777216 >
  *                        < Session-Id >
@@ -49,15 +52,21 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                        { Auth-Session-State }
  *                        { Origin-Host }
  *                        { Origin-Realm }
+ *                        [ OC-Supported-Features ] //Draft
+ *                        [ OC-OLR ]                //Draft
  *                       *[ Supported-Features ]
  *                        [ Server-Name ]
  *                        [ Server-Capabilities ]
- *                        [ Wildcarded-PSI ]
- *                        [ Wildcarded-IMPU ]
+ *                        [ Wildcarded-Public-Identity ]    //R12
+ *                        [ LIA-Flags ]                     //R12
  *                       *[ AVP ]
  *                       *[ Failed-AVP ]
  *                       *[ Proxy-Info ]
  *                       *[ Route-Record ]
+ *
+ * Deleted from previous version
+ *                        [ Wildcarded-PSI]
+ *                        [ Wildcarded-IMPU ]
  *
  * </pre>
  *
@@ -77,40 +86,39 @@ public interface LocationInfoAnswer extends DiameterMessage {
   /**
    * Returns the value of the Vendor-Specific-Application-Id AVP, of type
    * Grouped.
-   * 
+   *
    * @return the value of the Vendor-Specific-Application-Id AVP or null if it
-   *         has not been set on this message
+   * has not been set on this message
    */
   VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
 
   /**
    * Sets the value of the Vendor-Specific-Application-Id AVP, of type
    * Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setVendorSpecificApplicationId has already been called
+   *
+   * @throws IllegalStateException if setVendorSpecificApplicationId has already been called
    */
   void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
 
   /**
    * Returns true if the Result-Code AVP is present in the message.
-   * 
+   *
    * @return
    */
   boolean hasResultCode();
 
   /**
    * Returns the value of the Result-Code AVP, of type Unsigned32.
-   * 
+   *
    * @return
    */
   long getResultCode();
 
   /**
    * Sets the value of the Result-Code AVP, of type Unsigned32.
-   * 
+   *
    * @param resultCode
-   * @throws IllegalStateException 
+   * @throws IllegalStateException
    */
   void setResultCode(long resultCode) throws IllegalStateException;
 
@@ -121,17 +129,16 @@ public interface LocationInfoAnswer extends DiameterMessage {
 
   /**
    * Returns the value of the Experimental-Result AVP, of type Grouped.
-   * 
+   *
    * @return the value of the Experimental-Result AVP or null if it has not
-   *         been set on this message
+   * been set on this message
    */
   ExperimentalResultAvp getExperimentalResult();
 
   /**
    * Sets the value of the Experimental-Result AVP, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setExperimentalResult has already been called
+   *
+   * @throws IllegalStateException if setExperimentalResult has already been called
    */
   void setExperimentalResult(ExperimentalResultAvp experimentalResult);
 
@@ -148,9 +155,8 @@ public interface LocationInfoAnswer extends DiameterMessage {
 
   /**
    * Sets the value of the Auth-Session-State AVP, of type Enumerated.
-   * 
-   * @throws IllegalStateException
-   *             if setAuthSessionState has already been called
+   *
+   * @throws IllegalStateException if setAuthSessionState has already been called
    */
   void setAuthSessionState(AuthSessionStateType authSessionState);
 
@@ -164,10 +170,9 @@ public interface LocationInfoAnswer extends DiameterMessage {
 
   /**
    * Sets a single Supported-Features AVP in the message, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
+   *
+   * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+   *                               been called
    */
   void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
 
@@ -175,14 +180,13 @@ public interface LocationInfoAnswer extends DiameterMessage {
    * Sets the set of Supported-Features AVPs, with all the values in the given
    * array. The AVPs will be added to message in the order in which they
    * appear in the array.
-   * 
+   * <p/>
    * Note: the array must not be altered by the caller following this call,
    * and getSupportedFeatureses() is not guaranteed to return the same array
    * instance, e.g. an "==" check would fail.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
+   *
+   * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+   *                               been called
    */
   void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
 
@@ -193,17 +197,16 @@ public interface LocationInfoAnswer extends DiameterMessage {
 
   /**
    * Returns the value of the Server-Name AVP, of type UTF8String.
-   * 
+   *
    * @return the value of the Server-Name AVP or null if it has not been set
-   *         on this message
+   * on this message
    */
   String getServerName();
 
   /**
    * Sets the value of the Server-Name AVP, of type UTF8String.
-   * 
-   * @throws IllegalStateException
-   *             if setServerName has already been called
+   *
+   * @throws IllegalStateException if setServerName has already been called
    */
   void setServerName(String serverName);
 
@@ -213,7 +216,7 @@ public interface LocationInfoAnswer extends DiameterMessage {
   boolean hasServerCapabilities();
 
   /**
-   * Returns the value of the Server-Capabilities AVP, of type Grouped. A 
+   * Returns the value of the Server-Capabilities AVP, of type Grouped. A
    * return value of null implies that the AVP has not been set.
    */
   ServerCapabilities getServerCapabilities();
@@ -222,38 +225,6 @@ public interface LocationInfoAnswer extends DiameterMessage {
    * Sets the value of the Server-Capabilities AVP, of type Grouped.
    */
   void setServerCapabilities(ServerCapabilities serverCapabilities);
-
-  /**
-   * Returns true if the Wildcarded-PSI AVP is present in the message.
-   */
-  boolean hasWildcardedPSI();
-
-  /**
-   * Returns the value of the Wildcarded-PSI AVP, of type UTF8String. A 
-   * return value of null implies that the AVP has not been set.
-   */
-  String getWildcardedPSI();
-
-  /**
-   * Sets the value of the Wildcarded-PSI AVP, of type UTF8String.
-   */
-  void setWildcardedPSI(String wildcardedPSI);
-
-  /**
-   * Returns true if the Wildcarded-IMPU AVP is present in the message.
-   */
-  boolean hasWildcardedIMPU();
-
-  /**
-   * Returns the value of the Wildcarded-IMPU AVP, of type UTF8String. A 
-   * return value of null implies that the AVP has not been set.
-   */
-  String getWildcardedIMPU();
-
-  /**
-   * Sets the value of the Wildcarded-IMPU AVP, of type UTF8String.
-   */
-  void setWildcardedIMPU(String wildcardedIMPU);
 
   /**
    * Returns the set of Failed-AVP AVPs. The returned array contains the AVPs
@@ -265,9 +236,8 @@ public interface LocationInfoAnswer extends DiameterMessage {
 
   /**
    * Sets a single Failed-AVP AVP in the message, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setFailedAvp or setFailedAvps has already been called
+   *
+   * @throws IllegalStateException if setFailedAvp or setFailedAvps has already been called
    */
   void setFailedAvp(FailedAvp failedAvp);
 
@@ -275,13 +245,12 @@ public interface LocationInfoAnswer extends DiameterMessage {
    * Sets the set of Failed-AVP AVPs, with all the values in the given array.
    * The AVPs will be added to message in the order in which they appear in
    * the array.
-   * 
+   * <p/>
    * Note: the array must not be altered by the caller following this call,
    * and getFailedAvps() is not guaranteed to return the same array instance,
    * e.g. an "==" check would fail.
-   * 
-   * @throws IllegalStateException
-   *             if setFailedAvp or setFailedAvps has already been called
+   *
+   * @throws IllegalStateException if setFailedAvp or setFailedAvps has already been called
    */
   void setFailedAvps(FailedAvp[] failedAvps);
 
@@ -295,21 +264,22 @@ public interface LocationInfoAnswer extends DiameterMessage {
 
   /**
    * Sets a single Proxy-Info AVP in the message, of type Grouped.
+   *
    * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
+   *                               has already been called
    */
   void setProxyInfo(ProxyInfoAvp proxyInfo);
 
   /**
    * Sets the set of Proxy-Info AVPs, with all the values in the given array.
    * The AVPs will be added to message in the order in which they appear in the array.
-   *
+   * <p/>
    * Note: the array must not be altered by the caller following this call, and
    * getProxyInfos() is not guaranteed to return the same array instance,
    * e.g. an "==" check would fail.
    *
    * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
+   *                               has already been called
    */
   void setProxyInfos(ProxyInfoAvp[] proxyInfos);
 
@@ -323,22 +293,55 @@ public interface LocationInfoAnswer extends DiameterMessage {
 
   /**
    * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
+   *
    * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
+   *                               has already been called
    */
   void setRouteRecord(DiameterIdentity routeRecord);
 
   /**
    * Sets the set of Route-Record AVPs, with all the values in the given array.
    * The AVPs will be added to message in the order in which they appear in the array.
-   *
+   * <p/>
    * Note: the array must not be altered by the caller following this call, and
    * getRouteRecords() is not guaranteed to return the same array instance,
    * e.g. an "==" check would fail.
    *
    * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
+   *                               has already been called
    */
   void setRouteRecords(DiameterIdentity[] routeRecords);
 
+  /**
+   * Returns true if the Wildcarded-Public-Identity AVP is present in the message.
+   */
+  boolean hasWildcardedPublicIdentity();
+
+  /**
+   * Returns the value of the Wildcarded-Public-Identity AVP, of type UTF8String. A
+   * return value of null implies that the AVP has not been set.
+   */
+  String getWildcardedPublicIdentity();
+
+  /**
+   * Sets the value of the Wildcarded-Public-Identity AVP, of type UTF8String.
+   */
+  void setWildcardedPublicIdentity(String wildcardedPublicIdentity);
+
+
+  /**
+   * Returns true if the LIA-Flags AVP is present in the message.
+   */
+  boolean hasLIAFlags();
+
+  /**
+   * Returns the value of the LIA-Flags AVP, of type long. A
+   * return value of null implies that the AVP has not been set.
+   */
+  long getLIAFlags();
+
+  /**
+   * Sets the value of the LIA-Flags AVP, of type Unsigned32.
+   */
+  void setLIAFlags(long liaFlags);
 }

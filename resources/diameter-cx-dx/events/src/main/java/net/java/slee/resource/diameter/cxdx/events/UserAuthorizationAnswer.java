@@ -34,9 +34,13 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.1.2 User-Authorization-Answer (UAA) Command</b>
+ *
  * The User-Authorization-Answer (UAA) command, indicated by the Command-Code field set to 300 and
- * the �R� bit cleared in the Command Flags field, is sent by a server in response to the 
+ * the 'R' bit cleared in the Command Flags field, is sent by a server in response to the
  * User-Authorization-Request command. The Experimental-Result AVP may contain one of the values 
  * defined in section 6.2.
  * 
@@ -49,10 +53,11 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                              { Auth-Session-State }
  *                              { Origin-Host }
  *                              { Origin-Realm }
+ *                              [ OC-Supported-Features ]     //Draft
+ *                              [ OC-OLR ]                    //Draft
  *                             *[ Supported-Features ]
  *                              [ Server-Name ]
  *                              [ Server-Capabilities ]
- *                              [ Wildcarded-IMPU ]
  *                             *[ AVP ]
  *                             *[ Failed-AVP ]
  *                             *[ Proxy-Info ]
@@ -220,22 +225,6 @@ public interface UserAuthorizationAnswer extends DiameterMessage {
    * Sets the value of the Server-Capabilities AVP, of type Grouped.
    */
   void setServerCapabilities(ServerCapabilities serverCapabilities);
-
-  /**
-   * Returns true if the Wildcarded-IMPU AVP is present in the message.
-   */
-  boolean hasWildcardedIMPU();
-
-  /**
-   * Returns the value of the Wildcarded-IMPU AVP, of type UTF8String. A 
-   * return value of null implies that the AVP has not been set.
-   */
-  String getWildcardedIMPU();
-
-  /**
-   * Sets the value of the Wildcarded-IMPU AVP, of type UTF8String.
-   */
-  void setWildcardedIMPU(String wildcardedIMPU);
 
   /**
    * Returns the set of Failed-AVP AVPs. The returned array contains the AVPs

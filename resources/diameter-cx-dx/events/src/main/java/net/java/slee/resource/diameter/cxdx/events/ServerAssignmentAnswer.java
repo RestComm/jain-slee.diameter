@@ -33,18 +33,22 @@ import net.java.slee.resource.diameter.cxdx.events.avp.AssociatedIdentities;
 import net.java.slee.resource.diameter.cxdx.events.avp.AssociatedRegisteredIdentities;
 import net.java.slee.resource.diameter.cxdx.events.avp.ChargingInformation;
 import net.java.slee.resource.diameter.cxdx.events.avp.LooseRouteIndication;
+import net.java.slee.resource.diameter.cxdx.events.avp.PriviledgedSenderIndication;
 import net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo;
 import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.1.4 Server-Assignment-Answer (SAA) Command</b>
  * The Server-Assignment-Answer (SAA) command, indicated by the Command-Code field set to 301 and
- * the �R� bit cleared in the Command Flags field, is sent by a server in response to the 
- * Server-Assignment-Request command. The Experimental-Result AVP may contain one of the values 
- * defined in section 6.2. If Result-Code or Experimental-Result does not inform about an error, 
+ * the 'R' bit cleared in the Command Flags field, is sent by a server in response to the
+ * Server-Assignment-Request command. The Experimental-Result AVP may contain one of the values
+ * defined in section 6.2. If Result-Code or Experimental-Result does not inform about an error,
  * the User-Data AVP shall contain the information that the S-CSCF needs to give service to the user.
- * 
+ *
  * Message Format
  * <Server-Assignment-Answer> ::=  < Diameter Header: 301, PXY, 16777216 >
  *                            < Session-Id >
@@ -55,6 +59,8 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                            { Origin-Host }
  *                            { Origin-Realm }
  *                            [ User-Name ]
+ *                            [ OC-Supported-Features ]                 //Draft
+ *                            [ OC-OLR ]                                //Draft
  *                           *[ Supported-Features ]
  *                            [ User-Data ]
  *                            [ Charging-Information ]
@@ -63,6 +69,8 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                           *[ SCSCF-Restoration-Info ]
  *                            [ Associated-Registered-Identities ]
  *                            [ Server-Name ]
+ *                            [ Wildcarded-Public-Identity ]            //R12
+ *                            [ Priviledged-Sender-Information ]        //R12
  *                           *[ AVP ]
  *                           *[ Failed-AVP ]
  *                           *[ Proxy-Info ]
@@ -87,40 +95,39 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
   /**
    * Returns the value of the Vendor-Specific-Application-Id AVP, of type
    * Grouped.
-   * 
+   *
    * @return the value of the Vendor-Specific-Application-Id AVP or null if it
-   *         has not been set on this message
+   * has not been set on this message
    */
   VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
 
   /**
    * Sets the value of the Vendor-Specific-Application-Id AVP, of type
    * Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setVendorSpecificApplicationId has already been called
+   *
+   * @throws IllegalStateException if setVendorSpecificApplicationId has already been called
    */
   void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
 
   /**
    * Returns true if the Result-Code AVP is present in the message.
-   * 
+   *
    * @return
    */
   boolean hasResultCode();
 
   /**
    * Returns the value of the Result-Code AVP, of type Unsigned32.
-   * 
+   *
    * @return
    */
   long getResultCode();
 
   /**
    * Sets the value of the Result-Code AVP, of type Unsigned32.
-   * 
+   *
    * @param resultCode
-   * @throws IllegalStateException 
+   * @throws IllegalStateException
    */
   void setResultCode(long resultCode) throws IllegalStateException;
 
@@ -131,17 +138,16 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
 
   /**
    * Returns the value of the Experimental-Result AVP, of type Grouped.
-   * 
+   *
    * @return the value of the Experimental-Result AVP or null if it has not
-   *         been set on this message
+   * been set on this message
    */
   ExperimentalResultAvp getExperimentalResult();
 
   /**
    * Sets the value of the Experimental-Result AVP, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setExperimentalResult has already been called
+   *
+   * @throws IllegalStateException if setExperimentalResult has already been called
    */
   void setExperimentalResult(ExperimentalResultAvp experimentalResult);
 
@@ -158,9 +164,8 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
 
   /**
    * Sets the value of the Auth-Session-State AVP, of type Enumerated.
-   * 
-   * @throws IllegalStateException
-   *             if setAuthSessionState has already been called
+   *
+   * @throws IllegalStateException if setAuthSessionState has already been called
    */
   void setAuthSessionState(AuthSessionStateType authSessionState);
 
@@ -171,12 +176,14 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
 
   /**
    * Returns the value of the User-Name AVP, of type UTF8String.
+   *
    * @return the value of the User-Name AVP or null if it has not been set on this message
    */
   String getUserName();
 
   /**
    * Sets the value of the User-Name AVP, of type UTF8String.
+   *
    * @throws IllegalStateException if setUserName has already been called
    */
   void setUserName(String userName);
@@ -191,10 +198,9 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
 
   /**
    * Sets a single Supported-Features AVP in the message, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
+   *
+   * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+   *                               been called
    */
   void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
 
@@ -202,14 +208,13 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
    * Sets the set of Supported-Features AVPs, with all the values in the given
    * array. The AVPs will be added to message in the order in which they
    * appear in the array.
-   * 
+   * <p/>
    * Note: the array must not be altered by the caller following this call,
    * and getSupportedFeatureses() is not guaranteed to return the same array
    * instance, e.g. an "==" check would fail.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
+   *
+   * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+   *                               been called
    */
   void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
 
@@ -220,12 +225,14 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
 
   /**
    * Returns the value of the User-Data AVP, of type OctetString.
+   *
    * @return the value of the User-Data AVP or null if it has not been set on this message
    */
   byte[] getUserData();
 
   /**
    * Sets the value of the User-Data AVP, of type OctetString.
+   *
    * @throws IllegalStateException if setUserData has already been called
    */
   void setUserData(byte[] userData);
@@ -237,12 +244,14 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
 
   /**
    * Returns the value of the Charging-Information AVP, of type Grouped.
+   *
    * @return the value of the Charging-Information AVP or null if it has not been set on this message
    */
   ChargingInformation getChargingInformation();
 
   /**
    * Sets the value of the Charging-Information AVP, of type Grouped.
+   *
    * @throws IllegalStateException if setChargingInformation has already been called
    */
   void setChargingInformation(ChargingInformation chargingInformation);
@@ -254,12 +263,14 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
 
   /**
    * Returns the value of the Associated-Identities AVP, of type Grouped.
+   *
    * @return the value of the Associated-Identities AVP or null if it has not been set on this message
    */
   AssociatedIdentities getAssociatedIdentities();
 
   /**
    * Sets the value of the Associated-Identities AVP, of type Grouped.
+   *
    * @throws IllegalStateException if setAssociatedIdentities has already been called
    */
   void setAssociatedIdentities(AssociatedIdentities associatedIdentities);
@@ -277,32 +288,31 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
 
   /**
    * Sets the value of the Loose-Route-Indication AVP, of type Enumerated.
-   * 
-   * @throws IllegalStateException
-   *             if setLooseRouteIndication has already been called
+   *
+   * @throws IllegalStateException if setLooseRouteIndication has already been called
    */
   void setLooseRouteIndication(LooseRouteIndication looseRouteIndication);
 
   /**
    * Returns the value of the SCSCF-Restoration-Info AVP, of type Grouped.
-   * 
+   *
    * @return the value of the SCSCF-Restoration-Info AVP or null if it has not been set on this message
    */
   SCSCFRestorationInfo[] getSCSCFRestorationInfos();
 
   /**
    * Sets the value of the SCSCF-Restoration-Info AVP, of type Grouped.
-   * 
+   *
    * @throws IllegalStateException if setSCSCFRestorationInfo has already been called
    */
   void setSCSCFRestorationInfo(SCSCFRestorationInfo scscfRestorationInfo);
 
   /**
    * Sets the value of the SCSCF-Restoration-Info AVP, of type Grouped.
-   * 
+   *
    * @throws IllegalStateException if setSCSCFRestorationInfo has already been called
    */
-  void setSCSCFRestorationInfos(SCSCFRestorationInfo[] scscfRestorationInfos);
+  void setSCSCFRestorationInfos(SCSCFRestorationInfo[] scscfRestorationInfo);
 
   /**
    * Returns true if the Associated-Registered-Identities AVP is present in the message.
@@ -311,12 +321,14 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
 
   /**
    * Returns the value of the Associated-Registered-Identities AVP, of type Grouped.
+   *
    * @return the value of the Associated-Registered-Identities AVP or null if it has not been set on this message
    */
   AssociatedRegisteredIdentities getAssociatedRegisteredIdentities();
 
   /**
    * Sets the value of the Associated-Registered-Identities AVP, of type Grouped.
+   *
    * @throws IllegalStateException if setAssociatedRegisteredIdentities has already been called
    */
   void setAssociatedRegisteredIdentities(AssociatedRegisteredIdentities associatedRegisteredIdentities);
@@ -328,17 +340,16 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
 
   /**
    * Returns the value of the Server-Name AVP, of type UTF8String.
-   * 
+   *
    * @return the value of the Server-Name AVP or null if it has not been set
-   *         on this message
+   * on this message
    */
   String getServerName();
 
   /**
    * Sets the value of the Server-Name AVP, of type UTF8String.
-   * 
-   * @throws IllegalStateException
-   *             if setServerName has already been called
+   *
+   * @throws IllegalStateException if setServerName has already been called
    */
   void setServerName(String serverName);
 
@@ -352,9 +363,8 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
 
   /**
    * Sets a single Failed-AVP AVP in the message, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setFailedAvp or setFailedAvps has already been called
+   *
+   * @throws IllegalStateException if setFailedAvp or setFailedAvps has already been called
    */
   void setFailedAvp(FailedAvp failedAvp);
 
@@ -362,13 +372,12 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
    * Sets the set of Failed-AVP AVPs, with all the values in the given array.
    * The AVPs will be added to message in the order in which they appear in
    * the array.
-   * 
+   * <p/>
    * Note: the array must not be altered by the caller following this call,
    * and getFailedAvps() is not guaranteed to return the same array instance,
    * e.g. an "==" check would fail.
-   * 
-   * @throws IllegalStateException
-   *             if setFailedAvp or setFailedAvps has already been called
+   *
+   * @throws IllegalStateException if setFailedAvp or setFailedAvps has already been called
    */
   void setFailedAvps(FailedAvp[] failedAvps);
 
@@ -382,21 +391,22 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
 
   /**
    * Sets a single Proxy-Info AVP in the message, of type Grouped.
+   *
    * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
+   *                               has already been called
    */
   void setProxyInfo(ProxyInfoAvp proxyInfo);
 
   /**
    * Sets the set of Proxy-Info AVPs, with all the values in the given array.
    * The AVPs will be added to message in the order in which they appear in the array.
-   *
+   * <p/>
    * Note: the array must not be altered by the caller following this call, and
    * getProxyInfos() is not guaranteed to return the same array instance,
    * e.g. an "==" check would fail.
    *
    * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
+   *                               has already been called
    */
   void setProxyInfos(ProxyInfoAvp[] proxyInfos);
 
@@ -410,22 +420,64 @@ public interface ServerAssignmentAnswer extends DiameterMessage {
 
   /**
    * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
+   *
    * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
+   *                               has already been called
    */
   void setRouteRecord(DiameterIdentity routeRecord);
 
   /**
    * Sets the set of Route-Record AVPs, with all the values in the given array.
    * The AVPs will be added to message in the order in which they appear in the array.
-   *
+   * <p/>
    * Note: the array must not be altered by the caller following this call, and
    * getRouteRecords() is not guaranteed to return the same array instance,
    * e.g. an "==" check would fail.
    *
    * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
+   *                               has already been called
    */
   void setRouteRecords(DiameterIdentity[] routeRecords);
 
+  //R12 new AVPs
+
+  /**
+   * @return true if th Wildcarded-Public-Identity AVP is present in the message
+   */
+  boolean hasWildcardedPublicIdentity();
+
+  /**
+   * Returns the value of the Wildcarded-Public-Identity AVP , of type UTF8String
+   *
+   * @return the value of the Wildcarded-Public-Identity AVP or null if it has not been set
+   * on this message
+   */
+  String getWildcardedPublicIdentity();
+
+  /**
+   * Sets a single Wildcarded-Public-Identity AVP into the message, of type UTF8String
+   *
+   * @param wildcardedPublicIdentity the AVP value
+   */
+  void setWildcardedPublicIdentity(String wildcardedPublicIdentity);
+
+  /**
+   * Returns true if the Priviledged-Sender-Indication AVP is present in the message.
+   */
+  boolean hasPriviledgedSenderIndication();
+
+  /**
+   * Returns the value of the Priviledged-Sender-Indication AVP, of type Enumerated.
+   *
+   * @return the value of the Priviledged-Sender-Indication AVP or null if it has not been set
+   * on this message
+   */
+  PriviledgedSenderIndication getPriviledgedSenderIndication();
+
+  /**
+   * Sets the value of the Priviledged-Sender-Indication AVP, of type Enumerated
+   *
+   * @throws IllegalStateException if setPriviledgedSenderIndication has already been called
+   */
+  void setPriviledgedSenderIndication(PriviledgedSenderIndication priviledgedSenderIndication);
 }

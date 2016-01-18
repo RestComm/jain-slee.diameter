@@ -530,7 +530,7 @@ public class DiameterCxDxAvpCodes {
 
   /**
    * <pre>
-   * Name......: Wildcarded-PSI
+   * Name......: Wildcarded-Public-Identity
    * Code......: 634
    * Section...: 6.3.35
    * Type......: UTF8String
@@ -541,7 +541,7 @@ public class DiameterCxDxAvpCodes {
    * May Encr..: No
    * </pre>
    */
-  public static final int WILDCARDED_PSI = 634;
+  public static final int WILDCARDED_PUBLIC_IDENTITY = 634;
 
   /**
    * <pre>
@@ -768,7 +768,98 @@ public class DiameterCxDxAvpCodes {
    */
   public static final int RESTORATION_INFO = 649;
 
-  // 3GPP AVP CODES
+    /**
+     * <pre>
+     * Name......: Session-Priority
+     * Code......: 650
+     * Section...: 6.3.56
+     * Type......: Grouped
+     * Must......: V
+     * May.......: -
+     * Should....: -
+     * MustNot...: M
+     * May Encr..: No
+     * </pre>
+     */
+    public static final int SESSION_PRIORITY = 650;
+
+    /**
+     * <pre>
+     * Name......: Identity-with-Emergency-Registration
+     * Code......: 651
+     * Section...: 6.3.57
+     * Type......: Grouped
+     * Must......: V
+     * May.......: -
+     * Should....: -
+     * MustNot...: M
+     * May Encr..: No
+     * </pre>
+     */
+    public static final int IDENTITY_WITH_EMERGENCY_REGISTRATION = 651;
+
+    /**
+     * <pre>
+     * Name......: Priviledged-Sender-Info
+     * Code......: 652
+     * Section...: 6.3.56
+     * Type......: Enumerated
+     * Must......: V
+     * May.......: -
+     * Should....: -
+     * MustNot...: M
+     * May Encr..: No
+     * </pre>
+     */
+    public static final int PRIVILEDGED_SENDER_INDICATION = 652;
+
+    /**
+     * <pre>
+     * Name......: Restoration-Info
+     * Code......: 649
+     * Section...: 6.3.52
+     * Type......: Grouped
+     * Must......: V
+     * May.......: -
+     * Should....: -
+     * MustNot...: M
+     * May Encr..: No
+     * </pre>
+     */
+    public static final int LIA_FLAGS = 653;
+
+    /**
+     * <pre>
+     * Name......: Initial-CSeq-Sequence-Number
+     * Code......: 654
+     * Section...: 6.3.49
+     * Type......: Unsigned32
+     * Must......: V
+     * May.......: -
+     * Should....: -
+     * MustNot...: M
+     * May Encr..: No
+     * </pre>
+     */
+    public static final int INITIAL_CSEQ_SEQUENCE_NUMBER = 654;
+
+    /**
+     * <pre>
+     * Name......: SAR-Flags
+     * Code......: 655
+     * Section...: 6.3.63
+     * Type......: Enumerated
+     * Must......: V
+     * May.......: -
+     * Should....: -
+     * MustNot...: M
+     * May Encr..: No
+     * </pre>
+     */
+    public static final int SAR_FLAGS = 655;
+
+
+    // 3GPP AVP CODES
   public static final int TGPP_DIGEST_ALGORITHM = 111;
   public static final int TGPP_DIGEST_HA1 = 121;
   public static final int TGPP_DIGEST_QOP = 110;

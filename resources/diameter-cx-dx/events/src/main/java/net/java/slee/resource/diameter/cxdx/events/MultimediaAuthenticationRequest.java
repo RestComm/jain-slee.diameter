@@ -32,11 +32,13 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
- * <b>6.1.7  Multimedia-Auth-Request (MAR) Command</b>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * The Multimedia-Auth-Request (MAR) command, indicated by the Command-Code field set to 303 and
- * the �R� bit set in the Command Flags field, is sent by a Diameter Multimedia client to a 
+ * the 'R' bit set in the Command Flags field, is sent by a Diameter Multimedia client to a
  * Diameter Multimedia server in order to request security information.
- * 
+ *
  * Message Format
  * < Multimedia-Auth-Request > ::=  < Diameter Header: 303, REQ, PXY, 16777216 >
  *                             < Session-Id >
@@ -47,6 +49,7 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                             { Destination-Realm }
  *                             [ Destination-Host ]
  *                             { User-Name }
+ *                             [ OC-Supported-Features ]     //Draft
  *                            *[ Supported-Features ]
  *                             { Public-Identity }
  *                             { SIP-Auth-Data-Item }
@@ -56,7 +59,6 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
  *                            *[ Proxy-Info ]
  *                            *[ Route-Record ]
  *
- * </pre>
  *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
@@ -74,18 +76,17 @@ public interface MultimediaAuthenticationRequest extends DiameterMessage {
   /**
    * Returns the value of the Vendor-Specific-Application-Id AVP, of type
    * Grouped.
-   * 
+   *
    * @return the value of the Vendor-Specific-Application-Id AVP or null if it
-   *         has not been set on this message
+   * has not been set on this message
    */
   VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
 
   /**
    * Sets the value of the Vendor-Specific-Application-Id AVP, of type
    * Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setVendorSpecificApplicationId has already been called
+   *
+   * @throws IllegalStateException if setVendorSpecificApplicationId has already been called
    */
   void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
 
@@ -102,9 +103,8 @@ public interface MultimediaAuthenticationRequest extends DiameterMessage {
 
   /**
    * Sets the value of the Auth-Session-State AVP, of type Enumerated.
-   * 
-   * @throws IllegalStateException
-   *             if setAuthSessionState has already been called
+   *
+   * @throws IllegalStateException if setAuthSessionState has already been called
    */
   void setAuthSessionState(AuthSessionStateType authSessionState);
 
@@ -115,22 +115,23 @@ public interface MultimediaAuthenticationRequest extends DiameterMessage {
 
   /**
    * Returns the value of the User-Name AVP, of type UTF8String.
+   *
    * @return the value of the User-Name AVP or null if it has not been set on this message
    */
   String getUserName();
 
   /**
    * Sets the value of the User-Name AVP, of type UTF8String.
+   *
    * @throws IllegalStateException if setUserName has already been called
    */
   void setUserName(String userName);
 
   /**
    * Sets a single Supported-Features AVP in the message, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
+   *
+   * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+   *                               been called
    */
   void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
 
@@ -138,14 +139,13 @@ public interface MultimediaAuthenticationRequest extends DiameterMessage {
    * Sets the set of Supported-Features AVPs, with all the values in the given
    * array. The AVPs will be added to message in the order in which they
    * appear in the array.
-   * 
+   * <p/>
    * Note: the array must not be altered by the caller following this call,
    * and getSupportedFeatureses() is not guaranteed to return the same array
    * instance, e.g. an "==" check would fail.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
+   *
+   * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+   *                               been called
    */
   void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
 
@@ -170,6 +170,7 @@ public interface MultimediaAuthenticationRequest extends DiameterMessage {
 
   /**
    * Sets the value of the Public-Identity AVP, of type UTF8String.
+   *
    * @throws IllegalStateException if setPublicIdentity has already been called
    */
   void setPublicIdentity(String publicIdentity);
@@ -187,6 +188,7 @@ public interface MultimediaAuthenticationRequest extends DiameterMessage {
 
   /**
    * Sets the value of the SIP-Auth-Data-Item AVP, of type Grouped.
+   *
    * @throws IllegalStateException if setSIPAuthDataItem has already been called
    */
   void setSIPAuthDataItem(SIPAuthDataItem sipAuthDataItem);
@@ -204,6 +206,7 @@ public interface MultimediaAuthenticationRequest extends DiameterMessage {
 
   /**
    * Sets the value of the SIP-Number-Auth-Items AVP, of type Unsigned32.
+   *
    * @throws IllegalStateException if setSIPNumberAuthItems has already been called
    */
   void setSIPNumberAuthItems(long sipNumberAuthItems);
@@ -221,6 +224,7 @@ public interface MultimediaAuthenticationRequest extends DiameterMessage {
 
   /**
    * Sets the value of the Server-Name AVP, of type UTF8String.
+   *
    * @throws IllegalStateException if setServerName has already been called
    */
   void setServerName(String serverName);
@@ -235,21 +239,22 @@ public interface MultimediaAuthenticationRequest extends DiameterMessage {
 
   /**
    * Sets a single Proxy-Info AVP in the message, of type Grouped.
+   *
    * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
+   *                               has already been called
    */
   void setProxyInfo(ProxyInfoAvp proxyInfo);
 
   /**
    * Sets the set of Proxy-Info AVPs, with all the values in the given array.
    * The AVPs will be added to message in the order in which they appear in the array.
-   *
+   * <p/>
    * Note: the array must not be altered by the caller following this call, and
    * getProxyInfos() is not guaranteed to return the same array instance,
    * e.g. an "==" check would fail.
    *
    * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
+   *                               has already been called
    */
   void setProxyInfos(ProxyInfoAvp[] proxyInfos);
 
@@ -263,21 +268,22 @@ public interface MultimediaAuthenticationRequest extends DiameterMessage {
 
   /**
    * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
+   *
    * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
+   *                               has already been called
    */
   void setRouteRecord(DiameterIdentity routeRecord);
 
   /**
    * Sets the set of Route-Record AVPs, with all the values in the given array.
    * The AVPs will be added to message in the order in which they appear in the array.
-   *
+   * <p/>
    * Note: the array must not be altered by the caller following this call, and
    * getRouteRecords() is not guaranteed to return the same array instance,
    * e.g. an "==" check would fail.
    *
    * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
+   *                               has already been called
    */
   void setRouteRecords(DiameterIdentity[] routeRecords);
 

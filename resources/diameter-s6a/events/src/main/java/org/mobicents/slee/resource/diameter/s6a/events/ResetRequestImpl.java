@@ -22,21 +22,26 @@
 
 package org.mobicents.slee.resource.diameter.s6a.events;
 
+import static net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes.RESET_ID;
 import static net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes.S6A_VENDOR_ID;
 import static net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes.SUPPORTED_FEATURES;
 import net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType;
+import net.java.slee.resource.diameter.base.events.avp.AvpUtilities;
+import net.java.slee.resource.diameter.base.events.avp.DiameterAvp;
 import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
+import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 import net.java.slee.resource.diameter.s6a.events.ResetRequest;
 import net.java.slee.resource.diameter.s6a.events.avp.DiameterS6aAvpCodes;
 import net.java.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvp;
 
+import org.jdiameter.api.Avp;
 import org.jdiameter.api.Message;
 import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
 import org.mobicents.slee.resource.diameter.s6a.events.avp.SupportedFeaturesAvpImpl;
 
 /**
  * Implementation for {@link ResetRequest}
- * 
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
 public class ResetRequestImpl extends DiameterMessageImpl implements ResetRequest {
@@ -117,8 +122,8 @@ public class ResetRequestImpl extends DiameterMessageImpl implements ResetReques
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.s6a.events.ResetRequest#getUserId()
    */
-  public String getUserId() {
-    return getAvpAsUTF8String(DiameterS6aAvpCodes.USER_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+  public String[] getUserIds() {
+    return getAvpsAsUTF8String(DiameterS6aAvpCodes.USER_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
   }
 
   /* (non-Javadoc)
@@ -128,24 +133,42 @@ public class ResetRequestImpl extends DiameterMessageImpl implements ResetReques
     addAvp(DiameterS6aAvpCodes.USER_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID, userId);
   }
 
-    /* (non-Javadoc)
-     * @see net.java.slee.resource.diameter.s6a.events.ResetRequest#hasResetID()
-     */
-    public boolean hasResetID() {
-        return hasAvp(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+  /* (non-Javadoc)
+  * @see net.java.slee.resource.diameter.s6a.events.ResetRequest#setUserIds(java.lang.String[])
+  */
+  public void setUserIds(String[] userIds) {
+    for (String aux : userIds){
+      setUserId(aux);
     }
+  }
 
-    /* (non-Javadoc)
-     * @see net.java.slee.resource.diameter.s6a.events.ResetRequest#getResetID()
-     */
-    public byte[] getResetID() {
-        return getAvpAsOctetString(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-    }
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.s6a.events.ResetRequest#hasResetID()
+   */
+  public boolean hasResetID() {
+    return hasAvp(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+  }
 
-    /* (non-Javadoc)
-     * @see net.java.slee.resource.diameter.s6a.events.ResetRequest#setResetID(byte[])
-     */
-    public void setResetID(byte[] resetID) {
-        addAvp(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID, resetID);
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.s6a.events.ResetRequest#setResetID(byte[])
+   */
+  public void setResetID(byte[] resetID) {
+    addAvp(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID, resetID);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.s6a.events.ResetRequest#setResetIDs(byte[][])
+   */
+  public void setResetIDs(byte[][] resetIDs) {
+    for (byte[] resetId : resetIDs) {
+      setResetID(resetId);
     }
+  }
+
+  /* (non-Javadoc)
+  * @see net.java.slee.resource.diameter.s6a.events.ResetRequest#getResetIDs()
+  */
+  public byte[][] getResetIDs() {
+    return getAvpsAsOctetString(DiameterS6aAvpCodes.RESET_ID, DiameterS6aAvpCodes.S6A_VENDOR_ID);
+  }
 }

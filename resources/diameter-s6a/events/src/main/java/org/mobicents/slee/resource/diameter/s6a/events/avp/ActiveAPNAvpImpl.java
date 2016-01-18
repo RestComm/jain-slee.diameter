@@ -32,13 +32,13 @@ import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
 
 /**
  * Implementation for {@link ActiveAPN}
- * 
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
 public class ActiveAPNAvpImpl extends GroupedAvpImpl implements ActiveAPNAvp {
 
   /**
-   * 
+   *
    */
   public ActiveAPNAvpImpl() {
     super();
@@ -81,13 +81,6 @@ public class ActiveAPNAvpImpl extends GroupedAvpImpl implements ActiveAPNAvp {
    */
   public boolean hasSpecificAPNInfo() {
     return hasAvp(DiameterS6aAvpCodes.SPECIFIC_APN_INFO, DiameterS6aAvpCodes.S6A_VENDOR_ID);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.s6a.events.avp.ActiveAPNAvp#getSpecificAPNInfo()
-   */
-  public SpecificAPNInfoAvp getSpecificAPNInfo() {
-    return (SpecificAPNInfoAvp) getAvpAsCustom(DiameterS6aAvpCodes.SPECIFIC_APN_INFO, DiameterS6aAvpCodes.S6A_VENDOR_ID, SpecificAPNInfoAvpImpl.class);
   }
 
   /* (non-Javadoc)
@@ -160,4 +153,20 @@ public class ActiveAPNAvpImpl extends GroupedAvpImpl implements ActiveAPNAvp {
     addAvp(DiameterS6aAvpCodes.VISITED_NETWORK_IDENTIFIER, DiameterS6aAvpCodes.S6A_VENDOR_ID, vni);
   }
 
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.s6a.events.avp.ActiveAPNAvp#setSpecificAPNInfos(net.java.slee.resource.diameter.base.events.avp.SpecificAPNInfo[])
+   */
+  public void setSpecificAPNInfos(SpecificAPNInfoAvp[] specificAPNInfos) {
+    for (SpecificAPNInfoAvp aux : specificAPNInfos){
+      setSpecificAPNInfo(aux);
+    }
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.s6a.events.avp.ActiveAPNAvp#getSpecificAPNInfos()
+   */
+  public SpecificAPNInfoAvp[] getSpecificAPNInfos(){
+    return (SpecificAPNInfoAvp[]) getAvpsAsCustom(DiameterS6aAvpCodes.SPECIFIC_APN_INFO,
+      DiameterS6aAvpCodes.S6A_VENDOR_ID, SpecificAPNInfoAvpImpl.class);
+  }
 }

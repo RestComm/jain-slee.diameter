@@ -286,15 +286,20 @@ public class SubscriptionDataAvpImpl extends GroupedAvpImpl implements Subscript
         return hasAvp(DiameterS6aAvpCodes.CSG_SUBSCRIPTION_DATA, DiameterS6aAvpCodes.S6A_VENDOR_ID);
     }
 
-    public CSGSubscriptionDataAvp getCSGSubscriptionData() {
-        return (CSGSubscriptionDataAvp) getAvpAsCustom(DiameterS6aAvpCodes.CSG_SUBSCRIPTION_DATA,
-                DiameterS6aAvpCodes.S6A_VENDOR_ID,
-                CSGSubscriptionDataAvpImpl.class);
-    }
-
     public void setCSGSubscriptionData(CSGSubscriptionDataAvp csgSubscriptionData) {
         addAvp(DiameterS6aAvpCodes.CSG_SUBSCRIPTION_DATA, DiameterS6aAvpCodes.S6A_VENDOR_ID,
                 csgSubscriptionData.byteArrayValue());
+    }
+
+    public CSGSubscriptionDataAvp[] getCSGSubscriptionDatas(){
+        return (CSGSubscriptionDataAvp[]) getAvpsAsCustom(DiameterS6aAvpCodes.CSG_SUBSCRIPTION_DATA,
+                                                DiameterS6aAvpCodes.S6A_VENDOR_ID, CSGSubscriptionDataAvpImpl.class);
+    }
+
+    public void setCSGSubscriptionDatas(CSGSubscriptionDataAvp[] csgSubscriptionDatas){
+        for (CSGSubscriptionDataAvp aux : csgSubscriptionDatas){
+            setCSGSubscriptionData(aux);
+        }
     }
 
     public boolean hasRoamingRestrictedDueToUnsupportedFeature() {

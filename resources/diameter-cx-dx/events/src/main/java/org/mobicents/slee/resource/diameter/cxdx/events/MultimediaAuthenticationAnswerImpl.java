@@ -113,13 +113,6 @@ public class MultimediaAuthenticationAnswerImpl extends DiameterMessageImpl impl
   }
 
   /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.MultimediaAuthenticationAnswer#getWildcardedIMPU()
-   */
-  public String getWildcardedIMPU() {
-    return getAvpAsUTF8String(WILDCARDED_IMPU, CXDX_VENDOR_ID);
-  }
-
-  /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.cxdx.events.MultimediaAuthenticationAnswer#hasAuthSessionState()
    */
   public boolean hasAuthSessionState() {
@@ -145,13 +138,6 @@ public class MultimediaAuthenticationAnswerImpl extends DiameterMessageImpl impl
    */
   public boolean hasSIPNumberAuthItems() {
     return hasAvp(SIP_NUMBER_AUTH_ITEMS, CXDX_VENDOR_ID);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.MultimediaAuthenticationAnswer#hasWildcardedIMPU()
-   */
-  public boolean hasWildcardedIMPU() {
-    return hasAvp(WILDCARDED_IMPU, CXDX_VENDOR_ID);
   }
 
   /* (non-Javadoc)
@@ -213,12 +199,4 @@ public class MultimediaAuthenticationAnswerImpl extends DiameterMessageImpl impl
       setSupportedFeatures(supportedFeatures);
     }
   }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.MultimediaAuthenticationAnswer#setWildcardedIMPU(java.lang.String)
-   */
-  public void setWildcardedIMPU(String wildcardedIMPU) {
-    addAvp(WILDCARDED_IMPU, CXDX_VENDOR_ID, wildcardedIMPU);
-  }
-
 }

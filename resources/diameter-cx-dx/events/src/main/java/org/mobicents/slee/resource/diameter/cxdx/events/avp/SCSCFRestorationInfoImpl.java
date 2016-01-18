@@ -86,7 +86,7 @@ public class SCSCFRestorationInfoImpl extends GroupedAvpImpl implements SCSCFRes
    * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#setRestorationInfos(net.java.slee.resource.diameter.cxdx.events.avp.RestorationInfo[])
    */
   public void setRestorationInfos(RestorationInfo[] restorationInfos) throws IllegalStateException {
-    for(RestorationInfo restorationInfo : restorationInfos) {
+    for (RestorationInfo restorationInfo : restorationInfos) {
       setRestorationInfo(restorationInfo);
     }
   }
@@ -98,4 +98,24 @@ public class SCSCFRestorationInfoImpl extends GroupedAvpImpl implements SCSCFRes
     addAvp(DiameterAvpCodes.USER_NAME, userName);
   }
 
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#hasSIPAuthenticationScheme()
+   */
+  public boolean hasSIPAuthenticationScheme() {
+    return hasAvp(SIP_AUTHENTICATION_SCHEME, CXDX_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#getSIPAuthenticationScheme()
+   */
+  public String getSIPAuthenticationScheme() {
+    return getAvpAsUTF8String(SIP_AUTHENTICATION_SCHEME, CXDX_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo#setSIPAuthenticationScheme(java.lang.String)
+   */
+  public void setSIPAuthenticationScheme(String sipAuthenticationScheme) throws IllegalStateException {
+    addAvp(SIP_AUTHENTICATION_SCHEME, CXDX_VENDOR_ID, sipAuthenticationScheme);
+  }
 }

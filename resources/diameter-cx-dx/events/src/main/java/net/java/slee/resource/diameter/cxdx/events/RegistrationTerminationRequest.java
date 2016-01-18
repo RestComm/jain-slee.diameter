@@ -33,11 +33,15 @@ import net.java.slee.resource.diameter.cxdx.events.avp.SupportedFeaturesAvp;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+
  * <b>6.1.9  Registration-Termination-Request (RTR) Command</b>
- * The Registration-Termination-Request (RTR) command, indicated by the Command-Code field set to 
- * 304 and the �R� bit set in the Command Flags field, is sent by a Diameter Multimedia server to 
+ *
+ * The Registration-Termination-Request (RTR) command, indicated by the Command-Code field set to
+ * 304 and the 'R' bit set in the Command Flags field, is sent by a Diameter Multimedia server to
  * a Diameter Multimedia client in order to request the de-registration of a user.
- * 
+ *
  * Message Format
  * <Registration-Termination-Request> ::=    < Diameter Header: 304, REQ, PXY, 16777216 >
  *                                    < Session-Id >
@@ -74,18 +78,17 @@ public interface RegistrationTerminationRequest extends DiameterMessage {
   /**
    * Returns the value of the Vendor-Specific-Application-Id AVP, of type
    * Grouped.
-   * 
+   *
    * @return the value of the Vendor-Specific-Application-Id AVP or null if it
-   *         has not been set on this message
+   * has not been set on this message
    */
   VendorSpecificApplicationIdAvp getVendorSpecificApplicationId();
 
   /**
    * Sets the value of the Vendor-Specific-Application-Id AVP, of type
    * Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setVendorSpecificApplicationId has already been called
+   *
+   * @throws IllegalStateException if setVendorSpecificApplicationId has already been called
    */
   void setVendorSpecificApplicationId(VendorSpecificApplicationIdAvp vendorSpecificApplicationId);
 
@@ -102,9 +105,8 @@ public interface RegistrationTerminationRequest extends DiameterMessage {
 
   /**
    * Sets the value of the Auth-Session-State AVP, of type Enumerated.
-   * 
-   * @throws IllegalStateException
-   *             if setAuthSessionState has already been called
+   *
+   * @throws IllegalStateException if setAuthSessionState has already been called
    */
   void setAuthSessionState(AuthSessionStateType authSessionState);
 
@@ -115,12 +117,14 @@ public interface RegistrationTerminationRequest extends DiameterMessage {
 
   /**
    * Returns the value of the User-Name AVP, of type UTF8String.
+   *
    * @return the value of the User-Name AVP or null if it has not been set on this message
    */
   String getUserName();
 
   /**
    * Sets the value of the User-Name AVP, of type UTF8String.
+   *
    * @throws IllegalStateException if setUserName has already been called
    */
   void setUserName(String userName);
@@ -132,12 +136,14 @@ public interface RegistrationTerminationRequest extends DiameterMessage {
 
   /**
    * Returns the value of the Associated-Identities AVP, of type Grouped.
+   *
    * @return the value of the Associated-Identities AVP or null if it has not been set on this message
    */
   AssociatedIdentities getAssociatedIdentities();
 
   /**
    * Sets the value of the Associated-Identities AVP, of type Grouped.
+   *
    * @throws IllegalStateException if setAssociatedIdentities has already been called
    */
   void setAssociatedIdentities(AssociatedIdentities associatedIdentities);
@@ -152,10 +158,9 @@ public interface RegistrationTerminationRequest extends DiameterMessage {
 
   /**
    * Sets a single Supported-Features AVP in the message, of type Grouped.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
+   *
+   * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+   *                               been called
    */
   void setSupportedFeatures(SupportedFeaturesAvp supportedFeatures);
 
@@ -163,14 +168,13 @@ public interface RegistrationTerminationRequest extends DiameterMessage {
    * Sets the set of Supported-Features AVPs, with all the values in the given
    * array. The AVPs will be added to message in the order in which they
    * appear in the array.
-   * 
+   * <p/>
    * Note: the array must not be altered by the caller following this call,
    * and getSupportedFeatureses() is not guaranteed to return the same array
    * instance, e.g. an "==" check would fail.
-   * 
-   * @throws IllegalStateException
-   *             if setSupportedFeatures or setSupportedFeatureses has already
-   *             been called
+   *
+   * @throws IllegalStateException if setSupportedFeatures or setSupportedFeatureses has already
+   *                               been called
    */
   void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses);
 
@@ -182,12 +186,14 @@ public interface RegistrationTerminationRequest extends DiameterMessage {
 
   /**
    * Sets the value of the Public-Identity AVP, of type UTF8String.
+   *
    * @throws IllegalStateException if setPublicIdentity has already been called
    */
   void setPublicIdentity(String publicIdentity);
 
   /**
    * Sets the value of the Public-Identity AVP, of type UTF8String.
+   *
    * @throws IllegalStateException if setPublicIdentity has already been called
    */
   void setPublicIdentities(String[] publicIdentities);
@@ -205,6 +211,7 @@ public interface RegistrationTerminationRequest extends DiameterMessage {
 
   /**
    * Sets the value of the Deregistration-Reason AVP, of type Grouped.
+   *
    * @throws IllegalStateException if setDeregistrationReason has already been called
    */
   void setDeregistrationReason(DeregistrationReason publicIdentity);
@@ -219,21 +226,22 @@ public interface RegistrationTerminationRequest extends DiameterMessage {
 
   /**
    * Sets a single Proxy-Info AVP in the message, of type Grouped.
+   *
    * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
+   *                               has already been called
    */
   void setProxyInfo(ProxyInfoAvp proxyInfo);
 
   /**
    * Sets the set of Proxy-Info AVPs, with all the values in the given array.
    * The AVPs will be added to message in the order in which they appear in the array.
-   *
+   * <p/>
    * Note: the array must not be altered by the caller following this call, and
    * getProxyInfos() is not guaranteed to return the same array instance,
    * e.g. an "==" check would fail.
    *
    * @throws IllegalStateException if setProxyInfo or setProxyInfos
-   *  has already been called
+   *                               has already been called
    */
   void setProxyInfos(ProxyInfoAvp[] proxyInfos);
 
@@ -247,21 +255,22 @@ public interface RegistrationTerminationRequest extends DiameterMessage {
 
   /**
    * Sets a single Route-Record AVP in the message, of type DiameterIdentity.
+   *
    * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
+   *                               has already been called
    */
   void setRouteRecord(DiameterIdentity routeRecord);
 
   /**
    * Sets the set of Route-Record AVPs, with all the values in the given array.
    * The AVPs will be added to message in the order in which they appear in the array.
-   *
+   * <p/>
    * Note: the array must not be altered by the caller following this call, and
    * getRouteRecords() is not guaranteed to return the same array instance,
    * e.g. an "==" check would fail.
    *
    * @throws IllegalStateException if setRouteRecord or setRouteRecords
-   *  has already been called
+   *                               has already been called
    */
   void setRouteRecords(DiameterIdentity[] routeRecords);
 

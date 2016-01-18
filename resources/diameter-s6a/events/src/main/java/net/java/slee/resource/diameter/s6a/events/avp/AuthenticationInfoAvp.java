@@ -27,12 +27,12 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 /**
  * Defines an interface representing the Authentication-Info grouped AVP type.
  * From the Diameter S6a Reference Point Protocol Details (3GPP TS 29.272 V12.8.0) specification:
- * 
+ *
  * <pre>
  * 7.3.17 Authentication-Info
- * 
+ *
  *  The Authentication-Info AVP is of type Grouped. This AVP contains Authentication Vectors.
- *  
+ *
  *  AVP format:
  *  Authentication-Info ::= < AVP header: 1413 10415 >
  *                         *[ E-UTRAN-Vector ]
@@ -40,7 +40,7 @@ import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
  *                         *[ GERAN-Vector ]
  *                         *[ AVP ]
  * </pre>
- * 
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
  * @author <a href="mailto:richard.good@smilecoms.com"> Richard Good </a>
@@ -61,8 +61,9 @@ public interface AuthenticationInfoAvp extends GroupedAvp {
                         *[AVP]
    */
   public boolean hasEUTRANVector();
-  public EUTRANVectorAvp getEUTRANVector();
   public void setEUTRANVector(EUTRANVectorAvp EUTRANVector);
+  public EUTRANVectorAvp[] getEUTRANVectors();
+  public void setEUTRANVectors(EUTRANVectorAvp[] eutranVectors);
 
   /*
     7.3.19 UTRAN-Vector
@@ -78,8 +79,9 @@ public interface AuthenticationInfoAvp extends GroupedAvp {
                         *[AVP]
    */
   public boolean hasUTRANVector();
-  public UTRANVectorAvp getUTRANVector();
   public void setUTRANVector(UTRANVectorAvp utranVector);
+  public UTRANVectorAvp[] getUTRANVectors();
+  public void setUTRANVectors(UTRANVectorAvp[] utranVectors);
 
   /*
         7.3.20 GERAN-Vector
@@ -93,6 +95,7 @@ public interface AuthenticationInfoAvp extends GroupedAvp {
                         *[AVP]
   */
   public boolean hasGERANVector();
-  public GERANVectorAvp getGERANVector();
   public void setGERANVector(GERANVectorAvp geranVector);
+  public GERANVectorAvp[] getGERANVectors();
+  public void setGERANVectors(GERANVectorAvp[] geranVectors);
 }

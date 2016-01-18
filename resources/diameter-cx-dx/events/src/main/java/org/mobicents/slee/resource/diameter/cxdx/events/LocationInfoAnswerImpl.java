@@ -103,20 +103,6 @@ public class LocationInfoAnswerImpl extends DiameterMessageImpl implements Locat
   }
 
   /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoAnswer#getWildcardedIMPU()
-   */
-  public String getWildcardedIMPU() {
-    return getAvpAsUTF8String(WILDCARDED_IMPU, CXDX_VENDOR_ID);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoAnswer#getWildcardedPSI()
-   */
-  public String getWildcardedPSI() {
-    return getAvpAsUTF8String(WILDCARDED_PSI, CXDX_VENDOR_ID);
-  }
-
-  /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoAnswer#hasAuthSessionState()
    */
   public boolean hasAuthSessionState() {
@@ -142,20 +128,6 @@ public class LocationInfoAnswerImpl extends DiameterMessageImpl implements Locat
    */
   public boolean hasServerName() {
     return hasAvp(SERVER_NAME, CXDX_VENDOR_ID);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoAnswer#hasWildcardedIMPU()
-   */
-  public boolean hasWildcardedIMPU() {
-    return hasAvp(WILDCARDED_IMPU, CXDX_VENDOR_ID);
-  }
-
-  /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoAnswer#hasWildcardedPSI()
-   */
-  public boolean hasWildcardedPSI() {
-    return hasAvp(WILDCARDED_PSI, CXDX_VENDOR_ID);
   }
 
   /* (non-Javadoc)
@@ -197,23 +169,51 @@ public class LocationInfoAnswerImpl extends DiameterMessageImpl implements Locat
    * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoAnswer#setSupportedFeatureses(net.java.slee.resource.diameter.sh.client.events.avp.SupportedFeaturesAvp[])
    */
   public void setSupportedFeatureses(SupportedFeaturesAvp[] supportedFeatureses) {
-    for(SupportedFeaturesAvp supportedFeatures : supportedFeatureses) {
+    for (SupportedFeaturesAvp supportedFeatures : supportedFeatureses) {
       setSupportedFeatures(supportedFeatures);
     }
   }
 
   /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoAnswer#setWildcardedIMPU(java.lang.String)
-   */
-  public void setWildcardedIMPU(String wildcardedIMPU) {
-    addAvp(WILDCARDED_IMPU, CXDX_VENDOR_ID, wildcardedIMPU);
+* @see net.java.slee.resource.diameter.cxdx.events.LocationInfoAnswer#getWildcardedPublicIdentity()
+*/
+  public String getWildcardedPublicIdentity() {
+    return getAvpAsUTF8String(WILDCARDED_PUBLIC_IDENTITY, CXDX_VENDOR_ID);
   }
 
   /* (non-Javadoc)
-   * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoAnswer#setWildcardedPSI(java.lang.String)
+* @see net.java.slee.resource.diameter.cxdx.events.LocationInfoAnswer#getWildcardedPublicIdentity()
+*/
+  public long getLIAFlags() {
+    return getAvpAsUnsigned32(LIA_FLAGS, CXDX_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoAnswer#hasWildcardedPublicIdentity()
    */
-  public void setWildcardedPSI(String wildcardedPSI) {
-    addAvp(WILDCARDED_PSI, CXDX_VENDOR_ID, wildcardedPSI);
+  public boolean hasWildcardedPublicIdentity() {
+    return hasAvp(WILDCARDED_PUBLIC_IDENTITY, CXDX_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.cxdx.events.LocationInfoAnswer#hasWildcardedPublicIdentity()
+   */
+  public boolean hasLIAFlags() {
+    return hasAvp(LIA_FLAGS, CXDX_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
+* @see net.java.slee.resource.diameter.cxdx.events.LocationInfoAnswer#setWildcardedPublicIdentity(java.lang.String)
+*/
+  public void setWildcardedPublicIdentity(String wildcardedPublicIdentity) {
+    addAvp(WILDCARDED_PUBLIC_IDENTITY, CXDX_VENDOR_ID, wildcardedPublicIdentity);
+  }
+
+  /* (non-Javadoc)
+* @see net.java.slee.resource.diameter.cxdx.events.LocationInfoAnswer#setWildcardedPublicIdentity(java.lang.String)
+*/
+  public void setLIAFlags(long liaFlags) {
+    addAvp(LIA_FLAGS, CXDX_VENDOR_ID, liaFlags);
   }
 
 }

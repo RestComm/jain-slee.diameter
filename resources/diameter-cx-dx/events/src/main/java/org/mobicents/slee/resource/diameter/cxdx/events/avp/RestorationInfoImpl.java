@@ -116,4 +116,53 @@ public class RestorationInfoImpl extends GroupedAvpImpl implements RestorationIn
     addAvp(SUBSCRIPTION_INFO, CXDX_VENDOR_ID, subscriptionInfo.byteArrayValue());
   }
 
+  /**
+   * Returns true if the Initial-CSeq-Sequence-Number AVP is present in the message.
+   */
+  public boolean hasInitialCSeqSequenceNumber() {
+    return hasAvp(INITIAL_CSEQ_SEQUENCE_NUMBER, CXDX_VENDOR_ID);
+  }
+
+  /**
+   * Returns the value of the Initial-CSeq-Sequence-Number AVP, of type Unsigned32
+   *
+   * @return
+   */
+  public long getInitialCSeqSequenceNumber() {
+    return getAvpAsUnsigned32(INITIAL_CSEQ_SEQUENCE_NUMBER, CXDX_VENDOR_ID);
+  }
+
+  /**
+   * Sets the value of the Initial-CSeq-Sequence-Number AVP, of type Unsigned32
+   *
+   * @throws IllegalStateException if setSubscriptionInfo has already been called
+   */
+  public void setInitialCSeqSequenceNumber(long initialCSeqSequenceNumber) {
+    addAvp(INITIAL_CSEQ_SEQUENCE_NUMBER, CXDX_VENDOR_ID, initialCSeqSequenceNumber);
+  }
+
+  /**
+   * Returns true if the Call-ID-SIP-Header AVP is present in the message.
+   */
+  public boolean hasCallIDSIPHeader() {
+    return hasAvp(CALL_ID_SIP_HEADER, CXDX_VENDOR_ID);
+  }
+
+  /**
+   * Returns the value of the Call-ID-SIP-Header AVP, of type OctetString
+   *
+   * @return
+   */
+  public byte[] getCallIDSIPHeader() {
+    return getAvpAsOctetString(CALL_ID_SIP_HEADER, CXDX_VENDOR_ID);
+  }
+
+  /**
+   * Sets the value of the Call-ID-SIP-Header AVP, of type OctetString
+   *
+   * @throws IllegalStateException if setSubscriptionInfo has already been called
+   */
+  public void setCallIDSIPHeader(byte[] callIDSIPHeader) {
+    addAvp(CALL_ID_SIP_HEADER, CXDX_VENDOR_ID, callIDSIPHeader);
+  }
 }

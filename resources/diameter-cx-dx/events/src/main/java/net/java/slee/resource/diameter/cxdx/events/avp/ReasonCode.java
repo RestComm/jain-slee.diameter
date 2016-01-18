@@ -29,17 +29,20 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
 
 /**
  * <pre>
+ *
+ * 3GPP TS 29.229 version 12.7.0 Release 12
+ *
  * <b>6.3.17  Reason-Code AVP</b>
- * The Reason-Code AVP is of type Enumerated, and defines the reason for the network initiated 
+ * The Reason-Code AVP is of type Enumerated, and defines the reason for the network initiated
  * de-registration. The following values are defined:
- * 
+ *
  *  PERMANENT_TERMINATION (0)
  *  NEW_SERVER_ASSIGNED (1)
  *  SERVER_CHANGE (2)
  *  REMOVE_S-CSCF (3)
- * 
+ *
  * </pre>
- * 
+ *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
  */
@@ -70,17 +73,17 @@ public class ReasonCode implements Enumerated, Serializable {
   }
 
   public static ReasonCode fromInt(int type) {
-    switch(type) {
-    case _PERMANENT_TERMINATION: 
-      return PERMANENT_TERMINATION;
-    case _NEW_SERVER_ASSIGNED: 
-      return NEW_SERVER_ASSIGNED;
-    case _SERVER_CHANGE: 
-      return SERVER_CHANGE;
-    case _REMOVE_S_CSCF: 
-      return REMOVE_S_CSCF;
-    default: 
-      throw new IllegalArgumentException("Invalid Reason-Code value: " + type);
+    switch (type) {
+      case _PERMANENT_TERMINATION:
+        return PERMANENT_TERMINATION;
+      case _NEW_SERVER_ASSIGNED:
+        return NEW_SERVER_ASSIGNED;
+      case _SERVER_CHANGE:
+        return SERVER_CHANGE;
+      case _REMOVE_S_CSCF:
+        return REMOVE_S_CSCF;
+      default:
+        throw new IllegalArgumentException("Invalid Reason-Code value: " + type);
     }
   }
 
@@ -89,17 +92,17 @@ public class ReasonCode implements Enumerated, Serializable {
   }
 
   public String toString() {
-    switch(value) {
-    case _PERMANENT_TERMINATION: 
-      return "PERMANENT_TERMINATION";
-    case _NEW_SERVER_ASSIGNED: 
-      return "NEW_SERVER_ASSIGNED";
-    case _SERVER_CHANGE: 
-      return "SERVER_CHANGE";
-    case _REMOVE_S_CSCF: 
-      return "REMOVE_S_CSCF";
-    default: 
-      return "<Invalid Value>";
+    switch (value) {
+      case _PERMANENT_TERMINATION:
+        return "PERMANENT_TERMINATION";
+      case _NEW_SERVER_ASSIGNED:
+        return "NEW_SERVER_ASSIGNED";
+      case _SERVER_CHANGE:
+        return "SERVER_CHANGE";
+      case _REMOVE_S_CSCF:
+        return "REMOVE_S_CSCF";
+      default:
+        return "<Invalid Value>";
     }
   }
 
@@ -111,5 +114,4 @@ public class ReasonCode implements Enumerated, Serializable {
       throw new StreamCorruptedException("Invalid internal state found: " + value);
     }
   }
-
 }

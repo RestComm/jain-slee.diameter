@@ -31,6 +31,7 @@ import net.java.slee.resource.diameter.cxdx.events.avp.DiameterCxDxAvpCodes;
 import net.java.slee.resource.diameter.cxdx.events.avp.EtsiSIPAuthenticate;
 import net.java.slee.resource.diameter.cxdx.events.avp.EtsiSIPAuthenticationInfo;
 import net.java.slee.resource.diameter.cxdx.events.avp.EtsiSIPAuthorization;
+import net.java.slee.resource.diameter.cxdx.events.avp.IdentitywithEmergencyRegistration;
 import net.java.slee.resource.diameter.cxdx.events.avp.RestorationInfo;
 import net.java.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfo;
 import net.java.slee.resource.diameter.cxdx.events.avp.SIPAuthDataItem;
@@ -46,6 +47,7 @@ import org.mobicents.slee.resource.diameter.cxdx.events.avp.DeregistrationReason
 import org.mobicents.slee.resource.diameter.cxdx.events.avp.EtsiSIPAuthenticateImpl;
 import org.mobicents.slee.resource.diameter.cxdx.events.avp.EtsiSIPAuthenticationInfoImpl;
 import org.mobicents.slee.resource.diameter.cxdx.events.avp.EtsiSIPAuthorizationImpl;
+import org.mobicents.slee.resource.diameter.cxdx.events.avp.IdentitywithEmergencyRegistrationImpl;
 import org.mobicents.slee.resource.diameter.cxdx.events.avp.RestorationInfoImpl;
 import org.mobicents.slee.resource.diameter.cxdx.events.avp.SCSCFRestorationInfoImpl;
 import org.mobicents.slee.resource.diameter.cxdx.events.avp.SIPAuthDataItemImpl;
@@ -144,6 +146,9 @@ public class CxDxAvpAssistant extends org.mobicents.slee.resource.diameter.base.
 		typeValues.put(SupportedFeaturesAvp[].class, new SupportedFeaturesAvpImpl[] {
 				new SupportedFeaturesAvpImpl(DiameterCxDxAvpCodes.SUPPORTED_FEATURES, DiameterCxDxAvpCodes.CXDX_VENDOR_ID, 0, 1, dummyAvpBytes),
 				new SupportedFeaturesAvpImpl(DiameterCxDxAvpCodes.SUPPORTED_FEATURES, DiameterCxDxAvpCodes.CXDX_VENDOR_ID, 0, 1, dummyAvpBytes) });
-	}
 
+        typeValues.put(IdentitywithEmergencyRegistration.class, new IdentitywithEmergencyRegistrationImpl(DiameterCxDxAvpCodes.IDENTITY_WITH_EMERGENCY_REGISTRATION, DiameterCxDxAvpCodes.CXDX_VENDOR_ID, 0, 1, dummyAvpBytes));
+        typeValues.put(IdentitywithEmergencyRegistration[].class, new IdentitywithEmergencyRegistrationImpl[] { new IdentitywithEmergencyRegistrationImpl(DiameterCxDxAvpCodes.IDENTITY_WITH_EMERGENCY_REGISTRATION, DiameterCxDxAvpCodes.CXDX_VENDOR_ID, 0, 1,
+                dummyAvpBytes) });
+	}
 }
