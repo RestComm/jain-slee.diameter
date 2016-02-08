@@ -7,13 +7,13 @@
 
 	<parent>
 		<groupId>org.mobicents.servers.jainslee.diameter</groupId>
-		<artifactId>mobicents-slee-diameter</artifactId>
+		<artifactId>restcomm-slee-diameter</artifactId>
 		<version>2.8.0-SNAPSHOT</version>
 		<relativePath>../..</relativePath>
 	</parent>
 
 	<groupId>org.mobicents.resources</groupId>
-	<artifactId>mobicents-slee-ra-diameter-s6a</artifactId>
+	<artifactId>restcomm-slee-ra-diameter-s6a</artifactId>
 
 	<modules>
 		<module>ratype</module>
@@ -35,7 +35,7 @@
 
 	<properties>
 		<!-- Documentation Related Properties -->
-		<docs.profile>mobicents</docs.profile>
+		<docs.profile>restcomm</docs.profile>
 		<docs.ra.name>Diameter S6a</docs.ra.name>
 		<docs.ra.dirname>diameter-s6a</docs.ra.dirname>
 		<docs.bookid>DIAMETER_S6A</docs.bookid>

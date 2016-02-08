@@ -10,7 +10,7 @@
   
   <artifactId>test-framework-slee-DU</artifactId>
 
-  <name>Mobicents :: Diameter Testsuite :: ${pom.artifactId}</name>
+  <name>Restcomm :: Diameter Testsuite :: ${pom.artifactId}</name>
 
   <dependencies>
     <dependency>

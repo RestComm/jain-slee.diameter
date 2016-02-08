@@ -10,13 +10,13 @@
 
   <artifactId>test-framework-slee-sbb</artifactId>
     
-  <name>Mobicents :: Diameter Testsuite :: ${pom.artifactId}</name>
+  <name>Restcomm :: Diameter Testsuite :: ${pom.artifactId}</name>
 
   <dependencies>
     <dependency>
       <groupId>org.mobicents.servers.diameter.resources</groupId>
       <artifactId>base-ratype</artifactId>
-      <version>${mobicents.diameter.resources.base.version}</version>
+      <version>${restcomm.diameter.resources.base.version}</version>
     </dependency>
   </dependencies>
   

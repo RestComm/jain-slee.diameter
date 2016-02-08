@@ -7,13 +7,13 @@
 
 	<parent>
 		<groupId>org.mobicents.servers.jainslee.diameter</groupId>
-		<artifactId>mobicents-slee-diameter</artifactId>
+		<artifactId>restcomm-slee-diameter</artifactId>
 		<version>2.8.0-SNAPSHOT</version>
 		<relativePath>../..</relativePath>
 	</parent>
 
 	<groupId>org.mobicents.resources</groupId>
-	<artifactId>mobicents-slee-ra-diameter-base</artifactId>
+	<artifactId>restcomm-slee-ra-diameter-base</artifactId>
 
 	<modules>
 		<module>common</module>
@@ -26,11 +26,11 @@
 
 	<properties>
 		<!-- Mobicents Diameter Components Versions -->
-		<mobicents.diameter.jdiameter.version>1.7.0.58</mobicents.diameter.jdiameter.version>
-		<mobicents.diameter.mux.version>1.7.0.58</mobicents.diameter.mux.version>
-		<mobicents.slee.version>2.8.0-SNAPSHOT</mobicents.slee.version>
+		<mobicents.diameter.jdiameter.version>1.7.0.78</mobicents.diameter.jdiameter.version>
+		<mobicents.diameter.mux.version>1.7.0.78</mobicents.diameter.mux.version>
+		<mobicents.slee.version>2.8.26</mobicents.slee.version>
 		<!-- Documentation Related Properties -->
-		<docs.profile>mobicents</docs.profile>
+		<docs.profile>restcomm</docs.profile>
 		<docs.ra.name>Diameter Base</docs.ra.name>
 		<docs.ra.dirname>diameter-base</docs.ra.dirname>
 		<docs.bookid>DIAMETER_BASE</docs.bookid>

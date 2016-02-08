@@ -5,11 +5,11 @@
 
 	<parent>
 		<groupId>org.mobicents.resources</groupId>
-		<artifactId>mobicents-slee-ra-diameter-rf-docs</artifactId>
+		<artifactId>restcomm-slee-ra-diameter-rf-docs</artifactId>
 		<version>2.8.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>mobicents-slee-ra-diameter-rf-docs-sources</artifactId>
+	<artifactId>restcomm-slee-ra-diameter-rf-docs-sources</artifactId>
 
 	<properties>
 

@@ -18,7 +18,7 @@
 	</dependencies>
 	
 	<build>
-		<finalName>mobicents-slee-enabler-hss-client-example-DU-${project.version}</finalName>
+		<finalName>restcomm-slee-enabler-hss-client-example-DU-${project.version}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.mobicents.tools</groupId>
