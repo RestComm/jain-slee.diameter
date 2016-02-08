@@ -20,7 +20,7 @@
 		<dependency>
 			<groupId>org.mobicents.servers.jainslee.core</groupId>
 			<artifactId>spi</artifactId>
-			<version>${mobicents.slee.version}</version>
+			<version>${restcomm.slee.version}</version>
 		</dependency>
 	</dependencies>
 
