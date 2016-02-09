@@ -17,7 +17,7 @@
   <name>Restcomm :: Diameter Testsuite :: ${pom.artifactId}</name>
 
   <properties>
-    <restcomm.diameter.resources.base.version>2.8.0-SNAPSHOT</mobicents.restcomm.resources.base.version>
+    <restcomm.diameter.resources.base.version>2.8.0-SNAPSHOT</restcomm.diameter.resources.base.version>
   </properties>
 
   <modules>
