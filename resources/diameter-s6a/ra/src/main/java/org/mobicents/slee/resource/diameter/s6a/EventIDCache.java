@@ -39,6 +39,7 @@ import net.java.slee.resource.diameter.s6a.events.NotifyRequest;
 import net.java.slee.resource.diameter.s6a.events.PurgeUERequest;
 import net.java.slee.resource.diameter.s6a.events.ResetRequest;
 import net.java.slee.resource.diameter.s6a.events.UpdateLocationRequest;
+import net.java.slee.resource.diameter.s6a.events.NotifyRequest;
 
 import org.jdiameter.api.Message;
 
@@ -59,6 +60,7 @@ public class EventIDCache {
         eventsTemp.put(PurgeUERequest.COMMAND_CODE, S6A_PACKAGE_PREFIX + "PurgeUE");
         eventsTemp.put(ResetRequest.COMMAND_CODE, S6A_PACKAGE_PREFIX + "Reset");
         eventsTemp.put(UpdateLocationRequest.COMMAND_CODE, S6A_PACKAGE_PREFIX + "UpdateLocation");
+	eventsTemp.put(NotifyRequest.COMMAND_CODE, S6A_PACKAGE_PREFIX + "Notify");
 
         eventNames = Collections.unmodifiableMap(eventsTemp);
     }
