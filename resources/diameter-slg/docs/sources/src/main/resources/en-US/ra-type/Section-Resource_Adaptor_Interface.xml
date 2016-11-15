@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+
+<section id="ratype_ra_interface">
+
+	<title>Resource Adaptor Interface</title>
+
+	<para>The &THIS.PLATFORM; &THIS.RA; Resource Adaptor SBB Interface provides SBBs with access to the Diameter objects required for creating and sending messages. It is defined as follows: </para>
+
+	<programlisting role="JAVA" language="Java">
+	package net.java.slee.resource.diameter.slg;
+
+	import java.io.IOException;
+
+	import net.java.slee.resource.diameter.base.CreateActivityException;
+	import net.java.slee.resource.diameter.base.events.avp.AvpNotAllowedException;
+	import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
+	import net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer;
+	import net.java.slee.resource.diameter.slg.events.ProvideLocationRequest;
+	import net.java.slee.resource.diameter.slg.events.LocationReportAnswer;
+	import net.java.slee.resource.diameter.slg.events.LocationReportRequest;
+
+	public interface SLgProvider {
+
+		public SLgMessageFactory getSLgMessageFactory();
+
+		public SLgAvpFactory getSLgAvpFactory();
+
+		public SLgClientSessionActivity createSLgClientSessionActivity() throws CreateActivityException;
+
+		public SLgClientSessionActivity createSLgClientSessionActivity(DiameterIdentity destinationHost, DiameterIdentity destinationRealm) throws CreateActivityException;
+
+		public ProvideLocationAnswer eventProvideLocationRequest(ProvideLocationRequest plr) throws IOException;
+
+		public byte[] marshalProvideLocationRequest(ProvideLocationRequest plr);
+
+		public byte[] marshalProvideLocationAnswer(ProvideLocationAnswer pla);
+
+		public ProvideLocationAnswer unmarshalProvideLocationAnswer(byte[] b) throws IOException, AvpNotAllowedException;
+
+		public ProvideLocationAnswer unmarshalProvideLocationAnswerbyte[] b) throws IOException, AvpNotAllowedException;
+
+		public LocationReportAnswer eventLocationReportRequest(LocationReportRequest lrr) throws IOException;
+
+		public byte[] marshalLocationReportRequest(LocationReportRequest lrr);
+
+		public byte[] marshalProvideLocationAnswer(ProvideLocationAnswer pla);
+
+		public LocationReportAnswer unmarshalProvideLocationAnswer(byte[] b) throws IOException, AvpNotAllowedException;
+
+		public LocationReportAnswer unmarshalLocationReportAnswerbyte[] b) throws IOException, AvpNotAllowedException;
+		
+		public DiameterIdentity[] getConnectedPeers();
+
+		public int getPeerCount();
+
+	}
+	</programlisting>
+	
+	<para>
+		<variablelist>
+			<varlistentry>
+				<term>public SLgMessageFactory getSLgMessageFactory();</term>
+				<listitem><para>This method returns a message factory to be used to create concrete implementations of location request/report messages.</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>public SLgAvpFactory getSLgAvpFactory();</term>
+				<listitem><para>This method returns an avp factory to be used to create concrete implementations of SLg interface AVPs.</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>public SLgClientSessionActivity createSLgClientSessionActivity() throws CreateActivityException;</term>
+				<listitem><para>This method creates a new activity to send and receive Diameter messages.</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>public SLgClientSessionActivity createSLgClientSessionActivity(DiameterIdentity destinationHost, DiameterIdentity destinationRealm) throws CreateActivityException;</term>
+				<listitem><para>This method creates a new activity to send and receive Diameter messages.</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>public ProvideLocationAnswer eventProvideLocationRequest(ProvideLocationRequest plr) throws IOException;</term>
+				<listitem><para>This method sends a Provide-Location-Request message to the appropriate peers, and block until the response is received, then returns it.</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>public byte[] marshalProvideLocationRequest(ProvideLocationRequest plr);</term>
+				<listitem><para>This method marshals a Provide-Location-Request into a byte array that can be serialized (e.g., stored in a CMP field).</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>public byte[] marshalProvideLocationAnswer(ProvideLocationAnswer pla);</term>
+				<listitem><para>This method marshals a Provide-Location-Answer into a byte array that can be serialized (e.g., stored in a CMP field).</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>public ProvideLocationAnswer unmarshalProvideLocationAnswer(byte[] b) throws IOException, AvpNotAllowedException;</term>
+				<listitem><para>This method unmarshals a Provide-Location-Request from a byte array.</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>public ProvideLocationAnswer unmarshalProvideLocationAnswerbyte[] b) throws IOException, AvpNotAllowedException;</term>
+				<listitem><para>This method unmarshals a Provide-Location-Answer from a byte array.</para></listitem>
+			</varlistentry>
+			
+			<varlistentry>
+				<term>public LocationReportAnswer eventLocationReportRequest(LocationReportRequest lrr) throws IOException;</term>
+				<listitem><para>This method sends a Location-Report-Request message to the appropriate peers, and block until the response is received, then returns it.</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>public byte[] marshalLocationReportRequest(LocationReportRequest lrr);</term>
+				<listitem><para>This method marshals a Location-Report-Request into a byte array that can be serialized (e.g., stored in a CMP field).</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>public byte[] marshalLocationReportAnswer(LocationReportAnswer lra);</term>
+				<listitem><para>This method marshals a Location-Report-Answer into a byte array that can be serialized (e.g., stored in a CMP field).</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>public LocationReportAnswer unmarshalLocationReportAnswer(byte[] b) throws IOException, AvpNotAllowedException;</term>
+				<listitem><para>This method unmarshals a Location-Report-Request from a byte array.</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>public LocationReportAnswer unmarshalLocationReportAnswerbyte[] b) throws IOException, AvpNotAllowedException;</term>
+				<listitem><para>This method unmarshals a Location-Report-Answer from a byte array.</para></listitem>
+			</varlistentry>
+			<varlistentry>
+			<varlistentry>
+				<term>public DiameterIdentity[] getConnectedPeers();</term>
+				<listitem><para>This method returns the identities of peers this Diameter resource adaptor is connected to.</para></listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>public int getPeerCount();</term>
+				<listitem><para>This method returns the number of peers this Diameter resource adaptor is connected to.</para></listitem>
+			</varlistentry>
+		</variablelist>
+	</para>
+</section>
