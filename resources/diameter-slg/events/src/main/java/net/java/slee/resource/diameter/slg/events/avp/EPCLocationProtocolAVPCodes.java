@@ -934,10 +934,12 @@ public class EPCLocationProtocolAVPCodes {
   public static final int SERVICE_AREA_IDENTITY = 1607;
   public static final int VISITED_PLMN_ID = 1407;
   public static final int SERVICE_SELECTION = 493;
+  public static final int SGSN_NUMBER = 1489;
   // 3GPP TS 29.229
   public static final int SUPPORTED_FEATURES = 628;
   public static final int FEATURE_LIST_ID = 629;
   public static final int FEATURE_LIST = 630;
+  public static final int TGPP_AAA_SERVER_NAME = 318;
   // 3GPP TS 32.299
   public static final int LCS_FORMAT_INDICATOR = 1237;
   public static final int LCS_NAME_STRING = 1238;
@@ -947,7 +949,94 @@ public class EPCLocationProtocolAVPCodes {
   // 3GPP TS 29.173
   public static final int GMLC_ADDRESS = 2405;
   public static final int SERVING_NODE = 2401;
+  /**
+   * <pre>
+   * Name......: MME-Name
+   * Code......: 2403
+   * Section...: 6.4.4
+   * Type......: DiameterIdentity
+   * Must......: M,V
+   * May.......: -
+   * Should....: -
+   * MustNot...: -
+   * May Encr..: No
+   * </pre>
+   */
+  public static final int MME_NAME = 2402;
 
+  /**
+   * <pre>
+   * Name......: MSC-Number
+   * Code......: 2403
+   * Section...: 6.4.5
+   * Type......: OctetString
+   * Must......: M,V
+   * May.......: -
+   * Should....: -
+   * MustNot...: -
+   * May Encr..: No
+   * </pre>
+   */
+  public static final int MSC_NUMBER = 2403;
 
+  /**
+   * <pre>
+   * Name......: LCS-Capabilities-Sets
+   * Code......: 2404
+   * Section...: 6.4.6
+   * Type......: Unsigned32
+   * Must......: M,V
+   * May.......: -
+   * Should....: -
+   * MustNot...: -
+   * May Encr..: No
+   * </pre>
+   */
+  public static final int LCS_CAPABILITIES_SETS = 2404;
+
+  /**
+   * <pre>
+   * Name......: MME-Realm
+   * Code......: 2408
+   * Section...: 6.4.12
+   * Type......: DiameterIdentity
+   * Must......: V
+   * May.......: -
+   * Should....: -
+   * MustNot...: M
+   * May Encr..: No
+   * </pre>
+   */
+  public static final int MME_REALM = 2408;
+
+  /**
+   * <pre>
+   * Name......: SGSN-Name
+   * Code......: 2409
+   * Section...: 6.4.13
+   * Type......: DiameterIdentity
+   * Must......: V
+   * May.......: -
+   * Should....: -
+   * MustNot...: M
+   * May Encr..: No
+   * </pre>
+   */
+  public static final int SGSN_NAME = 2409;
+
+  /**
+   * <pre>
+   * Name......: SGSN-Realm
+   * Code......: 2410
+   * Section...: 6.4.14
+   * Type......: DiameterIdentity
+   * Must......: V
+   * May.......: -
+   * Should....: -
+   * MustNot...: M
+   * May Encr..: No
+   * </pre>
+   */
+  public static final int SGSN_REALM = 2410;
 
 }
