@@ -135,6 +135,18 @@ public class ServingNodeAvpImpl extends GroupedAvpImpl implements ServingNodeAvp
     addAvp(LCSRoutingInfoAVPCodes.SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, mscNumber);
   }
 
+  public boolean hasLcsCapabilitiesSets() {
+    return hasAvp(LCSRoutingInfoAVPCodes.SERVING_NODE, LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS);
+  }
+
+  public long getLcsCapabilitiesSets() {
+    return getAvpAsUnsigned32(LCSRoutingInfoAVPCodes.SERVING_NODE, LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS);
+  }
+
+  public void setLcsCapabilitiesSets(long lcsCapabilitiesSets) {
+    addAvp(LCSRoutingInfoAVPCodes.SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, lcsCapabilitiesSets);
+  }
+
   public boolean has3GPPAAAServerName() {
     return hasAvp(LCSRoutingInfoAVPCodes.SERVING_NODE, LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME);
   }

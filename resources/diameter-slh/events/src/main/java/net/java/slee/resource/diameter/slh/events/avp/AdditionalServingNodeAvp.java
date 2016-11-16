@@ -159,6 +159,18 @@ public interface AdditionalServingNodeAvp extends GroupedAvp {
   public void setAdditionalMSCNumber(byte[] additionalMscNumber);
 
   /*
+    From 3GPP TS 29.173 (v13.0.0)
+
+    6.4.6	LCS-Capabilities-Sets
+
+    The LCS-Capabilities-Sets AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined
+    in 3GPP 29.002 [3].
+  */
+  public boolean hasLcsCapabilitiesSets();
+  public long getLcsCapabilitiesSets();
+  public void setLcsCapabilitiesSets(long lcsCapabilitiesSets);
+
+  /*
     From 3GPP TS 29.273 (v14.0.0)
 
     8.2.3.24	3GPP-AAA-Server-Name
