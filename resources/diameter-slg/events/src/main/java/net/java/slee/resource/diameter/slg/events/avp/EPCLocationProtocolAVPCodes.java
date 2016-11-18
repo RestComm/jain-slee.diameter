@@ -613,7 +613,7 @@ public class EPCLocationProtocolAVPCodes {
    * Name......: Area-Identification
    * Code......: 2537
    * Section...: 7.4.42
-   * Type......: Grouped
+   * Type......: OctetString
    * Must......: V
    * May.......: -
    * Should....: -
@@ -877,6 +877,22 @@ public class EPCLocationProtocolAVPCodes {
    * </pre>
    */
   public static final int ONExRTT_RCID = 2554;
+
+  /**
+   * 3GPP TS 29.172 v13.1.0
+   * <pre>
+   * Name......: Delayed-Location-Reporting-Data
+   * Code......: 2555
+   * Section...: 7.4.60
+   * Type......: Grouped
+   * Must......: V
+   * May.......: -
+   * Should....: -
+   * MustNot...: M
+   * May Encr..: No
+   * </pre>
+   */
+  public static final int DELAYED_LOCATION_REPORTING_DATA = 2555;
 
   /**
    * <pre>
