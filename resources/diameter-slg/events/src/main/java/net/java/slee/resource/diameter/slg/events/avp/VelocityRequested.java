@@ -52,7 +52,8 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
  *
  * <pre>
  * 7.4.10	Velocity-Requested
- * 	The Velocity-Requested AVP is of type Enumerated. The following values are defined:
+ * 	The Velocity-Requested AVP is of type Enumerated.
+ * 	The following values are defined:
  * 		VELOCITY_IS_NOT_REQUESTED (0)
  * 		VELOCITY_IS_REQUESTED (1)
  * 	Default value if AVP is not present is: VELOCITY_IS_NOT_REQUESTED (0).

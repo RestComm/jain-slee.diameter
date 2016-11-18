@@ -613,7 +613,7 @@ public class EPCLocationProtocolAVPCodes {
    * Name......: Area-Identification
    * Code......: 2537
    * Section...: 7.4.42
-   * Type......: OctetString
+   * Type......: OctetString (inconsistently defined initially spec, using section 7.4.42)
    * Must......: V
    * May.......: -
    * Should....: -
