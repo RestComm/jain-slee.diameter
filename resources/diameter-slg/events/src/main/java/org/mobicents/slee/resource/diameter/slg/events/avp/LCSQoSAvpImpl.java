@@ -122,8 +122,5 @@ public class LCSQoSAvpImpl extends GroupedAvpImpl implements LCSQoSAvp {
     addAvp(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, responseTime);
   }
 
-
-
-
 }
 
