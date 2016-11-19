@@ -71,6 +71,7 @@ public class SLhAvpFactoryImpl extends DiameterAvpFactoryImpl implements SLhAvpF
     return (ServingNodeAvp) AvpUtilities.createAvp(LCSRoutingInfoAVPCodes.SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, ServingNodeAvpImpl.class);
   }
 
+  @Override
   public AdditionalServingNodeAvp createAdditionalServingNode(){
     return (AdditionalServingNodeAvp) AvpUtilities.createAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, AdditionalServingNodeAvpImpl.class);
   }

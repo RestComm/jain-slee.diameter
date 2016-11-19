@@ -6,7 +6,7 @@
   <description />
 
   <resource-adaptor-type>
-    <description>Diameter Ro Resource Adaptor Type</description>
+    <description>Diameter SLh Resource Adaptor Type</description>
 
     <resource-adaptor-type-name>Diameter SLh</resource-adaptor-type-name>
     <resource-adaptor-type-vendor>java.net</resource-adaptor-type-vendor>
@@ -44,30 +44,6 @@
 
     <event-type-ref>
       <event-type-name>net.java.slee.resource.diameter.slh.events.LCSRoutingInfoAnswer</event-type-name>
-      <event-type-vendor>java.net</event-type-vendor>
-      <event-type-version>0.8</event-type-version>
-    </event-type-ref>
-
-    <event-type-ref>
-      <event-type-name>net.java.slee.resource.diameter.base.events.ReAuthRequest</event-type-name>
-      <event-type-vendor>java.net</event-type-vendor>
-      <event-type-version>0.8</event-type-version>
-    </event-type-ref>
-
-    <event-type-ref>
-      <event-type-name>net.java.slee.resource.diameter.base.events.ReAuthAnswer</event-type-name>
-      <event-type-vendor>java.net</event-type-vendor>
-      <event-type-version>0.8</event-type-version>
-    </event-type-ref>
-
-    <event-type-ref>
-      <event-type-name>net.java.slee.resource.diameter.base.events.AbortSessionRequest</event-type-name>
-      <event-type-vendor>java.net</event-type-vendor>
-      <event-type-version>0.8</event-type-version>
-    </event-type-ref>
-
-    <event-type-ref>
-      <event-type-name>net.java.slee.resource.diameter.base.events.AbortSessionAnswer</event-type-name>
       <event-type-vendor>java.net</event-type-vendor>
       <event-type-version>0.8</event-type-version>
     </event-type-ref>
