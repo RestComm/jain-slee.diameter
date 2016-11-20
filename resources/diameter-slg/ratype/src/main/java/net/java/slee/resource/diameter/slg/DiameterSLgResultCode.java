@@ -106,4 +106,5 @@ public class DiameterSLgResultCode {
    * This result code shall be sent by the GMLC to indicate that the LCS Client was not known or could not be reached.
    */
   public static final int DIAMETER_ERROR_UNKNOWN_UNREACHABLE_LCS_CLIENT = 4226;
+
 }

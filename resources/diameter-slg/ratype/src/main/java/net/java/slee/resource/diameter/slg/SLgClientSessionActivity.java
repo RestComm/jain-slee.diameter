@@ -56,7 +56,7 @@ import net.java.slee.resource.diameter.slg.events.LocationReportAnswer;
  */
 public interface SLgClientSessionActivity extends SLgSessionActivity {
 
-  public void ProvideLocationRequest(ProvideLocationRequest plr) throws IOException;
+  // public void ProvideLocationRequest(ProvideLocationRequest plr) throws IOException;
 
   public void sendProvideLocationRequest(ProvideLocationRequest plr) throws IOException;
 
@@ -64,7 +64,7 @@ public interface SLgClientSessionActivity extends SLgSessionActivity {
 
   public void sendProvideLocationAnswer(ProvideLocationAnswer pla) throws IOException;
 
-  public void LocationReportRequest(LocationReportRequest lrr) throws IOException;
+  // public void LocationReportRequest(LocationReportRequest lrr) throws IOException;
 
   public void sendLocationReportRequest(LocationReportRequest lrr) throws IOException;
 
