@@ -46,7 +46,7 @@ import java.util.ArrayList;
 
 import net.java.slee.resource.diameter.base.events.DiameterMessage;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
-import net.java.slee.resource.diameter.slh.SLhAvpFactory;
+import net.java.slee.resource.diameter.slh.SLhAVPFactory;
 import net.java.slee.resource.diameter.slh.SLhMessageFactory;
 import net.java.slee.resource.diameter.slh.SLhSessionActivity;;
 
@@ -73,19 +73,19 @@ public abstract class SLhSessionActivityImpl extends DiameterActivityImpl implem
   protected boolean terminated = false;
 
   protected transient SLhMessageFactoryImpl slhMessageFactory = null;
-  protected transient SLhAvpFactory slhAvpFactory = null;
+  protected transient SLhAVPFactory slhAvpFactory = null;
 
   protected transient DiameterMessage lastRequest = null;
   protected transient ArrayList<DiameterAvp> sessionAvps = new ArrayList<DiameterAvp>();
 
-  public SLhSessionActivityImpl(SLhMessageFactory messageFactory, SLhAvpFactory avpFactory, Session session, EventListener<Request, Answer> raEventListener, DiameterIdentity destinationHost, DiameterIdentity destinationRealm) {
+  public SLhSessionActivityImpl(SLhMessageFactory messageFactory, SLhAVPFactory avpFactory, Session session, EventListener<Request, Answer> raEventListener, DiameterIdentity destinationHost, DiameterIdentity destinationRealm) {
     super(null, null, session, raEventListener, destinationHost, destinationRealm);
 
     this.slhMessageFactory = (SLhMessageFactoryImpl) messageFactory;
     this.slhAvpFactory = avpFactory;
   }
 
-  public SLhAvpFactory getSLhAvpFactory() {
+  public SLhAVPFactory getSLhAvpFactory() {
     return this.slhAvpFactory;
   }
 
@@ -93,20 +93,20 @@ public abstract class SLhSessionActivityImpl extends DiameterActivityImpl implem
     return this.slhMessageFactory;
   }
 
-  public void setSLhMessageFactory(SLhMessageFactoryImpl s6aMessageFactory) {
-    this.slhMessageFactory = s6aMessageFactory;
+  public void setSLhMessageFactory(SLhMessageFactoryImpl slhMessageFactory) {
+    this.slhMessageFactory = slhMessageFactory;
   }
 
-  public void setSLhAvpFactory(SLhAvpFactory s6aAvpFactory) {
-    this.slhAvpFactory = s6aAvpFactory;
+  public void setSLhAvpFactory(SLhAVPFactory slhAvpFactory) {
+    this.slhAvpFactory = slhAvpFactory;
   }
 
   public String getSessionId() {
     return session.getSessionId();
   }
 
-  public void fetchSessionData(DiameterMessage s6aRequest) {
-    this.lastRequest = s6aRequest;
+  public void fetchSessionData(DiameterMessage slhRequest) {
+    this.lastRequest = slhRequest;
   }
 
   /**

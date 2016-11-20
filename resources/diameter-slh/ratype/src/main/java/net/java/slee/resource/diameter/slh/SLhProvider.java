@@ -83,7 +83,7 @@ public interface SLhProvider {
    *
    * @return
    */
-  public SLhAvpFactory getSLhAvpFactory();
+  public SLhAVPFactory getSLhAvpFactory();
 
   /**
    * Create a new activity to send and receive Diameter messages.

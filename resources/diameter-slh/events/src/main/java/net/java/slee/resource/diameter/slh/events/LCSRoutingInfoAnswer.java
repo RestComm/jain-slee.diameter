@@ -47,6 +47,8 @@ import net.java.slee.resource.diameter.base.events.avp.Address;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 import net.java.slee.resource.diameter.base.events.avp.FailedAvp;
 import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
+import net.java.slee.resource.diameter.slh.events.avp.AdditionalServingNodeAvp;
+import net.java.slee.resource.diameter.slh.events.avp.ServingNodeAvp;
 
 /**
  * Interface defining LCSRoutingInfoAnswer message. It has following structure:
@@ -211,7 +213,7 @@ public interface LCSRoutingInfoAnswer extends DiameterMessage {
    * @param servingNode
    * @throws IllegalStateException
    */
-  void setServingNode(GroupedAvp servingNode) throws IllegalStateException;
+  void setServingNode(ServingNodeAvp servingNode) throws IllegalStateException;
 
   /**
    * Returns true if the SGSN-Number AVP is present in the message.
@@ -431,7 +433,7 @@ public interface LCSRoutingInfoAnswer extends DiameterMessage {
    * @param additionalServingNode
    * @throws IllegalStateException
    */
-  void setAdditionalServingNode(GroupedAvp additionalServingNode) throws IllegalStateException;
+  void setAdditionalServingNode(AdditionalServingNodeAvp additionalServingNode) throws IllegalStateException;
 
   /**
    * Returns true if the (Additional) SGSN-Number AVP is present in the message.

@@ -49,7 +49,7 @@ import net.java.slee.resource.diameter.base.events.ReAuthAnswer;
 import net.java.slee.resource.diameter.base.events.avp.AvpNotAllowedException;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 import net.java.slee.resource.diameter.slh.events.avp.*;
-import net.java.slee.resource.diameter.slh.SLhAvpFactory;
+import net.java.slee.resource.diameter.slh.SLhAVPFactory;
 import net.java.slee.resource.diameter.slh.SLhClientSessionActivity;
 import net.java.slee.resource.diameter.slh.SLhMessageFactory;
 import net.java.slee.resource.diameter.slh.SLhSessionState;

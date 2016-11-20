@@ -45,6 +45,7 @@ package net.java.slee.resource.diameter.slh;
 import java.io.IOException;
 
 import net.java.slee.resource.diameter.slh.events.LCSRoutingInfoRequest;
+import net.java.slee.resource.diameter.slh.events.LCSRoutingInfoAnswer;
 
 /**
  * An SLhClientSessionActivity represents a charging control session for Credit
@@ -61,46 +62,30 @@ import net.java.slee.resource.diameter.slh.events.LCSRoutingInfoRequest;
 public interface SLhClientSessionActivity extends SLhSessionActivity {
 
   /**
-   * Send an event LCS Routing-Info-Request.
-   *
-   * @param rir
-   *            the LCS Routing-Info-Request to send
-   * @throws IOException
-   *             if an error occurred sending the request to the peer
+   * Create LCS Routing-Info-Request.
    */
-  public void sendEventLCSRoutingInfoRequest(LCSRoutingInfoRequest rir) throws IOException;
-
-  /**
-   * Send an initial LCS Routing-Info-Request.
-   *
-   * @param rir
-   *            the LCS Routing-Info-Request to send
-   * @throws IOException
-   *             if an error occurred sending the request to the peer
-   */
-  public void sendInitialLCSRoutingInfoRequest(LCSRoutingInfoRequest rir) throws IOException;
-
-  /**
-   * Send an update (intermediate) Routing-Info-Request.
-   *
-   * @param rir
-   *            the LCSRoutingInfoRequest to send
-   * @throws IOException
-   *             if an error occurred sending the request to the peer
-   */
-  public void sendUpdateLCSRoutingInfoRequest(LCSRoutingInfoRequest rir) throws IOException;
-
-  /**
-   * Send a termination LCS Routing-Info-Request.
-   *
-   * @param rir
-   *            the LCS Routing-Info-Request to send
-   * @throws IOException
-   *             if an error occurred sending the request to the peer
-   */
-  public void sendTerminationLCSRoutingInfoRequest(LCSRoutingInfoRequest rir) throws IOException;
-
   public LCSRoutingInfoRequest createLCSRoutingInfoRequest();
+
+  /**
+   * Send an LCS Routing-Info-Request.
+   *
+   * @param rir (the LCS Routing-Info-Request to send)
+   * @throws IOException (if an error occurred sending the request to the peer)
+   */
+  public void sendLCSRoutingInfoRequest(LCSRoutingInfoRequest rir) throws IOException;
+
+  /**
+   * Create LCS Routing-Info-Answer.
+   */
+  public LCSRoutingInfoAnswer createLCSRoutingInfoAnswer();
+
+  /**
+   * Send an  LCS Routing-Info-Request.
+   *
+   * @param ria (the LCS Routing-Info-Request to send)
+   * @throws IOException (if an error occurred sending the request to the peer)
+   */
+  public void sendLCSRoutingInfoAnswer(LCSRoutingInfoAnswer ria) throws IOException;
 
 }
 

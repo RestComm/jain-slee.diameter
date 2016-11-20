@@ -52,7 +52,7 @@ import net.java.slee.resource.diameter.slh.events.LCSRoutingInfoAnswer;
 import net.java.slee.resource.diameter.slh.events.avp.*;
 
 /**
- *
+ * Implementation for {@link LCSRoutingInfoAnswer}
  *
  * @author <a href="mailto:fernando.mendioroz@telestax.com"> Fernando Mendioroz </a>
  */
@@ -169,7 +169,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    * @see net.java.slee.resource.diameter.slh.events.LCSRoutingInfoAnswer#getServingNode()
    */
   @Override
-  public void setServingNode(GroupedAvp servingNode){
+  public void setServingNode(ServingNodeAvp servingNode){
     addAvp(LCSRoutingInfoAVPCodes.SERVING_NODE, servingNode);
   }
 
@@ -440,7 +440,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    * @see net.java.slee.resource.diameter.slh.events.LCSRoutingInfoAnswer#getAdditionalServingNode()
    */
   @Override
-  public void setAdditionalServingNode(GroupedAvp additionalServingNode){
+  public void setAdditionalServingNode(AdditionalServingNodeAvp additionalServingNode){
     addAvp(LCSRoutingInfoAVPCodes.SERVING_NODE, additionalServingNode);
   }
 

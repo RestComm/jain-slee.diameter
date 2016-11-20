@@ -40,42 +40,54 @@
  *   02110-1301 USA, or see the FSF site: http://www.fsf.org.
  */
 
-package org.mobicents.slee.resource.diameter.slh;
+package net.java.slee.resource.diameter.slh;
 
 import net.java.slee.resource.diameter.base.DiameterAvpFactory;
-import net.java.slee.resource.diameter.base.events.avp.AvpUtilities;
-import org.mobicents.slee.resource.diameter.base.DiameterAvpFactoryImpl;
-import net.java.slee.resource.diameter.slh.SLhAvpFactory;
 import net.java.slee.resource.diameter.slh.events.avp.*;
-import org.mobicents.slee.resource.diameter.slh.events.avp.*;
 
 /**
- * Implementation of {@link SLhAvpFactory}.
+ * Used by applications to create Diameter SLh request messages.
+ * SLh answer messages can be created using the SLhServerSessionActivity.createLCSRoutingInfoAnswer() method.
  *
  * @author <a href="mailto:fernando.mendioroz@telestax.com"> Fernando Mendioroz </a>
  */
-public class SLhAvpFactoryImpl extends DiameterAvpFactoryImpl implements SLhAvpFactory {
+public interface SLhAVPFactory extends DiameterAvpFactory {
+/*
+  public LMSIAvp createLMSIAvp();
+*/
+  public ServingNodeAvp createServingNodeAvp();
+/*
+  public MMENameAvp createMMENameAvp();
 
-  protected DiameterAvpFactory baseAvpFactory;
+  public MSCNumberAvp createMSCNumberAvp();
 
-  public SLhAvpFactoryImpl(final DiameterAvpFactory baseAvpFactory) {
-    this.baseAvpFactory = baseAvpFactory;
-  }
+  public LCSCapabilitiesSetsAvp createLCSCapabilitiesSetsAvp();
 
-  public DiameterAvpFactory getBaseFactory() {
-    return this.baseAvpFactory;
-  }
+  public GMLCAddressAvp createGMLCAddressAvp();
+*/
+  public AdditionalServingNodeAvp createAdditionalServingNodeAvp();
+/*
+  public PPRAddressAvp createPPRAddressAvp();
 
-  @Override
-  public ServingNodeAvp createServingNode(){
-    return (ServingNodeAvp) AvpUtilities.createAvp(LCSRoutingInfoAVPCodes.SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, ServingNodeAvpImpl.class);
-  }
+  public MMERealmAvp createMMERealmAvp();
 
-  @Override
-  public AdditionalServingNodeAvp createAdditionalServingNode(){
-    return (AdditionalServingNodeAvp) AvpUtilities.createAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, AdditionalServingNodeAvpImpl.class);
-  }
+  public SGSNNameAvp createSGSNNameAvp();
 
+  public SGSNRealmAvp createSGSNRealmAvp();
 
+  public RIAFlagsAvp createRIAFlagsAvp();
+
+  public MSISDNAvp createMSISDNAvp();
+
+  public SGSNNumberAvp createSGSNNumberAvp();
+*/
+  public SupportedFeaturesAvp createSupportedFeaturesAvp();
+/*
+  public FeatureListIDAvp createFeatureListIDAvp();
+
+  public GMLCNumberAvp createGMLCNumberAvp():
+
+  public TGPPAAAServerNameAvp createTGPPAAAServerNameAvp();
+*/
 }
 

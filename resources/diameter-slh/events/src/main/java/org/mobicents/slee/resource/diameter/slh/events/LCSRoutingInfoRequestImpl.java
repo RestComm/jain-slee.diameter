@@ -51,7 +51,7 @@ import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
 import net.java.slee.resource.diameter.slh.events.avp.*;
 
 /**
- *
+ * Implementation for {@link LCSRoutingInfoRequest}
  *
  * @author <a href="mailto:fernando.mendioroz@telestax.com"> Fernando Mendioroz </a>
  */
@@ -65,7 +65,7 @@ public class LCSRoutingInfoRequestImpl extends DiameterMessageImpl implements LC
   }
 
   /* (non-Javadoc)
-     * @see net.java.slee.resource.diameter.slha.events.LCSInfoRequest#hasAuthSessionState()
+     * @see net.java.slee.resource.diameter.slh.events.LCSInfoRequest#hasAuthSessionState()
      */
   public boolean hasAuthSessionState() {
     return hasAvp(DiameterAvpCodes.AUTH_SESSION_STATE);
