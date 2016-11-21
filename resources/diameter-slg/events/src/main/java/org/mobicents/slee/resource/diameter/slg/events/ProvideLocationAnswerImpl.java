@@ -156,7 +156,7 @@ public class ProvideLocationAnswerImpl extends DiameterMessageImpl implements Pr
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasLocationEstimate()
    */
   public boolean hasLocationEstimate() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LOCATION_ESTIMATE);
+    return hasAvp(EPCLocationProtocolAVPCodes.LOCATION_ESTIMATE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
@@ -170,120 +170,119 @@ public class ProvideLocationAnswerImpl extends DiameterMessageImpl implements Pr
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setLocationEstimate
    */
   public void setLocationEstimate(byte[] locationEstimate) {
-    addAvp(EPCLocationProtocolAVPCodes.LOCATION_ESTIMATE, locationEstimate);
+    addAvp(EPCLocationProtocolAVPCodes.LOCATION_ESTIMATE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, locationEstimate);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasAccuracyFulfilmentIndicator()
    */
   public boolean hasAccuracyFulfilmentIndicator() {
-    return hasAvp(EPCLocationProtocolAVPCodes.ACCURACY_FULFILMENT_INDICATOR);
+    return hasAvp(EPCLocationProtocolAVPCodes.ACCURACY_FULFILMENT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getAccuracyFulfilmentIndicator()
    */
   public AccuracyFulfilmentIndicator getAccuracyFulfilmentIndicator() {
-    return (AccuracyFulfilmentIndicator) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.ACCURACY_FULFILMENT_INDICATOR, AccuracyFulfilmentIndicator.class);
+    return (AccuracyFulfilmentIndicator) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.ACCURACY_FULFILMENT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, AccuracyFulfilmentIndicator.class);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setAccuracyFulfilmentIndicator()
    */
   public void setAccuracyFulfilmentIndicator(AccuracyFulfilmentIndicator accuracyFulfilmentIndicator) {
-    addAvp(EPCLocationProtocolAVPCodes.ACCURACY_FULFILMENT_INDICATOR, accuracyFulfilmentIndicator);
+    addAvp(EPCLocationProtocolAVPCodes.ACCURACY_FULFILMENT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, accuracyFulfilmentIndicator);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasAgeOfLocationEstimate()
    */
   public boolean hasAgeOfLocationEstimate() {
-    return hasAvp(EPCLocationProtocolAVPCodes.AGE_OF_LOCATION_ESTIMATE);
+    return hasAvp(EPCLocationProtocolAVPCodes.AGE_OF_LOCATION_ESTIMATE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getAgeOfLocationEstimate()
    */
   public long getAgeOfLocationEstimate() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.AGE_OF_LOCATION_ESTIMATE);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.AGE_OF_LOCATION_ESTIMATE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setAgeOfLocationEstimate()
    */
   public void setAgeOfLocationEstimate(long ageOfLocationEstimate) {
-    addAvp(EPCLocationProtocolAVPCodes.AGE_OF_LOCATION_ESTIMATE, ageOfLocationEstimate);
+    addAvp(EPCLocationProtocolAVPCodes.AGE_OF_LOCATION_ESTIMATE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, ageOfLocationEstimate);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasVelocityEstimate()
    */
   public boolean hasVelocityEstimate() {
-    return hasAvp(EPCLocationProtocolAVPCodes.VELOCITY_ESTIMATE);
+    return hasAvp(EPCLocationProtocolAVPCodes.VELOCITY_ESTIMATE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getVelocityEstimate()
    */
   public byte[] getVelocityEstimate() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.VELOCITY_ESTIMATE);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.VELOCITY_ESTIMATE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setVelocityEstimate()
    */
   public void setVelocityEstimate(byte[] velocityEstimate) {
-    addAvp(EPCLocationProtocolAVPCodes.VELOCITY_ESTIMATE, velocityEstimate);
+    addAvp(EPCLocationProtocolAVPCodes.VELOCITY_ESTIMATE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, velocityEstimate);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasEUTRANPositioningData()
    */
   public boolean hasEUTRANPositioningData() {
-    return hasAvp(EPCLocationProtocolAVPCodes.EUTRAN_POSITIONING_DATA);
+    return hasAvp(EPCLocationProtocolAVPCodes.EUTRAN_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getEUTRANPositioningData()
    */
   public byte[] getEUTRANPositioningData() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.EUTRAN_POSITIONING_DATA);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.EUTRAN_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setEUTRANPositioningData()
    */
   public void setEUTRANPositioningData(byte[] eutranPositioningData) {
-    addAvp(EPCLocationProtocolAVPCodes.EUTRAN_POSITIONING_DATA, eutranPositioningData);
+    addAvp(EPCLocationProtocolAVPCodes.EUTRAN_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, eutranPositioningData);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasECGI()
    */
   public boolean hasECGI() {
-    return hasAvp(EPCLocationProtocolAVPCodes.ECGI
-    );
+    return hasAvp(EPCLocationProtocolAVPCodes.ECGI, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getECGI()
    */
   public byte[] getECGI() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.ECGI);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.ECGI, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setECGI()
    */
   public void setECGI(byte[] ecgi) {
-    addAvp(EPCLocationProtocolAVPCodes.ECGI, ecgi);
+    addAvp(EPCLocationProtocolAVPCodes.ECGI, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, ecgi);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasGERANPositioningInfo()
    */
   public boolean hasGERANPositioningInfo() {
-    return hasAvp(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_INFO);
+    return hasAvp(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
@@ -297,14 +296,14 @@ public class ProvideLocationAnswerImpl extends DiameterMessageImpl implements Pr
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setGERANPositioningInfo()
    */
   public void setGERANPositioningInfo(GERANPositioningInfoAvp geranPositioningInfo) {
-    addAvp(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_INFO, geranPositioningInfo);
+    addAvp(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, geranPositioningInfo);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasGERANPositioningData()
    */
   public boolean hasGERANPositioningData() {
-    return hasAvp(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_DATA);
+    return hasAvp(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
@@ -318,56 +317,56 @@ public class ProvideLocationAnswerImpl extends DiameterMessageImpl implements Pr
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setGERANPositioningData()
    */
   public void setGERANPositioningData(byte[] geranPositioningData) {
-    addAvp(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_DATA, geranPositioningData);
+    addAvp(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, geranPositioningData);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasGERANGANSSPositioningData()
    */
   public boolean hasGERANGANSSPositioningData() {
-    return hasAvp(EPCLocationProtocolAVPCodes.GERAN_GANSS_POSITIONING_DATA);
+    return hasAvp(EPCLocationProtocolAVPCodes.GERAN_GANSS_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getGERANGANSSPositioningData()
    */
   public byte[] getGERANGANSSPositioningData() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.GERAN_GANSS_POSITIONING_DATA);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.GERAN_GANSS_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setGERANGANSSPositioningData()
    */
   public void setGERANGANSSPositioningData(byte[] geranganssPositioningData) {
-    addAvp(EPCLocationProtocolAVPCodes.GERAN_GANSS_POSITIONING_DATA, geranganssPositioningData);
+    addAvp(EPCLocationProtocolAVPCodes.GERAN_GANSS_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, geranganssPositioningData);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasCellGlobalIdentity()
    */
   public boolean hasCellGlobalIdentity() {
-    return hasAvp(EPCLocationProtocolAVPCodes.CELL_GLOBAL_IDENTITY);
+    return hasAvp(EPCLocationProtocolAVPCodes.CELL_GLOBAL_IDENTITY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getCellGlobalIdentity()
    */
   public byte[] getCellGlobalIdentity() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.CELL_GLOBAL_IDENTITY);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.CELL_GLOBAL_IDENTITY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setCellGlobalIdentity()
    */
   public void setCellGlobalIdentity(byte[] cellGlobalIdentity) {
-    addAvp(EPCLocationProtocolAVPCodes.CELL_GLOBAL_IDENTITY, cellGlobalIdentity);
+    addAvp(EPCLocationProtocolAVPCodes.CELL_GLOBAL_IDENTITY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, cellGlobalIdentity);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasUTRANPositioningInfo()
    */
   public boolean hasUTRANPositioningInfo() {
-    return hasAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_INFO);
+    return hasAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
@@ -381,98 +380,98 @@ public class ProvideLocationAnswerImpl extends DiameterMessageImpl implements Pr
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setUTRANPositioningInfo()
    */
   public void setUTRANPositioningInfo(UTRANPositioningInfoAvp utranPositioningInfo) {
-    addAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_INFO, utranPositioningInfo);
+    addAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, utranPositioningInfo);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasUTRANPositioningData()
    */
   public boolean hasUTRANPositioningData() {
-    return hasAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_DATA);
+    return hasAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getUTRANPositioningData()
    */
   public byte[] getUTRANPositioningData() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_DATA);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setUTRANPositioningData()
    */
   public void setUTRANPositioningData(byte[] utranPositioningData) {
-    addAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_DATA, utranPositioningData);
+    addAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, utranPositioningData);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasUTRANGANSSPositioningData()
    */
   public boolean hasUTRANGANSSPositioningData() {
-    return hasAvp(EPCLocationProtocolAVPCodes.UTRAN_GANSS_POSITIONING_DATA);
+    return hasAvp(EPCLocationProtocolAVPCodes.UTRAN_GANSS_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getUTRANGANSSPositioningData()
    */
   public byte[] getUTRANGANSSPositioningData() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.UTRAN_GANSS_POSITIONING_DATA);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.UTRAN_GANSS_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setUTRANGANSSPositioningData()
    */
   public void setUTRANGANSSPositioningData(byte[] utranGANSSPositioningData) {
-    addAvp(EPCLocationProtocolAVPCodes.UTRAN_GANSS_POSITIONING_DATA, utranGANSSPositioningData);
+    addAvp(EPCLocationProtocolAVPCodes.UTRAN_GANSS_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, utranGANSSPositioningData);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasUTRANAdditionalPositioningData()
    */
   public boolean hasUTRANAdditionalPositioningData() {
-    return hasAvp(EPCLocationProtocolAVPCodes.UTRAN_ADDITIONAL_POSITIONING_DATA);
+    return hasAvp(EPCLocationProtocolAVPCodes.UTRAN_ADDITIONAL_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getUTRANAdditionalPositioningData()
    */
   public byte[] getUTRANAdditionalPositioningData() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.UTRAN_ADDITIONAL_POSITIONING_DATA);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.UTRAN_ADDITIONAL_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setUTRANPositioningData()
    */
   public void setUTRANAdditionalPositioningData(byte[] utranAdditionalPositioningData) {
-    addAvp(EPCLocationProtocolAVPCodes.UTRAN_ADDITIONAL_POSITIONING_DATA, utranAdditionalPositioningData);
+    addAvp(EPCLocationProtocolAVPCodes.UTRAN_ADDITIONAL_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, utranAdditionalPositioningData);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasServiceAreaIdentity()
    */
   public boolean hasServiceAreaIdentity() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SERVICE_AREA_IDENTITY);
+    return hasAvp(EPCLocationProtocolAVPCodes.SERVICE_AREA_IDENTITY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getServiceAreaIdentity()
    */
   public byte[] getServiceAreaIdentity() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.SERVICE_AREA_IDENTITY);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.SERVICE_AREA_IDENTITY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setServiceAreaIdentity()
    */
   public void setServiceAreaIdentity(byte[] serviceAreaIdentity) {
-    addAvp(EPCLocationProtocolAVPCodes.SERVICE_AREA_IDENTITY, serviceAreaIdentity);
+    addAvp(EPCLocationProtocolAVPCodes.SERVICE_AREA_IDENTITY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, serviceAreaIdentity);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasServingNode()
    */
   public boolean hasServingNode() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SERVING_NODE);
+    return hasAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
@@ -486,182 +485,182 @@ public class ProvideLocationAnswerImpl extends DiameterMessageImpl implements Pr
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setServingNode()
    */
   public void setServingNode(ServingNodeAvp servingNode) {
-    addAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, servingNode);
+    addAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, servingNode);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasSGSNNumber()
    */
   public boolean hasSGSNNumber() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SGSN_NUMBER);
+    return hasAvp(EPCLocationProtocolAVPCodes.SGSN_NUMBER, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getSGSNNumber()
    */
   public byte[] getSGSNNumber() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.SGSN_NUMBER);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.SGSN_NUMBER, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setSGSNNumber()
    */
   public void setSGSNNumber(byte[] sgsnNumber) {
-    addAvp(EPCLocationProtocolAVPCodes.SGSN_NUMBER, sgsnNumber);
+    addAvp(EPCLocationProtocolAVPCodes.SGSN_NUMBER, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, sgsnNumber);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasSGSNName()
    */
   public boolean hasSGSNName() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SGSN_NAME);
+    return hasAvp(EPCLocationProtocolAVPCodes.SGSN_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getSGSNName()
    */
   public DiameterIdentity getSGSNName() {
-    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.SGSN_NAME);
+    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.SGSN_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setSGSNName()
    */
   public void setSGSNName(DiameterIdentity sgsnName) {
-    addAvp(EPCLocationProtocolAVPCodes.SGSN_NAME, sgsnName);
+    addAvp(EPCLocationProtocolAVPCodes.SGSN_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, sgsnName);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasSGSNRealm()
    */
   public boolean hasSGSNRealm() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SGSN_REALM);
+    return hasAvp(EPCLocationProtocolAVPCodes.SGSN_REALM, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getSGSNRealm()
    */
   public DiameterIdentity getSGSNRealm() {
-    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.SGSN_REALM);
+    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.SGSN_REALM, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setSGSNRealm()
    */
   public void setSGSNRealm(DiameterIdentity sgsnRealm) {
-    addAvp(EPCLocationProtocolAVPCodes.SGSN_REALM, sgsnRealm);
+    addAvp(EPCLocationProtocolAVPCodes.SGSN_REALM, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, sgsnRealm);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasMMEName()
    */
   public boolean hasMMEName() {
-    return hasAvp(EPCLocationProtocolAVPCodes.MME_NAME);
+    return hasAvp(EPCLocationProtocolAVPCodes.MME_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getMMEName()
    */
   public DiameterIdentity getMMEName() {
-    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.MME_NAME);
+    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.MME_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setMMEName()
    */
   public void setMMEName(DiameterIdentity mmeName) {
-    addAvp(EPCLocationProtocolAVPCodes.MME_NAME, mmeName);
+    addAvp(EPCLocationProtocolAVPCodes.MME_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, mmeName);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasMMERealm()
    */
   public boolean hasMMERealm() {
-    return hasAvp(EPCLocationProtocolAVPCodes.MME_REALM);
+    return hasAvp(EPCLocationProtocolAVPCodes.MME_REALM, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getMMERealm()
    */
   public DiameterIdentity getMMERealm() {
-    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.MME_REALM);
+    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.MME_REALM, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setMMERealm()
    */
   public void setMMERealm(DiameterIdentity mmeRealm) {
-    addAvp(EPCLocationProtocolAVPCodes.MME_REALM, mmeRealm);
+    addAvp(EPCLocationProtocolAVPCodes.MME_REALM, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, mmeRealm);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasMSCNumber()
    */
   public boolean hasMSCNumber() {
-    return hasAvp(EPCLocationProtocolAVPCodes.MSC_NUMBER);
+    return hasAvp(EPCLocationProtocolAVPCodes.MSC_NUMBER, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getMSCNumber()
    */
   public byte[] getMSCNumber() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.MSC_NUMBER);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.MSC_NUMBER, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setMSCNumber()
    */
   public void setMSCNumber(byte[] mscNumber) {
-    addAvp(EPCLocationProtocolAVPCodes.MSC_NUMBER, mscNumber);
+    addAvp(EPCLocationProtocolAVPCodes.MSC_NUMBER, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, mscNumber);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#has3GPPAAAServerName()
    */
   public boolean has3GPPAAAServerName() {
-    return hasAvp(EPCLocationProtocolAVPCodes.TGPP_AAA_SERVER_NAME);
+    return hasAvp(EPCLocationProtocolAVPCodes.TGPP_AAA_SERVER_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#get3GPPAAAServerName()
    */
   public DiameterIdentity get3GPPAAAServerName() {
-    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.TGPP_AAA_SERVER_NAME);
+    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.TGPP_AAA_SERVER_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#set3GPPAAAServerName()
    */
   public void set3GPPAAAServerName(DiameterIdentity tgppAAAServerName) {
-    addAvp(EPCLocationProtocolAVPCodes.TGPP_AAA_SERVER_NAME, tgppAAAServerName);
+    addAvp(EPCLocationProtocolAVPCodes.TGPP_AAA_SERVER_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, tgppAAAServerName);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasLCSCapabilitiesSets()
    */
   public boolean hasLCSCapabilitiesSets() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_CAPABILITIES_SETS);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_CAPABILITIES_SETS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getLCSCapabilitiesSets()
    */
   public long getLCSCapabilitiesSets() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.LCS_CAPABILITIES_SETS);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.LCS_CAPABILITIES_SETS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setLCSCapabilitiesSets()
    */
   public void setLCSCapabilitiesSets(long lcsCapabilitiesSets) {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_CAPABILITIES_SETS, lcsCapabilitiesSets);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_CAPABILITIES_SETS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsCapabilitiesSets);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasGMLCAddress()
    */
   public boolean hasGMLCAddress() {
-    return hasAvp(EPCLocationProtocolAVPCodes.GMLC_ADDRESS);
+    return hasAvp(EPCLocationProtocolAVPCodes.GMLC_ADDRESS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
@@ -675,7 +674,7 @@ public class ProvideLocationAnswerImpl extends DiameterMessageImpl implements Pr
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setGMLCAddress()
    */
   public void setGMLCAddress(Address gmlcAddress) {
-    addAvp(EPCLocationProtocolAVPCodes.GMLC_ADDRESS, gmlcAddress);
+    addAvp(EPCLocationProtocolAVPCodes.GMLC_ADDRESS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, gmlcAddress);
   }
 
   /* (non-Javadoc)
@@ -696,14 +695,14 @@ public class ProvideLocationAnswerImpl extends DiameterMessageImpl implements Pr
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setPLAFlags()
    */
   public void setPLAFlags(long plaFlags) {
-    addAvp(EPCLocationProtocolAVPCodes.PLA_FLAGS, plaFlags);
+    addAvp(EPCLocationProtocolAVPCodes.PLA_FLAGS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, plaFlags);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasESMLCCellInfo()
    */
   public boolean hasESMLCCellInfo() {
-    return hasAvp(EPCLocationProtocolAVPCodes.ESMLC_CELL_INFO);
+    return hasAvp(EPCLocationProtocolAVPCodes.ESMLC_CELL_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
@@ -717,14 +716,14 @@ public class ProvideLocationAnswerImpl extends DiameterMessageImpl implements Pr
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setESMLCCellInfo()
    */
   public void setESMLCCellInfo(ESMLCCellInfoAvp esmlcCellInfo) {
-    addAvp(EPCLocationProtocolAVPCodes.ESMLC_CELL_INFO, esmlcCellInfo);
+    addAvp(EPCLocationProtocolAVPCodes.ESMLC_CELL_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, esmlcCellInfo);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasCellPortionID()
    */
   public boolean hasCellPortionID() {
-    return hasAvp(EPCLocationProtocolAVPCodes.CELL_PORTION_ID);
+    return hasAvp(EPCLocationProtocolAVPCodes.CELL_PORTION_ID, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
@@ -738,49 +737,49 @@ public class ProvideLocationAnswerImpl extends DiameterMessageImpl implements Pr
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setCellPortionID()
    */
   public void setCellPortionID(long cellPortionID) {
-    addAvp(EPCLocationProtocolAVPCodes.CELL_PORTION_ID, cellPortionID);
+    addAvp(EPCLocationProtocolAVPCodes.CELL_PORTION_ID, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, cellPortionID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasCivicAddress()
    */
   public boolean hasCivicAddress() {
-    return hasAvp(EPCLocationProtocolAVPCodes.CIVIC_ADDRESS);
+    return hasAvp(EPCLocationProtocolAVPCodes.CIVIC_ADDRESS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getCivicAddress()
    */
   public byte[] getCivicAddress() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.CIVIC_ADDRESS);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.CIVIC_ADDRESS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setCivicAddress()
    */
   public void setCivicAddress(byte[] civicAddress) {
-    addAvp(EPCLocationProtocolAVPCodes.CIVIC_ADDRESS, civicAddress);
+    addAvp(EPCLocationProtocolAVPCodes.CIVIC_ADDRESS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, civicAddress);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#hasBarometricPressure()
    */
   public boolean hasBarometricPressure() {
-    return hasAvp(EPCLocationProtocolAVPCodes.BAROMETRIC_PRESSURE);
+    return hasAvp(EPCLocationProtocolAVPCodes.BAROMETRIC_PRESSURE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#getBarometricPressure()
    */
   public long getBarometricPressure() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.BAROMETRIC_PRESSURE);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.BAROMETRIC_PRESSURE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer#setBarometricPressure()
    */
   public void setBarometricPressure(long barometricPressure) {
-    addAvp(EPCLocationProtocolAVPCodes.BAROMETRIC_PRESSURE, barometricPressure);
+    addAvp(EPCLocationProtocolAVPCodes.BAROMETRIC_PRESSURE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, barometricPressure);
   }
 
   /*

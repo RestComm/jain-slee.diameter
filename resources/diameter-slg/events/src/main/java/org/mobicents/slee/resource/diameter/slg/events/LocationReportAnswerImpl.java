@@ -94,7 +94,7 @@ public class LocationReportAnswerImpl extends DiameterMessageImpl implements Loc
    * @see net.java.slee.resource.diameter.slg.events.LocationReportAnswer#hasGMLCAddress()
    */
   public boolean hasGMLCAddress() {
-    return hasAvp(EPCLocationProtocolAVPCodes.GMLC_ADDRESS);
+    return hasAvp(EPCLocationProtocolAVPCodes.GMLC_ADDRESS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /* (non-Javadoc)
@@ -108,7 +108,7 @@ public class LocationReportAnswerImpl extends DiameterMessageImpl implements Loc
    * @see net.java.slee.resource.diameter.slg.events.LocationReportAnswer#setGMLCAddress()
    */
   public void setGMLCAddress(Address gmlcAddress) {
-    addAvp(EPCLocationProtocolAVPCodes.GMLC_ADDRESS, gmlcAddress);
+    addAvp(EPCLocationProtocolAVPCodes.GMLC_ADDRESS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, gmlcAddress);
   }
 
   /* (non-Javadoc)
@@ -129,7 +129,7 @@ public class LocationReportAnswerImpl extends DiameterMessageImpl implements Loc
    * @see net.java.slee.resource.diameter.slg.events.LocationReportAnswer#setLRAFlags()
    */
   public void setLRAFlags(long plaFlags) {
-    addAvp(EPCLocationProtocolAVPCodes.LRA_FLAGS, plaFlags);
+    addAvp(EPCLocationProtocolAVPCodes.LRA_FLAGS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, plaFlags);
   }
 
   /*
@@ -138,7 +138,7 @@ public class LocationReportAnswerImpl extends DiameterMessageImpl implements Loc
    */
   @Override
   public boolean hasReportingPLMNList() {
-    return hasAvp(EPCLocationProtocolAVPCodes.REPORTING_PLMN_LIST);
+    return hasAvp(EPCLocationProtocolAVPCodes.REPORTING_PLMN_LIST, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -156,7 +156,7 @@ public class LocationReportAnswerImpl extends DiameterMessageImpl implements Loc
    */
   @Override
   public void setReportingPLMNList(ReportingPLMNListAvp reportingPLMNList) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.REPORTING_PLMN_LIST, reportingPLMNList);
+    addAvp(EPCLocationProtocolAVPCodes.REPORTING_PLMN_LIST, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, reportingPLMNList);
   }
 
   /*
@@ -165,7 +165,7 @@ public class LocationReportAnswerImpl extends DiameterMessageImpl implements Loc
    */
   @Override
   public boolean hasPLMNIDList() {
-    return hasAvp(EPCLocationProtocolAVPCodes.PLMN_ID_LIST);
+    return hasAvp(EPCLocationProtocolAVPCodes.PLMN_ID_LIST, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -183,7 +183,7 @@ public class LocationReportAnswerImpl extends DiameterMessageImpl implements Loc
    */
   @Override
   public void setPLMNIDList(PLMNIDListAvp plmnIDList) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.PLMN_ID_LIST, plmnIDList);
+    addAvp(EPCLocationProtocolAVPCodes.PLMN_ID_LIST, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, plmnIDList);
   }
 
   /*
@@ -192,7 +192,7 @@ public class LocationReportAnswerImpl extends DiameterMessageImpl implements Loc
    */
   @Override
   public boolean hasPrioritizedListIndicator() {
-    return hasAvp(EPCLocationProtocolAVPCodes.PRIORITIZED_LIST_INDICATOR);
+    return hasAvp(EPCLocationProtocolAVPCodes.PRIORITIZED_LIST_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -210,7 +210,7 @@ public class LocationReportAnswerImpl extends DiameterMessageImpl implements Loc
    */
   @Override
   public void setPrioritizedListIndicator(PrioritizedListIndicator prioritizedListIndicator) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.PRIORITIZED_LIST_INDICATOR, prioritizedListIndicator);
+    addAvp(EPCLocationProtocolAVPCodes.PRIORITIZED_LIST_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, prioritizedListIndicator);
   }
 
   /*
@@ -219,7 +219,7 @@ public class LocationReportAnswerImpl extends DiameterMessageImpl implements Loc
    */
   @Override
   public boolean hasVisitedPLMNId() {
-    return hasAvp(EPCLocationProtocolAVPCodes.VISITED_PLMN_ID);
+    return hasAvp(EPCLocationProtocolAVPCodes.VISITED_PLMN_ID, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -237,7 +237,7 @@ public class LocationReportAnswerImpl extends DiameterMessageImpl implements Loc
    */
   @Override
   public void setVisitedPLMNId(byte[] visitedPLMNId) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.VISITED_PLMN_ID, visitedPLMNId);
+    addAvp(EPCLocationProtocolAVPCodes.VISITED_PLMN_ID, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, visitedPLMNId);
   }
 
   /*
@@ -246,7 +246,7 @@ public class LocationReportAnswerImpl extends DiameterMessageImpl implements Loc
    */
   @Override
   public boolean hasPeriodicLocationSupportIndicator() {
-    return hasAvp(EPCLocationProtocolAVPCodes.PERIODIC_LOCATION_SUPPORT_INDICATOR);
+    return hasAvp(EPCLocationProtocolAVPCodes.PERIODIC_LOCATION_SUPPORT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -264,7 +264,7 @@ public class LocationReportAnswerImpl extends DiameterMessageImpl implements Loc
    */
   @Override
   public void setPeriodicLocationSupportIndicator(PeriodicLocationSupportIndicator periodicLocationSupportIndicator) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.PERIODIC_LOCATION_SUPPORT_INDICATOR, periodicLocationSupportIndicator);
+    addAvp(EPCLocationProtocolAVPCodes.PERIODIC_LOCATION_SUPPORT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, periodicLocationSupportIndicator);
   }
 
   /*
@@ -273,7 +273,7 @@ public class LocationReportAnswerImpl extends DiameterMessageImpl implements Loc
    */
   @Override
   public boolean hasLCSReferenceNumber() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_REFERENCE_NUMBER);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_REFERENCE_NUMBER, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -291,7 +291,7 @@ public class LocationReportAnswerImpl extends DiameterMessageImpl implements Loc
    */
   @Override
   public void setLCSReferenceNumber(byte[] lcsReferenceNumber) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_REFERENCE_NUMBER, lcsReferenceNumber);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_REFERENCE_NUMBER, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsReferenceNumber);
   }
 
   /*

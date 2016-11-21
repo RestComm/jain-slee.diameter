@@ -91,7 +91,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasSLgLocationType() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SLg_LOCATION_TYPE);
+    return hasAvp(EPCLocationProtocolAVPCodes.SLg_LOCATION_TYPE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -100,7 +100,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public SLgLocationType getSLgLocationType() {
-    return (SLgLocationType) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.SLg_LOCATION_TYPE, SLgLocationType.class);
+    return (SLgLocationType) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.SLg_LOCATION_TYPE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, SLgLocationType.class);
   }
 
   /*
@@ -109,7 +109,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setSLgLocationType(SLgLocationType slgLocationType) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.SLg_LOCATION_TYPE, slgLocationType.getValue());
+    addAvp(EPCLocationProtocolAVPCodes.SLg_LOCATION_TYPE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, slgLocationType.getValue());
   }
 
   /*
@@ -118,7 +118,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasUserName() {
-    return hasAvp(EPCLocationProtocolAVPCodes.USER_NAME);
+    return hasAvp(EPCLocationProtocolAVPCodes.USER_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -127,7 +127,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public String getUserName() {
-    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.USER_NAME);
+    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.USER_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -136,7 +136,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setUserName(String imsi) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.USER_NAME, imsi);
+    addAvp(EPCLocationProtocolAVPCodes.USER_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, imsi);
   }
 
   /*
@@ -145,7 +145,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasMSISDN() {
-    return hasAvp(EPCLocationProtocolAVPCodes.MSISDN);
+    return hasAvp(EPCLocationProtocolAVPCodes.MSISDN, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -154,7 +154,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public byte[] getMSISDN() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.MSISDN);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.MSISDN, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -163,7 +163,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setMSISDN(byte[] msisdn) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.MSISDN, msisdn);
+    addAvp(EPCLocationProtocolAVPCodes.MSISDN, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, msisdn);
   }
 
   /*
@@ -172,7 +172,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasIMEI() {
-    return hasAvp(EPCLocationProtocolAVPCodes.IMEI);
+    return hasAvp(EPCLocationProtocolAVPCodes.IMEI, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -181,7 +181,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public String getIMEI() {
-    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.IMEI);
+    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.IMEI, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -190,7 +190,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setIMEI(String imei) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.IMEI, imei);
+    addAvp(EPCLocationProtocolAVPCodes.IMEI, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, imei);
   }
 
   /*
@@ -199,7 +199,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasLCSEPSClientName() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_EPS_CLIENT_NAME);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_EPS_CLIENT_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -217,7 +217,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setLCSEPSClientNameAvp(LCSEPSClientNameAvp lcsEPSClientName) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_EPS_CLIENT_NAME, lcsEPSClientName);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_EPS_CLIENT_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsEPSClientName);
   }
 
   /*
@@ -226,7 +226,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasLCSNameString() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_NAME_STRING);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_NAME_STRING, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -244,7 +244,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setLCSNameString(String lcsNameString) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_NAME_STRING, lcsNameString);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_NAME_STRING, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsNameString);
   }
 
   /*
@@ -253,7 +253,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasLCSFormatIndicator() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -262,7 +262,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public LCSFormatIndicator getLCSFormatIndicator() {
-    return (LCSFormatIndicator) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, LCSFormatIndicator.class);
+    return (LCSFormatIndicator) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, LCSFormatIndicator.class);
   }
 
   /*
@@ -271,7 +271,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setLCSFormatIndicator(LCSFormatIndicator lcsFormatIndicator) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, lcsFormatIndicator.getValue());
+    addAvp(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsFormatIndicator.getValue());
   }
 
 
@@ -281,7 +281,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasLCSClientType() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_CLIENT_TYPE);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_CLIENT_TYPE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -290,7 +290,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public LCSClientType getLCSClientType() {
-    return (LCSClientType) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.LCS_CLIENT_TYPE, LCSClientType.class);
+    return (LCSClientType) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.LCS_CLIENT_TYPE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, LCSClientType.class);
   }
 
   /*
@@ -299,7 +299,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setLCSClientType(LCSClientType lcsClientType) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_CLIENT_TYPE, lcsClientType.getValue());
+    addAvp(EPCLocationProtocolAVPCodes.LCS_CLIENT_TYPE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsClientType.getValue());
   }
 
   /*
@@ -308,7 +308,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasLCSRequestorName() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_REQUESTOR_NAME);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_REQUESTOR_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -326,7 +326,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setLCSRequestorName(LCSRequestorNameAvp lcsRequestorName) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_REQUESTOR_NAME, lcsRequestorName);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_REQUESTOR_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsRequestorName);
   }
 
   /*
@@ -335,7 +335,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasLCSPriority() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_PRIORITY);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_PRIORITY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -344,7 +344,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public long getLCSPriority() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.LCS_PRIORITY);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.LCS_PRIORITY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -353,7 +353,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setLCSPriority(long lcsPriority) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_PRIORITY, lcsPriority);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_PRIORITY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsPriority);
   }
 
   /*
@@ -362,7 +362,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasLCSQoS() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_QoS);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -380,7 +380,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setLCSQoS(LCSQoSAvp lcsQoS) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_QoS, lcsQoS);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsQoS);
   }
 
   /*
@@ -389,7 +389,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasLCSQoSClass() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_QoS_CLASS);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_QoS_CLASS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -398,7 +398,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public LCSQoSClass getLCSQoSClass() {
-    return (LCSQoSClass) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.LCS_QoS_CLASS, LCSQoSClass.class);
+    return (LCSQoSClass) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.LCS_QoS_CLASS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, LCSQoSClass.class);
   }
 
   /*
@@ -407,7 +407,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setLCSQoSClass(LCSQoSClass lcsQoSClass) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_QoS_CLASS, lcsQoSClass);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_QoS_CLASS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsQoSClass);
   }
 
   /*
@@ -416,7 +416,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasHorizontalAccuracy() {
-    return hasAvp(EPCLocationProtocolAVPCodes.HORIZONTAL_ACCURACY);
+    return hasAvp(EPCLocationProtocolAVPCodes.HORIZONTAL_ACCURACY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -434,7 +434,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setHorizontalAccuracy(long horizontalAccuracy) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.HORIZONTAL_ACCURACY, horizontalAccuracy);
+    addAvp(EPCLocationProtocolAVPCodes.HORIZONTAL_ACCURACY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, horizontalAccuracy);
   }
 
   /*
@@ -443,7 +443,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasVerticalAccuracy() {
-    return hasAvp(EPCLocationProtocolAVPCodes.VERTICAL_ACCURACY);
+    return hasAvp(EPCLocationProtocolAVPCodes.VERTICAL_ACCURACY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -461,7 +461,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setVerticalAccuracy(long verticalAccuracy) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.VERTICAL_ACCURACY, verticalAccuracy);
+    addAvp(EPCLocationProtocolAVPCodes.VERTICAL_ACCURACY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, verticalAccuracy);
   }
 
   /*
@@ -470,7 +470,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasResponseTime() {
-    return hasAvp(EPCLocationProtocolAVPCodes.RESPONSE_TIME);
+    return hasAvp(EPCLocationProtocolAVPCodes.RESPONSE_TIME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -479,7 +479,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public ResponseTime getResponseTime() {
-    return (ResponseTime) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.RESPONSE_TIME, ResponseTime.class);
+    return (ResponseTime) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.RESPONSE_TIME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, ResponseTime.class);
   }
 
   /*
@@ -488,7 +488,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setResponseTime(ResponseTime responseTime) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.RESPONSE_TIME, responseTime.getValue());
+    addAvp(EPCLocationProtocolAVPCodes.RESPONSE_TIME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, responseTime.getValue());
   }
 
   /*
@@ -497,7 +497,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasVelocityRequested() {
-    return hasAvp(EPCLocationProtocolAVPCodes.VELOCITY_REQUESTED);
+    return hasAvp(EPCLocationProtocolAVPCodes.VELOCITY_REQUESTED, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -506,7 +506,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public VelocityRequested getVelocityRequested() {
-    return (VelocityRequested) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.VELOCITY_REQUESTED, VelocityRequested.class);
+    return (VelocityRequested) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.VELOCITY_REQUESTED, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, VelocityRequested.class);
   }
 
   /*
@@ -515,7 +515,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setVelocityRequested(VelocityRequested velocityRequested) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.VELOCITY_REQUESTED, velocityRequested.getValue());
+    addAvp(EPCLocationProtocolAVPCodes.VELOCITY_REQUESTED, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, velocityRequested.getValue());
   }
 
   /*
@@ -524,7 +524,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasLCSSupportedGADShapes() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SUPPORTED_GAD_SHAPES);
+    return hasAvp(EPCLocationProtocolAVPCodes.SUPPORTED_GAD_SHAPES, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -533,7 +533,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public long getLCSSupportedGADShapes() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.SUPPORTED_GAD_SHAPES);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.SUPPORTED_GAD_SHAPES, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -542,7 +542,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setLCSSupportedGADShapes(long lcsSupportedGADShapes) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.SUPPORTED_GAD_SHAPES, lcsSupportedGADShapes);
+    addAvp(EPCLocationProtocolAVPCodes.SUPPORTED_GAD_SHAPES, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsSupportedGADShapes);
   }
 
   /*
@@ -551,7 +551,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasLCSServiceTypeID() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_SERVICE_TYPE_ID);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_SERVICE_TYPE_ID, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -560,7 +560,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public long getLCSServiceTypeID() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.LCS_SERVICE_TYPE_ID);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.LCS_SERVICE_TYPE_ID, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -569,7 +569,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setLCSServiceTypeID(long lcsSupportedGADShapes) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_SERVICE_TYPE_ID, lcsSupportedGADShapes);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_SERVICE_TYPE_ID, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsSupportedGADShapes);
   }
 
   /*
@@ -578,7 +578,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasLCSCodeword() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_CODEW0RD);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_CODEW0RD, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -587,7 +587,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public String getLCSCodeword() {
-    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.LCS_CODEW0RD);
+    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.LCS_CODEW0RD, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -596,7 +596,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setLCSCodeword(String lcsCodeword) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_CODEW0RD, lcsCodeword);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_CODEW0RD, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsCodeword);
   }
 
   /*
@@ -605,7 +605,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasLCSPrivacyCheckNonSession() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK_NON_SESSION);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK_NON_SESSION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -623,7 +623,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setLCSPrivacyCheckNonSession(LCSPrivacyCheckNonSessionAvp lcsPrivacyCheckNonSession) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK_NON_SESSION, lcsPrivacyCheckNonSession);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK_NON_SESSION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsPrivacyCheckNonSession);
   }
 
   /*
@@ -632,7 +632,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasLCSPrivacyCheckSession() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK_SESSION);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK_SESSION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -650,7 +650,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setLCSPrivacyCheckSession(LCSPrivacyCheckSessionAvp lcsPrivacyCheckSession) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK_SESSION, lcsPrivacyCheckSession);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK_SESSION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsPrivacyCheckSession);
   }
 
   /*
@@ -659,7 +659,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasServiceSelection() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SERVICE_SELECTION);
+    return hasAvp(EPCLocationProtocolAVPCodes.SERVICE_SELECTION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -668,7 +668,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public String getServiceSelection() {
-    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.SERVICE_SELECTION);
+    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.SERVICE_SELECTION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -677,7 +677,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setServiceSelection(String serviceSelection) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.SERVICE_SELECTION, serviceSelection);
+    addAvp(EPCLocationProtocolAVPCodes.SERVICE_SELECTION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, serviceSelection);
   }
 
   /*
@@ -686,7 +686,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasDeferredLocationType() {
-    return hasAvp(EPCLocationProtocolAVPCodes.DEFERRED_LOCATION_TYPE);
+    return hasAvp(EPCLocationProtocolAVPCodes.DEFERRED_LOCATION_TYPE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -695,7 +695,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public long getDeferredLocationType() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.DEFERRED_LOCATION_TYPE);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.DEFERRED_LOCATION_TYPE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -704,7 +704,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setDeferredLocationType(long lcsDeferredLocationType) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.DEFERRED_LOCATION_TYPE, lcsDeferredLocationType);
+    addAvp(EPCLocationProtocolAVPCodes.DEFERRED_LOCATION_TYPE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsDeferredLocationType);
   }
 
   /*
@@ -713,7 +713,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public boolean hasPLRFlags() {
-    return hasAvp(EPCLocationProtocolAVPCodes.PLR_FLAGS);
+    return hasAvp(EPCLocationProtocolAVPCodes.PLR_FLAGS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -722,7 +722,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public long getPLRFlags() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.PLR_FLAGS);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.PLR_FLAGS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   /*
@@ -731,7 +731,7 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
    */
   @Override
   public void setPLRFlags(long plrFlags) throws IllegalStateException {
-    addAvp(EPCLocationProtocolAVPCodes.PLR_FLAGS, plrFlags);
+    addAvp(EPCLocationProtocolAVPCodes.PLR_FLAGS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, plrFlags);
   }
 
   @Override
