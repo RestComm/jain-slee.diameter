@@ -87,7 +87,7 @@ import net.java.slee.resource.diameter.slg.events.avp.*;
  *
  * @author <a href="mailto:fernando.mendioroz@telestax.com"> Fernando Mendioroz </a>
  * */
-public interface ProvideLocationRequest extends DiameterMessage{
+public interface ProvideLocationRequest extends DiameterMessage {
 
   static final int COMMAND_CODE = 8388620;
 
@@ -244,6 +244,50 @@ public interface ProvideLocationRequest extends DiameterMessage{
   void setLCSEPSClientNameAvp(LCSEPSClientNameAvp lcsEpsClientName) throws IllegalStateException;
 
   /**
+   * Returns true if the LCS-Name-String AVP is present in the message.
+   *
+   * @return
+   */
+  boolean hasLCSNameString();
+
+  /**
+   * Returns the value of the LCS-Name-String AVP, of type UTF8String.
+   *
+   * @return
+   */
+  String getLCSNameString();
+
+  /**
+   * Sets the value of the LCS-Name-String AVP, of type UTF8String.
+   *
+   * @param lcsNameString
+   * @throws IllegalStateException
+   */
+  void setLCSNameString(String lcsNameString) throws IllegalStateException;
+
+  /**
+   * Returns true if the LCS-Format-Indicator AVP is present in the message.
+   *
+   * @return
+   */
+  boolean hasLCSFormatIndicator();
+
+  /**
+   * Returns the value of the LCS-Format-Indicator AVP, of type Enumerated.
+   *
+   * @return
+   */
+  LCSFormatIndicator getLCSFormatIndicator();
+
+  /**
+   * Sets the value of the LCS-Format-Indicator AVP, of type Enumerated.
+   *
+   * @param lcsFormatIndicator
+   * @throws IllegalStateException
+   */
+  void setLCSFormatIndicator(LCSFormatIndicator lcsFormatIndicator) throws IllegalStateException;
+
+  /**
    * Returns true if the LCS-Client-Type AVP is present in the message.
    *
    * @return
@@ -330,6 +374,94 @@ public interface ProvideLocationRequest extends DiameterMessage{
    * @throws IllegalStateException
    */
   void setLCSQoS(LCSQoSAvp lcsQoS) throws IllegalStateException;
+
+  /**
+   * Returns true if the LCS-QoS-Class AVP is present in the message.
+   *
+   * @return
+   */
+  boolean hasLCSQoSClass();
+
+  /**
+   * Returns the value of the LCS-QoS-Class AVP, of type Enumerated.
+   *
+   * @return
+   */
+  LCSQoSClass getLCSQoSClass();
+
+  /**
+   * Sets the value of the LCS-QoS-Class AVP, of type Enumerated.
+   *
+   * @param lcsQoSClass
+   * @throws IllegalStateException
+   */
+  void setLCSQoSClass(LCSQoSClass lcsQoSClass) throws IllegalStateException;
+
+  /**
+   * Returns true if the Horizontal-Accuracy AVP is present in the message.
+   *
+   * @return
+   */
+  boolean hasHorizontalAccuracy();
+
+  /**
+   * Returns the value of the Horizontal-Accuracy AVP, of type Unsigned32.
+   *
+   * @return
+   */
+  long getHorizontalAccuracy();
+
+  /**
+   * Sets the value of the Horizontal-Accuracy AVP, of type Unsigned32.
+   *
+   * @param horizontalAccuracy
+   * @throws IllegalStateException
+   */
+  void setHorizontalAccuracy(long horizontalAccuracy) throws IllegalStateException;
+
+  /**
+   * Returns true if the Vertical-Accuracy AVP is present in the message.
+   *
+   * @return
+   */
+  boolean hasVerticalAccuracy();
+
+  /**
+   * Returns the value of the Vertical-Accuracy AVP, of type Unsigned32.
+   *
+   * @return
+   */
+  long getVerticalAccuracy();
+
+  /**
+   * Sets the value of the Vertical-Accuracy AVP, of type Unsigned32.
+   *
+   * @param verticalAccuracy
+   * @throws IllegalStateException
+   */
+  void setVerticalAccuracy(long verticalAccuracy) throws IllegalStateException;
+
+  /**
+   * Returns true if the Response-Time AVP is present in the message.
+   *
+   * @return
+   */
+  boolean hasResponseTime();
+
+  /**
+   * Returns the value of the Response-Time AVP, of type Enumerated.
+   *
+   * @return
+   */
+  ResponseTime getResponseTime();
+
+  /**
+   * Sets the value of the Response-Time AVP, of type Enumerated.
+   *
+   * @param responseTime
+   * @throws IllegalStateException
+   */
+  void setResponseTime(ResponseTime responseTime) throws IllegalStateException;
 
   /**
    * Returns true if the Velocity-Requested AVP is present in the message.

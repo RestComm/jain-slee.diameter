@@ -52,7 +52,7 @@ import net.java.slee.resource.diameter.slg.events.avp.*;
 /**
  * Interface for ProvideLocationAnswer type of message. It has following structure:
  *
- * < Provide-Location-Request> ::=	< Diameter Header: 8388620, REQ, PXY, 16777255 >
+ * < Provide-Location-Answer > ::=	< Diameter Header: 8388620, PXY, 16777255 >
  *
  *                                  < Session-Id >
  *                                  [ Vendor-Specific-Application-Id ]

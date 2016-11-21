@@ -55,7 +55,7 @@ import net.java.slee.resource.diameter.slg.events.avp.*;
  *
  * @author <a href="mailto:fernando.mendioroz@telestax.com"> Fernando Mendioroz </a>
  */
-public class ProvideLocationRequestImpl  extends DiameterMessageImpl implements ProvideLocationRequest {
+public class ProvideLocationRequestImpl extends DiameterMessageImpl implements ProvideLocationRequest {
 
   /**
    * @param message
@@ -221,6 +221,61 @@ public class ProvideLocationRequestImpl  extends DiameterMessageImpl implements 
   }
 
   /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#hasLCSNameString()
+   */
+  @Override
+  public boolean hasLCSNameString() {
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_NAME_STRING);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#getLCSNameString()
+   */
+  @Override
+  public String getLCSNameString() {
+    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.LCS_NAME_STRING, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#setLCSNameString()
+   */
+  @Override
+  public void setLCSNameString(String lcsNameString) throws IllegalStateException {
+    addAvp(EPCLocationProtocolAVPCodes.LCS_NAME_STRING, lcsNameString);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#hasLCSFormatIndicator()
+   */
+  @Override
+  public boolean hasLCSFormatIndicator() {
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#getLCSFormatIndicator()
+   */
+  @Override
+  public LCSFormatIndicator getLCSFormatIndicator() {
+    return (LCSFormatIndicator) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, LCSFormatIndicator.class);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#setLocationEvent()
+   */
+  @Override
+  public void setLCSFormatIndicator(LCSFormatIndicator lcsFormatIndicator) throws IllegalStateException {
+    addAvp(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, lcsFormatIndicator.getValue());
+  }
+
+
+  /*
     * (non-Javadoc)
     * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#hasLCSClientType()
    */
@@ -326,6 +381,114 @@ public class ProvideLocationRequestImpl  extends DiameterMessageImpl implements 
   @Override
   public void setLCSQoS(LCSQoSAvp lcsQoS) throws IllegalStateException {
     addAvp(EPCLocationProtocolAVPCodes.LCS_QoS, lcsQoS);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#hasLCSQoSClass()
+   */
+  @Override
+  public boolean hasLCSQoSClass() {
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_QoS_CLASS);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#getLCSQoSClass()
+   */
+  @Override
+  public LCSQoSClass getLCSQoSClass() {
+    return (LCSQoSClass) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.LCS_QoS_CLASS, LCSQoSClass.class);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#setLCSQoSClass()
+   */
+  @Override
+  public void setLCSQoSClass(LCSQoSClass lcsQoSClass) throws IllegalStateException {
+    addAvp(EPCLocationProtocolAVPCodes.LCS_QoS_CLASS, lcsQoSClass);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#hasHorizontalAccuracy()
+   */
+  @Override
+  public boolean hasHorizontalAccuracy() {
+    return hasAvp(EPCLocationProtocolAVPCodes.HORIZONTAL_ACCURACY);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#getHorizontalAccuracy()
+   */
+  @Override
+  public long getHorizontalAccuracy() {
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.HORIZONTAL_ACCURACY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#setHorizontalAccuracy()
+   */
+  @Override
+  public void setHorizontalAccuracy(long horizontalAccuracy) throws IllegalStateException {
+    addAvp(EPCLocationProtocolAVPCodes.HORIZONTAL_ACCURACY, horizontalAccuracy);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#hasVerticalAccuracy()
+   */
+  @Override
+  public boolean hasVerticalAccuracy() {
+    return hasAvp(EPCLocationProtocolAVPCodes.VERTICAL_ACCURACY);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#getVerticalAccuracy()
+   */
+  @Override
+  public long getVerticalAccuracy() {
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.VERTICAL_ACCURACY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#setVerticalAccuracy()
+   */
+  @Override
+  public void setVerticalAccuracy(long verticalAccuracy) throws IllegalStateException {
+    addAvp(EPCLocationProtocolAVPCodes.VERTICAL_ACCURACY, verticalAccuracy);
+  }
+
+  /*
+    * (non-Javadoc)
+    * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#hasResponseTime()
+   */
+  @Override
+  public boolean hasResponseTime() {
+    return hasAvp(EPCLocationProtocolAVPCodes.RESPONSE_TIME);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#getResponseTime()
+   */
+  @Override
+  public ResponseTime getResponseTime() {
+    return (ResponseTime) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.RESPONSE_TIME, ResponseTime.class);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#setResponseTime()
+   */
+  @Override
+  public void setResponseTime(ResponseTime responseTime) throws IllegalStateException {
+    addAvp(EPCLocationProtocolAVPCodes.RESPONSE_TIME, responseTime.getValue());
   }
 
   /*
