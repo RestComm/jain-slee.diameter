@@ -71,7 +71,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasUserName() {
-    return hasAvp(LCSRoutingInfoAVPCodes.USER_NAME);
+    return hasAvp(LCSRoutingInfoAVPCodes.USER_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -80,7 +80,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public String getUserName() {
-    return getAvpAsUTF8String(LCSRoutingInfoAVPCodes.USER_NAME);
+    return getAvpAsUTF8String(LCSRoutingInfoAVPCodes.USER_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -89,7 +89,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setUserName(String imsi) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.USER_NAME, imsi);
+    addAvp(LCSRoutingInfoAVPCodes.USER_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, imsi);
   }
 
   /*
@@ -98,7 +98,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasMSISDN() {
-    return hasAvp(LCSRoutingInfoAVPCodes.MSISDN);
+    return hasAvp(LCSRoutingInfoAVPCodes.MSISDN, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -107,7 +107,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public byte[] getMSISDN() {
-    return getAvpAsOctetString(LCSRoutingInfoAVPCodes.MSISDN);
+    return getAvpAsOctetString(LCSRoutingInfoAVPCodes.MSISDN, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -116,7 +116,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setMSISDN(byte[] msisdn) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.MSISDN, msisdn);
+    addAvp(LCSRoutingInfoAVPCodes.MSISDN, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, msisdn);
   }
 
   /*
@@ -125,7 +125,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasLMSI() {
-    return hasAvp(LCSRoutingInfoAVPCodes.LMSI);
+    return hasAvp(LCSRoutingInfoAVPCodes.LMSI, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -134,7 +134,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public byte[] getLMSI() {
-    return getAvpAsOctetString(LCSRoutingInfoAVPCodes.LMSI);
+    return getAvpAsOctetString(LCSRoutingInfoAVPCodes.LMSI, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -143,7 +143,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setLMSI(byte[] lmsi) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.LMSI, lmsi);
+    addAvp(LCSRoutingInfoAVPCodes.LMSI, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, lmsi);
   }
 
   /*
@@ -152,7 +152,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasServingNode() {
-    return hasAvp(LCSRoutingInfoAVPCodes.SERVING_NODE);
+    return hasAvp(LCSRoutingInfoAVPCodes.SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -161,7 +161,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public byte[] getServingNode() {
-    return getAvpAsGrouped(LCSRoutingInfoAVPCodes.SERVING_NODE, 10415);
+    return getAvpAsGrouped(LCSRoutingInfoAVPCodes.SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -170,7 +170,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setServingNode(ServingNodeAvp servingNode){
-    addAvp(LCSRoutingInfoAVPCodes.SERVING_NODE, servingNode);
+    addAvp(LCSRoutingInfoAVPCodes.SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, servingNode);
   }
 
   /*
@@ -179,7 +179,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasSGSNNumber() {
-    return hasAvp(LCSRoutingInfoAVPCodes.SGSN_NUMBER);
+    return hasAvp(LCSRoutingInfoAVPCodes.SGSN_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -188,7 +188,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public DiameterIdentity getSGSNNumber() {
-    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.SGSN_NUMBER);
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.SGSN_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -197,7 +197,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setSGSNNumber(DiameterIdentity sgsnNumber) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.SGSN_NUMBER, sgsnNumber);
+    addAvp(LCSRoutingInfoAVPCodes.SGSN_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, sgsnNumber);
   }
 
   /*
@@ -206,7 +206,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasSGSNName() {
-    return hasAvp(LCSRoutingInfoAVPCodes.SGSN_NAME);
+    return hasAvp(LCSRoutingInfoAVPCodes.SGSN_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -215,7 +215,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public DiameterIdentity getSGSNName() {
-    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.SGSN_NAME);
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.SGSN_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -224,7 +224,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setSGSNName(DiameterIdentity sgsnName) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.SGSN_NAME, sgsnName);
+    addAvp(LCSRoutingInfoAVPCodes.SGSN_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, sgsnName);
   }
 
   /*
@@ -233,7 +233,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasSGSNRealm() {
-    return hasAvp(LCSRoutingInfoAVPCodes.SGSN_REALM);
+    return hasAvp(LCSRoutingInfoAVPCodes.SGSN_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -242,7 +242,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public DiameterIdentity getSGSNRealm() {
-    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.SGSN_REALM);
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.SGSN_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -251,7 +251,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setSGSNRealm(DiameterIdentity sgsnRealm) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.SGSN_REALM, sgsnRealm);
+    addAvp(LCSRoutingInfoAVPCodes.SGSN_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, sgsnRealm);
   }
 
 
@@ -261,7 +261,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasMMEName() {
-    return hasAvp(LCSRoutingInfoAVPCodes.MME_NAME);
+    return hasAvp(LCSRoutingInfoAVPCodes.MME_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -270,7 +270,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public DiameterIdentity getMMEName() {
-    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.MME_NAME);
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.MME_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -279,7 +279,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setMMEName(DiameterIdentity mmeName) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.MME_NAME, mmeName);
+    addAvp(LCSRoutingInfoAVPCodes.MME_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, mmeName);
   }
 
   /*
@@ -288,7 +288,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasMMERealm() {
-    return hasAvp(LCSRoutingInfoAVPCodes.MME_REALM);
+    return hasAvp(LCSRoutingInfoAVPCodes.MME_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -297,7 +297,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public DiameterIdentity getMMERealm() {
-    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.MME_REALM);
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.MME_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -306,7 +306,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setMMERealm(DiameterIdentity mmeRealm) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.MME_REALM, mmeRealm);
+    addAvp(LCSRoutingInfoAVPCodes.MME_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, mmeRealm);
   }
 
   /*
@@ -315,7 +315,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasMSCNumber() {
-    return hasAvp(LCSRoutingInfoAVPCodes.MSC_NUMBER);
+    return hasAvp(LCSRoutingInfoAVPCodes.MSC_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -324,7 +324,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public byte[] getMSCNumber() {
-    return getAvpAsOctetString(LCSRoutingInfoAVPCodes.MSC_NUMBER);
+    return getAvpAsOctetString(LCSRoutingInfoAVPCodes.MSC_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -333,7 +333,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setMSCNumber(byte[] mscNumber) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.MSC_NUMBER, mscNumber);
+    addAvp(LCSRoutingInfoAVPCodes.MSC_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, mscNumber);
   }
 
   /*
@@ -342,7 +342,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean has3GPPAAAServerName() {
-    return hasAvp(LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME);
+    return hasAvp(LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -351,7 +351,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public DiameterIdentity get3GPPAAAServerName() {
-    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME);
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -360,7 +360,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void set3GPPAAAServerName(DiameterIdentity tgppAAAServerName) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME, tgppAAAServerName);
+    addAvp(LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, tgppAAAServerName);
   }
 
   /*
@@ -369,7 +369,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
      */
   @Override
   public boolean hasLCSCapabilitiesSets() {
-    return hasAvp(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS);
+    return hasAvp(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -378,7 +378,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public long getLCSCapabilitiesSets() {
-    return getAvpAsUnsigned32(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS);
+    return getAvpAsUnsigned32(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -387,7 +387,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setLCSCapabilitiesSets(long lcsCapabilitiesSets) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS, lcsCapabilitiesSets);
+    addAvp(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, lcsCapabilitiesSets);
   }
 
   /*
@@ -396,7 +396,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasGMLCAddress() {
-    return hasAvp(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS);
+    return hasAvp(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -405,7 +405,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public Address getGMLCAddress() {
-    return getAvpAsAddress(LCSRoutingInfoAVPCodes.GMLC_ADDRESS);
+    return getAvpAsAddress(LCSRoutingInfoAVPCodes.GMLC_ADDRESS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -414,7 +414,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setGMLCAddress(Address gmlcAddress) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.GMLC_ADDRESS, gmlcAddress);
+    addAvp(LCSRoutingInfoAVPCodes.GMLC_ADDRESS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, gmlcAddress);
   }
 
   /*
@@ -423,7 +423,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasAdditionalServingNode() {
-    return hasAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE);
+    return hasAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -432,7 +432,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public byte[] getAdditionalServingNode() {
-    return getAvpAsGrouped(LCSRoutingInfoAVPCodes.SERVING_NODE, 10415);
+    return getAvpAsGrouped(LCSRoutingInfoAVPCodes.SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -441,7 +441,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setAdditionalServingNode(AdditionalServingNodeAvp additionalServingNode){
-    addAvp(LCSRoutingInfoAVPCodes.SERVING_NODE, additionalServingNode);
+    addAvp(LCSRoutingInfoAVPCodes.SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalServingNode);
   }
 
   /*
@@ -450,7 +450,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasAdditionalSGSNNumber() {
-    return hasAvp(LCSRoutingInfoAVPCodes.SGSN_NUMBER);
+    return hasAvp(LCSRoutingInfoAVPCodes.SGSN_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -459,7 +459,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public byte[] getAdditionalSGSNNumber() {
-    return getAvpAsOctetString(LCSRoutingInfoAVPCodes.SGSN_NUMBER);
+    return getAvpAsOctetString(LCSRoutingInfoAVPCodes.SGSN_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -468,7 +468,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setAdditionalSGSNNumber(byte[] additionalSgsnNumber) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.SGSN_NUMBER, additionalSgsnNumber);
+    addAvp(LCSRoutingInfoAVPCodes.SGSN_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalSgsnNumber);
   }
 
   /*
@@ -477,7 +477,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasAdditionalSGSNName() {
-    return hasAvp(LCSRoutingInfoAVPCodes.SGSN_NAME);
+    return hasAvp(LCSRoutingInfoAVPCodes.SGSN_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -486,7 +486,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public DiameterIdentity getAdditionalSGSNName() {
-    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.SGSN_NAME);
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.SGSN_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -495,7 +495,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setAdditionalSGSNName(DiameterIdentity additionalSgsnName) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.SGSN_NAME, additionalSgsnName);
+    addAvp(LCSRoutingInfoAVPCodes.SGSN_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalSgsnName);
   }
 
   /*
@@ -504,7 +504,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasAdditionalSGSNRealm() {
-    return hasAvp(LCSRoutingInfoAVPCodes.SGSN_REALM);
+    return hasAvp(LCSRoutingInfoAVPCodes.SGSN_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -513,7 +513,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public DiameterIdentity getAdditionalSGSNRealm() {
-    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.SGSN_REALM);
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.SGSN_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -522,7 +522,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setAdditionalSGSNRealm(DiameterIdentity additionalSgsnRealm) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.SGSN_REALM, additionalSgsnRealm);
+    addAvp(LCSRoutingInfoAVPCodes.SGSN_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalSgsnRealm);
   }
 
 
@@ -532,7 +532,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasAdditionalMMEName() {
-    return hasAvp(LCSRoutingInfoAVPCodes.MME_NAME);
+    return hasAvp(LCSRoutingInfoAVPCodes.MME_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -541,7 +541,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public DiameterIdentity getAdditionalMMEName() {
-    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.MME_NAME);
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.MME_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -550,7 +550,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setAdditionalMMEName(DiameterIdentity additionalMmeName) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.MME_NAME, additionalMmeName);
+    addAvp(LCSRoutingInfoAVPCodes.MME_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalMmeName);
   }
 
   /*
@@ -559,7 +559,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasAdditionalMMERealm() {
-    return hasAvp(LCSRoutingInfoAVPCodes.MME_REALM);
+    return hasAvp(LCSRoutingInfoAVPCodes.MME_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -568,7 +568,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public DiameterIdentity getAdditionalMMERealm() {
-    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.MME_REALM);
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.MME_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -577,7 +577,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setAdditionalMMERealm(DiameterIdentity additionalMmeRealm) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.MME_REALM, additionalMmeRealm);
+    addAvp(LCSRoutingInfoAVPCodes.MME_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalMmeRealm);
   }
 
   /*
@@ -586,7 +586,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasAdditionalMSCNumber() {
-    return hasAvp(LCSRoutingInfoAVPCodes.MSC_NUMBER);
+    return hasAvp(LCSRoutingInfoAVPCodes.MSC_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -595,7 +595,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public byte[] getAdditionalMSCNumber() {
-    return getAvpAsOctetString(LCSRoutingInfoAVPCodes.MSC_NUMBER);
+    return getAvpAsOctetString(LCSRoutingInfoAVPCodes.MSC_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -604,7 +604,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setAdditionalMSCNumber(byte[] additionalMscNumber) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.MSC_NUMBER, additionalMscNumber);
+    addAvp(LCSRoutingInfoAVPCodes.MSC_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalMscNumber);
   }
 
   /*
@@ -613,7 +613,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasAdditional3GPPAAAServerName() {
-    return hasAvp(LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME);
+    return hasAvp(LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -622,7 +622,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public DiameterIdentity getAdditional3GPPAAAServerName() {
-    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME);
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -631,7 +631,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setAdditional3GPPAAAServerName(DiameterIdentity additionalTgppAAAServerName) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME, additionalTgppAAAServerName);
+    addAvp(LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalTgppAAAServerName);
   }
 
   /*
@@ -640,7 +640,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
      */
   @Override
   public boolean hasAdditionalLCSCapabilitiesSets() {
-    return hasAvp(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS);
+    return hasAvp(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -649,7 +649,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public long getAdditionalLCSCapabilitiesSets() {
-    return getAvpAsUnsigned32(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS);
+    return getAvpAsUnsigned32(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -658,7 +658,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setAdditionalLCSCapabilitiesSets(long additionalLcsCapabilitiesSets) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS, additionalLcsCapabilitiesSets);
+    addAvp(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalLcsCapabilitiesSets);
   }
 
   /*
@@ -667,7 +667,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasAdditionalGMLCAddress() {
-    return hasAvp(LCSRoutingInfoAVPCodes.GMLC_ADDRESS);
+    return hasAvp(LCSRoutingInfoAVPCodes.GMLC_ADDRESS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -676,7 +676,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public Address getAdditionalGMLCAddress() {
-    return getAvpAsAddress(LCSRoutingInfoAVPCodes.GMLC_ADDRESS);
+    return getAvpAsAddress(LCSRoutingInfoAVPCodes.GMLC_ADDRESS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -685,7 +685,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setAdditionalGMLCAddress(Address additionalGmlcAddress) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.GMLC_ADDRESS, additionalGmlcAddress);
+    addAvp(LCSRoutingInfoAVPCodes.GMLC_ADDRESS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalGmlcAddress);
   }
 
   /*
@@ -694,7 +694,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasPPRAddress() {
-    return hasAvp(LCSRoutingInfoAVPCodes.PPR_ADDRESS);
+    return hasAvp(LCSRoutingInfoAVPCodes.PPR_ADDRESS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -703,7 +703,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public Address getPPRAddress() {
-    return getAvpAsAddress(LCSRoutingInfoAVPCodes.PPR_ADDRESS);
+    return getAvpAsAddress(LCSRoutingInfoAVPCodes.PPR_ADDRESS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   /*
@@ -712,7 +712,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setPPRAddress(Address additionalGmlcAddress) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.PPR_ADDRESS, additionalGmlcAddress);
+    addAvp(LCSRoutingInfoAVPCodes.PPR_ADDRESS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalGmlcAddress);
   }
 
   @Override
