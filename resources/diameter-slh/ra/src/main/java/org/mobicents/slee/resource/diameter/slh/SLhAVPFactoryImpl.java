@@ -99,7 +99,7 @@ public class SLhAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLhAVPF
 /*
   @Override
   public PPRAddressAvp createPPRAddressAvp() {
-    return (PPRAddressAvp) AvpUtilities.createAvp(LCSRoutingInfoAVPCodes., LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, PPRAddressAvpImpl.class);
+    return (PPRAddress) AvpUtilities.createAvp(LCSRoutingInfoAVPCodes.PPR_ADDRESS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, PPRAddressAvpImpl.class);
   }
 
   @Override
