@@ -58,7 +58,7 @@ import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
  *
  * AVP format
  *
- *				Serving-Node ::=	<AVP header: 2406 10415>
+ *				Additional-Serving-Node ::=	<AVP header: 2406 10415>
  *													[ SGSN-Number ]
  *													[ SGSN-Name ]
  *													[ SGSN-Realm ]
@@ -105,8 +105,8 @@ public interface AdditionalServingNodeAvp extends GroupedAvp {
     For further details on the encoding of this AVP, see IETF RFC 3588 [5].
   */
   public boolean hasAdditionalSGSNName();
-  public Address getAdditionalSGSNName();
-  public void setAdditionalSGSNNumber(Address additionalSgsnName);
+  public DiameterIdentity getAdditionalSGSNName();
+  public void setAdditionalSGSNName(DiameterIdentity additionalSgsnName);
 
 
   /*
@@ -130,8 +130,8 @@ public interface AdditionalServingNodeAvp extends GroupedAvp {
     For further details on the encoding of this AVP, see IETF RFC 3588 [5].
   */
   public boolean hasAdditionalMMEName();
-  public Address getAdditionalMMEName();
-  public void setAdditionalMMENumber(Address additionalMmeName);
+  public DiameterIdentity getAdditionalMMEName();
+  public void setAdditionalMMEName(DiameterIdentity additionalMmeName);
 
   /*
     From 3GPP TS 29.173 (v13.0.0)
@@ -142,8 +142,8 @@ public interface AdditionalServingNodeAvp extends GroupedAvp {
     For further details on the encoding of this AVP, see IETF RFC 3588 [5].
   */
   public boolean hasAdditionalMMERealm();
-  public Address getAdditionalMMERealm();
-  public void setAdditionalMMERealm(Address additionalMmeRealm);
+  public DiameterIdentity getAdditionalMMERealm();
+  public void setAdditionalMMERealm(DiameterIdentity additionalMmeRealm);
 
   /*
     From 3GPP TS 29.173 (v13.0.0)
@@ -166,9 +166,9 @@ public interface AdditionalServingNodeAvp extends GroupedAvp {
     The LCS-Capabilities-Sets AVP is of type Unsigned32 and it shall contain a bit mask. The meaning of the bits shall be as defined
     in 3GPP 29.002 [3].
   */
-  public boolean hasLcsCapabilitiesSets();
-  public long getLcsCapabilitiesSets();
-  public void setLcsCapabilitiesSets(long lcsCapabilitiesSets);
+  public boolean hasAdditionalLcsCapabilitiesSets();
+  public long getAdditionalLcsCapabilitiesSets();
+  public void setAdditionalLcsCapabilitiesSets(long lcsCapabilitiesSets);
 
   /*
     From 3GPP TS 29.273 (v14.0.0)

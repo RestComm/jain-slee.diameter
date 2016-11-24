@@ -59,116 +59,124 @@ public class AdditionalServingNodeAvpImpl extends GroupedAvpImpl implements Addi
     super();
   }
 
+  /**
+   *
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public AdditionalServingNodeAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasAdditionalSGSNNumber() {
-    return hasAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SGSN_NUMBER);
+    return hasAvp(LCSRoutingInfoAVPCodes.SGSN_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   public byte[] getAdditionalSGSNNumber() {
-    return getAvpAsOctetString(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SGSN_NUMBER);
+    return getAvpAsOctetString(LCSRoutingInfoAVPCodes.SGSN_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   public void setAdditionalSGSNNumber(byte[] additionalSgsnNumber) {
-    addAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalSgsnNumber);
+    addAvp(LCSRoutingInfoAVPCodes.SGSN_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalSgsnNumber);
   }
 
   public boolean hasAdditionalSGSNName() {
-    return hasAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SGSN_NAME);
+    return hasAvp(LCSRoutingInfoAVPCodes.SGSN_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
-  public Address getAdditionalSGSNName() {
-    return getAvpAsAddress(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SGSN_NAME);
+  public DiameterIdentity getAdditionalSGSNName() {
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.SGSN_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
-  public void setAdditionalSGSNNumber(Address additionalSgsnName) {
-    addAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalSgsnName);
+  public void setAdditionalSGSNName(DiameterIdentity additionalSGSNName) {
+    addAvp(LCSRoutingInfoAVPCodes.SGSN_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalSGSNName);
   }
 
   public boolean hasAdditionalSGSNRealm() {
-    return hasAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SGSN_REALM);
+    return hasAvp(LCSRoutingInfoAVPCodes.SGSN_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   public DiameterIdentity getAdditionalSGSNRealm() {
-    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SGSN_REALM);
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.SGSN_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   public void setAdditionalSGSNRealm(DiameterIdentity additionalSgsnRealm) {
-    addAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalSgsnRealm);
+    addAvp(LCSRoutingInfoAVPCodes.SGSN_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalSgsnRealm);
   }
 
   public boolean hasAdditionalMMEName() {
-    return hasAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.MME_NAME);
+    return hasAvp(LCSRoutingInfoAVPCodes.MME_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
-  public Address getAdditionalMMEName() {
-    return getAvpAsAddress(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.MME_NAME);
+  public DiameterIdentity getAdditionalMMEName() {
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.MME_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
-  public void setAdditionalMMENumber(Address additionalMmeName) {
-    addAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalMmeName);
+  public void setAdditionalMMEName(DiameterIdentity additionalMmeName) {
+    addAvp(LCSRoutingInfoAVPCodes.MME_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalMmeName);
   }
 
   public boolean hasAdditionalMMERealm() {
-    return hasAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.MME_REALM);
+    return hasAvp(LCSRoutingInfoAVPCodes.MME_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
-  public Address getAdditionalMMERealm() {
-    return getAvpAsAddress(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.MME_REALM);
+  public DiameterIdentity getAdditionalMMERealm() {
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.MME_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
-  public void setAdditionalMMERealm(Address additionalMmeRealm) {
-    addAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalMmeRealm);
+  public void setAdditionalMMERealm(DiameterIdentity additionalMmeRealm) {
+    addAvp(LCSRoutingInfoAVPCodes.MME_REALM, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalMmeRealm);
   }
 
   public boolean hasAdditionalMSCNumber() {
-    return hasAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.MSC_NUMBER);
+    return hasAvp(LCSRoutingInfoAVPCodes.MSC_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   public byte[] getAdditionalMSCNumber() {
-    return getAvpAsOctetString(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.MSC_NUMBER);
+    return getAvpAsOctetString(LCSRoutingInfoAVPCodes.MSC_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   public void setAdditionalMSCNumber(byte[] additionalMscNumber) {
-    addAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalMscNumber);
+    addAvp(LCSRoutingInfoAVPCodes.MSC_NUMBER, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalMscNumber);
   }
 
-  public boolean hasLcsCapabilitiesSets() {
-    return hasAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS);
+  public boolean hasAdditionalLcsCapabilitiesSets() {
+    return hasAvp(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
-  public long getLcsCapabilitiesSets() {
-    return getAvpAsUnsigned32(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS);
+  public long getAdditionalLcsCapabilitiesSets() {
+    return getAvpAsUnsigned32(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
-  public void setLcsCapabilitiesSets(long lcsCapabilitiesSets) {
-    addAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, lcsCapabilitiesSets);
+  public void setAdditionalLcsCapabilitiesSets(long lcsCapabilitiesSets) {
+    addAvp(LCSRoutingInfoAVPCodes.LCS_CAPABILITIES_SETS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, lcsCapabilitiesSets);
   }
 
   public boolean hasAdditional3GPPAAAServerName() {
-    return hasAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME);
+    return hasAvp(LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   public DiameterIdentity getAdditional3GPPAAAServerName() {
-    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME);
+    return getAvpAsDiameterIdentity(LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   public void setAdditional3GPPAAAServerName(DiameterIdentity additional3gppAAAServerName) {
-    addAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additional3gppAAAServerName);
+    addAvp(LCSRoutingInfoAVPCodes.TGPP_AAA_SERVER_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additional3gppAAAServerName);
   }
 
   public boolean hasAdditionalGMLCAddress() {
-    return hasAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.GMLC_ADDRESS);
+    return hasAvp(LCSRoutingInfoAVPCodes.GMLC_ADDRESS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   public Address getAdditionalGMLCAddress() {
-    return getAvpAsAddress(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.GMLC_ADDRESS);
+    return getAvpAsAddress(LCSRoutingInfoAVPCodes.GMLC_ADDRESS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
   }
 
   public void setAdditionalGMLCAddress(Address additionalGmlcAddress) {
-    addAvp(LCSRoutingInfoAVPCodes.ADDITIONAL_SERVING_NODE, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalGmlcAddress);
+    addAvp(LCSRoutingInfoAVPCodes.GMLC_ADDRESS, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, additionalGmlcAddress);
   }
 
 }

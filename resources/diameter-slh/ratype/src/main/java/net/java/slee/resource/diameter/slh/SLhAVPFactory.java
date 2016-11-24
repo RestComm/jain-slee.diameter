@@ -52,11 +52,16 @@ import net.java.slee.resource.diameter.slh.events.avp.*;
  * @author <a href="mailto:fernando.mendioroz@telestax.com"> Fernando Mendioroz </a>
  */
 public interface SLhAVPFactory extends DiameterAvpFactory {
-/*
-  public LMSIAvp createLMSIAvp();
-*/
+
   public ServingNodeAvp createServingNodeAvp();
-/*
+
+  public AdditionalServingNodeAvp createAdditionalServingNodeAvp();
+
+  public SupportedFeaturesAvp createSupportedFeaturesAvp();
+
+  /*
+  public LMSIAvp createLMSIAvp();
+
   public MMENameAvp createMMENameAvp();
 
   public MSCNumberAvp createMSCNumberAvp();
@@ -64,9 +69,7 @@ public interface SLhAVPFactory extends DiameterAvpFactory {
   public LCSCapabilitiesSetsAvp createLCSCapabilitiesSetsAvp();
 
   public GMLCAddressAvp createGMLCAddressAvp();
-*/
-  public AdditionalServingNodeAvp createAdditionalServingNodeAvp();
-/*
+
   public PPRAddressAvp createPPRAddressAvp();
 
   public MMERealmAvp createMMERealmAvp();
@@ -80,9 +83,7 @@ public interface SLhAVPFactory extends DiameterAvpFactory {
   public MSISDNAvp createMSISDNAvp();
 
   public SGSNNumberAvp createSGSNNumberAvp();
-*/
-  public SupportedFeaturesAvp createSupportedFeaturesAvp();
-/*
+
   public FeatureListIDAvp createFeatureListIDAvp();
 
   public GMLCNumberAvp createGMLCNumberAvp():
