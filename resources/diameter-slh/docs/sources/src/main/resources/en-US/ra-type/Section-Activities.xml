@@ -24,8 +24,8 @@
 			<term>net.java.slee.resource.diameter.slh.SLhServerSession</term>
 			<listitem>
 				<para>This type of activity represents server side of SLh session. Routing-Info-Request (RIR) are received in this Activity and respective Answers are sent from it.</para>
-				<para>This activity type is implicitly created by the Resource Adaptor upon reception of the Routing-Info-Request message. It ends once underlying Credit Control session ends.</para>
-				<para>State machine for client Credit Control sessions can be found at <ulink url="http://www.3gpp.org/ftp/Specs/archive/29_series/29.173/29173-d00.zip">S3GPP 29.173</ulink>.</para>
+				<para>This activity type is implicitly created by the Resource Adaptor upon reception of the Routing-Info-Request message.</para>
+				<para>State machine for client SLh sessions can be found at <ulink url="http://www.3gpp.org/ftp/Specs/archive/29_series/29.173/29173-d00.zip">3GPP 29.173</ulink>.</para>
 			</listitem>
 		</varlistentry>
 	</variablelist>
@@ -59,42 +59,16 @@
 	<para>SLh Client Activity is defined as follows:</para>
 	
 	<programlisting role="JAVA" language="Java">
-	public void sendEventCreditControlRequest(CreditControlRequest rir)
+	public void sendLCSRoutingInfoRequest(LCSRoutingInfoRequest rir)
 		throws IOException;
 
-	public void sendInitialCreditControlRequest(CreditControlRequest rir)
-		throws IOException;
-
-	public void sendUpdateCreditControlRequest(CreditControlRequest rir)
-		throws IOException;
-
-	public void sendTerminationCreditControlRequest(CreditControlRequest rir)
-		throws IOException;
 	</programlisting>
 	
 	<variablelist>
 		<varlistentry>
-			<term>public void sendEventCreditControlRequest(CreditControlRequest rir) throws IOException;</term>
+			<term>public void sendLCSRoutingInfoRequest(LCSRoutingInfoRequest rir) throws IOException;</term>
 			<listitem>
-				<para>This method sends an event Routing-Info-Request.</para>
-			</listitem>
-		</varlistentry>
-		<varlistentry>
-			<term>public void sendInitialCreditControlRequest(CreditControlRequest rir) throws IOException;</term>
-			<listitem>
-				<para>This method sends an initial Routing-Info-Request.</para>
-			</listitem>
-		</varlistentry>
-		<varlistentry>
-			<term>public void sendUpdateCreditControlRequest(CreditControlRequest rir) throws IOException;</term>
-			<listitem>
-				<para>This method sends an update (intermediate) Routing-Info-Request.</para>
-			</listitem>
-		</varlistentry>
-		<varlistentry>
-			<term>public void sendTerminationCreditControlRequest(CreditControlRequest rir) throws IOException;	</term>
-			<listitem>
-				<para>This method sends a termination Routing-Info-Request.</para>
+				<para>This method sends a Routing-Info-Request.</para>
 			</listitem>
 		</varlistentry>
 	</variablelist>

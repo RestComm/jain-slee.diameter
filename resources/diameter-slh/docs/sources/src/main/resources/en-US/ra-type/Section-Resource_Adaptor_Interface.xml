@@ -35,17 +35,8 @@
 			DiameterIdentity destinationHost, DiameterIdentity destinationRealm)
 				throws CreateActivityException;
 
-		public LCSRoutingInfoAnswer eventLCSRoutingInfoRequest(LCSRoutingInfoRequest rir)
+		public LCSRoutingInfoAnswer sendLCSRoutingInfoRequest(LCSRoutingInfoRequest rir)
 			throws IOException;
-
-		public LCSRoutingInfoAnswer initialLCSRoutingInfoRequest(LCSRoutingInfoRequest rir)
-			throws IOException;
-
-		public LCSRoutingInfoAnswer updateLCSRoutingInfoRequest(LCSRoutingInfoRequest rir)
-			throws IOException, IllegalArgumentException;
-
-		public LCSRoutingInfoAnswer terminationLCSRoutingInfoRequest(LCSRoutingInfoRequest rir)
-			throws IOException, IllegalArgumentException;
 
 		public byte[] marshalSLhLCSRoutingInfoRequest(LCSRoutingInfoRequest rir);
 
@@ -83,36 +74,24 @@
 				<listitem><para>This method creates a new activity to send and receive Diameter messages.</para></listitem>
 			</varlistentry>
 			<varlistentry>
-				<term>public LCSRoutingInfoAnswer eventLCSRoutingInfoRequest(LCSRoutingInfoRequest rir) throws IOException;</term>
-				<listitem><para>This method sends a Credit-Control-Request message to the appropriate peers, and block until the response is received then return it.</para></listitem>
-			</varlistentry>
-			<varlistentry>
-				<term>public LCSRoutingInfoAnswer initialLCSRoutingInfoRequest(LCSRoutingInfoRequest rir) throws IOException;</term>
-				<listitem><para>This method sends an initial Credit-Control-Request that will start a credit control session, and block until the answer is received.</para></listitem>
-			</varlistentry>
-			<varlistentry>
-				<term>public LCSRoutingInfoAnswer updateLCSRoutingInfoRequest(LCSRoutingInfoRequest rir) throws IOException, IllegalArgumentException;</term>
-				<listitem><para>This method sends an update (intermediate) Credit-Control-Request and block until the answer is received.</para></listitem>
-			</varlistentry>
-			<varlistentry>
-				<term>public LCSRoutingInfoAnswer terminationLCSRoutingInfoRequest(LCSRoutingInfoRequest rir) throws IOException, IllegalArgumentException;</term>
-				<listitem><para>This method sends a termination Credit-Control-Request and block until the answer is received.</para></listitem>
+				<term>public LCSRoutingInfoAnswer sendLCSRoutingInfoRequest(LCSRoutingInfoRequest rir) throws IOException;</term>
+				<listitem><para>This method sends a Routing-Info-Request message to the appropriate peers, and block until the response is received then return it.</para></listitem>
 			</varlistentry>
 			<varlistentry>
 				<term>public byte[] marshalSLhLCSRoutingInfoRequest(LCSRoutingInfoRequest rir);</term>
-				<listitem><para>This method marshals a Credit-Control-Request into a byte array that can be serialized (e.g., stored in a CMP field).</para></listitem>
+				<listitem><para>This method marshals a Routing-Info-Request into a byte array that can be serialized (e.g., stored in a CMP field).</para></listitem>
 			</varlistentry>
 			<varlistentry>
 				<term>public byte[] marshalSLhLCSRoutingInfoAnswer(LCSRoutingInfoAnswer ria);</term>
-				<listitem><para>This method marshals a Credit-Control-Answer into a byte array that can be serialized (e.g., stored in a CMP field).</para></listitem>
+				<listitem><para>This method marshals a Routing-Info-Answer into a byte array that can be serialized (e.g., stored in a CMP field).</para></listitem>
 			</varlistentry>
 			<varlistentry>
 				<term>public LCSRoutingInfoRequest unmarshalSLhLCSRoutingInfoRequest(byte[] b) throws IOException, AvpNotAllowedException;</term>
-				<listitem><para>This method unmarshals a Credit-Control-Request from a byte array.</para></listitem>
+				<listitem><para>This method unmarshals a Routing-Info-Request from a byte array.</para></listitem>
 			</varlistentry>
 			<varlistentry>
 				<term>public LCSRoutingInfoAnswer unmarshalSLhLCSRoutingInfoAnswer(byte[] b) throws IOException, AvpNotAllowedException;</term>
-				<listitem><para>This method unmarshals a Credit-Control-Answer from a byte array.</para></listitem>
+				<listitem><para>This method unmarshals a Routing-Info-Answer from a byte array.</para></listitem>
 			</varlistentry>
 			<varlistentry>
 				<term>public DiameterIdentity[] getConnectedPeers();</term>

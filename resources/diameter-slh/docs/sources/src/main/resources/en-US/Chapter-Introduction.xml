@@ -19,7 +19,7 @@
 			<listitem></listitem>
 		</itemizedlist>
 	</para>
-	<para>SLh interface is defined in <ulink url="http://www.3gpp.org/ftp/Specs/archive/29_series/29.173/29173-d00.zip">3GPP TS 29.173</ulink> is used with additional AVPs defined.</para>
+	<para>SLh interface is defined in <ulink url="http://www.3gpp.org/ftp/Specs/archive/29_series/29.173/29173-d00.zip">3GPP TS 29.173</ulink>.</para>
 	<para>Events represent messages received by the Diameter stack. Different events types are specified for each Diameter request or answer. Events are fired either on client or server activities.</para>
 	<para>The Activities are defined by <acronym>RA</acronym> Type to ease use of <acronym>RA</acronym>. Activities represent Diameter session between two peers. <acronym>SLEE</acronym> applications use activities to create, send and receive messages.</para>
 
