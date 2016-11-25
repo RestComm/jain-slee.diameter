@@ -58,32 +58,39 @@ public class PeriodicLDRInfoAvpImpl extends GroupedAvpImpl implements PeriodicLD
     super();
   }
 
+  /**
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public PeriodicLDRInfoAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasReportingAmount() {
-    return hasAvp(EPCLocationProtocolAVPCodes.PERIODIC_LDR_INFORMATION, EPCLocationProtocolAVPCodes.REPORTING_AMOUNT);
+    return hasAvp(EPCLocationProtocolAVPCodes.REPORTING_AMOUNT, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public long getReportingAmount() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.PERIODIC_LDR_INFORMATION, EPCLocationProtocolAVPCodes.REPORTING_AMOUNT);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.REPORTING_AMOUNT, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setReportingAmount(long reportingAmount) {
-    addAvp(EPCLocationProtocolAVPCodes.PERIODIC_LDR_INFORMATION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, reportingAmount);
+    addAvp(EPCLocationProtocolAVPCodes.REPORTING_AMOUNT, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, reportingAmount);
   }
 
   public boolean hasReportingInterval() {
-    return hasAvp(EPCLocationProtocolAVPCodes.PERIODIC_LDR_INFORMATION, EPCLocationProtocolAVPCodes.REPORTING_INTERVAL);
+    return hasAvp(EPCLocationProtocolAVPCodes.REPORTING_INTERVAL, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public long getReportingInterval() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.PERIODIC_LDR_INFORMATION, EPCLocationProtocolAVPCodes.REPORTING_INTERVAL);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.REPORTING_INTERVAL, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setReportingInterval(long reportingInterval) {
-    addAvp(EPCLocationProtocolAVPCodes.PERIODIC_LDR_INFORMATION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, reportingInterval);
+    addAvp(EPCLocationProtocolAVPCodes.REPORTING_INTERVAL, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, reportingInterval);
   }
 
 }

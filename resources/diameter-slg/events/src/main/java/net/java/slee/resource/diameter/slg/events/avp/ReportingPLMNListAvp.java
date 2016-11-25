@@ -76,6 +76,8 @@ public interface ReportingPLMNListAvp extends GroupedAvp {
 															If not included, the default value of Periodic-Location-Support-Indicator shall be considered as "NOT_SUPPORTED" (0).
   */
   public boolean hasPLMNIDList();
+  public PLMNIDListAvp getPLMNIDList();
+  public void setPLMNIDList(PLMNIDListAvp plmnidList);
 
   /*
 		7.4.51	Prioritized-List-Indicator
@@ -85,7 +87,7 @@ public interface ReportingPLMNListAvp extends GroupedAvp {
 			PRIORITIZED (1)
 	*/
   public boolean hasPrioritizedListIndicator();
-  public int getPrioritizedListIndicator();
-  public void setPrioritizedListIndicator(int prioritizedListIndicator);
+  public PrioritizedListIndicator getPrioritizedListIndicator();
+  public void setPrioritizedListIndicator(PrioritizedListIndicator prioritizedListIndicator);
 
 }

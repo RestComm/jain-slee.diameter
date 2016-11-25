@@ -43,9 +43,8 @@
 package org.mobicents.slee.resource.diameter.slg.events.avp;
 
 import net.java.slee.resource.diameter.base.events.avp.Enumerated;
-import net.java.slee.resource.diameter.slg.events.avp.EPCLocationProtocolAVPCodes;
+import net.java.slee.resource.diameter.slg.events.avp.*;
 import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
-import net.java.slee.resource.diameter.slg.events.avp.LCSQoSAvp;
 
 /**
  * Implementation for {@link net.java.slee.resource.diameter.slg.events.avp.LCSQoSAvp}
@@ -58,68 +57,75 @@ public class LCSQoSAvpImpl extends GroupedAvpImpl implements LCSQoSAvp {
     super();
   }
 
+  /**
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public LCSQoSAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasLCSQoSClass() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.LCS_QoS_CLASS);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_QoS_CLASS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public int getLCSQoSClass() {
-    return getAvpAsInteger32(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.LCS_QoS_CLASS);
+  public LCSQoSClass getLCSQoSClass() {
+    return (LCSQoSClass) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.LCS_QoS_CLASS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, LCSQoSClass.class);
   }
 
-  public void setLCSQoSClass(int lcsQoSClass) {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsQoSClass);
+  public void setLCSQoSClass(LCSQoSClass lcsQoSClass) {
+    addAvp(EPCLocationProtocolAVPCodes.LCS_QoS_CLASS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsQoSClass);
   }
 
   public boolean hasHorizontalAccuracy() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.HORIZONTAL_ACCURACY);
+    return hasAvp(EPCLocationProtocolAVPCodes.HORIZONTAL_ACCURACY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public long getHorizontalAccuracy() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.HORIZONTAL_ACCURACY);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.HORIZONTAL_ACCURACY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setHorizontalAccuracy(long horizontalAccuracy) {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, horizontalAccuracy);
+    addAvp(EPCLocationProtocolAVPCodes.HORIZONTAL_ACCURACY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, horizontalAccuracy);
   }
 
   public boolean hasVerticalAccuracy() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.VERTICAL_ACCURACY);
+    return hasAvp(EPCLocationProtocolAVPCodes.VERTICAL_ACCURACY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public long getVerticalAccuracy() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.VERTICAL_ACCURACY);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.VERTICAL_ACCURACY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setVerticalAccuracy(long verticalAccuracy) {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, verticalAccuracy);
+    addAvp(EPCLocationProtocolAVPCodes.VERTICAL_ACCURACY, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, verticalAccuracy);
   }
 
   public boolean hasVerticalRequested() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.VERTICAL_REQUESTED);
+    return hasAvp(EPCLocationProtocolAVPCodes.VERTICAL_REQUESTED, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public int getVerticalRequested() {
-    return getAvpAsInteger32(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.VERTICAL_REQUESTED);
+  public VerticalRequested getVerticalRequested() {
+    return (VerticalRequested) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.VERTICAL_REQUESTED, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, VerticalRequested.class);
   }
 
-  public void setVerticalRequested(int verticalRequested) {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, verticalRequested);
+  public void setVerticalRequested(VerticalRequested verticalRequested) {
+    addAvp(EPCLocationProtocolAVPCodes.VERTICAL_REQUESTED, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, verticalRequested);
   }
 
   public boolean hasResponseTime() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.RESPONSE_TIME);
+    return hasAvp(EPCLocationProtocolAVPCodes.RESPONSE_TIME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public int getResponseTime() {
-    return getAvpAsInteger32(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.RESPONSE_TIME);
+  public ResponseTime getResponseTime() {
+    return (ResponseTime) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.RESPONSE_TIME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, ResponseTime.class);
   }
 
-  public void setResponseTime(int responseTime) {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, responseTime);
+  public void setResponseTime(ResponseTime responseTime) {
+    addAvp(EPCLocationProtocolAVPCodes.RESPONSE_TIME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, responseTime);
   }
 
 }

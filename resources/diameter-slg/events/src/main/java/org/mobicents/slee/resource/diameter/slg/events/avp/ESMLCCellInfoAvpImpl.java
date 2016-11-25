@@ -58,32 +58,39 @@ public class ESMLCCellInfoAvpImpl extends GroupedAvpImpl implements ESMLCCellInf
     super();
   }
 
+  /**
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public ESMLCCellInfoAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasECGI() {
-    return hasAvp(EPCLocationProtocolAVPCodes.ESMLC_CELL_INFO, EPCLocationProtocolAVPCodes.ECGI);
+    return hasAvp(EPCLocationProtocolAVPCodes.ECGI, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public byte[] getECGI() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.ESMLC_CELL_INFO, EPCLocationProtocolAVPCodes.ECGI);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.ECGI, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setECGI(byte[] ecgi) {
-    addAvp(EPCLocationProtocolAVPCodes.ESMLC_CELL_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, ecgi);
+    addAvp(EPCLocationProtocolAVPCodes.ECGI, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, ecgi);
   }
 
   public boolean hasCellPortionID() {
-    return hasAvp(EPCLocationProtocolAVPCodes.ESMLC_CELL_INFO, EPCLocationProtocolAVPCodes.CELL_PORTION_ID);
+    return hasAvp(EPCLocationProtocolAVPCodes.CELL_PORTION_ID, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public long getCellPortionID() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.ESMLC_CELL_INFO, EPCLocationProtocolAVPCodes.CELL_PORTION_ID);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.CELL_PORTION_ID, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setCellPortionID(long cellPortionId) {
-    addAvp(EPCLocationProtocolAVPCodes.ESMLC_CELL_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, cellPortionId);
+    addAvp(EPCLocationProtocolAVPCodes.CELL_PORTION_ID, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, cellPortionId);
   }
 
 }

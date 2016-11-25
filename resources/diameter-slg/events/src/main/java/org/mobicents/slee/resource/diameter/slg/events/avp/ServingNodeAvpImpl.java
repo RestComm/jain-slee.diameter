@@ -59,116 +59,123 @@ public class ServingNodeAvpImpl extends GroupedAvpImpl implements ServingNodeAvp
     super();
   }
 
+  /**
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public ServingNodeAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasSGSNNumber() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SGSN_NUMBER);
+    return hasAvp(EPCLocationProtocolAVPCodes.SGSN_NUMBER, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public byte[] getSGSNNumber() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SGSN_NUMBER);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.SGSN_NUMBER, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setSGSNNumber(byte[] sgsnNumber) {
-    addAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, sgsnNumber);
+    addAvp(EPCLocationProtocolAVPCodes.SGSN_NUMBER, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, sgsnNumber);
   }
 
   public boolean hasSGSNName() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SGSN_NAME);
+    return hasAvp(EPCLocationProtocolAVPCodes.SGSN_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public Address getSGSNName() {
-    return getAvpAsAddress(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SGSN_NAME);
+  public DiameterIdentity getSGSNName() {
+    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.SGSN_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public void setSGSNNumber(Address sgsnName) {
-    addAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, sgsnName);
+  public void setSGSNName(DiameterIdentity sgsnName) {
+    addAvp(EPCLocationProtocolAVPCodes.SGSN_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, sgsnName);
   }
 
   public boolean hasSGSNRealm() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SGSN_REALM);
+    return hasAvp(EPCLocationProtocolAVPCodes.SGSN_REALM, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public DiameterIdentity getSGSNRealm() {
-    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SGSN_REALM);
+    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.SGSN_REALM, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setSGSNRealm(DiameterIdentity sgsnRealm) {
-    addAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, sgsnRealm);
+    addAvp(EPCLocationProtocolAVPCodes.SGSN_REALM, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, sgsnRealm);
   }
 
   public boolean hasMMEName() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.MME_NAME);
+    return hasAvp(EPCLocationProtocolAVPCodes.MME_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public Address getMMEName() {
-    return getAvpAsAddress(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.MME_NAME);
+  public DiameterIdentity getMMEName() {
+    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.MME_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public void setMMENumber(Address mmeName) {
-    addAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, mmeName);
+  public void setMMENumber(DiameterIdentity mmeName) {
+    addAvp(EPCLocationProtocolAVPCodes.MME_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, mmeName);
   }
 
   public boolean hasMMERealm() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.MME_REALM);
+    return hasAvp(EPCLocationProtocolAVPCodes.MME_REALM, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public Address getMMERealm() {
-    return getAvpAsAddress(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.MME_REALM);
+  public DiameterIdentity getMMERealm() {
+    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.MME_REALM, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public void setMMERealm(Address mmeRealm) {
-    addAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, mmeRealm);
+  public void setMMERealm(DiameterIdentity mmeRealm) {
+    addAvp(EPCLocationProtocolAVPCodes.MME_REALM, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, mmeRealm);
   }
 
   public boolean hasMSCNumber() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.MSC_NUMBER);
+    return hasAvp(EPCLocationProtocolAVPCodes.MSC_NUMBER, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public byte[] getMSCNumber() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.MSC_NUMBER);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.MSC_NUMBER, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setMSCNumber(byte[] mscNumber) {
-    addAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, mscNumber);
+    addAvp(EPCLocationProtocolAVPCodes.MSC_NUMBER, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, mscNumber);
   }
 
   public boolean has3GPPAAAServerName() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.TGPP_AAA_SERVER_NAME);
+    return hasAvp(EPCLocationProtocolAVPCodes.TGPP_AAA_SERVER_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public DiameterIdentity get3GPPAAAServerName() {
-    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.TGPP_AAA_SERVER_NAME);
+    return getAvpAsDiameterIdentity(EPCLocationProtocolAVPCodes.TGPP_AAA_SERVER_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void set3GPPAAAServerName(DiameterIdentity tgppAAAServerName) {
-    addAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, tgppAAAServerName);
+    addAvp(EPCLocationProtocolAVPCodes.TGPP_AAA_SERVER_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, tgppAAAServerName);
   }
 
   public boolean hasLcsCapabilitiesSets() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.LCS_CAPABILITIES_SETS);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_CAPABILITIES_SETS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public long getLcsCapabilitiesSets() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.LCS_CAPABILITIES_SETS);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.LCS_CAPABILITIES_SETS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setLcsCapabilitiesSets(long lcsCapabilitiesSets) {
-    addAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsCapabilitiesSets);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_CAPABILITIES_SETS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsCapabilitiesSets);
   }
 
   public boolean hasGMLCAddress() {
-    return hasAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.GMLC_ADDRESS);
+    return hasAvp(EPCLocationProtocolAVPCodes.GMLC_ADDRESS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public Address getGMLCAddress() {
-    return getAvpAsAddress(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.GMLC_ADDRESS);
+    return getAvpAsAddress(EPCLocationProtocolAVPCodes.GMLC_ADDRESS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setGMLCAddress(Address gmlcAddress) {
-    addAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, gmlcAddress);
+    addAvp(EPCLocationProtocolAVPCodes.GMLC_ADDRESS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, gmlcAddress);
   }
 
 }

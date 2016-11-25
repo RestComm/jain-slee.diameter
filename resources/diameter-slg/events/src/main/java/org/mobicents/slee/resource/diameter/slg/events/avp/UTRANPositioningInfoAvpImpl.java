@@ -58,44 +58,51 @@ public class UTRANPositioningInfoAvpImpl extends GroupedAvpImpl implements UTRAN
     super();
   }
 
+  /**
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public UTRANPositioningInfoAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasUTRANPositioningData() {
-    return hasAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_DATA);
+    return hasAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public byte[] getUTRANPositioningData() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_DATA);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setUTRANPositioningData(byte[] utranPositioningData) {
-    addAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, utranPositioningData);
+    addAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, utranPositioningData);
   }
 
   public boolean hasUTRANGANSSPositioningData() {
-    return hasAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.UTRAN_GANSS_POSITIONING_DATA);
+    return hasAvp(EPCLocationProtocolAVPCodes.UTRAN_GANSS_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public byte[] getUTRANGANSSPositioningData() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.UTRAN_GANSS_POSITIONING_DATA);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.UTRAN_GANSS_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setUTRANGANSSPositioningData(byte[] utranGANSSPositioningData) {
-    addAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, utranGANSSPositioningData);
+    addAvp(EPCLocationProtocolAVPCodes.UTRAN_GANSS_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, utranGANSSPositioningData);
   }
 
   public boolean hasUTRANAdditionalPositioningData() {
-    return hasAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.UTRAN_ADDITIONAL_POSITIONING_DATA);
+    return hasAvp(EPCLocationProtocolAVPCodes.UTRAN_ADDITIONAL_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public byte[] getUTRANAdditionalPositioningData() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.UTRAN_ADDITIONAL_POSITIONING_DATA);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.UTRAN_ADDITIONAL_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setUTRANAdditionalPositioningData(byte[] utranAdditionalPositioningData) {
-    addAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, utranAdditionalPositioningData);
+    addAvp(EPCLocationProtocolAVPCodes.UTRAN_ADDITIONAL_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, utranAdditionalPositioningData);
   }
 
 }

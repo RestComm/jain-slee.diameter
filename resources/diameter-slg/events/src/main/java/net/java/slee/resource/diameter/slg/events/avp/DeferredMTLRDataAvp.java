@@ -118,5 +118,7 @@ public interface DeferredMTLRDataAvp extends GroupedAvp {
 
   */
   public boolean hasServingNode();
+  public ServingNodeAvp getServingNode();
+  public void setServingNode(ServingNodeAvp servingNode);
 
 }

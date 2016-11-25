@@ -57,32 +57,39 @@ public class LCSEPSClientNameAvpImpl extends GroupedAvpImpl implements LCSEPSCli
     super();
   }
 
+  /**
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public LCSEPSClientNameAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasLCSNameString() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_EPS_CLIENT_NAME, EPCLocationProtocolAVPCodes.LCS_NAME_STRING);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_NAME_STRING, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public String getLCSNameString() {
-    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.LCS_EPS_CLIENT_NAME, EPCLocationProtocolAVPCodes.LCS_NAME_STRING);
+    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.LCS_NAME_STRING, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setLCSNameString(String lcsNameString) {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_EPS_CLIENT_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsNameString);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_NAME_STRING, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsNameString);
   }
 
   public boolean hasLCSFormatIndicator() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_EPS_CLIENT_NAME, EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public String getLCSFormatIndicator() {
-    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.LCS_EPS_CLIENT_NAME, EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR);
+    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setLCSFormatIndicator(String lcsFormatIndicator) {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_EPS_CLIENT_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsFormatIndicator);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsFormatIndicator);
   }
 
 }

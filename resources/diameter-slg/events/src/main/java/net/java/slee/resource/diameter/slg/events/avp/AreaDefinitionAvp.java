@@ -73,5 +73,7 @@ public interface AreaDefinitionAvp extends GroupedAvp {
 						*[ AVP ]
   */
   public boolean hasArea();
+  public AreaAvp getArea();
+  public void setArea (AreaAvp area);
 
 }

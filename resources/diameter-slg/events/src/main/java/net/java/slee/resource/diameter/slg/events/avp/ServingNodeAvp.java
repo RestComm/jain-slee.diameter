@@ -106,8 +106,8 @@ public interface ServingNodeAvp extends GroupedAvp {
     For further details on the encoding of this AVP, see IETF RFC 3588 [5].
   */
   public boolean hasSGSNName();
-  public Address getSGSNName();
-  public void setSGSNNumber(Address sgsnName);
+  public DiameterIdentity getSGSNName();
+  public void setSGSNName(DiameterIdentity sgsnName);
 
 
   /*
@@ -131,8 +131,8 @@ public interface ServingNodeAvp extends GroupedAvp {
     For further details on the encoding of this AVP, see IETF RFC 3588 [5].
   */
   public boolean hasMMEName();
-  public Address getMMEName();
-  public void setMMENumber(Address mmeName);
+  public DiameterIdentity getMMEName();
+  public void setMMENumber(DiameterIdentity mmeName);
 
   /*
     From 3GPP TS 29.173 (v13.0.0)
@@ -143,8 +143,8 @@ public interface ServingNodeAvp extends GroupedAvp {
     For further details on the encoding of this AVP, see IETF RFC 3588 [5].
   */
   public boolean hasMMERealm();
-  public Address getMMERealm();
-  public void setMMERealm(Address mmeRealm);
+  public DiameterIdentity getMMERealm();
+  public void setMMERealm(DiameterIdentity mmeRealm);
 
   /*
     From 3GPP TS 29.173 (v13.0.0)

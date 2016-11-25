@@ -43,6 +43,7 @@
 package org.mobicents.slee.resource.diameter.slg.events.avp;
 
 import net.java.slee.resource.diameter.base.events.avp.Enumerated;
+import net.java.slee.resource.diameter.slg.events.avp.AreaAvp;
 import net.java.slee.resource.diameter.slg.events.avp.EPCLocationProtocolAVPCodes;
 import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
 import net.java.slee.resource.diameter.slg.events.avp.AreaDefinitionAvp;
@@ -58,12 +59,27 @@ public class AreaDefinitionAvpImpl extends GroupedAvpImpl implements AreaDefinit
     super();
   }
 
+  /**
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public AreaDefinitionAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasArea() {
-    return hasAvp(EPCLocationProtocolAVPCodes.AREA_DEFINITION, EPCLocationProtocolAVPCodes.AREA);
+    return hasAvp(EPCLocationProtocolAVPCodes.AREA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
+  }
+
+  public AreaAvp getArea(){
+    return (AreaAvp) getAvpAsCustom(EPCLocationProtocolAVPCodes.AREA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, AreaAvpImpl.class);
+  }
+
+  public void setArea(AreaAvp area){
+    addAvp(EPCLocationProtocolAVPCodes.AREA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, area);
   }
 
 }

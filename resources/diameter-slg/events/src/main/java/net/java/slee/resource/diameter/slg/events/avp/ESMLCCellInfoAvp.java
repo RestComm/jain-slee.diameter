@@ -69,7 +69,6 @@ public interface ESMLCCellInfoAvp extends GroupedAvp {
 		7.4.19	ECGI
 		The ECGI AVP is of type OctetString. It indicates the E-UTRAN Cell Global Identifier.
 		is coded according to clause 8.21.5, in 3GPP TS 29.274 [8].
-
   */
   public boolean hasECGI();
   public byte[] getECGI();
@@ -82,8 +81,6 @@ public interface ESMLCCellInfoAvp extends GroupedAvp {
 		The Cell-Portion-ID AVP is of type Unsigned32.
 		It indicates the current Cell Portion location of the target UE as provided by the E-SMLC.
 		It shall contain the value of the "Cell Portion ID" Information Element as defined in 3GPP TS 29.171 [7].
-
-
 	*/
   public boolean hasCellPortionID();
   public long getCellPortionID();

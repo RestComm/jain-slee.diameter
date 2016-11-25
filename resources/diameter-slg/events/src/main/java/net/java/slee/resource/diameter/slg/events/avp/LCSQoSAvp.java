@@ -72,11 +72,11 @@ public interface LCSQoSAvp extends GroupedAvp {
 		7.4.27	LCS-QoS-Class
 			The LCS-QoS-Class AVP is of the type Enumerated. The following values are defined.
 				ASSURED (0)
-				BEST EFFORT (1)
+			  BEST EFFORT (1)
   */
   public boolean hasLCSQoSClass();
-  public int getLCSQoSClass();
-  public void setLCSQoSClass(int lcsQoSClass);
+  public LCSQoSClass getLCSQoSClass();
+  public void setLCSQoSClass(LCSQoSClass lcsQoSClass);
 
   /*
 		From 3GPP TS 29.172 V13.0.0
@@ -115,8 +115,8 @@ public interface LCSQoSAvp extends GroupedAvp {
       Default value if AVP is not present is: VERTICAL_COORDINATE_IS_NOT_REQUESTED (0).
   */
   public boolean hasVerticalRequested();
-  public int getVerticalRequested();
-  public void setVerticalRequested(int verticalRequested);
+  public VerticalRequested getVerticalRequested();
+  public void setVerticalRequested(VerticalRequested verticalRequested);
 
   /*
     From 3GPP TS 29.172 V13.0.0
@@ -127,8 +127,8 @@ public interface LCSQoSAvp extends GroupedAvp {
         DELAY_TOLERANT (1)
   */
   public boolean hasResponseTime();
-  public int getResponseTime();
-  public void setResponseTime(int responseTime);
+  public ResponseTime getResponseTime();
+  public void setResponseTime(ResponseTime responseTime);
 
 }
 

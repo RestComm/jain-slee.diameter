@@ -75,18 +75,30 @@ public interface AreaEventInfoAvp extends GroupedAvp {
 										*[ AVP ]
   */
   public boolean hasAreaDefinition();
+  public AreaDefinitionAvp getAreaDefinition();
+  public void setAreaDefinition(AreaDefinitionAvp areaDefinition);
 
   /*
 		From 3GPP TS 29.172 V13.0.0
 
-		7.4.40	Area
-		The Area AVP is of type Grouped.
-		AVP format:
-		Area ::= <AVP header: 2535 10415>
-				{ Area-Type }
-				{ Area-Identification }
-				*[ AVP ]
+		7.4.43	Occurrence-Info
+      The Occurrence-Info AVP is of type Enumerated. The following values are defined:
+      ONE_TIME_EVENT (0)
+    MULTIPLE_TIME_EVENT (1)
+
 	*/
-  public boolean hasAreaType();
+  public boolean hasOccurrenceInfo();
+  public OccurrenceInfo getOccurrenceInfo();
+  public void setOccurrenceInfo(OccurrenceInfo occurrenceInfo);
+
+  /*
+		From 3GPP TS 29.172 V13.0.0
+
+		7.4.44	Interval-Time
+      The Interval-Time AVP is of type Unsigned32 and it contains minimum time interval between area reports, in seconds.
+	*/
+  public boolean hasIntervalTime();
+  public long getIntervalTime();
+  public void setIntervalTime(long intervalTime);
 
 }

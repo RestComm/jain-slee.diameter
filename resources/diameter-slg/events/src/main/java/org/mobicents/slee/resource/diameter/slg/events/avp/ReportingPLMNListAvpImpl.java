@@ -43,6 +43,8 @@
 package org.mobicents.slee.resource.diameter.slg.events.avp;
 
 import net.java.slee.resource.diameter.slg.events.avp.EPCLocationProtocolAVPCodes;
+import net.java.slee.resource.diameter.slg.events.avp.PLMNIDListAvp;
+import net.java.slee.resource.diameter.slg.events.avp.PrioritizedListIndicator;
 import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
 import net.java.slee.resource.diameter.slg.events.avp.ReportingPLMNListAvp;
 
@@ -57,24 +59,39 @@ public class ReportingPLMNListAvpImpl extends GroupedAvpImpl implements Reportin
     super();
   }
 
+  /**
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public ReportingPLMNListAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasPLMNIDList() {
-    return hasAvp(EPCLocationProtocolAVPCodes.REPORTING_PLMN_LIST, EPCLocationProtocolAVPCodes.PLMN_ID_LIST);
+    return hasAvp(EPCLocationProtocolAVPCodes.PLMN_ID_LIST, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
+  }
+
+  public PLMNIDListAvp getPLMNIDList() {
+    return (PLMNIDListAvp) getAvpAsCustom(EPCLocationProtocolAVPCodes.PLMN_ID_LIST, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, PLMNIDListAvpImpl.class);
+  }
+
+  public void setPLMNIDList(PLMNIDListAvp plmnidList) {
+    addAvp(EPCLocationProtocolAVPCodes.PLMN_ID_LIST, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, plmnidList);
   }
 
   public boolean hasPrioritizedListIndicator() {
-    return hasAvp(EPCLocationProtocolAVPCodes.REPORTING_PLMN_LIST, EPCLocationProtocolAVPCodes.PRIORITIZED_LIST_INDICATOR);
+    return hasAvp(EPCLocationProtocolAVPCodes.PRIORITIZED_LIST_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public int getPrioritizedListIndicator() {
-    return getAvpAsInteger32(EPCLocationProtocolAVPCodes.REPORTING_PLMN_LIST, EPCLocationProtocolAVPCodes.PRIORITIZED_LIST_INDICATOR);
+  public PrioritizedListIndicator getPrioritizedListIndicator() {
+    return (PrioritizedListIndicator) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.PRIORITIZED_LIST_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, PrioritizedListIndicator.class);
   }
 
-  public void setPrioritizedListIndicator(int prioritizedListIndicator) {
-    addAvp(EPCLocationProtocolAVPCodes.REPORTING_PLMN_LIST, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, prioritizedListIndicator);
+  public void setPrioritizedListIndicator(PrioritizedListIndicator prioritizedListIndicator) {
+    addAvp(EPCLocationProtocolAVPCodes.PRIORITIZED_LIST_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, prioritizedListIndicator);
   }
 
 }

@@ -43,7 +43,9 @@
 package org.mobicents.slee.resource.diameter.slg.events.avp;
 
 import net.java.slee.resource.diameter.base.events.avp.Enumerated;
+import net.java.slee.resource.diameter.slg.events.avp.AreaDefinitionAvp;
 import net.java.slee.resource.diameter.slg.events.avp.EPCLocationProtocolAVPCodes;
+import net.java.slee.resource.diameter.slg.events.avp.OccurrenceInfo;
 import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
 import net.java.slee.resource.diameter.slg.events.avp.AreaEventInfoAvp;
 
@@ -58,16 +60,51 @@ public class AreaEventInfoAvpImpl extends GroupedAvpImpl implements AreaEventInf
     super();
   }
 
+  /**
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public AreaEventInfoAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasAreaDefinition() {
-    return hasAvp(EPCLocationProtocolAVPCodes.AREA_EVENT_INFO, EPCLocationProtocolAVPCodes.AREA_DEFINITION);
+    return hasAvp(EPCLocationProtocolAVPCodes.AREA_DEFINITION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public boolean hasAreaType() {
-    return hasAvp(EPCLocationProtocolAVPCodes.AREA_EVENT_INFO, EPCLocationProtocolAVPCodes.AREA_TYPE);
+  public AreaDefinitionAvp getAreaDefinition() {
+    return (AreaDefinitionAvp) getAvpAsCustom(EPCLocationProtocolAVPCodes.AREA_DEFINITION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, AreaDefinitionAvpImpl.class);
+  }
+
+  public void setAreaDefinition(AreaDefinitionAvp areaDefinition){
+    addAvp(EPCLocationProtocolAVPCodes.AREA_DEFINITION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, areaDefinition.byteArrayValue());
+  }
+
+  public boolean hasOccurrenceInfo() {
+    return hasAvp(EPCLocationProtocolAVPCodes.OCCURRENCE_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
+  }
+
+  public OccurrenceInfo getOccurrenceInfo() {
+    return (OccurrenceInfo) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.OCCURRENCE_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, OccurrenceInfo.class);
+  }
+
+  public void setOccurrenceInfo(OccurrenceInfo occurrenceInfo) {
+    addAvp(EPCLocationProtocolAVPCodes.OCCURRENCE_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, occurrenceInfo.getValue());
+  }
+
+  public boolean hasIntervalTime() {
+    return hasAvp(EPCLocationProtocolAVPCodes.INTERVAL_TIME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
+  }
+
+  public long getIntervalTime() {
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.INTERVAL_TIME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
+  }
+
+  public void setIntervalTime(long intervalTime) {
+    addAvp(EPCLocationProtocolAVPCodes.INTERVAL_TIME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, intervalTime);
   }
 
 }

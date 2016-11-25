@@ -43,6 +43,7 @@
 package org.mobicents.slee.resource.diameter.slg.events.avp;
 
 import net.java.slee.resource.diameter.slg.events.avp.EPCLocationProtocolAVPCodes;
+import net.java.slee.resource.diameter.slg.events.avp.LCSFormatIndicator;
 import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
 import net.java.slee.resource.diameter.slg.events.avp.LCSRequestorNameAvp;
 
@@ -57,32 +58,39 @@ public class LCSRequestorNameAvpImpl extends GroupedAvpImpl implements LCSReques
     super();
   }
 
+  /**
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public LCSRequestorNameAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasLCSRequestorIDString() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_REQUESTOR_NAME, EPCLocationProtocolAVPCodes.LCS_REQUESTOR_ID_STRING);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_REQUESTOR_ID_STRING, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public String getLCSRequestorIDString() {
-    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.LCS_REQUESTOR_NAME, EPCLocationProtocolAVPCodes.LCS_REQUESTOR_ID_STRING);
+    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.LCS_REQUESTOR_ID_STRING, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setLCSRequestorIDString(String lcsRequestorIDString) {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_REQUESTOR_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsRequestorIDString);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_REQUESTOR_ID_STRING, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsRequestorIDString);
   }
 
   public boolean hasLCSFormatIndicator() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_REQUESTOR_NAME, EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public String getLCSFormatIndicator() {
-    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.LCS_REQUESTOR_NAME, EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR);
+  public LCSFormatIndicator getLCSFormatIndicator() {
+    return (LCSFormatIndicator) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, LCSFormatIndicator.class);
   }
 
-  public void setLCSFormatIndicator(String lcsFormatIndicator) {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_REQUESTOR_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsFormatIndicator);
+  public void setLCSFormatIndicator(LCSFormatIndicator lcsFormatIndicator) {
+    addAvp(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsFormatIndicator);
   }
 
 }

@@ -57,20 +57,27 @@ public class LCSPrivacyCheckNonSessionAvpImpl extends GroupedAvpImpl implements 
     super();
   }
 
+  /**
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public LCSPrivacyCheckNonSessionAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasLCSPrivacyCheck() {
-    return hasAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK_NON_SESSION, EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK);
+    return hasAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public int getLCSPrivacyCheck() {
-    return getAvpAsInteger32(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK_NON_SESSION, EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK);
+    return getAvpAsInteger32(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setLCSPrivacyCheck(int lcsPrivacyCheck) {
-    addAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK_NON_SESSION, EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK);
+    addAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsPrivacyCheck);
   }
 
 }

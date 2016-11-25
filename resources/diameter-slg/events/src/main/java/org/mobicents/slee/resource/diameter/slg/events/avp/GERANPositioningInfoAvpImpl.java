@@ -58,32 +58,39 @@ public class GERANPositioningInfoAvpImpl extends GroupedAvpImpl implements GERAN
     super();
   }
 
+  /**
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public GERANPositioningInfoAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasGERANPositioningData() {
-    return hasAvp(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.GERAN_POSITIONING_DATA);
+    return hasAvp(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public byte[] getGERANPositioningData() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.GERAN_POSITIONING_DATA);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setGERANPositioningData(byte[] geranPositioningData) {
-    addAvp(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, geranPositioningData);
+    addAvp(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, geranPositioningData);
   }
 
   public boolean hasGERANGANSSPositioningData() {
-    return hasAvp(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.GERAN_GANSS_POSITIONING_DATA);
+    return hasAvp(EPCLocationProtocolAVPCodes.GERAN_GANSS_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public byte[] getGERANGANSSPositioningData() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.GERAN_GANSS_POSITIONING_DATA);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.GERAN_GANSS_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setGERANGANSSPositioningData(byte[] geranGANSSPositioningData) {
-    addAvp(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, geranGANSSPositioningData);
+    addAvp(EPCLocationProtocolAVPCodes.GERAN_GANSS_POSITIONING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, geranGANSSPositioningData);
   }
 
 }

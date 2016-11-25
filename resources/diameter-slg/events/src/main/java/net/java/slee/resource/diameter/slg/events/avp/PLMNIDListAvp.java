@@ -91,7 +91,7 @@ public interface PLMNIDListAvp extends GroupedAvp {
 			SUPPORTED (1)
 	*/
   public boolean hasPeriodicLocationSupportIndicator();
-  public int getPeriodicLocationSupportIndicator();
-  public void setPeriodicLocationSupportIndicator(int periodicLocationSupportIndicator);
+  public PeriodicLocationSupportIndicator getPeriodicLocationSupportIndicator();
+  public void setPeriodicLocationSupportIndicator(PeriodicLocationSupportIndicator periodicLocationSupportIndicator);
 
 }

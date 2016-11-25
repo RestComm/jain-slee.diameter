@@ -44,6 +44,7 @@ package org.mobicents.slee.resource.diameter.slg.events.avp;
 
 import net.java.slee.resource.diameter.base.events.avp.Enumerated;
 import net.java.slee.resource.diameter.slg.events.avp.EPCLocationProtocolAVPCodes;
+import net.java.slee.resource.diameter.slg.events.avp.ServingNodeAvp;
 import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
 import net.java.slee.resource.diameter.slg.events.avp.DeferredMTLRDataAvp;
 
@@ -58,36 +59,51 @@ public class DeferredMTLRDataAvpImpl extends GroupedAvpImpl implements DeferredM
     super();
   }
 
+  /**
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public DeferredMTLRDataAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasDeferredLocationType() {
-    return hasAvp(EPCLocationProtocolAVPCodes.DEFERRED_MT_LR_DATA, EPCLocationProtocolAVPCodes.DEFERRED_LOCATION_TYPE);
+    return hasAvp(EPCLocationProtocolAVPCodes.DEFERRED_LOCATION_TYPE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public long getDeferredLocationType() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.DEFERRED_MT_LR_DATA, EPCLocationProtocolAVPCodes.DEFERRED_LOCATION_TYPE);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.DEFERRED_LOCATION_TYPE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setDeferredLocationType(long deferredLocationType) {
-    addAvp(EPCLocationProtocolAVPCodes.DEFERRED_MT_LR_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, deferredLocationType);
+    addAvp(EPCLocationProtocolAVPCodes.DEFERRED_LOCATION_TYPE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, deferredLocationType);
   }
 
   public boolean hasTerminationCause() {
-    return hasAvp(EPCLocationProtocolAVPCodes.DEFERRED_MT_LR_DATA, EPCLocationProtocolAVPCodes.TERMINATION_CAUSE);
+    return hasAvp(EPCLocationProtocolAVPCodes.TERMINATION_CAUSE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public int getTerminationCause() {
-    return getAvpAsInteger32(EPCLocationProtocolAVPCodes.DEFERRED_MT_LR_DATA, EPCLocationProtocolAVPCodes.TERMINATION_CAUSE);
+    return getAvpAsInteger32(EPCLocationProtocolAVPCodes.TERMINATION_CAUSE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setTerminationCause(int terminationCause) {
-    addAvp(EPCLocationProtocolAVPCodes.DEFERRED_MT_LR_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, terminationCause);
+    addAvp(EPCLocationProtocolAVPCodes.TERMINATION_CAUSE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, terminationCause);
   }
 
   public boolean hasServingNode() {
     return hasAvp(EPCLocationProtocolAVPCodes.DEFERRED_MT_LR_DATA, EPCLocationProtocolAVPCodes.SERVING_NODE);
+  }
+
+  public ServingNodeAvp getServingNode() {
+    return (ServingNodeAvp) getAvpAsCustom(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, ServingNodeAvpImpl.class);
+  }
+
+  public void setServingNode(ServingNodeAvp servingNode) {
+    addAvp(EPCLocationProtocolAVPCodes.SERVING_NODE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, servingNode.byteArrayValue());
   }
 }
 

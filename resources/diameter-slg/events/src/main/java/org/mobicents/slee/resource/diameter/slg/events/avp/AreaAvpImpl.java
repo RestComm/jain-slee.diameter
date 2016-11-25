@@ -58,32 +58,39 @@ public class AreaAvpImpl extends GroupedAvpImpl implements AreaAvp {
     super();
   }
 
+  /**
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public AreaAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasAreaType() {
-    return hasAvp(EPCLocationProtocolAVPCodes.AREA, EPCLocationProtocolAVPCodes.AREA_TYPE);
+    return hasAvp(EPCLocationProtocolAVPCodes.AREA_TYPE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public long getAreaType() {
-    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.AREA, EPCLocationProtocolAVPCodes.AREA_TYPE);
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.AREA_TYPE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setAreaType(long areaType) {
-    addAvp(EPCLocationProtocolAVPCodes.AREA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, areaType);
+    addAvp(EPCLocationProtocolAVPCodes.AREA_TYPE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, areaType);
   }
 
   public boolean hasAreaIdentification() {
-    return hasAvp(EPCLocationProtocolAVPCodes.AREA, EPCLocationProtocolAVPCodes.AREA_IDENTIFICATION);
+    return hasAvp(EPCLocationProtocolAVPCodes.AREA_IDENTIFICATION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public byte[] getAreaIdentification() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.AREA, EPCLocationProtocolAVPCodes.AREA_IDENTIFICATION);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.AREA_IDENTIFICATION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setAreaIdentification(byte[] areaIdentification) {
-    addAvp(EPCLocationProtocolAVPCodes.AREA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, areaIdentification);
+    addAvp(EPCLocationProtocolAVPCodes.AREA_IDENTIFICATION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, areaIdentification);
   }
 
 }

@@ -43,6 +43,7 @@
 package org.mobicents.slee.resource.diameter.slg.events.avp;
 
 import net.java.slee.resource.diameter.slg.events.avp.EPCLocationProtocolAVPCodes;
+import net.java.slee.resource.diameter.slg.events.avp.PeriodicLocationSupportIndicator;
 import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
 import net.java.slee.resource.diameter.slg.events.avp.PLMNIDListAvp;
 
@@ -57,32 +58,39 @@ public class PLMNIDListAvpImpl extends GroupedAvpImpl implements PLMNIDListAvp {
     super();
   }
 
+  /**
+   * @param code
+   * @param vendorId
+   * @param mnd
+   * @param prt
+   * @param value
+   */
   public PLMNIDListAvpImpl(int code, long vendorId, int mnd, int prt, byte[] value) {
     super(code, vendorId, mnd, prt, value);
   }
 
   public boolean hasVisitedPLMNId() {
-    return hasAvp(EPCLocationProtocolAVPCodes.PLMN_ID_LIST, EPCLocationProtocolAVPCodes.VISITED_PLMN_ID);
+    return hasAvp(EPCLocationProtocolAVPCodes.VISITED_PLMN_ID, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public byte[] getVisitedPLMNId() {
-    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.PLMN_ID_LIST, EPCLocationProtocolAVPCodes.VISITED_PLMN_ID);
+    return getAvpAsOctetString(EPCLocationProtocolAVPCodes.VISITED_PLMN_ID, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
   public void setVisitedPLMNId(byte[] visitedPLMNId) {
-    addAvp(EPCLocationProtocolAVPCodes.PLMN_ID_LIST, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, visitedPLMNId);
+    addAvp(EPCLocationProtocolAVPCodes.VISITED_PLMN_ID, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, visitedPLMNId);
   }
 
   public boolean hasPeriodicLocationSupportIndicator() {
-    return hasAvp(EPCLocationProtocolAVPCodes.PLMN_ID_LIST, EPCLocationProtocolAVPCodes.PERIODIC_LOCATION_SUPPORT_INDICATOR);
+    return hasAvp(EPCLocationProtocolAVPCodes.PERIODIC_LOCATION_SUPPORT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public int getPeriodicLocationSupportIndicator() {
-    return getAvpAsInteger32(EPCLocationProtocolAVPCodes.PLMN_ID_LIST, EPCLocationProtocolAVPCodes.PERIODIC_LOCATION_SUPPORT_INDICATOR);
+  public PeriodicLocationSupportIndicator getPeriodicLocationSupportIndicator() {
+    return (PeriodicLocationSupportIndicator) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.PERIODIC_LOCATION_SUPPORT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, PeriodicLocationSupportIndicator.class);
   }
 
-  public void setPeriodicLocationSupportIndicator(int periodicLocationSupportIndicator) {
-    addAvp(EPCLocationProtocolAVPCodes.PLMN_ID_LIST, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, periodicLocationSupportIndicator);
+  public void setPeriodicLocationSupportIndicator(PeriodicLocationSupportIndicator periodicLocationSupportIndicator) {
+    addAvp(EPCLocationProtocolAVPCodes.PERIODIC_LOCATION_SUPPORT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, periodicLocationSupportIndicator);
   }
 
 }
