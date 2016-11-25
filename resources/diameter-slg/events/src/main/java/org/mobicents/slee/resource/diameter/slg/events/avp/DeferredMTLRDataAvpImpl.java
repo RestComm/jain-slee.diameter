@@ -86,11 +86,11 @@ public class DeferredMTLRDataAvpImpl extends GroupedAvpImpl implements DeferredM
     return hasAvp(EPCLocationProtocolAVPCodes.TERMINATION_CAUSE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public int getTerminationCause() {
-    return getAvpAsInteger32(EPCLocationProtocolAVPCodes.TERMINATION_CAUSE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
+  public long getTerminationCause() {
+    return getAvpAsUnsigned32(EPCLocationProtocolAVPCodes.TERMINATION_CAUSE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public void setTerminationCause(int terminationCause) {
+  public void setTerminationCause(long terminationCause) {
     addAvp(EPCLocationProtocolAVPCodes.TERMINATION_CAUSE, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, terminationCause);
   }
 

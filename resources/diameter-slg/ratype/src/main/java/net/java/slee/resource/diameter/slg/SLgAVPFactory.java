@@ -53,15 +53,15 @@ import net.java.slee.resource.diameter.slg.events.avp.*;
 public interface SLgAVPFactory extends DiameterAvpFactory {
 /*
   public SLgLocationTypeAvp createSLgLocationTypeAvp();
-
-  public LCSEPSCLientNameAvp createLCSEPSCLientNameAvp();
-
+*/
+  public LCSEPSClientNameAvp createLCSEPSCLientNameAvp();
+/*
   public LCSRequestorNameAvp createLCSRequestorNameAvp();
 
   public LCSPriorityAvp createLCSPriorityAvp();
-
+*/
   public LCSQoSAvp createLCSQoSAvp();
-
+/*
   public HorizontalAccuracyAvp createHorizontalAccuracyAvp();
 
   public VerticalAccuracyAvp createVerticalAccuracyAvp();
@@ -70,7 +70,7 @@ public interface SLgAVPFactory extends DiameterAvpFactory {
 
   public VelocityRequestedAvp createVelocityRequestedAvp();
 
-  public ResponseTimeAvp createResponseTimeAvp();
+  public ResponseTime createResponseTimeAvp();
 
   public SupportedGADShapesAvp createSupportedGADShapesAvp();
 
@@ -93,21 +93,21 @@ public interface SLgAVPFactory extends DiameterAvpFactory {
   public PseudonymIndicatorAvp createPseudonymIndicatorAvp();
 
   public LCSServiceTypeIDAvp createLCSServiceTypeIDAvp();
-
+*/
   public LCSPrivacyCheckNonSessionAvp createLCSPrivacyCheckNonSessionAvp();
 
   public LCSPrivacyCheckSessionAvp createLCSPrivacyCheckSessionAvp();
-
+/*
   public LCSQoSClassAvp createLCSQoSClassAvp();
-
+*/
   public GERANPositioningInfoAvp createGERANPositioningInfoAvp();
-
+/*
   public GERANPositioningDataAvp createGERANPositioningDataAvp();
 
   public GERANGANSSPositioningDataAvp createGERANGANSSPositioningDataAvp();
-
+*/
   public UTRANPositioningInfoAvp createUTRANPositioningInfoAvp();
-
+/*
   public UTRANPositioningDataAvp createUTRANPositioningDataAvp();
 
   public UTRANGANSSPositioningDataAvp createUTRANGANSSPositioningDataAvp();
@@ -116,40 +116,50 @@ public interface SLgAVPFactory extends DiameterAvpFactory {
 
   public LCSReferenceNumberAvp createLCSReferenceNumberAvp();
 
+  public DeferredLocationTypeAvp createDeferredLocationTypeAvp();
+*/
+  public AreaEventInfoAvp createAreaEventInfoAvp();
+
+  public AreaDefinitionAvp createAreaDefinitionAvp();
+
+  public AreaAvp createAreaAvp();
+/*
+  public AreaTypeAvp createAreaTypeAvp();
+
   public OccurrenceInfoAvp createOccurrenceInfoAvp();
 
   public IntervalTimeAvp createIntervalTimeAvp();
-
-  public PeriodicLDRInformationAvp createPeriodicLDRInformationAvp();
-
+*/
+  public PeriodicLDRInfoAvp createPeriodicLDRInformationAvp();
+/*
   public ReportingAmountAvp createReportingAmountAvp();
 
   public ReportingIntervalAvp createReportingIntervalAvp();
-
+*/
   public ReportingPLMNListAvp createReportingPLMNListAvp();
 
   public PLMNIDListAvp createPLMNIDListAvp();
-
+/*
   public PLRFlagsAvp createPLRFlagsAvp();
 
   public PLAFlagsAvp createPLAFlagsAvp();
-
+*/
   public DeferredMTLRDataAvp createDeferredMTLRDataAvp();
-
+/*
   public TerminationCauseAvp createTerminationCauseAvp();
 
   public PeriodicLocationSupportIndicatorAvp createPeriodicLocationSupportIndicatorAvp();
 
   public PrioritizedListIndicatorAvp createPrioritizedListIndicatorAvp();
-
+*/
   public ESMLCCellInfoAvp createESMLCCellInfoAvp();
-
+/*
   public CellPortionIDAvp createCellPortionIDAvp();
 
   public OnexRTTRCIDAvp createOnexRTTRCIDAvp();
-
+*/
   public DelayedLocationReportingDataAvp createDelayedLocationReportingDataAvp();
-
+/*
   public CivicAddressAvp createCivicAddressAvp();BarometricPressureAvp
 
   public UTRANAdditionalPositioningDataAvp createUTRANAdditionalPositioningDataAvp();

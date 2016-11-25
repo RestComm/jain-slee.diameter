@@ -43,6 +43,7 @@
 package org.mobicents.slee.resource.diameter.slg.events.avp;
 
 import net.java.slee.resource.diameter.slg.events.avp.EPCLocationProtocolAVPCodes;
+import net.java.slee.resource.diameter.slg.events.avp.LCSFormatIndicator;
 import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
 import net.java.slee.resource.diameter.slg.events.avp.LCSEPSClientNameAvp;
 
@@ -84,11 +85,11 @@ public class LCSEPSClientNameAvpImpl extends GroupedAvpImpl implements LCSEPSCli
     return hasAvp(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public String getLCSFormatIndicator() {
-    return getAvpAsUTF8String(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
+  public LCSFormatIndicator getLCSFormatIndicator() {
+    return (LCSFormatIndicator) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, LCSFormatIndicator.class);
   }
 
-  public void setLCSFormatIndicator(String lcsFormatIndicator) {
+  public void setLCSFormatIndicator(LCSFormatIndicator lcsFormatIndicator) {
     addAvp(EPCLocationProtocolAVPCodes.LCS_FORMAT_INDICATOR, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsFormatIndicator);
   }
 

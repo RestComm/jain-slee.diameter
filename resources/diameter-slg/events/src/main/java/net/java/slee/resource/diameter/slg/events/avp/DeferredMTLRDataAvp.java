@@ -107,8 +107,8 @@ public interface DeferredMTLRDataAvp extends GroupedAvp {
 		Any unrecognized value of Termination-Cause shall be treated the same as value 1 ("Error Undefined").
 	*/
   public boolean hasTerminationCause();
-  public int getTerminationCause();
-  public void setTerminationCause(int terminationCause);
+  public long getTerminationCause();
+  public void setTerminationCause(long terminationCause);
 
   /*
     From 3GPP TS 29.172 V13.0.0

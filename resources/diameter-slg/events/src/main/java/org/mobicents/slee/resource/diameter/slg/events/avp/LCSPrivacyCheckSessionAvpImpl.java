@@ -43,6 +43,7 @@
 package org.mobicents.slee.resource.diameter.slg.events.avp;
 
 import net.java.slee.resource.diameter.slg.events.avp.EPCLocationProtocolAVPCodes;
+import net.java.slee.resource.diameter.slg.events.avp.LCSPrivacyCheck;
 import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
 import net.java.slee.resource.diameter.slg.events.avp.LCSPrivacyCheckSessionAvp;
 
@@ -72,11 +73,11 @@ public class LCSPrivacyCheckSessionAvpImpl extends GroupedAvpImpl implements LCS
     return hasAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
   }
 
-  public int getLCSPrivacyCheck() {
-    return getAvpAsInteger32(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID);
+  public LCSPrivacyCheck getLCSPrivacyCheck() {
+    return (LCSPrivacyCheck) getAvpAsEnumerated(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, LCSPrivacyCheck.class);
   }
 
-  public void setLCSPrivacyCheck(int lcsPrivacyCheck) {
+  public void setLCSPrivacyCheck(LCSPrivacyCheck lcsPrivacyCheck) {
     addAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, lcsPrivacyCheck);
   }
 

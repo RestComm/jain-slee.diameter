@@ -73,7 +73,7 @@ public interface LCSPrivacyCheckNonSessionAvp extends GroupedAvp {
 		Default value if AVP is not present is: ALLOWED_WITHOUT_NOTIFICATION (0).
   */
   public boolean hasLCSPrivacyCheck();
-  public int getLCSPrivacyCheck();
-  public void setLCSPrivacyCheck(int lcsPrivacyCheck);
+  public LCSPrivacyCheck getLCSPrivacyCheck();
+  public void setLCSPrivacyCheck(LCSPrivacyCheck lcsPrivacyCheck);
 
 }

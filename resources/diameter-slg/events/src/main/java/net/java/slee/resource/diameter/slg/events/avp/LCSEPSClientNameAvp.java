@@ -87,7 +87,7 @@ public interface LCSEPSClientNameAvp extends GroupedAvp {
 		4	SIP_URL
 	*/
   public boolean hasLCSFormatIndicator();
-  public String getLCSFormatIndicator();
-  public void setLCSFormatIndicator(String lcsFormatIndicator);
+  public LCSFormatIndicator getLCSFormatIndicator();
+  public void setLCSFormatIndicator(LCSFormatIndicator lcsFormatIndicator);
 
 }
