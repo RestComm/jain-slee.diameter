@@ -55,9 +55,9 @@ public interface SLgAVPFactory extends DiameterAvpFactory {
   public SLgLocationTypeAvp createSLgLocationTypeAvp();
 */
   public LCSEPSClientNameAvp createLCSEPSCLientNameAvp();
-/*
-  public LCSRequestorNameAvp createLCSRequestorNameAvp();
 
+  public LCSRequestorNameAvp createLCSRequestorNameAvp();
+/*
   public LCSPriorityAvp createLCSPriorityAvp();
 */
   public LCSQoSAvp createLCSQoSAvp();
@@ -181,9 +181,9 @@ public interface SLgAVPFactory extends DiameterAvpFactory {
   public ServiceSelectionAvp createServiceSelectionAvp();
 
   public UserNameAvp createUserNameAvp();
-
+*/
   public SupportedFeaturesAvp createSupportedFeaturesAvp();
-
+/*
   public FeatureListIDAvp createFeatureListIDAvp();
 
   public FeatureListAvp createFeatureListAvp();

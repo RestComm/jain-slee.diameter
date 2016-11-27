@@ -74,8 +74,10 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
     return (SLgLocationTypeAvp) AvpUtilities.createAvp(SLg_LOCATION_TYPE, SLg_VENDOR_ID, null, SLgLocationTypeAvpImpl.class);
   }
 */
+
+  @Override
   public LCSEPSClientNameAvp createLCSEPSCLientNameAvp() {
-    return (LCSEPSClientNameAvp) AvpUtilities.createAvp(LCS_EPS_CLIENT_NAME, SLg_VENDOR_ID, null, LCSEPSClientNameAvpImpl.class);
+    return (LCSEPSClientNameAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.LCS_EPS_CLIENT_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, LCSEPSClientNameAvpImpl.class);
   }
 
   public LCSEPSClientNameAvp createLCSEPSCLientNameAvp(String lcsNameString, LCSFormatIndicator lcsFormatIndicator) {
@@ -99,9 +101,9 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
     return lcsEpsClientNameAvp;
   }
 
-
+  @Override
   public LCSRequestorNameAvp createLCSRequestorNameAvp() {
-    return (LCSRequestorNameAvp) AvpUtilities.createAvp(LCS_REQUESTOR_NAME, SLg_VENDOR_ID, null, LCSRequestorNameAvpImpl.class);
+    return (LCSRequestorNameAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.LCS_REQUESTOR_NAME, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, LCSRequestorNameAvpImpl.class);
   }
 
   public LCSRequestorNameAvp createLCSRequestorNameAvp(String lcsRequestorIDString, LCSFormatIndicator lcsFormatIndicator) {
@@ -126,11 +128,10 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
 
     return lcsRequestorNameAvp;
   }
-/*
 
-*/
+  @Override
   public LCSQoSAvp createLCSQoSAvp() {
-    return (LCSQoSAvp) AvpUtilities.createAvp(LCS_QoS, SLg_VENDOR_ID, null, LCSQoSAvpImpl.class);
+    return (LCSQoSAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.LCS_QoS, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, LCSQoSAvpImpl.class);
   }
 
   public LCSQoSAvp createLCSQoSAvp(LCSQoSClass lcsQoSClass, long horizontalAccuracy, long verticalAccuracy, VerticalRequested verticalRequested, ResponseTime responseTime) {
@@ -160,11 +161,10 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
 
     return lcsQoSAvp;
   }
-/*
 
-*/
+  @Override
   public LCSPrivacyCheckNonSessionAvp createLCSPrivacyCheckNonSessionAvp() {
-    return (LCSPrivacyCheckNonSessionAvp) AvpUtilities.createAvp(LCS_PRIVACY_CHECK_NON_SESSION, SLg_VENDOR_ID, null, LCSPrivacyCheckNonSessionAvpImpl.class);
+    return (LCSPrivacyCheckNonSessionAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK_NON_SESSION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, LCSPrivacyCheckNonSessionAvpImpl.class);
   }
 
   public LCSPrivacyCheckNonSessionAvp createLCSPrivacyCheckNonSessionAvp(LCSPrivacyCheck lcsPrivacyCheck) {
@@ -187,8 +187,9 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
     return lcsPrivacyCheckNonSessionAvp;
   }
 
+  @Override
   public LCSPrivacyCheckSessionAvp createLCSPrivacyCheckSessionAvp() {
-    return (LCSPrivacyCheckSessionAvp) AvpUtilities.createAvp(LCS_PRIVACY_CHECK_SESSION, SLg_VENDOR_ID, null, LCSPrivacyCheckSessionAvpImpl.class);
+    return (LCSPrivacyCheckSessionAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.LCS_PRIVACY_CHECK_SESSION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, LCSPrivacyCheckSessionAvpImpl.class);
   }
 
   public LCSPrivacyCheckSessionAvp createLCSPrivacyCheckSessionAvp(LCSPrivacyCheck lcsPrivacyCheck) {
@@ -212,8 +213,9 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
 
   }
 
+  @Override
   public GERANPositioningInfoAvp createGERANPositioningInfoAvp() {
-    return (GERANPositioningInfoAvp) AvpUtilities.createAvp(GERAN_POSITIONING_INFO, SLg_VENDOR_ID, null, GERANPositioningInfoAvpImpl.class);
+    return (GERANPositioningInfoAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.GERAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, GERANPositioningInfoAvpImpl.class);
   }
 
   public GERANPositioningInfoAvp createGERANPositioningInfoAvp(byte[] geranPositioningData, byte[] geranGanssPositioningData) {
@@ -239,8 +241,9 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
     return geranPositioningInfoAvp;
   }
 
+  @Override
   public UTRANPositioningInfoAvp createUTRANPositioningInfoAvp() {
-    return (UTRANPositioningInfoAvp) AvpUtilities.createAvp(UTRAN_POSITIONING_INFO, SLg_VENDOR_ID, null, UTRANPositioningInfoAvpImpl.class);
+    return (UTRANPositioningInfoAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.UTRAN_POSITIONING_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, UTRANPositioningInfoAvpImpl.class);
   }
 
   public UTRANPositioningInfoAvp createUTRANPositioningInfoAvp(byte[] utranPositioningData, byte[] utranGanssPositioningData, byte[] utranAdditionalPositioningData) {
@@ -268,8 +271,9 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
     return utranPositioningInfoAvp;
   }
 
+  @Override
   public AreaEventInfoAvp createAreaEventInfoAvp() {
-    return (AreaEventInfoAvp) AvpUtilities.createAvp(AREA_EVENT_INFO, SLg_VENDOR_ID, null, AreaDefinitionAvpImpl.class);
+    return (AreaEventInfoAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.AREA_EVENT_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, AreaDefinitionAvpImpl.class);
   }
 
   public AreaEventInfoAvp createAreaEventInfoAvp(AreaDefinitionAvp areaDefinitionAvp, OccurrenceInfo occurrenceInfo, long intervalTime) {
@@ -297,8 +301,9 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
     return areaEventInfoAvp;
   }
 
+  @Override
   public AreaDefinitionAvp createAreaDefinitionAvp() {
-    return (AreaDefinitionAvp) AvpUtilities.createAvp(AREA_DEFINITION, SLg_VENDOR_ID, null, AreaDefinitionAvpImpl.class);
+    return (AreaDefinitionAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.AREA_DEFINITION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, AreaDefinitionAvpImpl.class);
   }
 
   public AreaDefinitionAvp createAreaDefinitionAvp(AreaAvp area) {
@@ -321,8 +326,9 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
     return areaDefinitionAvp;
   }
 
+  @Override
   public AreaAvp createAreaAvp() {
-    return (AreaAvp) AvpUtilities.createAvp(AREA, SLg_VENDOR_ID, null, AreaAvpImpl.class);
+    return (AreaAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.AREA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, AreaAvpImpl.class);
   }
 
   public AreaAvp createAreaAvp(long areaType, byte[] areaIdentification) {
@@ -346,8 +352,9 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
     return areaAvp;
   }
 
+  @Override
   public PeriodicLDRInfoAvp createPeriodicLDRInformationAvp() {
-    return (PeriodicLDRInfoAvp) AvpUtilities.createAvp(PERIODIC_LDR_INFORMATION, SLg_VENDOR_ID, null, PeriodicLDRInfoAvpImpl.class);
+    return (PeriodicLDRInfoAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.PERIODIC_LDR_INFORMATION, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, PeriodicLDRInfoAvpImpl.class);
   }
 
   public PeriodicLDRInfoAvp createPeriodicLDRInformationAvp(long reportingAmount, long reportingInterval) {
@@ -372,8 +379,9 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
     return periodicLDRInfoAvp;
   }
 
+  @Override
   public ReportingPLMNListAvp createReportingPLMNListAvp() {
-    return (ReportingPLMNListAvp) AvpUtilities.createAvp(REPORTING_PLMN_LIST, SLg_VENDOR_ID, null, ReportingPLMNListAvpImpl.class);
+    return (ReportingPLMNListAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.REPORTING_PLMN_LIST, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, ReportingPLMNListAvpImpl.class);
   }
 
   public ReportingPLMNListAvp createReportingPLMNListAvp(PLMNIDListAvp plmnidListAvp, PrioritizedListIndicator prioritizedListIndicator) {
@@ -398,8 +406,9 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
     return reportingPLMNListAvp;
   }
 
+  @Override
   public PLMNIDListAvp createPLMNIDListAvp() {
-    return (PLMNIDListAvp) AvpUtilities.createAvp(PLMN_ID_LIST, SLg_VENDOR_ID, null, PLMNIDListAvpImpl.class);
+    return (PLMNIDListAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.PLMN_ID_LIST, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, PLMNIDListAvpImpl.class);
   }
 
   public PLMNIDListAvp createPLMNIDListAvp(byte[] visitedPLMNId, PeriodicLocationSupportIndicator periodicLocationSupportIndicator) {
@@ -424,8 +433,9 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
     return  plmnidListAvp;
   }
 
+  @Override
   public DeferredMTLRDataAvp createDeferredMTLRDataAvp() {
-    return (DeferredMTLRDataAvp) AvpUtilities.createAvp(DEFERRED_MT_LR_DATA, SLg_VENDOR_ID, null, DeferredMTLRDataAvpImpl.class);
+    return (DeferredMTLRDataAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.DEFERRED_MT_LR_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, DeferredMTLRDataAvpImpl.class);
   }
 
   public DeferredMTLRDataAvp createDeferredMTLRDataAvp(long deferredLocationType, long terminationCause, ServingNodeAvp servingNodeAvp) {
@@ -452,8 +462,9 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
     return deferredMTLRDataAvp;
   }
 
+  @Override
   public ESMLCCellInfoAvp createESMLCCellInfoAvp() {
-    return (ESMLCCellInfoAvp) AvpUtilities.createAvp(ESMLC_CELL_INFO, SLg_VENDOR_ID, null, ESMLCCellInfoAvpImpl.class);
+    return (ESMLCCellInfoAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.ESMLC_CELL_INFO, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, ESMLCCellInfoAvpImpl.class);
   }
 
   public ESMLCCellInfoAvp createESMLCCellInfoAvp(byte[] ecgi, long cellPortionId) {
@@ -479,8 +490,9 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
     return esmlcCellInfoAvp;
   }
 
+  @Override
   public DelayedLocationReportingDataAvp createDelayedLocationReportingDataAvp() {
-    return (DelayedLocationReportingDataAvp) AvpUtilities.createAvp(DELAYED_LOCATION_REPORTING_DATA, SLg_VENDOR_ID, null, DelayedLocationReportingDataAvpImpl.class);
+    return (DelayedLocationReportingDataAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.DELAYED_LOCATION_REPORTING_DATA, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, DelayedLocationReportingDataAvpImpl.class);
   }
 
   public DelayedLocationReportingDataAvp createDelayedLocationReportingDataAvp(int terminationCause, ServingNodeAvp servingNodeAvp) {
@@ -503,6 +515,46 @@ public class SLgAVPFactoryImpl extends DiameterAvpFactoryImpl implements SLgAVPF
     delayedLocationReportingDataAvp.setServingNode(servingNodeAvp);
 
     return delayedLocationReportingDataAvp;
+  }
+
+  @Override
+  public SupportedFeaturesAvp createSupportedFeaturesAvp() {
+    return (SupportedFeaturesAvp) AvpUtilities.createAvp(EPCLocationProtocolAVPCodes.SUPPORTED_FEATURES, EPCLocationProtocolAVPCodes.SLg_VENDOR_ID, null, SupportedFeaturesAvpImpl.class);
+  }
+
+  public SupportedFeaturesAvp createSupportedFeaturesAvp(long vendorId, long featureListId, long featureList) {
+    // Create the empty AVP
+    SupportedFeaturesAvp supportedFeaturesAvp = createSupportedFeaturesAvp();
+
+
+    /*
+     * From the Diameter Cx and Dx Reference Point Protocol Details (3GPP TS 29.229 V13.0.0) specification,
+     * reused by SLh (3GPP TS 29.173):
+		 *
+     * 6.3.29	Supported-Features AVP
+     *
+     * The Supported-Features AVP is of type Grouped. If this AVP is present it may inform the destination host about the features that the origin host supports for the application.
+     * The Feature-List AVP contains a list of supported features of the origin host. The Vendor-Id AVP and the Feature-List-ID AVP shall together identify which feature list
+     * is carried in the Supported-Features AVP for the Application-ID present in the command header.
+     * Where a Supported-Features AVP is used to identify features that have been defined by 3GPP, the Vendor-Id AVP shall contain the vendor ID of 3GPP.
+     * Vendors may define proprietary features, but it is strongly recommended that the possibility is used only as the last resort.
+     * Where the Supported-Features AVP is used to identify features that have been defined by a vendor other than 3GPP, it shall contain the vendor ID of the specific vendor in question.
+     * If there are multiple feature lists defined by the same vendor and the same application, the Feature-List-ID AVP shall differentiate those lists from one another.
+     * The destination host shall use the value of the Feature-List-ID AVP to identify the feature list.
+     * AVP format
+     *            Supported-Features ::= 	< AVP header: 628 10415 >
+     *                                    { Vendor-Id }
+     *                                    { Feature-List-ID }
+     *                                    { Feature-List }
+     *                                    *[AVP]
+     *
+     */
+    // Set the provided AVP values
+    supportedFeaturesAvp.setVendorId(vendorId);
+    supportedFeaturesAvp.setFeatureListId(featureListId);
+    supportedFeaturesAvp.setFeatureList(featureList);
+
+    return supportedFeaturesAvp;
   }
 
 /*
