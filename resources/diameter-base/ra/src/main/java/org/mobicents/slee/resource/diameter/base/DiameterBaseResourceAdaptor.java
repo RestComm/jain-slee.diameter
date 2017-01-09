@@ -44,6 +44,8 @@ import javax.slee.resource.ReceivableService;
 import javax.slee.resource.ResourceAdaptor;
 import javax.slee.resource.ResourceAdaptorContext;
 import javax.slee.resource.SleeEndpoint;
+import javax.slee.EventTypeID;
+import javax.slee.resource.FireableEventType;
 
 import net.java.slee.resource.diameter.Validator;
 import net.java.slee.resource.diameter.base.AccountingClientSessionActivity;
@@ -64,6 +66,7 @@ import net.java.slee.resource.diameter.base.events.DiameterMessage;
 import net.java.slee.resource.diameter.base.events.DisconnectPeerRequest;
 import net.java.slee.resource.diameter.base.events.ReAuthRequest;
 import net.java.slee.resource.diameter.base.events.SessionTerminationRequest;
+import net.java.slee.resource.diameter.base.events.TimeOutMessage;
 import net.java.slee.resource.diameter.base.events.avp.AvpNotAllowedException;
 import net.java.slee.resource.diameter.base.events.avp.AvpUtilities;
 import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
@@ -123,6 +126,7 @@ import org.mobicents.slee.resource.diameter.base.events.ReAuthAnswerImpl;
 import org.mobicents.slee.resource.diameter.base.events.ReAuthRequestImpl;
 import org.mobicents.slee.resource.diameter.base.events.SessionTerminationAnswerImpl;
 import org.mobicents.slee.resource.diameter.base.events.SessionTerminationRequestImpl;
+import org.mobicents.slee.resource.diameter.base.events.TimeOutMessageImpl;
 import org.mobicents.slee.resource.diameter.base.handlers.AccountingSessionFactory;
 import org.mobicents.slee.resource.diameter.base.handlers.AuthorizationSessionFactory;
 import org.mobicents.slee.resource.diameter.base.handlers.DiameterRAInterface;
@@ -967,7 +971,11 @@ public class DiameterBaseResourceAdaptor implements ResourceAdaptor, DiameterLis
 
     // Message delivery timed out - we have to remove activity
     try {
-      activities.get(getActivityHandle(req.getSessionId())).endActivity();
+      TimeOutMessageImpl timeoutMessage = new TimeOutMessageImpl(req);
+      FireableEventType evenType = eventLookup.getFireableEventType(new EventTypeID("net.java.slee.resource.diameter.base.events.TimeOutMessage","java.net","0.8"));
+      this.fireEvent(timeoutMessage, getActivityHandle(req.getSessionId()), evenType, null, true, true);
+
+      //activities.get(getActivityHandle(req.getSessionId())).endActivity();
     }
     catch (Exception e) {
       tracer.severe("Failure processing timeout message.", e);
@@ -984,7 +992,7 @@ public class DiameterBaseResourceAdaptor implements ResourceAdaptor, DiameterLis
     DiameterMessageFactoryImpl msgFactory = new DiameterMessageFactoryImpl(session.getSessions().get(0), stack, new DiameterIdentity[]{});
 
     AccountingServerSessionActivityImpl activity = new AccountingServerSessionActivityImpl(msgFactory, avpFactory, session, null, null, stack);
-
+    activity.setEventListener(this);
     //session.addStateChangeNotification(activity);
     activity.setSessionListener(this);
     addActivity(activity, false);
@@ -998,7 +1006,7 @@ public class DiameterBaseResourceAdaptor implements ResourceAdaptor, DiameterLis
     DiameterMessageFactoryImpl msgFactory = new DiameterMessageFactoryImpl(session.getSessions().get(0), stack, new DiameterIdentity[]{});
 
     AuthServerSessionActivityImpl activity = new AuthServerSessionActivityImpl(msgFactory, avpFactory, session, null, null);
-
+    activity.setEventListener(this);
     //session.addStateChangeNotification(activity);
     activity.setSessionListener(this);
     addActivity(activity, false);
@@ -1012,7 +1020,7 @@ public class DiameterBaseResourceAdaptor implements ResourceAdaptor, DiameterLis
     DiameterMessageFactoryImpl msgFactory = new DiameterMessageFactoryImpl(session.getSessions().get(0), stack, new DiameterIdentity[]{});
 
     AuthClientSessionActivityImpl activity = new AuthClientSessionActivityImpl(msgFactory, avpFactory, session, null, null);
-
+    activity.setEventListener(this);
     //session.addStateChangeNotification(activity);
     activity.setSessionListener(this);
     addActivity(activity, false /*true*/);
@@ -1026,7 +1034,7 @@ public class DiameterBaseResourceAdaptor implements ResourceAdaptor, DiameterLis
     DiameterMessageFactoryImpl msgFactory = new DiameterMessageFactoryImpl(stack);
 
     AccountingClientSessionActivityImpl activity = new AccountingClientSessionActivityImpl(msgFactory, avpFactory, session, null, null);
-
+    activity.setEventListener(this);
     activity.setSessionListener(this);
     // session.addStateChangeNotification(activity);
     addActivity(activity, false /*true*/);
@@ -1040,7 +1048,7 @@ public class DiameterBaseResourceAdaptor implements ResourceAdaptor, DiameterLis
     DiameterMessageFactoryImpl msgFactory = new DiameterMessageFactoryImpl(session, stack, null, null);
 
     DiameterActivityImpl activity = new DiameterActivityImpl(msgFactory, avpFactory, session, this, null, null);
-
+    activity.setEventListener(this);
     // TODO: Do we need to manage session?
     //session.addStateChangeNotification(activity);
     activity.setSessionListener(this);
