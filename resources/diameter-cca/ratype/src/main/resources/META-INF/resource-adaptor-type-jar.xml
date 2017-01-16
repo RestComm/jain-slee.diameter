@@ -48,6 +48,12 @@
 			<event-type-vendor>java.net</event-type-vendor>
 			<event-type-version>0.8</event-type-version>
 		</event-type-ref>
+        
+        <event-type-ref>
+            <event-type-name>net.java.slee.resource.diameter.cca.events.RequestTxTimeout</event-type-name>
+            <event-type-vendor>java.net</event-type-vendor>
+            <event-type-version>0.8</event-type-version>
+        </event-type-ref>
 
 		<event-type-ref>
 			<event-type-name>net.java.slee.resource.diameter.base.events.ReAuthRequest</event-type-name>

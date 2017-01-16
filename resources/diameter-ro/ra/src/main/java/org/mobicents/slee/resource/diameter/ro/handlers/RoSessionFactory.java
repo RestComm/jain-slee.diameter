@@ -23,6 +23,9 @@
 package org.mobicents.slee.resource.diameter.ro.handlers;
 
 import org.jdiameter.api.InternalException;
+import org.jdiameter.api.Message;
+import org.jdiameter.api.Peer;
+import org.jdiameter.api.RouteException;
 import org.jdiameter.api.SessionFactory;
 import org.jdiameter.api.app.AppAnswerEvent;
 import org.jdiameter.api.app.AppRequestEvent;
@@ -34,7 +37,7 @@ import org.jdiameter.api.ro.ServerRoSession;
 import org.jdiameter.api.ro.events.RoCreditControlAnswer;
 import org.jdiameter.api.ro.events.RoCreditControlRequest;
 import org.jdiameter.common.impl.app.ro.RoSessionFactoryImpl;
-import org.mobicents.slee.resource.diameter.base.handlers.DiameterRAInterface;
+import org.mobicents.slee.resource.diameter.cca.handlers.DiameterExtRAInterface;
 
 /**
  * 
@@ -43,12 +46,12 @@ import org.mobicents.slee.resource.diameter.base.handlers.DiameterRAInterface;
  */
 public class RoSessionFactory extends RoSessionFactoryImpl {
 
-  public DiameterRAInterface ra;
+  public DiameterExtRAInterface ra;
 
   /**
    * @param sessionFactory
    */
-  public RoSessionFactory(DiameterRAInterface ra, SessionFactory sessionFactory, int defaultDirectDebitingFailureHandling, int defaultCreditControlFailureHandling, long defaultValidityTime, long defaultTxTimerValue) {
+  public RoSessionFactory(DiameterExtRAInterface ra, SessionFactory sessionFactory, int defaultDirectDebitingFailureHandling, int defaultCreditControlFailureHandling, long defaultValidityTime, long defaultTxTimerValue) {
     super(sessionFactory);
 
     super.defaultDirectDebitingFailureHandling = defaultDirectDebitingFailureHandling;
@@ -83,5 +86,14 @@ public class RoSessionFactory extends RoSessionFactoryImpl {
   public void doReAuthRequest(ClientRoSession session, ReAuthRequest request) throws InternalException {
     ra.fireEvent(session.getSessionId(), request.getMessage());
   }
-
+  
+  @Override
+  public void doRequestTimeout(ClientRoSession session, Message msg, Peer peer) throws InternalException {
+    ra.fireTimeout(session.getSessionId(), msg, peer);
+  }
+  
+  @Override
+  public void doPeerUnavailability(RouteException cause, ClientRoSession session, Message msg, Peer peer) throws InternalException {
+    ra.fireDeliveryFailure(cause, session.getSessionId(), msg, peer);
+  }
 }

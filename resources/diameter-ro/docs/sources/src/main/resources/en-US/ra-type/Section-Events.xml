@@ -29,10 +29,10 @@
 			</thead>
 			<tbody>
 				<row>
-			   		<entry>net.java.slee.resource. diameter.cca.events. CreditControlRequest</entry>
+			   		<entry>net.java.slee.resource. diameter.ro.events. RoCreditControlRequest</entry>
 			   	    <entry>java.net</entry>
 			   	    <entry>0.8</entry>
-			   	    <entry>net.java.slee.resource. diameter.cca.events. CreditControlRequest</entry>
+			   	    <entry>net.java.slee.resource. diameter.ro.events. RoCreditControlRequest</entry>
 			    </row>	    
 			</tbody>
 	 	</tgroup>
@@ -54,11 +54,17 @@
 			</thead>
 			<tbody>
 				<row>
-			   		<entry>net.java.slee.resource. diameter.cca.events. CreditControlAnswer</entry>
+			   		<entry>net.java.slee.resource. diameter.ro.events. RoCreditControlAnswer</entry>
 			   	    <entry>java.net</entry>
 			   	    <entry>0.8</entry>
-			   	    <entry>net.java.slee.resource. diameter.cca.events. CreditControlAnswer</entry>
-			    </row>	    
+			   	    <entry>net.java.slee.resource. diameter.ro.events. RoCreditControlAnswer</entry>
+			    </row>
+                <row>
+                    <entry>net.java.slee.resource. diameter.ro.events. RequestTxTimeout</entry>
+                    <entry>java.net</entry>
+                    <entry>0.8</entry>
+                    <entry>net.java.slee.resource. diameter.cca.events. RequestTxTimeout</entry>
+                </row>
 			</tbody>
 	 	</tgroup>
 	</table>

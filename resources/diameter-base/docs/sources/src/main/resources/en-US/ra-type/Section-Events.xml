@@ -186,6 +186,12 @@
 					<entry>0.8</entry>
 					<entry>net.java.slee.resource. diameter.base.events. ErrorAnswer</entry>
 				</row>
+                <row>
+                    <entry>net.java.slee.resource. diameter.base.events. DeliveryFailure</entry>
+                    <entry>java.net</entry>
+                    <entry>0.8</entry>
+                    <entry>net.java.slee.resource. diameter.base.events. DeliveryFailure</entry>
+                </row>
 			</tbody>
 	 	</tgroup>
 	</table>

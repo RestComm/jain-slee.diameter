@@ -51,10 +51,12 @@ import net.java.slee.resource.diameter.base.DiameterAvpFactory;
 import net.java.slee.resource.diameter.base.DiameterException;
 import net.java.slee.resource.diameter.base.events.AbortSessionAnswer;
 import net.java.slee.resource.diameter.base.events.AccountingAnswer;
+import net.java.slee.resource.diameter.base.events.DeliveryFailure;
 import net.java.slee.resource.diameter.base.events.DiameterMessage;
 import net.java.slee.resource.diameter.base.events.ReAuthAnswer;
 import net.java.slee.resource.diameter.base.events.SessionTerminationAnswer;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
+import net.java.slee.resource.diameter.cca.events.RequestTxTimeout;
 import net.java.slee.resource.diameter.ro.RoAvpFactory;
 import net.java.slee.resource.diameter.ro.RoClientSessionActivity;
 import net.java.slee.resource.diameter.ro.RoMessageFactory;
@@ -73,6 +75,7 @@ import org.jdiameter.api.Message;
 import org.jdiameter.api.Peer;
 import org.jdiameter.api.PeerTable;
 import org.jdiameter.api.Request;
+import org.jdiameter.api.RouteException;
 import org.jdiameter.api.Session;
 import org.jdiameter.api.SessionFactory;
 import org.jdiameter.api.Stack;
@@ -97,6 +100,7 @@ import org.mobicents.slee.resource.diameter.base.events.AbortSessionAnswerImpl;
 import org.mobicents.slee.resource.diameter.base.events.AbortSessionRequestImpl;
 import org.mobicents.slee.resource.diameter.base.events.AccountingAnswerImpl;
 import org.mobicents.slee.resource.diameter.base.events.AccountingRequestImpl;
+import org.mobicents.slee.resource.diameter.base.events.DeliveryFailureImpl;
 import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
 import org.mobicents.slee.resource.diameter.base.events.ErrorAnswerImpl;
 import org.mobicents.slee.resource.diameter.base.events.ExtensionDiameterMessageImpl;
@@ -105,6 +109,8 @@ import org.mobicents.slee.resource.diameter.base.events.ReAuthRequestImpl;
 import org.mobicents.slee.resource.diameter.base.events.SessionTerminationAnswerImpl;
 import org.mobicents.slee.resource.diameter.base.events.SessionTerminationRequestImpl;
 import org.mobicents.slee.resource.diameter.base.handlers.DiameterRAInterface;
+import org.mobicents.slee.resource.diameter.cca.events.RequestTxTimeoutImpl;
+import org.mobicents.slee.resource.diameter.cca.handlers.DiameterExtRAInterface;
 import org.mobicents.slee.resource.diameter.ro.events.RoCreditControlAnswerImpl;
 import org.mobicents.slee.resource.diameter.ro.events.RoCreditControlRequestImpl;
 import org.mobicents.slee.resource.diameter.ro.handlers.RoSessionFactory;
@@ -114,7 +120,7 @@ import org.mobicents.slee.resource.diameter.ro.handlers.RoSessionFactory;
  *
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  */
-public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListener, DiameterRAInterface ,org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor<String, DiameterActivity> {
+public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListener, DiameterExtRAInterface ,org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor<String, DiameterActivity> {
 
   private static final long serialVersionUID = 1L;
 
@@ -180,7 +186,7 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
 
   // Default Failure Handling
   protected int defaultDirectDebitingFailureHandling = 0;
-  protected int defaultCreditControlFailureHandling = 0;
+  protected int defaultCreditControlFailureHandling = 1;
 
   // Validity and TxTimer values (in seconds)
   protected long defaultValidityTime = 30;
@@ -588,15 +594,15 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
 
   // Event and Activities management -------------------------------------
 
-  public boolean fireEvent(Object event, ActivityHandle handle, FireableEventType eventID, Address address, boolean useFiltering, boolean transacted) {
+  public boolean fireEvent(Object event, ActivityHandle handle, FireableEventType eventID, Address address, boolean useFiltering) {
 
-    if (useFiltering && eventIDFilter.filterEvent(eventID)) {
+    if (eventID == null) {
+      tracer.severe("Event ID for " + eventID + " is unknown, unable to fire.");
+    }
+    else if (useFiltering && eventIDFilter.filterEvent(eventID)) {
       if (tracer.isFineEnabled()) {
         tracer.fine("Event " + eventID + " filtered");
       }
-    }
-    else if (eventID == null) {
-      tracer.severe("Event ID for " + eventID + " is unknown, unable to fire.");
     }
     else {
       if (tracer.isFineEnabled()) {
@@ -632,9 +638,31 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
 
     FireableEventType eventId = eventIdCache.getEventId(eventLookup, message);
 
-    this.fireEvent(event, getActivityHandle(sessionId), eventId, null, true, message.isRequest());
+    this.fireEvent(event, getActivityHandle(sessionId), eventId, null, true);
   }
-
+  
+  /*
+   * (non-Javadoc)
+   * @see org.mobicents.slee.resource.diameter.cca.handlers.DiameterExtRAInterface#fireTimeout(java.lang.String sessionId, org.jdiameter.api.Message message, org.jdiameter.api.Peer peer)
+   */
+  public void fireTimeout(String sessionId, Message message, Peer peer) {
+    RequestTxTimeout event = new RequestTxTimeoutImpl(message,
+        peer != null ? new DiameterIdentity(peer.getUri().toString()) : null);
+    FireableEventType eventId = eventIdCache.getEventId(eventLookup, EventIDCache.REQUEST_TIMEOUT);
+    this.fireEvent(event, getActivityHandle(sessionId), eventId, null, true);
+  }
+  
+  /*
+   * (non-Javadoc)
+   * @see org.mobicents.slee.resource.diameter.cca.handlers.DiameterExtRAInterface#fireDeliveryFailure(org.jdiameter.api.RouteException cause, java.lang.String sessionId, org.jdiameter.api.Message message, org.jdiameter.api.Peer peer)
+   */
+  public void fireDeliveryFailure(RouteException cause, String sessionId, Message message, Peer peer) {
+    DeliveryFailure event = new DeliveryFailureImpl(cause, message,
+        peer != null ? new DiameterIdentity(peer.getUri().toString()) : null);
+    FireableEventType eventId = eventIdCache.getEventId(eventLookup, EventIDCache.DELIVERY_FAILURE);
+    this.fireEvent(event, getActivityHandle(sessionId), eventId, null, true);
+  }
+  
   /**
    * {@inheritDoc}
    */
@@ -1212,5 +1240,4 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
 
     return new DiameterIdentity[0];
   }
-
 }
