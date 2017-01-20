@@ -23,6 +23,7 @@
 package org.mobicents.slee.resource.diameter.gx;
 
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +66,6 @@ import net.java.slee.resource.diameter.gx.events.GxCreditControlRequest;
 import net.java.slee.resource.diameter.gx.events.GxReAuthRequest;
 
 
-import org.jboss.mx.util.MBeanServerLocator;
 import org.jdiameter.api.Answer;
 import org.jdiameter.api.ApplicationId;
 import org.jdiameter.api.Avp;
@@ -83,7 +83,7 @@ import org.jdiameter.api.gx.ServerGxSession;
 import org.jdiameter.client.api.ISessionFactory;
 import org.jdiameter.server.impl.app.gx.ServerGxSessionImpl;
 import org.mobicents.diameter.stack.DiameterListener;
-import org.mobicents.diameter.stack.DiameterStackMultiplexerMBean;
+import org.mobicents.diameter.stack.DiameterStackMultiplexerAS7MBean;
 import org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptorContext;
 import org.mobicents.slee.resource.cluster.ReplicatedData;
 import org.mobicents.slee.resource.diameter.AbstractClusteredDiameterActivityManagement;
@@ -178,7 +178,7 @@ public class DiameterGxResourceAdaptor implements ResourceAdaptor, DiameterListe
     // Diameter Specific Properties ----------------------------------------
     private Stack stack;
     private ObjectName diameterMultiplexerObjectName;
-    private DiameterStackMultiplexerMBean diameterMux;
+    private DiameterStackMultiplexerAS7MBean diameterMux;
     // Default Failure Handling
     // Base Factories
     private DiameterAvpFactory baseAvpFactory;
@@ -291,12 +291,11 @@ public class DiameterGxResourceAdaptor implements ResourceAdaptor, DiameterListe
 
             this.diameterMultiplexerObjectName = new ObjectName("diameter.mobicents:service=DiameterStackMultiplexer");
 
-            final Object object = MBeanServerLocator.locateJBoss().invoke(this.diameterMultiplexerObjectName,
-                  "getMultiplexerMBean", new Object[]{}, new String[]{});
+            Object object = ManagementFactory.getPlatformMBeanServer().invoke(this.diameterMultiplexerObjectName, "getMultiplexerMBean", new Object[]{}, new String[]{});
 
-            if (object instanceof DiameterStackMultiplexerMBean) {
-                this.diameterMux = (DiameterStackMultiplexerMBean) object;
-            }          
+            if(object instanceof DiameterStackMultiplexerAS7MBean) {
+                this.diameterMux = (DiameterStackMultiplexerAS7MBean) object;
+            }
 
             // Initialize the protocol stack
             initStack();

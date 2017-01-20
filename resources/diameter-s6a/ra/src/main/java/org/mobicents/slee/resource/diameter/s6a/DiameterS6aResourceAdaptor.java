@@ -24,6 +24,7 @@ package org.mobicents.slee.resource.diameter.s6a;
 
 import static org.jdiameter.client.impl.helpers.Parameters.MessageTimeOut;
 
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +66,6 @@ import net.java.slee.resource.diameter.s6a.events.PurgeUERequest;
 import net.java.slee.resource.diameter.s6a.events.ResetRequest;
 import net.java.slee.resource.diameter.s6a.events.UpdateLocationRequest;
 
-import org.jboss.mx.util.MBeanServerLocator;
 import org.jdiameter.api.Answer;
 import org.jdiameter.api.ApplicationId;
 import org.jdiameter.api.AvpDataException;
@@ -86,7 +86,7 @@ import org.jdiameter.api.s6a.ServerS6aSession;
 import org.jdiameter.api.sh.ServerShSession;
 import org.jdiameter.client.api.ISessionFactory;
 import org.mobicents.diameter.stack.DiameterListener;
-import org.mobicents.diameter.stack.DiameterStackMultiplexerMBean;
+import org.mobicents.diameter.stack.DiameterStackMultiplexerAS7MBean;
 import org.mobicents.slee.resource.diameter.DiameterActivityManagement;
 import org.mobicents.slee.resource.diameter.LocalDiameterActivityManagement;
 import org.mobicents.slee.resource.diameter.ValidatorImpl;
@@ -188,7 +188,7 @@ public class DiameterS6aResourceAdaptor implements ResourceAdaptor, DiameterList
   private long activityRemoveDelay = 30000;
 
   private ObjectName diameterMultiplexerObjectName = null;
-  private DiameterStackMultiplexerMBean diameterMux = null;
+  private DiameterStackMultiplexerAS7MBean diameterMux = null;
 
   // Base Factories
   private DiameterAvpFactory baseAvpFactory = null;
@@ -264,11 +264,10 @@ public class DiameterS6aResourceAdaptor implements ResourceAdaptor, DiameterList
 
       this.diameterMultiplexerObjectName = new ObjectName("diameter.mobicents:service=DiameterStackMultiplexer");
 
+      Object object = ManagementFactory.getPlatformMBeanServer().invoke(this.diameterMultiplexerObjectName, "getMultiplexerMBean", new Object[]{}, new String[]{});
 
-      Object object = MBeanServerLocator.locateJBoss().invoke(this.diameterMultiplexerObjectName, "getMultiplexerMBean", new Object[]{}, new String[]{});
-
-      if (object instanceof DiameterStackMultiplexerMBean) {
-        this.diameterMux = (DiameterStackMultiplexerMBean) object;
+      if(object instanceof DiameterStackMultiplexerAS7MBean) {
+        this.diameterMux = (DiameterStackMultiplexerAS7MBean) object;
       }
 
       // Initialize the protocol stack
