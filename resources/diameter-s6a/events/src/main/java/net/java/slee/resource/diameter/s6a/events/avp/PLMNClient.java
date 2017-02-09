@@ -23,7 +23,6 @@
 package net.java.slee.resource.diameter.s6a.events.avp;
 
 import net.java.slee.resource.diameter.base.events.avp.Enumerated;
-import org.apache.bcel.generic.BREAKPOINT;
 
 import java.io.Serializable;
 
