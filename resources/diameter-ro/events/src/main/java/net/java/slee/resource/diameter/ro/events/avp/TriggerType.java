@@ -358,13 +358,13 @@ public class TriggerType implements Enumerated, Serializable {
 
     case _CHANGE_IN_SERVING_NODE: return CHANGE_IN_SERVING_NODE;
 
-      default: {
-        if(type != _TMPL_SERVED_IN_DEGRADED_MODE) {
-          throw new IllegalArgumentException("Invalid TriggerType value: " + type);
-        } else {
-          return TMPL_SERVED_IN_DEGRADED_MODE;
-        }
+    default: {
+      if(type != _TMPL_SERVED_IN_DEGRADED_MODE) {
+        throw new IllegalArgumentException("Invalid TriggerType value: " + type);
+      } else {
+        return TMPL_SERVED_IN_DEGRADED_MODE;
       }
+    }
     }
   }
 
@@ -423,23 +423,23 @@ public class TriggerType implements Enumerated, Serializable {
 
     case _CHANGEINQOS_TRANSFER_DELAY: return "CHANGEINQOS_TRANSFER_DELAY";
 
-      case _CHANGE_IN_MEDIA_COMPOSITION: return "CHANGE_IN_MEDIA_COMPOSITION";
+    case _CHANGE_IN_MEDIA_COMPOSITION: return "CHANGE_IN_MEDIA_COMPOSITION";
 
-      case _CHANGE_IN_THRSHLD_OF_PARTICIPANTS_NMB: return "CHANGE_IN_THRSHLD_OF_PARTICIPANTS_NMB";
+    case _CHANGE_IN_THRSHLD_OF_PARTICIPANTS_NMB: return "CHANGE_IN_THRSHLD_OF_PARTICIPANTS_NMB";
 
-      case _CHANGE_IN_USER_PARTICIPATING_TYPE: return "CHANGE_IN_USER_PARTICIPATING_TYPE";
+    case _CHANGE_IN_USER_PARTICIPATING_TYPE: return "CHANGE_IN_USER_PARTICIPATING_TYPE";
 
-      case _CHANGE_IN_SERVICE_CONDITION: return "CHANGE_IN_SERVICE_CONDITION";
+    case _CHANGE_IN_SERVICE_CONDITION: return "CHANGE_IN_SERVICE_CONDITION";
 
-      case _CHANGE_IN_SERVING_NODE: return "CHANGE_IN_SERVING_NODE";
+    case _CHANGE_IN_SERVING_NODE: return "CHANGE_IN_SERVING_NODE";
 
-      default: {
-        if(value != _TMPL_SERVED_IN_DEGRADED_MODE) {
-          return "<Invalid Value>";
-        } else {
-          return "TMPL_SERVED_IN_DEGRADED_MODE";
-        }
+    default: {
+      if(value != _TMPL_SERVED_IN_DEGRADED_MODE) {
+        return "<Invalid Value>";
+      } else {
+        return "TMPL_SERVED_IN_DEGRADED_MODE";
       }
+    }
     }
   }
 
