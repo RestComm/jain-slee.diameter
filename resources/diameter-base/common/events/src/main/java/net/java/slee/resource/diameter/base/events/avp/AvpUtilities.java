@@ -22,15 +22,6 @@
 
 package net.java.slee.resource.diameter.base.events.avp;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.net.InetAddress;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.jdiameter.api.Avp;
 import org.jdiameter.api.AvpDataException;
@@ -45,6 +36,15 @@ import org.mobicents.diameter.dictionary.AvpDictionary;
 import org.mobicents.diameter.dictionary.AvpRepresentation;
 import org.mobicents.slee.resource.diameter.base.events.avp.DiameterAvpImpl;
 import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
+
+import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.net.InetAddress;
+import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * This class contains some handy methods for working with AVPs in messages and other AVPs.
@@ -226,9 +226,12 @@ public class AvpUtilities {
     switch(avpCode) {
       case Avp.SESSION_ID:
         //(...) All messages pertaining to a specific session MUST include only one Session-Id AVP (...)
-        set.removeAvp(avpCode);
-        // (...) the Session-Id SHOULD appear immediately following the Diameter Header
-        set.insertAvp(0, avpCode, value, vendorId, isMandatory, isProtected, isOctetString);
+        if(isSessionIdSet(set)) {
+          logger.warn("Session-Id AVP value already defined. Change to: " + value + " impossible at this stage." );
+        } else {
+          // (...) the Session-Id SHOULD appear immediately following the Diameter Header
+          set.insertAvp(0, avpCode, value, vendorId, isMandatory, isProtected, isOctetString);
+        }
         break;
       case Avp.ORIGIN_HOST:
       case Avp.ORIGIN_REALM:
@@ -480,9 +483,12 @@ public class AvpUtilities {
     switch(avpCode) {
       case Avp.SESSION_ID:
         //(...) All messages pertaining to a specific session MUST include only one Session-Id AVP (...)
-        set.removeAvp(avpCode);
-        // (...) the Session-Id SHOULD appear immediately following the Diameter Header
-        set.insertAvp(0, avpCode, value, vendorId, isMandatory, isProtected, false);
+        if(isSessionIdSet(set)) {
+          logger.warn("Session-Id AVP value already defined. Change to: " + value + " impossible at this stage.");
+        } else {
+          // (...) the Session-Id SHOULD appear immediately following the Diameter Header
+          set.insertAvp(0, avpCode, value, vendorId, isMandatory, isProtected, false);
+        }
         break;
       case Avp.ORIGIN_HOST:
       case Avp.ORIGIN_REALM:
@@ -1441,7 +1447,6 @@ public class AvpUtilities {
    * @param parent the Message/Grouped AVP where AVP will be added to, for validation purposes. if null, no validation is performed.
    * @param avpCode the code of the AVP
    * @param set the Vendor-Id of the AVP
-   * @param value the value of the AVP to add
    */
   public static AvpSet setAvpAsGrouped(Object parent, int avpCode, AvpSet set, DiameterAvp[] childs) {
     return setAvpAsGrouped(parent, avpCode, _DEFAULT_VENDOR_ID, set, childs);
@@ -1607,9 +1612,12 @@ public class AvpUtilities {
     switch(avpCode) {
       case Avp.SESSION_ID:
         //(...) All messages pertaining to a specific session MUST include only one Session-Id AVP (...)
-        set.removeAvp(avpCode);
-        // (...) the Session-Id SHOULD appear immediately following the Diameter Header
-        set.insertAvp(0, avpCode, value, vendorId, isMandatory, isProtected);
+        if(isSessionIdSet(set)) {
+          logger.warn("Session-Id AVP value already defined. Change to: " + value + " impossible at this stage." );
+        } else {
+          // (...) the Session-Id SHOULD appear immediately following the Diameter Header
+          set.insertAvp(0, avpCode, value, vendorId, isMandatory, isProtected);
+        }
         break;
       case Avp.ORIGIN_HOST:
       case Avp.ORIGIN_REALM:
@@ -2224,10 +2232,13 @@ public class AvpUtilities {
     else {
       switch (avpCode) {
         case Avp.SESSION_ID:
-            //(...) All messages pertaining to a specific session MUST include only one Session-Id AVP (...)
-            set.removeAvp(avpCode);
+          //(...) All messages pertaining to a specific session MUST include only one Session-Id AVP (...)
+          if(isSessionIdSet(set)) {
+            logger.warn("Session-Id AVP value already defined. Change is impossible at this stage." );
+          } else {
             // (...) the Session-Id SHOULD appear immediately following the Diameter Header
             set.insertAvp(0, avpCode, avp.byteArrayValue(), avp.getVendorId(), avp.getMandatoryRule() != DiameterAvp.FLAG_RULE_MUSTNOT, avp.getProtectedRule() == DiameterAvp.FLAG_RULE_MUST);
+          }
           break;
         case Avp.ORIGIN_HOST: 
         case Avp.ORIGIN_REALM: 
@@ -2518,6 +2529,26 @@ public class AvpUtilities {
 
   private static DiameterAvp createAvpInternal(long vendorID, int avpCode, byte[] value) {
     return createAvp(avpCode, vendorID, value, null, DiameterAvpImpl.class);
+  }
+
+  /**
+   * Checks if Session-ID AVP value is set
+   *
+   * @param set AVPs set to be checked
+   * @return true if not empty Session-Id value is found; false otherwise.
+     */
+  private static boolean isSessionIdSet(AvpSet set) {
+    boolean result = false;
+    try {
+      Avp sessionId = set.getAvp(Avp.SESSION_ID);
+      if(sessionId != null && sessionId.getUTF8String().length() > 0) {
+        result = true;
+      }
+    } catch (Exception e) {
+      logger.warn("Error while getting Session-Id AVP value in isSessionIdSet method. Assuming it is not set.", e);
+    }
+
+    return result;
   }
 
 }
