@@ -106,9 +106,9 @@ public class S13ClientSessionImpl extends S13SessionImpl implements S13ClientSes
 
   public void sendMEIdentityCheckRequest(MEIdentityCheckRequest ecr) throws IOException {
     DiameterMessageImpl msg = (DiameterMessageImpl) ecr;
-    JMEIdentityCheckRequestImpl answer = new JMEIdentityCheckRequestImpl((Request) msg.getGenericData());
+    JMEIdentityCheckRequestImpl request = new JMEIdentityCheckRequestImpl((Request) msg.getGenericData());
     try {
-      appSession.sendMEIdentityCheckRequest(answer);
+      appSession.sendMEIdentityCheckRequest(request);
     }
     catch (org.jdiameter.api.validation.AvpNotAllowedException anae) {
       throw new AvpNotAllowedException(anae.getMessage(), anae.getAvpCode(), anae.getVendorId());
