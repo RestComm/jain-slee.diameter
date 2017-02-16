@@ -25,6 +25,7 @@
 		<module>resources/diameter-gq</module>
 		<module>resources/diameter-rx</module>
 		<module>resources/diameter-s6a</module>
+		<module>resources/diameter-s13</module>
 		<module>enablers/hss-client</module>
 	</modules>
 
