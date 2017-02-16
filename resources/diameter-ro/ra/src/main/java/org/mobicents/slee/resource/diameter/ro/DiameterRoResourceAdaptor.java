@@ -22,28 +22,6 @@
 
 package org.mobicents.slee.resource.diameter.ro;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.management.ObjectName;
-import javax.naming.OperationNotSupportedException;
-import javax.slee.Address;
-import javax.slee.facilities.EventLookupFacility;
-import javax.slee.facilities.Tracer;
-import javax.slee.resource.ActivityFlags;
-import javax.slee.resource.ActivityHandle;
-import javax.slee.resource.ConfigProperties;
-import javax.slee.resource.EventFlags;
-import javax.slee.resource.FailureReason;
-import javax.slee.resource.FireableEventType;
-import javax.slee.resource.InvalidConfigurationException;
-import javax.slee.resource.Marshaler;
-import javax.slee.resource.ReceivableService;
-import javax.slee.resource.ResourceAdaptor;
-import javax.slee.resource.ResourceAdaptorContext;
-import javax.slee.resource.SleeEndpoint;
-
 import net.java.slee.resource.diameter.Validator;
 import net.java.slee.resource.diameter.base.CreateActivityException;
 import net.java.slee.resource.diameter.base.DiameterActivity;
@@ -64,7 +42,6 @@ import net.java.slee.resource.diameter.ro.RoProvider;
 import net.java.slee.resource.diameter.ro.RoServerSessionActivity;
 import net.java.slee.resource.diameter.ro.events.RoCreditControlAnswer;
 import net.java.slee.resource.diameter.ro.events.RoCreditControlRequest;
-
 import org.jboss.mx.util.MBeanServerLocator;
 import org.jdiameter.api.Answer;
 import org.jdiameter.api.ApplicationId;
@@ -114,6 +91,27 @@ import org.mobicents.slee.resource.diameter.cca.handlers.DiameterExtRAInterface;
 import org.mobicents.slee.resource.diameter.ro.events.RoCreditControlAnswerImpl;
 import org.mobicents.slee.resource.diameter.ro.events.RoCreditControlRequestImpl;
 import org.mobicents.slee.resource.diameter.ro.handlers.RoSessionFactory;
+
+import javax.management.ObjectName;
+import javax.naming.OperationNotSupportedException;
+import javax.slee.Address;
+import javax.slee.facilities.EventLookupFacility;
+import javax.slee.facilities.Tracer;
+import javax.slee.resource.ActivityFlags;
+import javax.slee.resource.ActivityHandle;
+import javax.slee.resource.ConfigProperties;
+import javax.slee.resource.EventFlags;
+import javax.slee.resource.FailureReason;
+import javax.slee.resource.FireableEventType;
+import javax.slee.resource.InvalidConfigurationException;
+import javax.slee.resource.Marshaler;
+import javax.slee.resource.ReceivableService;
+import javax.slee.resource.ResourceAdaptor;
+import javax.slee.resource.ResourceAdaptorContext;
+import javax.slee.resource.SleeEndpoint;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Diameter Ro Resource Adaptor
@@ -1090,9 +1088,21 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
       this.ra = ra;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public RoClientSessionActivity createRoClientSessionActivity() throws CreateActivityException {
+      return createRoClientSessionActivity(null);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public RoClientSessionActivity createRoClientSessionActivity(String sessionId) throws CreateActivityException {
       try {
-        ClientRoSession session = ((ISessionFactory) stack.getSessionFactory()).getNewAppSession(null, authApplicationIds.get(0), ClientRoSession.class, new Object[]{});
+        ClientRoSession session = ((ISessionFactory) stack.getSessionFactory()).getNewAppSession(sessionId, authApplicationIds.get(0), ClientRoSession.class, new Object[]{});
         sessionCreated(session);
         if (session == null) {
           tracer.severe("Failure creating Ro Client Session (null).");
@@ -1106,8 +1116,20 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
       }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public RoClientSessionActivity createRoClientSessionActivity(DiameterIdentity destinationHost, DiameterIdentity destinationRealm) throws CreateActivityException {
-      RoClientSessionActivityImpl clientSession = (RoClientSessionActivityImpl) this.createRoClientSessionActivity();
+      return this.createRoClientSessionActivity(null, destinationHost, destinationRealm);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public RoClientSessionActivity createRoClientSessionActivity(String sessionId, DiameterIdentity destinationHost, DiameterIdentity destinationRealm) throws CreateActivityException {
+      RoClientSessionActivityImpl clientSession = (RoClientSessionActivityImpl) this.createRoClientSessionActivity(sessionId);
 
       clientSession.setDestinationHost(destinationHost);
       clientSession.setDestinationRealm(destinationRealm);
@@ -1115,14 +1137,26 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
       return clientSession;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public RoAvpFactory getRoAvpFactory() {
       return this.ra.roAvpFactory;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public RoMessageFactory getRoMessageFactory() {
       return this.ra.roMessageFactory;
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public RoCreditControlAnswer sendRoCreditControlRequest(RoCreditControlRequest ccr) throws IOException {
       try {
         DiameterActivityImpl activity = (DiameterActivityImpl) getActivity(getActivityHandle(ccr.getSessionId()));

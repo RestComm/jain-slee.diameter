@@ -22,13 +22,13 @@
 
 package net.java.slee.resource.diameter.ro;
 
-import java.io.IOException;
-
 import net.java.slee.resource.diameter.Validator;
 import net.java.slee.resource.diameter.base.CreateActivityException;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 import net.java.slee.resource.diameter.ro.events.RoCreditControlAnswer;
 import net.java.slee.resource.diameter.ro.events.RoCreditControlRequest;
+
+import java.io.IOException;
 
 /**
  * The SBB interface for the Diameter Ro Resource Adaptor.
@@ -65,7 +65,7 @@ public interface RoProvider {
   public RoAvpFactory getRoAvpFactory();
 
   /**
-   * Create a new activity to send and receive Diameter messages.
+   * Create a new activity to send and receive Diameter messages. Session ID is auto generated.
    * 
    * @return a DiameterActivity
    * @throws CreateActivityException if the RA could not create the activity for any reason
@@ -73,14 +73,33 @@ public interface RoProvider {
   public RoClientSessionActivity createRoClientSessionActivity() throws CreateActivityException;
 
   /**
+   * Create a new activity to send and receive Diameter messages identified by a given session ID.
+   * @param sessionId - custom unique sessionId value to be used
+   * @return a DiameterActivity
+   * @throws CreateActivityException
+   */
+  public RoClientSessionActivity createRoClientSessionActivity(String sessionId) throws CreateActivityException;
+
+  /**
    * Create a new activity to send and receive Diameter messages.
-   * 
+   *
    * @param destinationHost a destination host to automatically put in all messages
-   * @param destinationRealm a destination realm to automatically put in all messages 
-   * @return a DiameterActivity 
+   * @param destinationRealm a destination realm to automatically put in all messages
+   * @return a DiameterActivity
    * @throws CreateActivityException if the RA could not create the activity for any reason
    */
   public RoClientSessionActivity createRoClientSessionActivity(DiameterIdentity destinationHost, DiameterIdentity destinationRealm) throws CreateActivityException;
+
+  /**
+   * Create a new activity to send and receive Diameter messages identified by a given session ID.
+   *
+   * @param sessionId - custom unique sessionId value to be used
+   * @param destinationHost a destination host to automatically put in all messages
+   * @param destinationRealm a destination realm to automatically put in all messages
+   * @return a DiameterActivity
+   * @throws CreateActivityException if the RA could not create the activity for any reason
+   */
+  public RoClientSessionActivity createRoClientSessionActivity(String sessionId, DiameterIdentity destinationHost, DiameterIdentity destinationRealm) throws CreateActivityException;
 
   /**
    * Send a Credit-Control-Request message to the appropriate peers, and block until the response is received then return it.
