@@ -11,7 +11,7 @@
 	<artifactId>s13-ra-release</artifactId>
   <version>1.0.0.FINAL</version>
 
-	<name>Mobicents :: Diameter Resources :: ${pom.artifactId}</name>
+	<name>Restcomm :: Diameter Resources :: ${pom.artifactId}</name>
 
 	<profiles>
 		<profile>

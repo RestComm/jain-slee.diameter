@@ -52,6 +52,7 @@ import org.mobicents.slee.resource.diameter.base.events.avp.GroupedAvpImpl;
  * 
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
+ * @author <a href="mailto:grzegorz.figiel@pro-ids.com"> Grzegorz Figiel (ProIDS sp. z o.o.)</a>
  */
 public class AvpUtilities {
 
@@ -224,6 +225,8 @@ public class AvpUtilities {
 
     switch(avpCode) {
       case Avp.SESSION_ID:
+        //(...) All messages pertaining to a specific session MUST include only one Session-Id AVP (...)
+        set.removeAvp(avpCode);
         // (...) the Session-Id SHOULD appear immediately following the Diameter Header
         set.insertAvp(0, avpCode, value, vendorId, isMandatory, isProtected, isOctetString);
         break;
@@ -476,6 +479,8 @@ public class AvpUtilities {
 
     switch(avpCode) {
       case Avp.SESSION_ID:
+        //(...) All messages pertaining to a specific session MUST include only one Session-Id AVP (...)
+        set.removeAvp(avpCode);
         // (...) the Session-Id SHOULD appear immediately following the Diameter Header
         set.insertAvp(0, avpCode, value, vendorId, isMandatory, isProtected, false);
         break;
@@ -1601,6 +1606,8 @@ public class AvpUtilities {
 
     switch(avpCode) {
       case Avp.SESSION_ID:
+        //(...) All messages pertaining to a specific session MUST include only one Session-Id AVP (...)
+        set.removeAvp(avpCode);
         // (...) the Session-Id SHOULD appear immediately following the Diameter Header
         set.insertAvp(0, avpCode, value, vendorId, isMandatory, isProtected);
         break;
@@ -2216,9 +2223,11 @@ public class AvpUtilities {
     }
     else {
       switch (avpCode) {
-        case Avp.SESSION_ID:          
-          // (...) the Session-Id SHOULD appear immediately following the Diameter Header
-          set.insertAvp(0, avpCode, avp.byteArrayValue(), avp.getVendorId(), avp.getMandatoryRule() != DiameterAvp.FLAG_RULE_MUSTNOT, avp.getProtectedRule() == DiameterAvp.FLAG_RULE_MUST);
+        case Avp.SESSION_ID:
+            //(...) All messages pertaining to a specific session MUST include only one Session-Id AVP (...)
+            set.removeAvp(avpCode);
+            // (...) the Session-Id SHOULD appear immediately following the Diameter Header
+            set.insertAvp(0, avpCode, avp.byteArrayValue(), avp.getVendorId(), avp.getMandatoryRule() != DiameterAvp.FLAG_RULE_MUSTNOT, avp.getProtectedRule() == DiameterAvp.FLAG_RULE_MUST);
           break;
         case Avp.ORIGIN_HOST: 
         case Avp.ORIGIN_REALM: 
