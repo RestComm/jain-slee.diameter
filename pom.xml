@@ -13,6 +13,10 @@
 
 	<packaging>pom</packaging>
 
+	<properties>
+		<maven.du.plugin.version>4.0.2</maven.du.plugin.version>
+	</properties>
+
 	<build>
 		<plugins>
 			<plugin>
