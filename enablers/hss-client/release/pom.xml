@@ -38,7 +38,6 @@
 										<copy overwrite="true" file="${basedir}/build.xml" todir="${release.dir}/enablers/hss-client">
 											<filterset>
 												<filter token="JBOSS.PATH" value="${jboss.path}" />
-												<filter token="JBOSS.CONFIG" value="${node}" />
 											</filterset>
 										</copy>
 									</tasks>

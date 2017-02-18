@@ -2,9 +2,9 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.restcomm</groupId>
-		<artifactId>restcomm-parent</artifactId>
-		<version>3.0.6</version>
+		<groupId>org.mobicents.servers.jainslee</groupId>
+		<artifactId>restcomm-slee-parent</artifactId>
+		<version>3.0.7</version>
 	</parent>
 
 	<groupId>org.mobicents.servers.jainslee.diameter</groupId>

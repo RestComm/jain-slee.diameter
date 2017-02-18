@@ -26,9 +26,9 @@
 
 	<properties>
 		<!-- Mobicents Diameter Components Versions -->
-		<restcomm.diameter.jdiameter.version>1.7.0-SNAPSHOT</restcomm.diameter.jdiameter.version>
-		<restcomm.diameter.mux.version>1.7.0-SNAPSHOT</restcomm.diameter.mux.version>
-		<restcomm.slee.version>3.0.0-SNAPSHOT</restcomm.slee.version>
+		<restcomm.diameter.jdiameter.version>1.7.0.134</restcomm.diameter.jdiameter.version>
+		<restcomm.diameter.mux.version>1.7.0.134</restcomm.diameter.mux.version>
+		<restcomm.slee.version>${restcomm.jain.slee.version}</restcomm.slee.version>
 		<!-- Documentation Related Properties -->
 		<docs.profile>restcomm</docs.profile>
 		<docs.ra.name>Diameter Base</docs.ra.name>
