@@ -34,6 +34,7 @@ import net.java.slee.resource.diameter.base.events.DiameterMessage;
 import net.java.slee.resource.diameter.base.events.ReAuthAnswer;
 import net.java.slee.resource.diameter.base.events.SessionTerminationAnswer;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
+import net.java.slee.resource.diameter.cca.events.RequestTimeout;
 import net.java.slee.resource.diameter.cca.events.RequestTxTimeout;
 import net.java.slee.resource.diameter.ro.RoAvpFactory;
 import net.java.slee.resource.diameter.ro.RoClientSessionActivity;
@@ -86,6 +87,7 @@ import org.mobicents.slee.resource.diameter.base.events.ReAuthRequestImpl;
 import org.mobicents.slee.resource.diameter.base.events.SessionTerminationAnswerImpl;
 import org.mobicents.slee.resource.diameter.base.events.SessionTerminationRequestImpl;
 import org.mobicents.slee.resource.diameter.base.handlers.DiameterRAInterface;
+import org.mobicents.slee.resource.diameter.cca.events.RequestTimeoutImpl;
 import org.mobicents.slee.resource.diameter.cca.events.RequestTxTimeoutImpl;
 import org.mobicents.slee.resource.diameter.cca.handlers.DiameterExtRAInterface;
 import org.mobicents.slee.resource.diameter.ro.events.RoCreditControlAnswerImpl;
@@ -643,8 +645,19 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
    * (non-Javadoc)
    * @see org.mobicents.slee.resource.diameter.cca.handlers.DiameterExtRAInterface#fireTimeout(java.lang.String sessionId, org.jdiameter.api.Message message, org.jdiameter.api.Peer peer)
    */
-  public void fireTimeout(String sessionId, Message message, Peer peer) {
+  public void fireTxTimeout(String sessionId, Message message, Peer peer) {
     RequestTxTimeout event = new RequestTxTimeoutImpl(message,
+        peer != null ? new DiameterIdentity(peer.getUri().toString()) : null);
+    FireableEventType eventId = eventIdCache.getEventId(eventLookup, EventIDCache.REQUEST_TX_TIMEOUT);
+    this.fireEvent(event, getActivityHandle(sessionId), eventId, null, true);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see org.mobicents.slee.resource.diameter.cca.handlers.DiameterExtRAInterface#fireTimeout(java.lang.String sessionId, org.jdiameter.api.Message message, org.jdiameter.api.Peer peer)
+   */
+  public void fireTimeout(String sessionId, Message message, Peer peer) {
+    RequestTimeout event = new RequestTimeoutImpl(message,
         peer != null ? new DiameterIdentity(peer.getUri().toString()) : null);
     FireableEventType eventId = eventIdCache.getEventId(eventLookup, EventIDCache.REQUEST_TIMEOUT);
     this.fireEvent(event, getActivityHandle(sessionId), eventId, null, true);

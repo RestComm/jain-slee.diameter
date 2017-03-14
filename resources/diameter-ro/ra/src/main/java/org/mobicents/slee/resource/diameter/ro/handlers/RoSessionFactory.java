@@ -86,6 +86,11 @@ public class RoSessionFactory extends RoSessionFactoryImpl {
   public void doReAuthRequest(ClientRoSession session, ReAuthRequest request) throws InternalException {
     ra.fireEvent(session.getSessionId(), request.getMessage());
   }
+
+  @Override
+  public void doRequestTxTimeout(ClientRoSession session, Message msg, Peer peer) throws InternalException {
+    ra.fireTxTimeout(session.getSessionId(), msg, peer);
+  }
   
   @Override
   public void doRequestTimeout(ClientRoSession session, Message msg, Peer peer) throws InternalException {

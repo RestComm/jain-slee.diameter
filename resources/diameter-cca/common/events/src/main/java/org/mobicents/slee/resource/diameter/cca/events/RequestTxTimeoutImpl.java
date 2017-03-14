@@ -25,7 +25,6 @@ package org.mobicents.slee.resource.diameter.cca.events;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 import net.java.slee.resource.diameter.cca.events.RequestTxTimeout;
 
-import org.jdiameter.api.Avp;
 import org.jdiameter.api.Message;
 
 /**
@@ -74,7 +73,7 @@ public class RequestTxTimeoutImpl implements RequestTxTimeout {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("\r\n");
-    sb.append("+--------------------------- Request timeout ---------------------------------+\r\n");
+    sb.append("+--------------------------- Request tx timeout ---------------------------------+\r\n");
     sb.append("| Last selected peer:  ").append(peer).append("\r\n");
     sb.append("| Timeout for message: ").append(request).append("\r\n");
     sb.append("|   Application-Id..........").append(request.getApplicationId()).append("\r\n");

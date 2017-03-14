@@ -35,14 +35,23 @@ import org.mobicents.slee.resource.diameter.base.handlers.DiameterRAInterface;
 public interface DiameterExtRAInterface extends DiameterRAInterface {
 
   /**
-   * Makes RA fire timeout event.
+   * Makes RA fire tx timeout event.
    * 
    * @param sessionId
    * @param message
    * @param peer
    */
+  public void fireTxTimeout(String sessionId, Message message, Peer peer);
+
+  /**
+   * Makes RA fire timeout event.
+   *
+   * @param sessionId
+   * @param message
+   * @param peer
+   */
   public void fireTimeout(String sessionId, Message message, Peer peer);
-  
+
   /**
    * Makes RA fire delivery failure event.
    * 
@@ -51,5 +60,5 @@ public interface DiameterExtRAInterface extends DiameterRAInterface {
    * @param message
    * @param peer
    */
-  public void fireDeliveryFailure(RouteException cause, String session, Message msg, Peer peer);
+  public void fireDeliveryFailure(RouteException cause, String sessionId, Message message, Peer peer);
 }

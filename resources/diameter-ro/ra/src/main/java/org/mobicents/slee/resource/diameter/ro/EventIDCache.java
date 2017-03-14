@@ -77,7 +77,8 @@ public class EventIDCache {
   public static final String DELIVERY_FAILURE            = BASE_PACKAGE_PREFIX + "DeliveryFailure";
   public static final String ERROR_ANSWER                = BASE_PACKAGE_PREFIX + "ErrorAnswer";
   public static final String EXTENSION_DIAMETER_MESSAGE  = BASE_PACKAGE_PREFIX + "ExtensionDiameterMessage";
-  public static final String REQUEST_TIMEOUT             = RO_PACKAGE_PREFIX + "RequestTxTimeout";
+  public static final String REQUEST_TX_TIMEOUT          = RO_PACKAGE_PREFIX + "RequestTxTimeout";
+  public static final String REQUEST_TIMEOUT             = RO_PACKAGE_PREFIX + "RequestTimeout";
 
   private static final String VENDOR  = "java.net";
   private static final String VERSION = "0.8";

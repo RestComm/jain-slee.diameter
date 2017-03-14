@@ -359,6 +359,10 @@ public class RoFactoriesTest implements IRoMessageFactory, ServerRoSessionListen
 		// NO-OP
 	}
 
+	public void doRequestTxTimeout(ClientRoSession clientRoSession, Message message, Peer peer) throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
+		// NO-OP
+	}
+
 	public void doRequestTimeout(ClientRoSession session, Message msg, Peer peer) throws InternalException {
     // NO-OP
   }
