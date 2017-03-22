@@ -17,6 +17,6 @@
 			<artifactId>restcomm-slee-ra-diameter-base-common-events</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-  </dependencies>
+	</dependencies>
 
 </project>
