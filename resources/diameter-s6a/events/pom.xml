@@ -17,11 +17,6 @@
 			<artifactId>restcomm-slee-ra-diameter-base-common-events</artifactId>
 			<version>${project.version}</version>
 		</dependency>
-    <dependency>
-      <groupId>bcel</groupId>
-      <artifactId>bcel</artifactId>
-      <version>5.1</version>
-    </dependency>
   </dependencies>
 
 </project>
