@@ -35,7 +35,6 @@
 				<version>${restcomm.slee.version}</version>
 			</dependency>
 		</dependencies>
-
 	</dependencyManagement>
 
 </project>

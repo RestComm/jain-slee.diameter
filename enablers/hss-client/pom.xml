@@ -35,7 +35,14 @@
 
 	<profiles>
 		<profile>
-			<id>release</id>
+			<id>release-jboss5</id>
+			<modules>
+				<module>docs</module>
+				<module>release</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>release-wildfly</id>
 			<modules>
 				<module>docs</module>
 				<module>release</module>

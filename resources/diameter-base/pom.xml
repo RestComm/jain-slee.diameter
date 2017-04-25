@@ -26,8 +26,8 @@
 
 	<properties>
 		<!-- Mobicents Diameter Components Versions -->
-		<restcomm.diameter.jdiameter.version>1.7.0.134</restcomm.diameter.jdiameter.version>
-		<restcomm.diameter.mux.version>1.7.0.134</restcomm.diameter.mux.version>
+		<restcomm.diameter.jdiameter.version>1.7.0-SNAPSHOT</restcomm.diameter.jdiameter.version>
+		<restcomm.diameter.mux.version>1.7.0-SNAPSHOT</restcomm.diameter.mux.version>
 		<restcomm.slee.version>${restcomm.jain.slee.version}</restcomm.slee.version>
 		<!-- Documentation Related Properties -->
 		<docs.profile>restcomm</docs.profile>
@@ -38,7 +38,14 @@
 
 	<profiles>
 		<profile>
-			<id>release</id>
+			<id>release-jboss5</id>
+			<modules>
+				<module>docs</module>
+				<module>release</module>
+			</modules>
+		</profile>
+		<profile>
+			<id>release-wildfly</id>
 			<modules>
 				<module>docs</module>
 				<module>release</module>
