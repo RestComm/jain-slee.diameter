@@ -22,7 +22,10 @@
 
 package org.mobicents.slee.resource.diameter.ro.tests.factories;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 import net.java.slee.resource.diameter.cca.events.avp.CcRequestType;
 import net.java.slee.resource.diameter.ro.RoAvpFactory;
@@ -36,7 +39,9 @@ import org.jdiameter.api.Answer;
 import org.jdiameter.api.ApplicationId;
 import org.jdiameter.api.IllegalDiameterStateException;
 import org.jdiameter.api.InternalException;
+import org.jdiameter.api.Message;
 import org.jdiameter.api.OverloadException;
+import org.jdiameter.api.Peer;
 import org.jdiameter.api.Request;
 import org.jdiameter.api.RouteException;
 import org.jdiameter.api.Stack;
@@ -116,7 +121,7 @@ public class RoFactoriesTest implements IRoMessageFactory, ServerRoSessionListen
 	public RoFactoriesTest() {
 		try {
 			serverSession = new ServerRoSessionImpl(new ServerRoSessionDataLocalImpl(), this, (ISessionFactory) stack.getSessionFactory(), this, null, null);
-			clientSession = new ClientRoSessionImpl(new ClientRoSessionDataLocalImpl(), this, (ISessionFactory) stack.getSessionFactory(), this, null, null);
+			clientSession = new ClientRoSessionImpl(new ClientRoSessionDataLocalImpl(), this, null, (ISessionFactory) stack.getSessionFactory(), this, null, null);
 			roServerSession = new RoServerSessionActivityImpl(roMessageFactory, roAvpFactory, serverSession, new DiameterIdentity("127.0.0.2"), new DiameterIdentity("mobicents.org"),
 					stack);
 			roClientSession = new RoClientSessionActivityImpl(roMessageFactory, roAvpFactory, clientSession, new DiameterIdentity("127.0.0.2"), new DiameterIdentity("mobicents.org"),
@@ -354,6 +359,18 @@ public class RoFactoriesTest implements IRoMessageFactory, ServerRoSessionListen
 		// NO-OP
 	}
 
+	public void doRequestTxTimeout(ClientRoSession clientRoSession, Message message, Peer peer) throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
+		// NO-OP
+	}
+
+	public void doRequestTimeout(ClientRoSession session, Message msg, Peer peer) throws InternalException {
+    // NO-OP
+  }
+	
+	public void doPeerUnavailability(RouteException cause, ClientRoSession session, Message msg, Peer peer) throws InternalException {
+    // NO-OP
+  }
+	
 	public int getDefaultDDFHValue() {
 		// NO-OP
 		return 0;

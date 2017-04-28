@@ -24,4 +24,11 @@
     <event-class-name>net.java.slee.resource.diameter.cca.events.CreditControlAnswer</event-class-name>
   </event-definition>
 
+  <event-definition>
+    <event-type-name>net.java.slee.resource.diameter.cca.events.RequestTxTimeout</event-type-name>
+    <event-type-vendor>java.net</event-type-vendor>
+    <event-type-version>0.8</event-type-version>
+    <event-class-name>net.java.slee.resource.diameter.cca.events.RequestTxTimeout</event-class-name>
+  </event-definition>
+
 </event-jar>

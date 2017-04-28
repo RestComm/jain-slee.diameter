@@ -112,6 +112,13 @@
   </event-definition>
 
   <event-definition>
+    <event-type-name>net.java.slee.resource.diameter.base.events.DeliveryFailure</event-type-name>
+    <event-type-vendor>java.net</event-type-vendor>
+    <event-type-version>0.8</event-type-version>
+    <event-class-name>net.java.slee.resource.diameter.base.events.DeliveryFailure</event-class-name>
+  </event-definition>
+
+  <event-definition>
     <event-type-name>net.java.slee.resource.diameter.base.events.ErrorAnswer</event-type-name>
     <event-type-vendor>java.net</event-type-vendor>
     <event-type-version>0.8</event-type-version>

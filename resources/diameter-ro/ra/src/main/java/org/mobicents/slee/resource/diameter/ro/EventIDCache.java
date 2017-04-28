@@ -74,8 +74,11 @@ public class EventIDCache {
     eventNames = Collections.unmodifiableMap(eventsTemp);
   }
 
+  public static final String DELIVERY_FAILURE            = BASE_PACKAGE_PREFIX + "DeliveryFailure";
   public static final String ERROR_ANSWER                = BASE_PACKAGE_PREFIX + "ErrorAnswer";
   public static final String EXTENSION_DIAMETER_MESSAGE  = BASE_PACKAGE_PREFIX + "ExtensionDiameterMessage";
+  public static final String REQUEST_TX_TIMEOUT          = RO_PACKAGE_PREFIX + "RequestTxTimeout";
+  public static final String REQUEST_TIMEOUT             = RO_PACKAGE_PREFIX + "RequestTimeout";
 
   private static final String VENDOR  = "java.net";
   private static final String VERSION = "0.8";
@@ -122,7 +125,7 @@ public class EventIDCache {
    * @param eventName
    * @return
    */
-  private FireableEventType getEventId(EventLookupFacility eventLookupFacility, String eventName) {
+  public FireableEventType getEventId(EventLookupFacility eventLookupFacility, String eventName) {
 
     FireableEventType eventType = eventIds.get(eventName);
     if (eventType == null) {
