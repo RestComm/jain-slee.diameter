@@ -25,6 +25,7 @@ package org.mobicents.slee.resource.diameter.sh.server;
 import static org.jdiameter.client.impl.helpers.Parameters.MessageTimeOut;
 
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Future;
@@ -66,7 +67,6 @@ import net.java.slee.resource.diameter.sh.server.ShServerMessageFactory;
 import net.java.slee.resource.diameter.sh.server.ShServerProvider;
 import net.java.slee.resource.diameter.sh.server.ShServerSubscriptionActivity;
 
-import org.jboss.mx.util.MBeanServerLocator;
 import org.jdiameter.api.Answer;
 import org.jdiameter.api.ApplicationId;
 import org.jdiameter.api.AvpDataException;
@@ -81,7 +81,7 @@ import org.jdiameter.api.sh.ServerShSession;
 import org.jdiameter.client.api.ISessionFactory;
 import org.jdiameter.server.impl.app.sh.ShServerSessionImpl;
 import org.mobicents.diameter.stack.DiameterListener;
-import org.mobicents.diameter.stack.DiameterStackMultiplexerMBean;
+import org.mobicents.diameter.stack.DiameterStackMultiplexerAS7MBean;
 import org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptorContext;
 import org.mobicents.slee.resource.diameter.AbstractClusteredDiameterActivityManagement;
 import org.mobicents.slee.resource.diameter.DiameterActivityManagement;
@@ -181,7 +181,7 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
   private long activityRemoveDelay = 30000;
 
   private ObjectName diameterMultiplexerObjectName = null;
-  private DiameterStackMultiplexerMBean diameterMux = null;
+  private DiameterStackMultiplexerAS7MBean diameterMux = null;
 
   private DiameterAvpFactory baseAvpFactory = null;
   private DiameterShAvpFactory shAvpFactory = null;
@@ -300,10 +300,10 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
 
       this.diameterMultiplexerObjectName = new ObjectName("diameter.mobicents:service=DiameterStackMultiplexer");
 
-      Object object = MBeanServerLocator.locateJBoss().invoke(this.diameterMultiplexerObjectName, "getMultiplexerMBean", EMPTY_OBJECT_ARRAY, EMPTY_STRING_ARRAY);
+      Object object = ManagementFactory.getPlatformMBeanServer().invoke(this.diameterMultiplexerObjectName, "getMultiplexerMBean", new Object[]{}, new String[]{});
 
-      if(object instanceof DiameterStackMultiplexerMBean) {
-        this.diameterMux = (DiameterStackMultiplexerMBean) object;
+      if(object instanceof DiameterStackMultiplexerAS7MBean) {
+        this.diameterMux = (DiameterStackMultiplexerAS7MBean) object;
       }
 
       //this.activities = new ConcurrentHashMap<ActivityHandle, DiameterActivity>();
