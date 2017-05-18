@@ -73,7 +73,7 @@
 											</fileset>
 										</copy>
 										<copy overwrite="true" file="${basedir}/../du/target/build.xml" tofile="${release.dir}/resources/diameter-gq/du-management.xml" />
-										<copy overwrite="true" file="${basedir}/build-wildfly.xml" todir="${release.dir}/resources/diameter-gq/build.xml">
+										<copy overwrite="true" file="${basedir}/build-wildfly.xml" tofile="${release.dir}/resources/diameter-gq/build.xml">
 											<filterset>
 												<filter token="JBOSS.PATH" value="${jboss.path}" />
 											</filterset>
