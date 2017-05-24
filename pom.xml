@@ -14,7 +14,6 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<maven.du.plugin.version>4.0.2</maven.du.plugin.version>
 		<maven.du.plugin.jboss5.version>3.0.14</maven.du.plugin.jboss5.version>
 		<maven.du.plugin.wildfly.version>4.0.2</maven.du.plugin.wildfly.version>
 	</properties>
