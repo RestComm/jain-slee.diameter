@@ -38,7 +38,10 @@
 
 	<profiles>
 		<profile>
-			<id>release-jboss5</id>
+			<id>du-jboss5</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<build>
 				<finalName>diameter-${pom.artifactId}-${pom.version}</finalName>
 				<plugins>
@@ -56,6 +59,36 @@
 							</execution>
 						</executions>
 					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>du-wildfly</id>
+			<build>
+				<finalName>diameter-${pom.artifactId}-${pom.version}</finalName>
+				<plugins>
+					<plugin>
+						<groupId>org.mobicents.tools</groupId>
+						<artifactId>maven-du-plugin</artifactId>
+						<version>${maven.du.plugin.wildfly.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>copy-dependencies</goal>
+									<goal>generate-descriptor</goal>
+									<goal>generate-ant-management-script</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>deploy-module-jboss5</id>
+			<build>
+				<plugins>
 					<plugin>
 						<artifactId>maven-antrun-plugin</artifactId>
 						<executions>
@@ -89,24 +122,9 @@
 			</build>
 		</profile>
 		<profile>
-			<id>release-wildfly</id>
+			<id>deploy-module-wildfly</id>
 			<build>
-				<finalName>diameter-${pom.artifactId}-${pom.version}</finalName>
 				<plugins>
-					<plugin>
-						<groupId>org.mobicents.tools</groupId>
-						<artifactId>maven-du-plugin</artifactId>
-						<version>${maven.du.plugin.wildfly.version}</version>
-						<executions>
-							<execution>
-								<goals>
-									<goal>copy-dependencies</goal>
-									<goal>generate-descriptor</goal>
-									<goal>generate-ant-management-script</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
 					<plugin>
 						<artifactId>maven-antrun-plugin</artifactId>
 						<executions>
