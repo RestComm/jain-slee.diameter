@@ -24,6 +24,7 @@ package org.mobicents.slee.resource.diameter.s13;
 
 import static org.jdiameter.client.impl.helpers.Parameters.MessageTimeOut;
 
+import java.lang.management.ManagementFactory;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -243,10 +244,23 @@ public class DiameterS13ResourceAdaptor implements ResourceAdaptor, DiameterList
 
       this.diameterMultiplexerObjectName = new ObjectName("diameter.mobicents:service=DiameterStackMultiplexer");
 
+      Object object = null;
 
-      Object object = MBeanServerLocator.locateJBoss().invoke(this.diameterMultiplexerObjectName, "getMultiplexerMBean", new Object[]{}, new String[]{});
+      if (ManagementFactory.getPlatformMBeanServer().isRegistered(this.diameterMultiplexerObjectName)) {
+        // trying to get via MBeanServer
+        object = ManagementFactory.getPlatformMBeanServer().invoke(this.diameterMultiplexerObjectName, "getMultiplexerMBean", new Object[]{}, new String[]{});
+        if (tracer.isInfoEnabled()) {
+          tracer.info("Trying to get via Platform MBeanServer: " + this.diameterMultiplexerObjectName + ", object: " + object);
+        }
+      } else {
+        // trying to get via locateJBoss
+        object = MBeanServerLocator.locateJBoss().invoke(this.diameterMultiplexerObjectName, "getMultiplexerMBean", new Object[]{}, new String[]{});
+        if (tracer.isInfoEnabled()) {
+          tracer.info("Trying to get via JBoss MBeanServer: " + this.diameterMultiplexerObjectName + ", object: " + object);
+        }
+      }
 
-      if (object instanceof DiameterStackMultiplexerMBean) {
+      if (object != null && object instanceof DiameterStackMultiplexerMBean) {
         this.diameterMux = (DiameterStackMultiplexerMBean) object;
       }
 

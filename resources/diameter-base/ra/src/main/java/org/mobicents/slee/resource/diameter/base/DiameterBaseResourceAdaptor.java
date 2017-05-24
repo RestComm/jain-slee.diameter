@@ -70,6 +70,7 @@ import net.java.slee.resource.diameter.base.events.avp.AvpUtilities;
 import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 
+import org.jboss.mx.util.MBeanServerLocator;
 import org.jdiameter.api.Answer;
 import org.jdiameter.api.ApplicationId;
 import org.jdiameter.api.Avp;
@@ -98,7 +99,7 @@ import org.jdiameter.client.impl.parser.MessageParser;
 import org.jdiameter.server.impl.app.acc.ServerAccSessionImpl;
 import org.jdiameter.server.impl.app.auth.ServerAuthSessionImpl;
 import org.mobicents.diameter.stack.DiameterListener;
-import org.mobicents.diameter.stack.DiameterStackMultiplexerAS7MBean;
+import org.mobicents.diameter.stack.DiameterStackMultiplexerMBean;
 import org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor;
 import org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptorContext;
 import org.mobicents.slee.resource.cluster.ReplicatedData;
@@ -208,7 +209,7 @@ public class DiameterBaseResourceAdaptor implements ResourceAdaptor, DiameterLis
   private long activityRemoveDelay = 30000;
 
   private ObjectName diameterMultiplexerObjectName = null;
-  private DiameterStackMultiplexerAS7MBean diameterMux = null;
+  private DiameterStackMultiplexerMBean diameterMux = null;
 
   private DiameterAvpFactory avpFactory = null;
 
@@ -288,11 +289,24 @@ public class DiameterBaseResourceAdaptor implements ResourceAdaptor, DiameterLis
       }
 
       this.diameterMultiplexerObjectName = new ObjectName("diameter.mobicents:service=DiameterStackMultiplexer");
+      Object object = null;
 
-      Object object = ManagementFactory.getPlatformMBeanServer().invoke(this.diameterMultiplexerObjectName, "getMultiplexerMBean", new Object[]{}, new String[]{});
+      if (ManagementFactory.getPlatformMBeanServer().isRegistered(this.diameterMultiplexerObjectName)) {
+        // trying to get via MBeanServer
+        object = ManagementFactory.getPlatformMBeanServer().invoke(this.diameterMultiplexerObjectName, "getMultiplexerMBean", new Object[]{}, new String[]{});
+        if (tracer.isInfoEnabled()) {
+          tracer.info("Trying to get via Platform MBeanServer: " + this.diameterMultiplexerObjectName + ", object: " + object);
+        }
+      } else {
+        // trying to get via locateJBoss
+        object = MBeanServerLocator.locateJBoss().invoke(this.diameterMultiplexerObjectName, "getMultiplexerMBean", new Object[]{}, new String[]{});
+        if (tracer.isInfoEnabled()) {
+          tracer.info("Trying to get via JBoss MBeanServer: " + this.diameterMultiplexerObjectName + ", object: " + object);
+        }
+      }
 
-      if(object instanceof DiameterStackMultiplexerAS7MBean) {
-        this.diameterMux = (DiameterStackMultiplexerAS7MBean) object;
+      if (object != null && object instanceof DiameterStackMultiplexerMBean) {
+        this.diameterMux = (DiameterStackMultiplexerMBean) object;
       }
 
       // this.activities = new ConcurrentHashMap<ActivityHandle, DiameterActivity>();
