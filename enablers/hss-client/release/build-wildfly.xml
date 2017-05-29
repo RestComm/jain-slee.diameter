@@ -4,14 +4,26 @@
 	<property name="home" value="${ant.file.Release_build}/../" />
 	<property name="jboss.home" value="${home}/@JBOSS.PATH@/" />
 
-	<target name="deploy">
-		<ant antfile="${home}/du-management.xml" target="deploy" inheritAll="false">
+	<target name="deploy-all">
+		<ant antfile="${home}../../resources/diameter-base/build.xml" target="deploy" inheritAll="false">
+			<property name="jboss.home" value="${jboss.home}" />
+		</ant>
+		<ant antfile="${home}../../resources/diameter-sh-client/build.xml" target="deploy" inheritAll="false">
+			<property name="jboss.home" value="${jboss.home}" />
+		</ant>
+		<ant antfile="${home}../../enablers/hss-client/du-management.xml" target="deploy" inheritAll="false">
 			<property name="jboss.home" value="${jboss.home}" />
 		</ant>
 	</target>
 
-	<target name="undeploy">
-		<ant antfile="${home}/du-management.xml" target="undeploy" inheritAll="false">
+	<target name="undeploy-all">
+		<ant antfile="${home}../../enablers/hss-client/du-management.xml" target="undeploy" inheritAll="false">
+			<property name="jboss.home" value="${jboss.home}" />
+		</ant>
+		<ant antfile="${home}../../resources/diameter-sh-client/build.xml" target="undeploy" inheritAll="false">
+			<property name="jboss.home" value="${jboss.home}" />
+		</ant>
+		<ant antfile="${home}../../resources/diameter-base/build.xml" target="undeploy" inheritAll="false">
 			<property name="jboss.home" value="${jboss.home}" />
 		</ant>
 	</target>
