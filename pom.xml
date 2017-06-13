@@ -47,12 +47,28 @@
 		<module>resources/diameter-s13</module>
 		<module>enablers/hss-client</module>
 	</modules>
-
+	
 	<scm>
 		<connection>scm:git:https://github.com/RestComm/jain-slee.diameter.git</connection>
 		<developerConnection>scm:git:git@github.com:RestComm/jain-slee.diameter.git</developerConnection>
 		<url>https://github.com/RestComm/jain-slee.diameter</url>
 	</scm>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.mobicents.servers.jainslee.api</groupId>
+				<artifactId>jain-slee-11-ext</artifactId>
+				<version>${telscale.jain.slee.version}</version>
+			</dependency>	
+			<dependency>
+            		<groupId>org.slf4j</groupId>
+            		<artifactId>slf4j-api</artifactId>
+            		<version>1.7.21</version>
+            		<scope>provided</scope>
+        	</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<profiles>
 		<profile>
