@@ -49,7 +49,7 @@ public abstract class RfSessionActivityImpl extends DiameterActivityImpl impleme
 
   private static final long serialVersionUID = 4602851199202393775L;
 
-  protected RfMessageFactory rfMessageFactory;
+  protected transient RfMessageFactory rfMessageFactory;
 
   /**
    * @param messageFactory
