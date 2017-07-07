@@ -344,7 +344,8 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
       ((RoMessageFactoryImpl)this.roMessageFactory).setApplicationId(firstAppId.getVendorId(), firstAppId.getAuthAppId());
 
       this.sessionFactory = this.stack.getSessionFactory();
-      this.ccaSessionFactory = new RoSessionFactory( this, sessionFactory,defaultDirectDebitingFailureHandling, defaultCreditControlFailureHandling,  defaultValidityTime, defaultTxTimerValue);
+      this.ccaSessionFactory = new RoSessionFactory(this, sessionFactory, defaultDirectDebitingFailureHandling, defaultCreditControlFailureHandling,
+          defaultValidityTime, defaultTxTimerValue);
 
       // Register CCA App Session Factories
       ((ISessionFactory) sessionFactory).registerAppFacory(ServerRoSession.class, this.ccaSessionFactory);
@@ -662,18 +663,18 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
     FireableEventType eventId = eventIdCache.getEventId(eventLookup, EventIDCache.REQUEST_TIMEOUT);
     this.fireEvent(event, getActivityHandle(sessionId), eventId, null, true);
   }
-  
+
   /*
    * (non-Javadoc)
    * @see org.mobicents.slee.resource.diameter.cca.handlers.DiameterExtRAInterface#fireDeliveryFailure(org.jdiameter.api.RouteException cause, java.lang.String sessionId, org.jdiameter.api.Message message, org.jdiameter.api.Peer peer)
    */
-  public void fireDeliveryFailure(RouteException cause, String sessionId, Message message, Peer peer) {
+  public void fireDeliveryFailure(String sessionId, Message message, Peer peer, RouteException cause) {
     DeliveryFailure event = new DeliveryFailureImpl(cause, message,
         peer != null ? new DiameterIdentity(peer.getUri().toString()) : null);
     FireableEventType eventId = eventIdCache.getEventId(eventLookup, EventIDCache.DELIVERY_FAILURE);
     this.fireEvent(event, getActivityHandle(sessionId), eventId, null, true);
   }
-  
+
   /**
    * {@inheritDoc}
    */

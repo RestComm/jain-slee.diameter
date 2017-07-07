@@ -91,14 +91,14 @@ public class RoSessionFactory extends RoSessionFactoryImpl {
   public void doRequestTxTimeout(ClientRoSession session, Message msg, Peer peer) throws InternalException {
     ra.fireTxTimeout(session.getSessionId(), msg, peer);
   }
-  
+
   @Override
   public void doRequestTimeout(ClientRoSession session, Message msg, Peer peer) throws InternalException {
     ra.fireTimeout(session.getSessionId(), msg, peer);
   }
-  
+
   @Override
-  public void doPeerUnavailability(RouteException cause, ClientRoSession session, Message msg, Peer peer) throws InternalException {
-    ra.fireDeliveryFailure(cause, session.getSessionId(), msg, peer);
+  public void doPeerUnavailability(ClientRoSession session, Message msg, Peer peer, RouteException cause) throws InternalException {
+    ra.fireDeliveryFailure(session.getSessionId(), msg, peer, cause);
   }
 }

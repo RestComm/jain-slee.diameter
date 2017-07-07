@@ -57,5 +57,5 @@ public interface DiameterExtRAInterface extends DiameterRAInterface {
    * @param message
    * @param peer
    */
-  public void fireDeliveryFailure(RouteException cause, String sessionId, Message message, Peer peer);
+  public void fireDeliveryFailure(String sessionId, Message message, Peer peer, RouteException cause);
 }
