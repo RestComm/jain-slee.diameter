@@ -12,13 +12,11 @@
 	<name>Restcomm :: Diameter Resources :: ${pom.artifactId}</name>
 
 	<dependencies>
-		<!-- common library -->
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
 			<artifactId>restcomm-slee-ra-diameter-cca-common-library</artifactId>
 			<version>${pom.version}</version>
 		</dependency>
-		<!-- components -->
 		<dependency>
 			<groupId>${pom.groupId}</groupId>
 			<artifactId>restcomm-slee-ra-diameter-cca-events</artifactId>
@@ -64,6 +62,9 @@
 		</profile>
 		<profile>
 			<id>du-wildfly</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<build>
 				<finalName>diameter-${pom.artifactId}-${pom.version}</finalName>
 				<plugins>

@@ -32,9 +32,6 @@
 	<profiles>
 		<profile>
 			<id>du-jboss5</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<build>
 				<finalName>diameter-${pom.artifactId}-${pom.version}</finalName>
 				<plugins>
@@ -57,6 +54,9 @@
 		</profile>
 		<profile>
 			<id>du-wildfly</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
 			<build>
 				<finalName>diameter-${pom.artifactId}-${pom.version}</finalName>
 				<plugins>
