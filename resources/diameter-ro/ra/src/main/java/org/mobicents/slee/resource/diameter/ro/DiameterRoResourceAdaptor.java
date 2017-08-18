@@ -127,6 +127,8 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
   // Config Properties Names ---------------------------------------------
 
   private static final String AUTH_APPLICATION_IDS = "authApplicationIds";
+  private static final String DEFAULT_DIRECT_DEBITING_FAILURE_HANDLING = "defaultDirectDebitingFailureHandling";
+  private static final String DEFAULT_CREDIT_CONTROL_FAILURE_HANDLING = "defaultCreditControlFailureHandling";
 
   // Config Properties Values --------------------------------------------
 
@@ -148,7 +150,7 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
    * text object holds references to a number of objects that are of interest to many Resource Adaptors. A
    * resource adaptor object is provided with a ResourceAdaptorContext object when the setResour-
    * ceAdaptorContext method of the ResourceAdaptor interface is invoked on the resource adaptor
-   * object. 
+   * object.
    */
   private ResourceAdaptorContext raContext;
 
@@ -172,7 +174,7 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
    * A tracer is represented in the SLEE by the Tracer interface. Notification sources access the Tracer Facil-
    * ity through a Tracer object that implements the Tracer interface. A Tracer object can be obtained by
    * SBBs via the SbbContext interface, by resource adaptor entities via the ResourceAdaptorContext
-   * interface, and by profiles via the ProfileContext interface. 
+   * interface, and by profiles via the ProfileContext interface.
    */
   private Tracer tracer;
 
@@ -185,8 +187,8 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
   private DiameterStackMultiplexerMBean diameterMux = null;
 
   // Default Failure Handling
-  protected int defaultDirectDebitingFailureHandling = 0;
-  protected int defaultCreditControlFailureHandling = 1;
+  protected int defaultDirectDebitingFailureHandling;
+  protected int defaultCreditControlFailureHandling;
 
   // Validity and TxTimer values (in seconds)
   protected long defaultValidityTime = 30;
@@ -405,6 +407,8 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
 
   public void raConfigure(ConfigProperties properties) {
     parseApplicationIds((String) properties.getProperty(AUTH_APPLICATION_IDS).getValue());
+    defaultDirectDebitingFailureHandling = (Integer) properties.getProperty(DEFAULT_DIRECT_DEBITING_FAILURE_HANDLING).getValue();
+    defaultCreditControlFailureHandling = (Integer) properties.getProperty(DEFAULT_CREDIT_CONTROL_FAILURE_HANDLING).getValue();
   }
 
   private void parseApplicationIds(String appIdsStr) {
@@ -417,7 +421,7 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
 
       for(String appId : appIdsStrings) {
         String[] vendorAndAppId = appId.split(":");
-        authApplicationIds.add(ApplicationId.createByAuthAppId(Long.valueOf(vendorAndAppId[0]), Long.valueOf(vendorAndAppId[1]))); 
+        authApplicationIds.add(ApplicationId.createByAuthAppId(Long.valueOf(vendorAndAppId[0]), Long.valueOf(vendorAndAppId[1])));
       }
     }
   }
@@ -439,10 +443,10 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
   }
 
   public void raConfigurationUpdate(ConfigProperties properties) {
-    // this ra does not support config update while entity is active    
+    // this ra does not support config update while entity is active
   }
 
-  // Interface access methods -------------------------------------------- 
+  // Interface access methods --------------------------------------------
 
   public Object getResourceAdaptorInterface(String className) {
     // this ra implements a single ra type
@@ -460,7 +464,7 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
   // Event filtering methods ---------------------------------------------
 
   public void serviceActive(ReceivableService serviceInfo) {
-    eventIDFilter.serviceActive(serviceInfo);   
+    eventIDFilter.serviceActive(serviceInfo);
   }
 
   public void serviceStopping(ReceivableService serviceInfo) {
@@ -468,7 +472,7 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
   }
 
   public void serviceInactive(ReceivableService serviceInfo) {
-    eventIDFilter.serviceInactive(serviceInfo); 
+    eventIDFilter.serviceInactive(serviceInfo);
   }
 
   // Mandatory callback methods ------------------------------------------
@@ -641,7 +645,7 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
 
     this.fireEvent(event, getActivityHandle(sessionId), eventId, null, true);
   }
-  
+
   /*
    * (non-Javadoc)
    * @see org.mobicents.slee.resource.diameter.cca.handlers.DiameterExtRAInterface#fireTimeout(java.lang.String sessionId, org.jdiameter.api.Message message, org.jdiameter.api.Peer peer)
@@ -719,7 +723,7 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
 
   /**
    * Create Event object from a JDiameter message (request or answer)
-   * 
+   *
    * @return a DiameterMessage object wrapping the request/answer
    * @throws OperationNotSupportedException
    */
@@ -757,7 +761,7 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
 
   /**
    * Method for performing tasks when activity is created, such as informing SLEE about it and storing into internal map.
-   * 
+   *
    * @param ac the activity that has been created
    */
   private void addActivity(DiameterActivity ac, boolean suspended) {
@@ -793,7 +797,7 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
 
   /**
    * Initializes the RA Diameter Stack.
-   * 
+   *
    * @throws Exception
    */
   private synchronized void initStack() throws Exception {
@@ -866,11 +870,11 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
 
         // Two calls are required since Ro relies on CCA. CCA does not know anything about Ro so it needs its fields created.
         private void performBeforeReturnCC(RoServerSessionActivityImpl acc) {
-          
+
         }
 
         private void performBeforeReturnCC(RoClientSessionActivityImpl acc) {
-          
+
         }
 
         private void performBeforeReturnRo(RoServerSessionActivityImpl acc, Session session) {
@@ -930,7 +934,7 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
 
   /**
    * Create the Diameter Activity Handle for an given session id
-   * 
+   *
    * @param sessionId the session identifier to create the activity handle from
    * @return a DiameterActivityHandle for the provided sessionId
    */
@@ -1071,7 +1075,7 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
       tracer.severe("Failure Ending Activity with Session-Id[" + sessionId + "]", e);
     }
   }
-  //  
+  //
   //  public void stateChanged(AppSession source, Enum oldState, Enum newState) {
   //    DiameterActivityHandle dah = getActivityHandle(source.getSessionId());
   //    Object activity = getActivity(dah);
@@ -1189,7 +1193,7 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
       return null;
     }
 
-  
+
     private DiameterActivity createActivity(Message message) throws CreateActivityException {
       DiameterActivity activity = activities.get(getActivityHandle(message.getSessionId()));
 
@@ -1225,7 +1229,7 @@ public class DiameterRoResourceAdaptor implements ResourceAdaptor, DiameterListe
           return (DiameterActivity) createRoClientSessionActivity(destinationHost, destinationRealm);
         }
       }
-      
+
       return activity;
     }
 

@@ -31,5 +31,19 @@
       <config-property-value>0:4, 10415:4</config-property-value>
     </config-property>
 
+    <config-property>
+      <description></description>
+      <config-property-name>defaultDirectDebitingFailureHandling</config-property-name>
+      <config-property-type>java.lang.Integer</config-property-type>
+      <config-property-value>0</config-property-value>
+    </config-property>
+
+    <config-property>
+      <description></description>
+      <config-property-name>defaultCreditControlFailureHandling</config-property-name>
+      <config-property-type>java.lang.Integer</config-property-type>
+      <config-property-value>1</config-property-value>
+    </config-property>
+
   </resource-adaptor>
 </resource-adaptor-jar>
