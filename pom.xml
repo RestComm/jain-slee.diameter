@@ -60,7 +60,7 @@
 			<dependency>
 				<groupId>org.mobicents.servers.jainslee.api</groupId>
 				<artifactId>jain-slee-11-ext</artifactId>
-				<version>${telscale.jain.slee.version}</version>
+				<version>${restcomm.jain.slee.version}</version>
 			</dependency>	
 			<dependency>
             		<groupId>org.slf4j</groupId>
