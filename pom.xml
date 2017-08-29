@@ -14,7 +14,7 @@
 	<packaging>pom</packaging>
 
 	<properties>
-		<maven.du.plugin.jboss5.version>6.1.3.7</maven.du.plugin.jboss5.version>
+		<maven.du.plugin.jboss5.version>3.0.14</maven.du.plugin.jboss5.version>
 		<maven.du.plugin.wildfly.version>4.0.2</maven.du.plugin.wildfly.version>
 		<restcomm.jain.slee.version>7.1.79</restcomm.jain.slee.version>
 	</properties>
@@ -107,34 +107,5 @@
 			</snapshots>
 		</repository>
 	</repositories>
-	
-	<pluginRepositories>
-        <pluginRepository>				
-			<id>telscale-releases-repository</id>
-			<name>TelScale Releases Repository</name>
-			<url>http://telestax.artifactoryonline.com/telestax/releases</url>
-			<releases>
-				<enabled>true</enabled>
-				<updatePolicy>never</updatePolicy>
-			</releases>
-			<snapshots>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>telscale-snapshots-repository</id>
-			<name>TelScale Snapshots Repository</name>
-			<url>http://telestax.artifactoryonline.com/telestax/snapshots</url>
-			<releases>
-				<enabled>false</enabled>
-				<updatePolicy>never</updatePolicy>
-			</releases>
-			<snapshots>
-				<enabled>true</enabled>
-				<updatePolicy>never</updatePolicy>
-			</snapshots>
-		</pluginRepository>
-    </pluginRepositories>
     
 </project>
