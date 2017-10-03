@@ -16,7 +16,7 @@
 	<properties>
 		<maven.du.plugin.jboss5.version>3.0.14</maven.du.plugin.jboss5.version>
 		<maven.du.plugin.wildfly.version>4.0.2</maven.du.plugin.wildfly.version>
-		<restcomm.jain.slee.version>7.1.82</restcomm.jain.slee.version>
+		<restcomm.jain.slee.version>2.9.147</restcomm.jain.slee.version>
 	</properties>
 
 	<build>
