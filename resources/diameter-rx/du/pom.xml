@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.mobicents.resources</groupId>
 		<artifactId>restcomm-slee-ra-diameter-rx</artifactId>
-		<version>7.0.0-SNAPSHOT</version>
+		<version>7.2.0-97</version>
 	</parent>
 
 	<artifactId>restcomm-slee-ra-diameter-rx-ra-DU</artifactId>
