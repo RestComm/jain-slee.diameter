@@ -26,8 +26,8 @@
 
 	<properties>
 		<!-- Mobicents Diameter Components Versions -->
-		<restcomm.diameter.jdiameter.version>1.7.0.201</restcomm.diameter.jdiameter.version>
-		<restcomm.diameter.mux.version>1.7.0.201</restcomm.diameter.mux.version>
+		<restcomm.diameter.jdiameter.version>1.7.1-123</restcomm.diameter.jdiameter.version>
+		<restcomm.diameter.mux.version>1.7.1-123</restcomm.diameter.mux.version>
 		<!-- Documentation Related Properties -->
 		<docs.profile>restcomm</docs.profile>
 		<docs.ra.name>Diameter Base</docs.ra.name>
