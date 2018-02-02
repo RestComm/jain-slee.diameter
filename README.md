@@ -21,14 +21,13 @@ The following Diameter applications are natively supported
 - Diameter S6a/S6d (3GPP TS 29.272)
 - Diameter S13 (3GPP TS 29.272)
 
-Questions ?
-========
+## Questions ?
+
 Please ask your question on [StackOverflow](http://stackoverflow.com/questions/tagged/restcomm) or the 
 [Google Groups mailing list](http://groups.google.com/group/restcomm).
 
 
-License
-========
+## License
 
 RestComm is lead by [TeleStax](http://www.telestax.com/), Inc. and developed collaboratively by a community of individual 
 and enterprise contributors.
