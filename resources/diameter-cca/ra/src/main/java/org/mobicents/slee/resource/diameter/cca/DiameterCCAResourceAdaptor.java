@@ -53,7 +53,6 @@ import net.java.slee.resource.diameter.Validator;
 import net.java.slee.resource.diameter.base.CreateActivityException;
 import net.java.slee.resource.diameter.base.DiameterActivity;
 import net.java.slee.resource.diameter.base.DiameterAvpFactory;
-import net.java.slee.resource.diameter.base.DiameterException;
 import net.java.slee.resource.diameter.base.DiameterMessageFactory;
 import net.java.slee.resource.diameter.base.events.DiameterMessage;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
@@ -72,7 +71,6 @@ import org.jdiameter.api.Message;
 import org.jdiameter.api.Peer;
 import org.jdiameter.api.PeerTable;
 import org.jdiameter.api.Request;
-import org.jdiameter.api.Session;
 import org.jdiameter.api.SessionFactory;
 import org.jdiameter.api.Stack;
 import org.jdiameter.api.cca.ClientCCASession;
@@ -81,9 +79,6 @@ import org.jdiameter.client.api.ISessionFactory;
 import org.jdiameter.server.impl.app.cca.ServerCCASessionImpl;
 import org.mobicents.diameter.stack.DiameterListener;
 import org.mobicents.diameter.stack.DiameterStackMultiplexerMBean;
-import org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor;
-import org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptorContext;
-import org.mobicents.slee.resource.diameter.AbstractClusteredDiameterActivityManagement;
 import org.mobicents.slee.resource.diameter.DiameterActivityManagement;
 import org.mobicents.slee.resource.diameter.LocalDiameterActivityManagement;
 import org.mobicents.slee.resource.diameter.ValidatorImpl;
@@ -106,7 +101,7 @@ import org.mobicents.slee.resource.diameter.cca.handlers.CreditControlSessionFac
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a> 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a> 
  */
-public class DiameterCCAResourceAdaptor implements ResourceAdaptor, DiameterListener,DiameterRAInterface, FaultTolerantResourceAdaptor<String, DiameterActivity> {
+public class DiameterCCAResourceAdaptor implements ResourceAdaptor, DiameterListener,DiameterRAInterface {
 
   private static final long serialVersionUID = 1L;
 
@@ -143,11 +138,6 @@ public class DiameterCCAResourceAdaptor implements ResourceAdaptor, DiameterList
    * object. 
    */
   private ResourceAdaptorContext raContext;
-
-  /**
-   * FT/HA version of RA context.
-   */
-  private FaultTolerantResourceAdaptorContext<String, DiameterActivity> ftRAContext;
 
   /**
    * The SLEE endpoint defines the contract between the SLEE and the resource
@@ -249,44 +239,6 @@ public class DiameterCCAResourceAdaptor implements ResourceAdaptor, DiameterList
 
     this.sleeEndpoint = null;
     this.eventLookup = null;
-  }
-
-  // FT Lifecycle methods ----------------------------------------------------- 
-
-  /*
-   * (non-Javadoc)
-   * @see org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#setFaultTolerantResourceAdaptorContext
-   * (org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptorContext)
-   */
-  public void setFaultTolerantResourceAdaptorContext(FaultTolerantResourceAdaptorContext<String, DiameterActivity> ctx) {
-    this.ftRAContext = ctx;
-  }
-
-  /*
-   * (non-Javadoc)
-   * @see org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#unsetFaultTolerantResourceAdaptorContext()
-   */
-  public void unsetFaultTolerantResourceAdaptorContext() {
-    this.ftRAContext = null;
-    //clear this.activities ??
-  }
-
-  // FT methods ---------------------------------------------------------------
-
-  /*
-   * (non-Javadoc)
-   * @see org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#dataRemoved(java.io.Serializable)
-   */
-  public void dataRemoved(String arg0) {
-    this.activities.remove(getActivityHandle(arg0));
-  }
-
-  /* (non-Javadoc)
-   * @see org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#failOver(java.io.Serializable)
-   */
-  public void failOver(String arg0) {
-    throw new UnsupportedOperationException();
-
   }
 
   // Lifecycle again
@@ -778,89 +730,10 @@ public class DiameterCCAResourceAdaptor implements ResourceAdaptor, DiameterList
   }
 
   private void initActivitiesMgmt() {
-    final DiameterRAInterface lst = this;
-    if (this.ftRAContext.isLocal()) {
-      // local mgmt;
-      if(tracer.isInfoEnabled()) {
+	  if(tracer.isInfoEnabled()) {
         tracer.info(raContext.getEntityName() + " -- running in local mode.");
       }
       this.activities = new LocalDiameterActivityManagement(this.raContext, activityRemoveDelay);
-    }
-    else {
-      if(tracer.isInfoEnabled()) {
-        tracer.info(raContext.getEntityName() + " -- running in cluster mode.");
-      }
-      final org.mobicents.slee.resource.cluster.ReplicatedData<String, DiameterActivity> clusteredData = this.ftRAContext.getReplicateData(true);
-
-      // get special one
-      this.activities = new AbstractClusteredDiameterActivityManagement(this.ftRAContext, activityRemoveDelay,this.raContext.getTracer(""), stack, this.raContext.getSleeTransactionManager(), clusteredData) {
-
-        @Override
-        protected void performBeforeReturn(DiameterActivityImpl activity) {
-          // do all the dirty work;
-          try {
-            Session session = null;
-            if (activity.getClass().equals(DiameterActivityImpl.class)) {
-              // check as first. since it requires session recreation.
-              session = this.diameterStack.getSessionFactory().getNewSession(activity.getSessionId());
-              performBeforeReturnOnBase(activity, session);
-              return;
-            }
-            else if (activity instanceof CreditControlClientSession) {
-              CreditControlClientSessionImpl acc = (CreditControlClientSessionImpl) activity;
-              ClientCCASession appSession = this.diameterStack.getSession(activity.getSessionId(), ClientCCASession.class);
-              session = appSession.getSessions().get(0);
-              performBeforeReturnOnBase(activity, session);
-              performBeforeReturnCC(activity, session);
-              acc.setSession(appSession);
-            }
-            else if (activity instanceof CreditControlServerSession) {
-              CreditControlServerSessionImpl acc = (CreditControlServerSessionImpl) activity;
-              ServerCCASession appSession = this.diameterStack.getSession(activity.getSessionId(), ServerCCASession.class);
-              session = appSession.getSessions().get(0);
-              performBeforeReturnOnBase(activity, session);
-              performBeforeReturnCC(activity, session);
-              acc.setSession(appSession);
-            }
-            else {
-              throw new IllegalArgumentException("Unknown activity type: " + activity);
-            }
-          }
-          catch (Exception e) {
-            throw new DiameterException(e);
-          }
-        }
-
-        private void performBeforeReturnOnBase(DiameterActivityImpl ac, Session session) {
-          DiameterMessageFactoryImpl msgFactory = new DiameterMessageFactoryImpl(session, stack, new DiameterIdentity[] {});
-          ac.setAvpFactory(baseAvpFactory);
-          ac.setMessageFactory(msgFactory);
-          ac.setCurrentWorkingSession(session);
-          ac.setSessionListener(lst);
-        }
-
-        private void performBeforeReturnCC(DiameterActivityImpl ac, Session session) {
-          CreditControlSessionImpl ccs = (CreditControlSessionImpl) ac;
-          ccs.setCCAAvpFactory(ccaAvpFactory);
-          ccs.setCCAMessageFactory(ccaMessageFactory);
-        }
-
-        @Override
-        public DiameterActivity get(DiameterActivityHandle handle) {
-          return super.get(handle);
-        }
-
-        @Override
-        public void put(DiameterActivityHandle handle, DiameterActivity activity) {
-          super.put(handle, activity);
-        }
-
-        @Override
-        public DiameterActivity remove(DiameterActivityHandle handle) {
-          return super.remove(handle);
-        }
-      };
-    }
   }
 
   /**

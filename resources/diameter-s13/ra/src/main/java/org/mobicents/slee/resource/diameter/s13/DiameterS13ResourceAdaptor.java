@@ -106,7 +106,7 @@ import org.mobicents.slee.resource.diameter.s13.handlers.S13SessionFactory;
  * @author <a href="mailto:richard.good@smilecoms.com"> Richard Good </a>
  * @author <a href="mailto:paul.carter-brown@smilecoms.com"> Paul Carter-Brown </a>
  */
-public class DiameterS13ResourceAdaptor implements ResourceAdaptor, DiameterListener, DiameterRAInterface/*, FaultTolerantResourceAdaptor<String, DiameterActivity>*/ {
+public class DiameterS13ResourceAdaptor implements ResourceAdaptor, DiameterListener, DiameterRAInterface {
 
   private static final long serialVersionUID = 1L;
 
@@ -135,11 +135,6 @@ public class DiameterS13ResourceAdaptor implements ResourceAdaptor, DiameterList
    * object. 
    */
   private ResourceAdaptorContext raContext;
-
-  //  /**
-  //   * FT/HA version of RA context.
-  //   */
-  //  private FaultTolerantResourceAdaptorContext<String, DiameterActivity> ftRAContext;
 
   /**
    * The SLEE endpoint defines the contract between the SLEE and the resource

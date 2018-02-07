@@ -48,14 +48,12 @@ import javax.transaction.Transaction;
 import net.java.slee.resource.diameter.Validator;
 import net.java.slee.resource.diameter.base.CreateActivityException;
 import net.java.slee.resource.diameter.base.DiameterActivity;
-import net.java.slee.resource.diameter.base.DiameterException;
 import net.java.slee.resource.diameter.base.events.DiameterMessage;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 import net.java.slee.resource.diameter.rf.RfAvpFactory;
 import net.java.slee.resource.diameter.rf.RfClientSessionActivity;
 import net.java.slee.resource.diameter.rf.RfMessageFactory;
 import net.java.slee.resource.diameter.rf.RfProvider;
-import net.java.slee.resource.diameter.rf.RfServerSessionActivity;
 import net.java.slee.resource.diameter.rf.events.RfAccountingAnswer;
 import net.java.slee.resource.diameter.rf.events.RfAccountingRequest;
 
@@ -71,7 +69,6 @@ import org.jdiameter.api.Message;
 import org.jdiameter.api.Peer;
 import org.jdiameter.api.PeerTable;
 import org.jdiameter.api.Request;
-import org.jdiameter.api.Session;
 import org.jdiameter.api.SessionFactory;
 import org.jdiameter.api.Stack;
 import org.jdiameter.api.auth.ClientAuthSession;
@@ -84,8 +81,6 @@ import org.jdiameter.common.api.app.rf.IRfSessionFactory;
 import org.jdiameter.server.impl.app.rf.ServerRfSessionImpl;
 import org.mobicents.diameter.stack.DiameterListener;
 import org.mobicents.diameter.stack.DiameterStackMultiplexerMBean;
-import org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptorContext;
-import org.mobicents.slee.resource.diameter.AbstractClusteredDiameterActivityManagement;
 import org.mobicents.slee.resource.diameter.DiameterActivityManagement;
 import org.mobicents.slee.resource.diameter.LocalDiameterActivityManagement;
 import org.mobicents.slee.resource.diameter.ValidatorImpl;
@@ -109,7 +104,7 @@ import org.mobicents.slee.resource.diameter.rf.handlers.RfSessionFactory;
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
  */
-public class DiameterRfResourceAdaptor implements ResourceAdaptor, DiameterListener, DiameterRAInterface,org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor<String, DiameterActivity> {
+public class DiameterRfResourceAdaptor implements ResourceAdaptor, DiameterListener, DiameterRAInterface {
 
   private static final long serialVersionUID = 1L;
 
@@ -140,11 +135,6 @@ public class DiameterRfResourceAdaptor implements ResourceAdaptor, DiameterListe
    * object. 
    */
   private ResourceAdaptorContext raContext;
-
-  /**
-   * FT/HA version of RA context.
-   */
-  private FaultTolerantResourceAdaptorContext<String, DiameterActivity> ftRAContext;
 
   protected DiameterBaseMarshaler marshaler = new DiameterBaseMarshaler();
   /**
@@ -241,43 +231,6 @@ public class DiameterRfResourceAdaptor implements ResourceAdaptor, DiameterListe
     this.sleeEndpoint = null;
     this.eventLookup = null;
     this.raProvider = null;
-  }
-
-  // FT Lifecycle methods ------------------------------------------------
-
-  /*
-   * (non-Javadoc)
-   * @see org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#setFaultTolerantResourceAdaptorContext
-   * (org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptorContext)
-   */
-  public void setFaultTolerantResourceAdaptorContext(FaultTolerantResourceAdaptorContext<String, DiameterActivity> ctx) {
-    this.ftRAContext = ctx;
-  }
-
-  /*
-   * (non-Javadoc)
-   * @see org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#unsetFaultTolerantResourceAdaptorContext()
-   */
-  public void unsetFaultTolerantResourceAdaptorContext() {
-    this.ftRAContext = null;
-    //clear this.activities ??
-  }
-
-  // FT methods ----------------------------------------------------------
-
-  /*
-   * (non-Javadoc)
-   * @see org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#dataRemoved(java.io.Serializable)
-   */
-  public void dataRemoved(String arg0) {
-    this.activities.remove(getActivityHandle(arg0));
-  }
-
-  /* (non-Javadoc)
-   * @see org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#failOver(java.io.Serializable)
-   */
-  public void failOver(String arg0) {
-    throw new UnsupportedOperationException();
   }
 
   public void raActive() {
@@ -750,102 +703,7 @@ public class DiameterRfResourceAdaptor implements ResourceAdaptor, DiameterListe
   }
 
   private void initActivitiesMgmt() {
-    final DiameterRAInterface lst = this;
-    if (this.ftRAContext.isLocal()) {
-      if(tracer.isInfoEnabled()) {
-        tracer.info(raContext.getEntityName() + " -- running in LOCAL mode.");
-      }
-      this.activities = new LocalDiameterActivityManagement(this.raContext, activityRemoveDelay);
-    }
-    else {
-      tracer.info(raContext.getEntityName() + " -- running in CLUSTER mode.");
-      final org.mobicents.slee.resource.cluster.ReplicatedData<String, DiameterActivity> clusteredData = this.ftRAContext.getReplicateData(true);
-      // get special one
-      this.activities = new AbstractClusteredDiameterActivityManagement(this.ftRAContext, activityRemoveDelay,this.raContext.getTracer(""), stack, this.raContext.getSleeTransactionManager(), clusteredData) {
-
-        @Override
-        protected void performBeforeReturn(DiameterActivityImpl activity) {
-          // do all the dirty work;
-          try {
-            Session session = null;
-            if (activity.getClass().equals(DiameterActivityImpl.class)) {
-              // check as first. since it requires session recreation.
-              // JIC: is this required?
-              session = this.diameterStack.getSessionFactory().getNewSession(activity.getSessionId());
-              performBeforeReturnOnBase(activity, session);
-              return;
-            }
-            else if (activity instanceof RfServerSessionActivity) {
-              RfServerSessionActivityImpl acc = (RfServerSessionActivityImpl) activity;
-              ServerRfSession appSession = this.diameterStack.getSession(activity.getSessionId(), ServerRfSession.class);
-              session = appSession.getSessions().get(0);
-              performBeforeReturnOnBase(activity, session);
-              performBeforeReturnRf(acc);
-              acc.setSession(appSession);
-            }
-            else if (activity instanceof RfClientSessionActivity) {
-              RfClientSessionActivityImpl acc = (RfClientSessionActivityImpl) activity;
-              ClientRfSession appSession = this.diameterStack.getSession(activity.getSessionId(), ClientRfSession.class);
-              session = appSession.getSessions().get(0);
-              performBeforeReturnOnBase(activity, session);
-              performBeforeReturnRf(acc);
-              acc.setSession(appSession);
-            }
-            else {
-              throw new IllegalArgumentException("Unknown activity type: " + activity);
-            }
-          }
-          catch (Exception e) {
-            throw new DiameterException(e);
-          }
-        }
-
-        private void performBeforeReturnOnBase(DiameterActivityImpl ac, Session session) {
-          DiameterMessageFactoryImpl msgFactory = new DiameterMessageFactoryImpl(session, stack, new DiameterIdentity[] {});
-          ac.setAvpFactory(baseAvpFactory);
-          ac.setMessageFactory(msgFactory);
-          ac.setCurrentWorkingSession(session);
-          ac.setSessionListener(lst);
-        }
-
-        private void performBeforeReturnRf(RfClientSessionActivityImpl ac) {
-          // we just have to set factory
-          RfMessageFactoryImpl rfMessageFactory = new RfMessageFactoryImpl(baseMessageFactory, ac.getSessionId(),stack);
-
-          // Set the first configured Application-Id as default for message factory
-          ApplicationId firstAppId = acctApplicationIds.get(0);
-          rfMessageFactory.setApplicationId(firstAppId.getVendorId(), firstAppId.getAcctAppId());
-
-          ac.setRfMessageFactory(rfMessageFactory);
-        }
-
-        private void performBeforeReturnRf(RfServerSessionActivityImpl ac) {
-          // we just have to set factory
-          RfMessageFactoryImpl rfMessageFactory = new RfMessageFactoryImpl(baseMessageFactory,ac.getSessionId(), stack);
-
-          // Set the first configured Application-Id as default for message factory
-          ApplicationId firstAppId = acctApplicationIds.get(0);
-          rfMessageFactory.setApplicationId(firstAppId.getVendorId(), firstAppId.getAcctAppId());
-
-          ac.setRfMessageFactory(rfMessageFactory);
-        }
-
-        @Override
-        public DiameterActivity get(DiameterActivityHandle handle) {
-          return super.get(handle);
-        }
-
-        @Override
-        public void put(DiameterActivityHandle handle, DiameterActivity activity) {
-          super.put(handle, activity);
-        }
-
-        @Override
-        public DiameterActivity remove(DiameterActivityHandle handle) {
-          return super.remove(handle);
-        }
-      };
-    }
+	  this.activities = new LocalDiameterActivityManagement(this.raContext, activityRemoveDelay);
   }
 
   /**

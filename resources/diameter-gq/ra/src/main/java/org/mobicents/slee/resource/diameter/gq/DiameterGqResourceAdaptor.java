@@ -49,7 +49,6 @@ import net.java.slee.resource.diameter.Validator;
 import net.java.slee.resource.diameter.base.CreateActivityException;
 import net.java.slee.resource.diameter.base.DiameterActivity;
 import net.java.slee.resource.diameter.base.DiameterAvpFactory;
-import net.java.slee.resource.diameter.base.DiameterException;
 import net.java.slee.resource.diameter.base.events.DiameterMessage;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
 import net.java.slee.resource.diameter.gq.GqAvpFactory;
@@ -75,7 +74,6 @@ import org.jdiameter.api.Message;
 import org.jdiameter.api.Peer;
 import org.jdiameter.api.PeerTable;
 import org.jdiameter.api.Request;
-import org.jdiameter.api.Session;
 import org.jdiameter.api.SessionFactory;
 import org.jdiameter.api.Stack;
 import org.jdiameter.api.gq.GqClientSession;
@@ -84,9 +82,6 @@ import org.jdiameter.client.api.ISessionFactory;
 import org.jdiameter.server.impl.app.gq.GqServerSessionImpl;
 import org.mobicents.diameter.stack.DiameterListener;
 import org.mobicents.diameter.stack.DiameterStackMultiplexerMBean;
-import org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor;
-import org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptorContext;
-import org.mobicents.slee.resource.diameter.AbstractClusteredDiameterActivityManagement;
 import org.mobicents.slee.resource.diameter.DiameterActivityManagement;
 import org.mobicents.slee.resource.diameter.LocalDiameterActivityManagement;
 import org.mobicents.slee.resource.diameter.ValidatorImpl;
@@ -116,7 +111,7 @@ import org.mobicents.slee.resource.diameter.gq.handlers.GqSessionFactory;
  *
  * @author <a href="mailto:webdev@web-ukraine.info"> Yulian Oifa </a>
  */
-public class DiameterGqResourceAdaptor implements ResourceAdaptor, DiameterListener, DiameterRAInterface, FaultTolerantResourceAdaptor<String, DiameterActivity> {
+public class DiameterGqResourceAdaptor implements ResourceAdaptor, DiameterListener, DiameterRAInterface {
 
   private static final long serialVersionUID = 1L;
 
@@ -144,11 +139,6 @@ public class DiameterGqResourceAdaptor implements ResourceAdaptor, DiameterListe
    * method of the ResourceAdaptor interface is invoked on the resource adaptor object.
    */
   private ResourceAdaptorContext raContext;
-
-  /**
-   * FT/HA version of RA context.
-   */
-  private FaultTolerantResourceAdaptorContext<String, DiameterActivity> ftRAContext;
 
   /**
    * The SLEE endpoint defines the contract between the SLEE and the resource adaptor that enables the resource adaptor to deliver events
@@ -255,46 +245,6 @@ public class DiameterGqResourceAdaptor implements ResourceAdaptor, DiameterListe
     this.sleeEndpoint = null;
     this.eventLookup = null;
     this.raProvider = null;
-  }
-
-  // FT Lifecycle methods ------------------------------------------------
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#setFaultTolerantResourceAdaptorContext
-   * (org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptorContext)
-   */
-  public void setFaultTolerantResourceAdaptorContext(FaultTolerantResourceAdaptorContext<String, DiameterActivity> ctx) {
-    this.ftRAContext = ctx;
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#unsetFaultTolerantResourceAdaptorContext()
-   */
-  public void unsetFaultTolerantResourceAdaptorContext() {
-    this.ftRAContext = null;
-  }
-
-  // FT methods ----------------------------------------------------------
-  /*
-   * (non-Javadoc)
-   * 
-   * @see org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#dataRemoved(java.io.Serializable)
-   */
-  public void dataRemoved(String arg0) {
-    this.activities.remove(getActivityHandle(arg0));
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#failOver(java.io.Serializable)
-   */
-  public void failOver(String arg0) {
-    throw new UnsupportedOperationException();
   }
 
   @Override
@@ -761,124 +711,7 @@ public class DiameterGqResourceAdaptor implements ResourceAdaptor, DiameterListe
   }
 
   private void initActivitiesMgmt() {
-    final DiameterRAInterface lst = this;
-    if (this.ftRAContext.isLocal()) {
-      // local mgmt;
-      if (tracer.isInfoEnabled()) {
-        tracer.info(raContext.getEntityName() + " -- running in LOCAL mode.");
-      }
-      this.activities = new LocalDiameterActivityManagement(this.raContext, this.activityRemoveDelay);
-    }
-    else {
-      if (tracer.isInfoEnabled()) {
-        tracer.info(raContext.getEntityName() + " -- running in CLUSTER mode.");
-      }
-      final org.mobicents.slee.resource.cluster.ReplicatedData<String, DiameterActivity> clusteredData = this.ftRAContext
-          .getReplicateData(true);
-      // get special one
-      this.activities = new AbstractClusteredDiameterActivityManagement(this.ftRAContext, activityRemoveDelay,this.raContext.getTracer(""), stack, this.raContext.getSleeTransactionManager(), clusteredData) {
-
-        @Override
-        protected void performBeforeReturn(DiameterActivityImpl activity) {
-          // do all the dirty work;
-          try {
-            Session session = null;
-            if (activity.getClass().equals(DiameterActivityImpl.class)) {
-              // check as first. since it requires session recreation.
-              // JIC: is this required?
-              session = this.diameterStack.getSessionFactory().getNewSession(activity.getSessionId());
-              performBeforeReturnOnBase(activity, session);
-              return;
-            }
-            else if (activity instanceof GqClientSessionActivity) {
-              GqClientSessionActivityImpl auth = (GqClientSessionActivityImpl) activity;
-              GqClientSession appSession = this.diameterStack.getSession(activity.getSessionId(), GqClientSession.class);
-              session = appSession.getSessions().get(0);
-              performBeforeReturnOnBase(activity, session);
-              performBeforeReturnGq(auth, session);
-              performBeforeReturnAuth(auth);
-              auth.setSession(appSession);
-            }
-            else if (activity instanceof GqServerSessionActivity) {
-              GqServerSessionActivityImpl auth = (GqServerSessionActivityImpl) activity;
-              GqServerSession appSession = this.diameterStack.getSession(activity.getSessionId(), GqServerSession.class);
-              session = appSession.getSessions().get(0);
-              performBeforeReturnOnBase(activity, session);
-              performBeforeReturnGq(auth, session);
-              performBeforeReturnAuth(auth);
-              auth.setSession(appSession);
-            }
-            else {
-              throw new IllegalArgumentException("Unknown activity type: " + activity);
-            }
-          }
-          catch (Exception e) {
-            throw new DiameterException(e);
-          }
-        }
-
-        // Two calls are required since Gq relies on Auth. Auth does not know anything about Gq so it needs its fields created.
-        private void performBeforeReturnAuth(GqServerSessionActivityImpl auth) {
-
-        }
-
-        private void performBeforeReturnAuth(GqClientSessionActivityImpl auth) {
-
-        }
-
-        private void performBeforeReturnGq(GqServerSessionActivityImpl auth, Session session) {
-          GqMessageFactoryImpl messageFactory = new GqMessageFactoryImpl(baseMessageFactory, session.getSessionId(), stack);
-
-          // Set the first configured Application-Id as default for message factory
-          ApplicationId firstAppId = authApplicationIds.get(0);
-          messageFactory.setApplicationId(firstAppId.getVendorId(), firstAppId.getAuthAppId());
-
-          auth.setGqMessageFactory(messageFactory);
-          // acc.setRoAvpFactory(roAvpFactory);
-        }
-
-        private void performBeforeReturnGq(GqClientSessionActivityImpl auth, Session session) {
-          GqMessageFactoryImpl messageFactory = new GqMessageFactoryImpl(baseMessageFactory, session.getSessionId(), stack);
-
-          // Set the first configured Application-Id as default for message factory
-          ApplicationId firstAppId = authApplicationIds.get(0);
-          messageFactory.setApplicationId(firstAppId.getVendorId(), firstAppId.getAuthAppId());
-
-          auth.setGqMessageFactory(messageFactory);
-          // acc.setRoAvpFactory(roAvpFactory);
-        }
-
-        private void performBeforeReturnOnBase(DiameterActivityImpl ac, Session session) {
-          DiameterMessageFactoryImpl msgFactory = new DiameterMessageFactoryImpl(session, stack, new DiameterIdentity[] {});
-          ac.setAvpFactory(baseAvpFactory);
-          ac.setMessageFactory(msgFactory);
-          ac.setCurrentWorkingSession(session);
-          ac.setSessionListener(lst);
-        }
-
-        // private void performBeforeReturnCC(DiameterActivityImpl ac)
-        // {
-        // CreditControlSessionImpl ccs = (CreditControlSessionImpl) ac;
-        // ccs.setCCAAvpFactory(ccaAvpFactory);
-        // ccs.setCCAMessageFactory(ccaMessageFactory);
-        // }
-
-        @Override
-        public DiameterActivity get(DiameterActivityHandle handle) {
-          return super.get(handle);
-        }
-
-        @Override
-        public void put(DiameterActivityHandle handle, DiameterActivity activity) {
-          super.put(handle, activity);
-        }
-
-        @Override
-        public DiameterActivity remove(DiameterActivityHandle handle) {
-          return super.remove(handle);
-        }
-      };
-    }
+	this.activities = new LocalDiameterActivityManagement(this.raContext, this.activityRemoveDelay);
   }
 
   /**

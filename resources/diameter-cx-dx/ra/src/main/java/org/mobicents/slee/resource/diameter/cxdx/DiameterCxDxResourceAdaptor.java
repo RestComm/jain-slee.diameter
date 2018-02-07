@@ -121,7 +121,7 @@ import org.mobicents.slee.resource.diameter.cxdx.handlers.CxDxSessionFactory;
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
  */
-public class DiameterCxDxResourceAdaptor implements ResourceAdaptor, DiameterListener, DiameterRAInterface/*, FaultTolerantResourceAdaptor<String, DiameterActivity>*/  {
+public class DiameterCxDxResourceAdaptor implements ResourceAdaptor, DiameterListener, DiameterRAInterface {
 
   private static final long serialVersionUID = 1L;
 
@@ -152,11 +152,6 @@ public class DiameterCxDxResourceAdaptor implements ResourceAdaptor, DiameterLis
    * object. 
    */
   private ResourceAdaptorContext raContext;
-
-  //  /**
-  //   * FT/HA version of RA context.
-  //   */
-  //  private FaultTolerantResourceAdaptorContext<String, DiameterActivity> ftRAContext;
 
   /**
    * The SLEE endpoint defines the contract between the SLEE and the resource
@@ -262,49 +257,6 @@ public class DiameterCxDxResourceAdaptor implements ResourceAdaptor, DiameterLis
     this.sleeEndpoint = null;
     this.eventLookup = null;
   }
-
-  //// FT Lifecycle methods ------------------------------------------------//  
-  ///*
-  // * (non-Javadoc)
-  // * 
-  // * @seeorg.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#
-  // * setFaultTolerantResourceAdaptorContext
-  // * (org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptorContext)
-  // */
-  //public void setFaultTolerantResourceAdaptorContext(FaultTolerantResourceAdaptorContext<String, DiameterActivity> ctx) {
-  //  this.ftRAContext = ctx;
-  //}
-  //
-  ///*
-  // * (non-Javadoc)
-  // * 
-  // * @seeorg.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#
-  // * unsetFaultTolerantResourceAdaptorContext()
-  // */
-  //public void unsetFaultTolerantResourceAdaptorContext() {
-  //  this.ftRAContext = null;
-  //  //clear this.activities ??
-  //}
-  //  
-  //// FT methods ----------------------------------------------------------
-  //
-  ///*
-  // * (non-Javadoc)
-  // * 
-  // * @see
-  // * org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#dataRemoved
-  // * (java.io.Serializable)
-  // */
-  //public void dataRemoved(String arg0) {
-  //  this.activities.remove(getActivityHandle(arg0));
-  //}
-  //
-  ///* (non-Javadoc)
-  // * @see org.mobicents.slee.resource.cluster.FaultTolerantResourceAdaptor#failOver(java.io.Serializable)
-  // */
-  //public void failOver(String arg0) {
-  //  throw new UnsupportedOperationException();
-  //}
 
   public void raActive() {
     if(tracer.isFineEnabled()) {
@@ -769,90 +721,6 @@ public class DiameterCxDxResourceAdaptor implements ResourceAdaptor, DiameterLis
   }
   private void initActivitiesMgmt() {
     this.activities = new LocalDiameterActivityManagement(this.raContext, this.activityRemoveDelay);
-
-    /* Not Used. No HA for Cx/Dx is needed
-    if (this.ftRAContext.isLocal()) {
-      // local mgmt;
-      if(tracer.isInfoEnabled()) {
-        tracer.info(raContext.getEntityName() + " -- running in LOCAL mode.");
-      }
-      this.activities = new LocalDiameterActivityManagement();
-    }
-    else {
-      if(tracer.isInfoEnabled()) {
-        tracer.info(raContext.getEntityName() + " -- running in CLUSTER mode.");
-      }
-      final org.mobicents.slee.resource.cluster.ReplicatedData<String, DiameterActivity> clusteredData = this.ftRAContext.getReplicateData(true);
-      // get special one
-      this.activities = new AbstractClusteredDiameterActivityManagement(
-          this.raContext.getTracer(""), stack, this.raContext.getSleeTransactionManager(), clusteredData) {
-
-        @Override
-        protected void performBeforeReturn(DiameterActivityImpl activity) {
-          // do all the dirty work;
-          try {
-            Session session = null;
-            if (activity.getClass().equals(DiameterActivityImpl.class)) {
-              // check as first. since it requires session recreation.
-              // JIC
-              session = this.diameterStack.getSessionFactory().getNewSession(activity.getSessionId());
-              performBeforeReturnOnBase(activity, session);
-              return;
-            }
-            else if (activity instanceof CxDxClientSessionActivity) {
-              CxDxClientSessionImpl acc = (CxDxClientSessionImpl) activity;
-              ClientCxDxSession appSession = this.diameterStack.getSession(activity.getSessionId(), ClientCxDxSession.class);
-              session = appSession.getSessions().get(0);
-              performBeforeReturnOnBase(activity, session);
-              performBeforeReturnCxDx(acc, session);
-              acc.setSession(appSession);
-            }
-            else if (activity instanceof CxDxServerSessionActivity) {
-              CxDxServerSessionImpl acc = (CxDxServerSessionImpl) activity;
-              ServerCxDxSession appSession = this.diameterStack.getSession(activity.getSessionId(), ServerCxDxSession.class);
-              session = appSession.getSessions().get(0);
-              performBeforeReturnOnBase(activity, session);
-              performBeforeReturnCxDx(acc, session);
-              acc.setSession(appSession);
-            }
-            else {
-              throw new IllegalArgumentException("Unknown activity type: " + activity);
-            }
-          }
-          catch (Exception e) {
-            throw new DiameterException(e);
-          }
-        }
-
-        private void performBeforeReturnCxDx(CxDxSessionImpl acc, Session session) {
-          acc.setCxDxMessageFactory(new CxDxMessageFactoryImpl(session, stack));
-          acc.setCxDxAvpFactory(cxdxAvpFactory);
-        }
-
-        private void performBeforeReturnOnBase(DiameterActivityImpl ac, Session session) {
-          DiameterMessageFactoryImpl msgFactory = new DiameterMessageFactoryImpl(session, stack, new DiameterIdentity[] {});
-          ac.setAvpFactory(baseAvpFactory);
-          ac.setMessageFactory(msgFactory);
-          ac.setCurrentWorkingSession(session);
-          ac.setSessionListener(lst);
-        }
-
-        @Override
-        public DiameterActivity get(DiameterActivityHandle handle) {
-          return super.get(handle);
-        }
-
-        @Override
-        public void put(DiameterActivityHandle handle, DiameterActivity activity) {
-          super.put(handle, activity);
-        }
-
-        @Override
-        public DiameterActivity remove(DiameterActivityHandle handle) {
-          return super.remove(handle);
-        }
-      };
-    }*/
   }
 
   /**
