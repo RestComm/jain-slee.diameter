@@ -76,9 +76,31 @@ public abstract class AbstractClusteredDiameterActivityManagement implements Dia
    * @see org.mobicents.slee.resource.diameter.DiameterActivityManagement#get(org.mobicents.slee.resource.diameter.base.DiameterActivityHandle)
    */
   public DiameterActivity get(DiameterActivityHandle handle) {
+    //https://github.com/RestComm/jain-slee.diameter/issues/31
+    // Don't store and get activity as a transaction.
+    Transaction tx = null;
+    try {
+      tx = sleeTxManager.getTransaction();
+      if (tx !=null){
+        tx = sleeTxManager.suspend();
+      }
+    }
+    catch (SystemException e) {
+      tracer.severe(e.toString());
+    }
+    
     // tricky, now we need remote to kick in.
     // for that some impl methods need to be accessed...
     DiameterActivityImpl activity = (DiameterActivityImpl) this.replicatedData.get(handle.getId());
+    
+    if (tx != null) {
+      try {
+        sleeTxManager.resume(tx);
+      }
+      catch (Throwable e) {
+        tracer.severe(e.toString());
+      }
+    }
     //FIXME: add check for RA
     if (activity != null) {
       // now we have to set some resources...
@@ -97,12 +119,48 @@ public abstract class AbstractClusteredDiameterActivityManagement implements Dia
    *   net.java.slee.resource.diameter.base.DiameterActivity)
    */
   public void put(DiameterActivityHandle handle, DiameterActivity activity) {
+    Transaction tx = null;
+    try {
+      tx = sleeTxManager.getTransaction();
+      if (tx !=null){
+        tx = sleeTxManager.suspend();
+      }
+    }
+    catch (SystemException e) {
+      tracer.severe(e.toString());
+    }
     // replicate even base?
     this.replicatedData.put(handle.getId(), activity);
+    if (tx != null) {
+      try {
+        sleeTxManager.resume(tx);
+      }
+      catch (Throwable e) {
+        tracer.severe(e.toString());
+      }
+    }
   }
 
   public void update(DiameterActivityHandle handle, DiameterActivity activity) {
+    Transaction tx = null;
+    try {
+      tx = sleeTxManager.getTransaction();
+      if (tx !=null){
+        tx = sleeTxManager.suspend();
+      }
+    }
+    catch (SystemException e) {
+      tracer.severe(e.toString());
+    }
     this.replicatedData.put(handle.getId(), activity);
+    if (tx != null) {
+      try {
+        sleeTxManager.resume(tx);
+      }
+      catch (Throwable e) {
+        tracer.severe(e.toString());
+      }
+    }
   }
   /*
    * (non-Javadoc)
