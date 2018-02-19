@@ -4,7 +4,7 @@ Repository containing the Diameter Resource Adaptors for JAIN SLEE
 
 ## Introduction
 
-[RestComm JAIN SLEE](https://github.com/restcomm/jain-slee) is a highly scalable event-driven application server with a robust component model.
+[RestComm JAIN SLEE](https://github.com/restcomm/jain-slee) is a highly scalable event-driven application server with a robust component model and fault tolerant execution environment.
 
 This project contains the Diameter Resource Adaptors, making use of the [Restcomm jDiameter](https://github.com/restcomm/jdiameter) stack, to provide connectivity through Diameter protocol.
 
