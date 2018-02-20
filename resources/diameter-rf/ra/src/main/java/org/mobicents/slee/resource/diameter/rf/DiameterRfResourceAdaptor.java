@@ -946,7 +946,7 @@ public class DiameterRfResourceAdaptor implements ResourceAdaptor, DiameterListe
           throw new CreateActivityException("Got NULL Session while creating Client Accounting Activity");
         }
         sessionCreated(session);
-        return new RfClientSessionActivityImpl(rfMessageFactory, rfAvpFactory, session, destinationHost, destinationRealm, stack);
+        return (RfClientSessionActivityImpl) getActivity(getActivityHandle(session.getSessions().get(0).getSessionId()));
       }
       catch (Exception e) {
         throw new CreateActivityException("Internal exception while creating Client Accounting Activity", e);
