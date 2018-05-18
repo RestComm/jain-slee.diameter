@@ -1,0 +1,55 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.mobicents.resources</groupId>
+    <artifactId>restcomm-slee-ra-diameter-slg</artifactId>
+    <version>7.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>restcomm-slee-ra-diameter-slg-testsuite</artifactId>
+
+  <name>Restcomm :: Diameter Resources :: ${project.artifactId}</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>restcomm-slee-ra-diameter-slg-ra</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>restcomm-slee-ra-diameter-base-testsuite</artifactId>
+      <version>${project.version}</version>
+      <type>test-jar</type>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <finalName>diameter-${project.artifactId}-${project.version}</finalName>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.12.3</version>
+        <configuration>
+          <!-- Force JUnit by making TestNG invalid.. -->
+          <testNGArtifactName>none:none</testNGArtifactName>
+          <forkMode>pertest</forkMode>
+          <excludes>
+            <exclude>**/*$*</exclude>
+          </excludes>
+        </configuration>
+      </plugin>
+    </plugins>
+
+    <resources>
+      <resource>
+        <directory>src/test/resources</directory>
+      </resource>
+    </resources>
+  </build>
+
+</project>

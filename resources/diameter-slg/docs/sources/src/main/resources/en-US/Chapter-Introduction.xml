@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+        <!ENTITY % BOOK_ENTITIES SYSTEM "User_Guide.ent">
+        %BOOK_ENTITIES;
+        ]>
+
+<chapter id="introduction">
+
+    <title>Introduction to &THIS.PLATFORM; JAIN SLEE &THIS.RA; Resource Adaptor</title>
+
+    <para>This resource adaptor provides a Diameter API for JAIN SLEE applications, according to SLg interface based
+        on Diameter protocol.
+    </para>
+    <para></para>
+    <para></para>
+    <para>
+        <itemizedlist>
+            <listitem></listitem>
+            <listitem></listitem>
+            <listitem></listitem>
+        </itemizedlist>
+    </para>
+    <para>SLg interface is defined in <ulink
+            url="http://www.3gpp.org/ftp/Specs/archive/29_series/29.173/29172-e10.zip">3GPP TS 29.172
+    </ulink> is used with additional AVPs defined.
+    </para>
+    <para>Events represent messages received by the Diameter stack. Different events types are specified for each
+        Diameter request or answer. Events are fired either on client or server activities.
+    </para>
+    <para>The Activities are defined by <acronym>RA</acronym> Type to ease use of <acronym>RA</acronym>. Activities
+        represent Diameter session between two peers. <acronym>SLEE</acronym> applications use activities to create,
+        send and receive messages.
+    </para>
+
+</chapter>

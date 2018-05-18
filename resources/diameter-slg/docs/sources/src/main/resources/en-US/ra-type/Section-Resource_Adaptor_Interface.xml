@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+
+<section id="ratype_ra_interface">
+
+	<title>Resource Adaptor Interface</title>
+
+	<para>The &THIS.PLATFORM; &THIS.RA; Resource Adaptor SBB Interface provides SBBs with access to the Diameter
+		objects required for creating and sending messages. It is defined as follows:
+	</para>
+
+	<programlisting role="JAVA" language="Java">
+		package net.java.slee.resource.diameter.slg;
+
+		import net.java.slee.resource.diameter.Validator;
+		import net.java.slee.resource.diameter.base.CreateActivityException;
+		import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
+
+		public interface SLgProvider {
+
+		SLgServerSessionActivity createSLgServerSessionActivity() throws CreateActivityException;
+
+		SLgServerSessionActivity createSLgServerSessionActivity(DiameterIdentity destinationHost, DiameterIdentity
+		destinationRealm) throws CreateActivityException;
+
+		SLgClientSessionActivity createSLgClientSessionActivity() throws CreateActivityException;
+
+		SLgClientSessionActivity createSLgClientSessionActivity(DiameterIdentity destinationHost, DiameterIdentity
+		destinationRealm) throws CreateActivityException;
+
+		SLgMessageFactory getSLgMessageFactory();
+
+		SLgAVPFactory getSLgAVPFactory();
+
+		int getPeerCount();
+
+		DiameterIdentity[] getConnectedPeers();
+
+		Validator getValidator();
+
+		}
+	</programlisting>
+
+	<para>
+		<variablelist>
+			<varlistentry>
+				<term>SLgServerSessionActivity createSLgServerSessionActivity() throws CreateActivityException;</term>
+				<listitem>
+					<para>This method Create a new server session to send and receive Diameter messages.
+						All messages sent on an activity created by this method must contain valid routing AVPs (one
+						or both of Destination-Realm and Destination-Host as defined by RFC6733).
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>SLgServerSessionActivity createSLgServerSessionActivity(DiameterIdentity destinationHost,
+					DiameterIdentity destinationRealm) throws CreateActivityException;
+				</term>
+				<listitem>
+					<para>This method Create a new server session to send and receive Diameter messages.
+						Messages sent on an activity created by this method will automatically have the
+						Destination-Host and Destination-Realm AVPs set to the provided values.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>SLgClientSessionActivity createSLgClientSessionActivity() throws CreateActivityException;</term>
+				<listitem>
+					<para>This method a new client session to send and receive Diameter messages. All messages sent
+						on an activity created by this method must contain valid routing AVPs (one or both of
+						Destination-Realm and Destination-Host as defined by RFC6733).
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>SLgClientSessionActivity createSLgClientSessionActivity(DiameterIdentity destinationHost,
+					DiameterIdentity destinationRealm) throws CreateActivityException;
+				</term>
+				<listitem>
+					<para>This method creates new client session to send and receive Diameter messages. Messages
+						sent on an activity created by this method will automatically have the Destination-Host and
+						Destination-Realm AVPs set to the provided values.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>SLgMessageFactory getSLgMessageFactory();</term>
+				<listitem>
+					<para>This method returns a message factory to be used to create SLg messages.</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>SLgAVPFactory getSLgAVPFactory();</term>
+				<listitem>
+					<para>This method returns an AVP factory to be used to create concrete implementations of SLg AVPs.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>DiameterIdentity[] getConnectedPeers();</term>
+				<listitem>
+					<para>This method returns the identities of peers this Diameter resource adaptor is connected to.
+					</para>
+				</listitem>
+			</varlistentry>
+			<varlistentry>
+				<term>int getPeerCount();</term>
+				<listitem>
+					<para>This method returns the number of peers this Diameter resource adaptor is connected to.</para>
+				</listitem>
+			</varlistentry>
+		</variablelist>
+	</para>
+</section>
