@@ -15,12 +15,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>${pom.groupId}</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>restcomm-slee-ra-diameter-slh-events</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>${pom.groupId}</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>restcomm-slee-ra-diameter-base-common-ratype</artifactId>
             <version>${project.version}</version>
         </dependency>

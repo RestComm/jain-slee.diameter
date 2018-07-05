@@ -59,9 +59,9 @@
                         <configuration>
                             <artifactItems>
                                 <artifactItem>
-                                    <groupId>${pom.groupId}</groupId>
+                                    <groupId>${project.groupId}</groupId>
                                     <artifactId>restcomm-slee-ra-diameter-slg-docs-sources-restcomm</artifactId>
-                                    <version>${pom.version}</version>
+                                    <version>${project.version}</version>
                                     <type>jar</type>
                                     <overWrite>true</overWrite>
                                     <outputDirectory>${project.build.directory}/docbook/resources</outputDirectory>

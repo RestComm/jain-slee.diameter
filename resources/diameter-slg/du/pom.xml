@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.mobicents.resources</groupId>
     <artifactId>restcomm-slee-ra-diameter-slg</artifactId>
-    <version>2.8.0-SNAPSHOT</version>
+    <version>7.0.0-SNAPSHOT</version>
   </parent>
 
   <artifactId>restcomm-slee-ra-diameter-slg-ra-DU</artifactId>
@@ -14,30 +14,30 @@
   <dependencies>
     <!-- common library -->
     <dependency>
-      <groupId>org.mobicents.resources</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>restcomm-slee-ra-diameter-slg-common-library</artifactId>
       <version>${project.version}</version>
     </dependency>
     <!-- components -->
     <dependency>
-      <groupId>${pom.groupId}</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>restcomm-slee-ra-diameter-slg-events</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>${pom.groupId}</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>restcomm-slee-ra-diameter-slg-ratype</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>${pom.groupId}</groupId>
+      <groupId>${project.groupId}</groupId>
       <artifactId>restcomm-slee-ra-diameter-slg-ra</artifactId>
-      <version>${pom.version}</version>
+      <version>${project.version}</version>
     </dependency>
   </dependencies>
 
   <build>
-    <finalName>diameter-${pom.artifactId}-${pom.version}</finalName>
+    <finalName>diameter-${project.artifactId}-${project.version}</finalName>
     <plugins>
       <plugin>
         <groupId>org.mobicents.tools</groupId>

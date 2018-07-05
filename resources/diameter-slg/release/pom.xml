@@ -10,7 +10,7 @@
 
   <artifactId>restcomm-slee-ra-diameter-slg-ra-release</artifactId>
 
-  <name>Restcomm :: Diameter Resources :: ${pom.artifactId}</name>
+  <name>Restcomm :: Diameter Resources :: ${project.artifactId}</name>
 
   <profiles>
     <profile>

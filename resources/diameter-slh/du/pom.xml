@@ -15,30 +15,30 @@
     <dependencies>
         <!-- common library -->
         <dependency>
-            <groupId>org.mobicents.resources</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>restcomm-slee-ra-diameter-slh-common-library</artifactId>
             <version>${project.version}</version>
         </dependency>
         <!-- components -->
         <dependency>
-            <groupId>${pom.groupId}</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>restcomm-slee-ra-diameter-slh-events</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>${pom.groupId}</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>restcomm-slee-ra-diameter-slh-ratype</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>${pom.groupId}</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>restcomm-slee-ra-diameter-slh-ra</artifactId>
-            <version>${pom.version}</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
     <build>
-        <finalName>diameter-${pom.artifactId}-${pom.version}</finalName>
+        <finalName>diameter-${pom.artifactId}-${project.version}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.mobicents.tools</groupId>

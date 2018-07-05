@@ -14,12 +14,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>${pom.groupId}</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>restcomm-slee-ra-diameter-slg-events</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>${pom.groupId}</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>restcomm-slee-ra-diameter-base-common-ratype</artifactId>
             <version>${project.version}</version>
         </dependency>

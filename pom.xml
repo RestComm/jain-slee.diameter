@@ -49,6 +49,8 @@
 		<module>resources/diameter-rx</module>
 		<module>resources/diameter-s6a</module>
 		<module>resources/diameter-s13</module>
+		<module>resources/diameter-slh</module>
+		<module>resources/diameter-slg</module>
 		<module>enablers/hss-client</module>
 	</modules>
 	

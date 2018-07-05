@@ -26,7 +26,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>${pom.groupId}</groupId>
+            <groupId>${project.groupId}</groupId>
             <artifactId>restcomm-slee-ra-diameter-base-common-events</artifactId>
             <version>${project.version}</version>
         </dependency>
