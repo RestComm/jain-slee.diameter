@@ -13,12 +13,6 @@
     <name>Restcomm :: Diameter Resources :: ${pom.artifactId}</name>
 
     <dependencies>
-        <!-- common library -->
-        <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>restcomm-slee-ra-diameter-slh-common-library</artifactId>
-            <version>${project.version}</version>
-        </dependency>
         <!-- components -->
         <dependency>
             <groupId>${project.groupId}</groupId>
