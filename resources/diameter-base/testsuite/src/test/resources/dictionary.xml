@@ -7259,6 +7259,10 @@
 			<avp name="Area-Definition" multiplicity="1" />
 			<avp name="Occurrence-Info" multiplicity="0-1" />
 			<avp name="Interval-Time" multiplicity="0-1" />
+			<avp name="Maximum-Interval" multiplicity="0-1" />
+			<avp name="Sampling-Interval" multiplicity="0-1" />
+			<avp name="Reporting-Duration" multiplicity="0-1" />
+			<avp name="Reporting-Location-Requirements" multiplicity="0-1" />
 		</grouped>
 	</avpdefn>
 
