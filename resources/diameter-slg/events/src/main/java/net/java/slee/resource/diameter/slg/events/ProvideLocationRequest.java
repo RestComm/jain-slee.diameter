@@ -22,8 +22,13 @@
 package net.java.slee.resource.diameter.slg.events;
 
 import net.java.slee.resource.diameter.base.events.DiameterMessage;
+import net.java.slee.resource.diameter.base.events.avp.Address;
 import net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType;
 import net.java.slee.resource.diameter.base.events.avp.VendorSpecificApplicationIdAvp;
+import net.java.slee.resource.diameter.slg.events.avp.AreaEventInfoAvp;
+import net.java.slee.resource.diameter.slg.events.avp.MotionEventInfoAvp;
+import net.java.slee.resource.diameter.slg.events.avp.PeriodicLDRInfoAvp;
+import net.java.slee.resource.diameter.slg.events.avp.ReportingPLMNListAvp;
 import net.java.slee.resource.diameter.slg.events.avp.SLgLocationType;
 import net.java.slee.resource.diameter.slg.events.avp.LCSEPSClientNameAvp;
 import net.java.slee.resource.diameter.slg.events.avp.LCSClientType;
@@ -68,6 +73,13 @@ import net.java.slee.resource.diameter.slg.events.avp.SupportedFeaturesAvp;
  *                                  *[ AVP ]
  *                                  *[ Proxy-Info ]
  *                                  *[ Route-Record ]
+ *                                  Note: plus all extra AVPs defined in Table 6.2.2-1: Provide Subscriber Location Request, i.e.
+ * 	                                [ LCS-Reference-Number ]
+ * 	                                [ Area-Event-Info ]
+ * 	                                [ GMLC-Address ]
+ * 	                                [ Periodic-LDR-Information ]
+ * 	                                [ Reporting-PLMN-List ]
+ * 	                                [ Motion-Event-Info ]
  *
  * @author <a href="mailto:fernando.mendioroz@gmail.com"> Fernando Mendioroz </a>
  * */
@@ -512,6 +524,138 @@ public interface ProvideLocationRequest extends DiameterMessage {
    * @throws IllegalStateException
    */
   void setPLRFlags(long plrFlags) throws IllegalStateException;
+
+  /**
+   * Returns true if the LCS-Reference-Number AVP is present in the message.
+   *
+   * @return
+   */
+  boolean hasLCSReferenceNumber();
+
+  /**
+   * Returns the value of the LCS-Reference-Number AVP, of type OctetString.
+   *
+   * @return
+   */
+  byte[] getLCSReferenceNumber();
+
+  /**
+   * Sets the value of the LCS-Reference-Number AVP, of type OctetString.
+   *
+   * @param lcsReferenceNumber
+   * @throws IllegalStateException
+   */
+  void setLCSReferenceNumber(byte[] lcsReferenceNumber) throws IllegalStateException;
+
+  /**
+   * Returns true if the Area-Event-Info AVP is present in the message.
+   *
+   * @return
+   */
+  boolean hasAreaEventInfo();
+
+  /**
+   * Returns the value of the Area-Event-Info AVP, of type Grouped.
+   *
+   * @return
+   */
+  AreaEventInfoAvp getAreaEventInfo();
+
+  /**
+   * Sets the value of the Area-Event-Info AVP, of type Grouped.
+   *
+   * @param areaEventInfo
+   * @throws IllegalStateException
+   */
+  void setAreaEventInfo(AreaEventInfoAvp areaEventInfo) throws IllegalStateException;
+
+  /**
+   * Returns true if the GMLC-Address AVP is present in the message.
+   *
+   * @return
+   */
+  boolean hasGMLCAddress();
+
+  /**
+   * Returns the value of the GMLC-Address, of type Address.
+   *
+   * @return
+   */
+  Address getGMLCAddress();
+
+  /**
+   * Sets the value of the GMLC-Address AVP, of type Address.
+   *
+   * @param gmlcAddress
+   * @throws IllegalStateException
+   */
+  void setGMLCAddress(Address gmlcAddress) throws IllegalStateException;
+
+  /**
+   * Returns true if the Periodic-LDR-Information AVP is present in the message.
+   *
+   * @return
+   */
+  boolean hasPeriodicLDRInformation();
+
+  /**
+   * Returns the value of the Periodic-LDR-Information AVP, of type Grouped.
+   *
+   * @return
+   */
+  PeriodicLDRInfoAvp getPeriodicLDRInformation();
+
+  /**
+   * Sets the value of the Periodic-LDR-Information AVP, of type Grouped.
+   *
+   * @param periodicLDRInfo
+   * @throws IllegalStateException
+   */
+  void setPeriodicLDRInformation(PeriodicLDRInfoAvp periodicLDRInfo) throws IllegalStateException;
+
+  /**
+   * Returns true if the Reporting-PLMN-List AVP is present in the message.
+   *
+   * @return
+   */
+  boolean hasReportingPLMNList();
+
+  /**
+   * Returns the value of the Reporting-PLMN-List AVP, of type Grouped.
+   *
+   * @return
+   */
+  ReportingPLMNListAvp getReportingPLMNList();
+
+  /**
+   * Sets the value of the Reporting-PLMN-List AVP, of type Grouped.
+   *
+   * @param reportingPLMNList
+   * @throws IllegalStateException
+   */
+  void setReportingPLMNList(ReportingPLMNListAvp reportingPLMNList) throws IllegalStateException;
+
+  /**
+   * Returns true if the Motion-Event-Info AVP is present in the message.
+   *
+   * @return
+   */
+  boolean hasMotionEventInfo();
+
+  /**
+   * Returns the value of the Motion-Event-Info AVP, of type Grouped.
+   *
+   * @return
+   */
+  MotionEventInfoAvp getMotionEventInfo();
+
+  /**
+   * Sets the value of the Motion-Event-Info AVP, of type Grouped.
+   *
+   * @param motionEventInfo
+   * @throws IllegalStateException
+   */
+  void setMotionEventInfo(MotionEventInfoAvp motionEventInfo) throws IllegalStateException;
 
   /**
    * Returns the value of the Supported-Features AVP, of type Grouped.

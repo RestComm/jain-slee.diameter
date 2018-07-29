@@ -33,9 +33,38 @@ import net.java.slee.resource.diameter.slg.events.ProvideLocationRequest;
 import net.java.slee.resource.diameter.slg.events.ProvideLocationAnswer;
 import net.java.slee.resource.diameter.slg.events.LocationReportRequest;
 import net.java.slee.resource.diameter.slg.events.LocationReportAnswer;
-import net.java.slee.resource.diameter.slg.events.avp.*;
-
+import net.java.slee.resource.diameter.slg.events.avp.AdditionalAreaAvp;
+import net.java.slee.resource.diameter.slg.events.avp.AreaAvp;
+import net.java.slee.resource.diameter.slg.events.avp.AreaDefinitionAvp;
+import net.java.slee.resource.diameter.slg.events.avp.AreaEventInfoAvp;
+import net.java.slee.resource.diameter.slg.events.avp.DeferredMTLRDataAvp;
+import net.java.slee.resource.diameter.slg.events.avp.DelayedLocationReportingDataAvp;
+import net.java.slee.resource.diameter.slg.events.avp.ELPAVPCodes;
+import net.java.slee.resource.diameter.slg.events.avp.ESMLCCellInfoAvp;
+import net.java.slee.resource.diameter.slg.events.avp.GERANPositioningInfoAvp;
+import net.java.slee.resource.diameter.slg.events.avp.LCSEPSClientNameAvp;
+import net.java.slee.resource.diameter.slg.events.avp.LCSFormatIndicator;
+import net.java.slee.resource.diameter.slg.events.avp.LCSPrivacyCheck;
+import net.java.slee.resource.diameter.slg.events.avp.LCSPrivacyCheckNonSessionAvp;
+import net.java.slee.resource.diameter.slg.events.avp.LCSPrivacyCheckSessionAvp;
+import net.java.slee.resource.diameter.slg.events.avp.LCSQoSAvp;
+import net.java.slee.resource.diameter.slg.events.avp.LCSQoSClass;
+import net.java.slee.resource.diameter.slg.events.avp.LCSRequestorNameAvp;
+import net.java.slee.resource.diameter.slg.events.avp.MotionEventInfoAvp;
+import net.java.slee.resource.diameter.slg.events.avp.OccurrenceInfo;
+import net.java.slee.resource.diameter.slg.events.avp.PeriodicLDRInfoAvp;
+import net.java.slee.resource.diameter.slg.events.avp.PeriodicLocationSupportIndicator;
+import net.java.slee.resource.diameter.slg.events.avp.PLMNIDListAvp;
+import net.java.slee.resource.diameter.slg.events.avp.PrioritizedListIndicator;
+import net.java.slee.resource.diameter.slg.events.avp.PseudonymIndicator;
+import net.java.slee.resource.diameter.slg.events.avp.ReportingPLMNListAvp;
+import net.java.slee.resource.diameter.slg.events.avp.ResponseTime;
 import net.java.slee.resource.diameter.slg.events.avp.ServingNodeAvp;
+import net.java.slee.resource.diameter.slg.events.avp.SLgLocationType;
+import net.java.slee.resource.diameter.slg.events.avp.SupportedFeaturesAvp;
+import net.java.slee.resource.diameter.slg.events.avp.UTRANPositioningInfoAvp;
+import net.java.slee.resource.diameter.slg.events.avp.VelocityRequested;
+import net.java.slee.resource.diameter.slg.events.avp.VerticalRequested;
 import org.jdiameter.api.ApplicationId;
 import org.jdiameter.api.Stack;
 import org.jdiameter.api.slg.ClientSLgSession;
@@ -128,8 +157,16 @@ public class SLgFactoriesTest {
     LCSQoSAvp lcsQoSAvp = slgAvpFactory.createLCSQoS();
     LCSPrivacyCheckNonSessionAvp lcsPrivacyCheckNonSessionAvp =slgAvpFactory.createLCSPrivacyCheckNonSession();
     LCSPrivacyCheckSessionAvp lcsPrivacyCheckSessionAvp = slgAvpFactory.createLCSPrivacyCheckSession();
+    AreaEventInfoAvp areaEventInfoAvp = slgAvpFactory.createAreaEventInfo();
+    AreaDefinitionAvp areaDefinitionAvp = slgAvpFactory.createAreaDefinition();
+    AreaAvp areaAvp = slgAvpFactory.createArea();
+    AdditionalAreaAvp additionalAreaAvp = slgAvpFactory.createAdditionalArea();
+    PeriodicLDRInfoAvp periodicLDRInfoAvp = slgAvpFactory.createPeriodicLDRInformation();
+    ReportingPLMNListAvp reportingPLMNListAvp = slgAvpFactory.createReportingPLMNList();
+    PLMNIDListAvp plmnIdListAvp = slgAvpFactory.createPLMNIDList();
+    MotionEventInfoAvp motionEventInfoAvp = slgAvpFactory.createMotionEventInfo();
 
-    // ** LCS-EPS-Client-Name ** //
+    /** LCS-EPS-Client-Name **/
     // LCS-Name-String
     String lcsNameString = "Restcomm Geolocation API";
     lcsEpsClientNameAvp.setLCSNameString(lcsNameString);
@@ -141,7 +178,7 @@ public class SLgFactoriesTest {
     // Add LCS-EPS-Client-Name Grouped AVP to Provide-Location-Request
     plr.setLCSEPSClientName(lcsEpsClientNameAvp);
 
-    // ** LCS-Requestor-Name ** //
+    /** LCS-Requestor-Name **/
     // LCS-Requestor-Id-String
     String lcsRequestorIdString = "restcomm_geolocation_23";
     lcsRequestorNameAvp.setLCSRequestorIDString(lcsRequestorIdString);
@@ -152,7 +189,7 @@ public class SLgFactoriesTest {
     // Add LCS-Requestor-Name Grouped AVP to Provide-Location-Request
     plr.setLCSRequestorName(lcsRequestorNameAvp);
 
-    // ** LCS-QoS ** //
+    /** LCS-QoS **/
     // LCS-QoS-Class
     LCSQoSClass lcsQoSClass = null;
     int lcsQoSClassValue = LCSQoSClass._BEST_EFFORT;
@@ -177,7 +214,7 @@ public class SLgFactoriesTest {
     // Add LCS-QoS Grouped AVP to Provide-Location-Request
     plr.setLCSQoS(lcsQoSAvp);
 
-    // LCS-Privacy-Check-Non-Session ** //
+    /** LCS-Privacy-Check-Non-Session **/
     // LCS-Privacy-Check
     LCSPrivacyCheck lcsPrivacyCheck = null;
     int lcsPrivacyCheckNonSValue = LCSPrivacyCheck._ALLOWED_WITH_NOTIFICATION;
@@ -186,13 +223,91 @@ public class SLgFactoriesTest {
     // Add LCS-Privacy-Check-Non-Session Grouped AVP to Provide-Location-Request
     plr.setLCSPrivacyCheckNonSession(lcsPrivacyCheckNonSessionAvp);
 
-    // ** LCS-Privacy-Check-Session ** //
+    /** LCS-Privacy-Check-Session **/
     // LCS-Privacy-Check
     int lcsPrivacyCheckValue = LCSPrivacyCheck._RESTRICTED_IF_NO_RESPONSE;
     lcsPrivacyCheck = lcsPrivacyCheck.fromInt(lcsPrivacyCheckValue);
     lcsPrivacyCheckSessionAvp.setLCSPrivacyCheck(lcsPrivacyCheck);
     // Add LCS-Privacy-Check-Session Grouped AVP to Provide-Location-Request
     plr.setLCSPrivacyCheckSession(lcsPrivacyCheckSessionAvp);
+
+    /** Area-Event-Info **/
+    // Area
+    long areaType = 2L;
+    String areaIdStr = "Area51";
+    byte[] areaIdentification = areaIdStr.getBytes();
+    areaAvp.setAreaType(areaType);
+    areaAvp.setAreaIdentification(areaIdentification);
+    // AdditionalArea
+    long addAreaType = 3L;
+    String addAreaIdStr = "Area52";
+    byte[] addAreaIdentification = addAreaIdStr.getBytes();
+    additionalAreaAvp.setAreaType(addAreaType);
+    additionalAreaAvp.setAreaIdentification(addAreaIdentification);
+    // Area-Definition
+    areaDefinitionAvp.setArea(areaAvp);
+    areaDefinitionAvp.setAdditionalArea(additionalAreaAvp);
+    // Area-Event-Info
+    int occInfo = OccurrenceInfo._ONE_TIME_EVENT;
+    OccurrenceInfo occurrenceInfo = OccurrenceInfo.fromInt(occInfo);
+    long intervalTime = 180L;
+    long samplingInterval = 30L;
+    long maximumInterval = 1800L;
+    long reportingDuration = 36000L;
+    long reportingLocationRequirements = 5L;
+    areaEventInfoAvp.setAreaDefinition(areaDefinitionAvp);
+    areaEventInfoAvp.setOccurrenceInfo(occurrenceInfo);
+    areaEventInfoAvp.setIntervalTime(intervalTime);
+    areaEventInfoAvp.setMaximumInterval(maximumInterval);
+    areaEventInfoAvp.setSamplingInterval(samplingInterval);
+    areaEventInfoAvp.setReportDuration(reportingDuration);
+    areaEventInfoAvp.setReportingLocationRequirements(reportingLocationRequirements);
+    // Add Area-Event-Info Grouped AVP to Provide-Location-Request
+    plr.setAreaEventInfo(areaEventInfoAvp);
+
+    /** Periodic-LDR-Info **/
+    // Reporting-Amount
+    long reportingAmount = 1L;
+    periodicLDRInfoAvp.setReportingAmount(reportingAmount);
+    // Reporting-Interval
+    long reportingInterval = 8639999L;
+    periodicLDRInfoAvp.setReportingInterval(reportingInterval);
+    // Add Periodic-LDR-Info Grouped AVP to Provide-Location-Request
+    plr.setPeriodicLDRInformation(periodicLDRInfoAvp);
+
+    /** Reporting-PLMN-List **/
+    // PLMN-ID-List
+    String visitedPLMNIdListString = "222";
+    byte[] visitedPLMNIdList = visitedPLMNIdListString.getBytes();
+    plmnIdListAvp.setVisitedPLMNId(visitedPLMNIdList);
+    // Periodic-Location-Support-Indicator
+    PeriodicLocationSupportIndicator periodicLocationSupportIndicator = PeriodicLocationSupportIndicator.SUPPORTED;
+    plmnIdListAvp.setPeriodicLocationSupportIndicator(periodicLocationSupportIndicator);
+    reportingPLMNListAvp.setPLMNIDList(plmnIdListAvp);
+    // Prioritized-List-Indicator
+    PrioritizedListIndicator prioritizedListIndicator = PrioritizedListIndicator.PRIORITIZED;
+    reportingPLMNListAvp.setPrioritizedListIndicator(prioritizedListIndicator);
+    // Add Reporting-PLMN-List Grouped AVP to Provide-Location-Request
+    plr.setReportingPLMNList(reportingPLMNListAvp);
+
+    /** Motion-Event-Info **/
+    // Linear-Distance
+    long linearDistance = 300L;
+    OccurrenceInfo occurrenceInfoME = OccurrenceInfo.MULTIPLE_TIME_EVENT;
+    long intervalTimeME = 800L;
+    long maximumIntervalME = 1900L;
+    long samplingIntervalME = 60L;
+    long reportingDurationME = 36000L;
+    long reportingLocationRequirementsME = 25L;
+    motionEventInfoAvp.setLinearDistance(linearDistance);
+    motionEventInfoAvp.setOccurrenceInfo(occurrenceInfoME);
+    motionEventInfoAvp.setIntervalTime(intervalTimeME);
+    motionEventInfoAvp.setMaximumInterval(maximumIntervalME);
+    motionEventInfoAvp.setSamplingInterval(samplingIntervalME);
+    motionEventInfoAvp.setReportDuration(reportingDurationME);
+    motionEventInfoAvp.setReportingLocationRequirements(reportingLocationRequirementsME);
+    // Add Motion-Event-Info Grouped AVP to Provide-Location-Request
+    plr.setMotionEventInfo(motionEventInfoAvp);
 
   }
 
@@ -269,7 +384,7 @@ public class SLgFactoriesTest {
     ESMLCCellInfoAvp esmlcCellInfoAvp = slgAvpFactory.createESMLCCellInfo();
     ServingNodeAvp servingNodeAvp = slgAvpFactory.createServingNode();
 
-    // ** GERAN-Positioning-Info *** //
+    /** GERAN-Positioning-Info **/
     // GERAN-Positioning-Data
     String geranPosData = "42545339343342534333";
     byte[] geranPositioningData = geranPosData.getBytes();
@@ -281,7 +396,7 @@ public class SLgFactoriesTest {
     // Add GERAN-Positioning-Info AVP to Provide-Location-Answer
     pla.setGERANPositioningInfo(geranPositioningInfoAvp);
 
-    // ** UTRAN-Positioning-Info *** //
+    /** UTRAN-Positioning-Info **/
     // UTRAN-Positioning-Data
     String utranPosData = "42545339343342534333";
     byte[] utranPositioningData = utranPosData.getBytes();
@@ -297,7 +412,7 @@ public class SLgFactoriesTest {
     // Add UTRAN-Positioning-Info AVP to Provide-Location-Answer
     pla.setUTRANPositioningInfo(utranPositioningInfoAvp);
 
-    // *** ESMLC-Cell-Info *** //
+    /** ESMLC-Cell-Info **/
     // ECGI
     String ecgiStr = "654E4239343337";
     byte[] ecgi = ecgiStr.getBytes();
@@ -308,7 +423,7 @@ public class SLgFactoriesTest {
     // Add ESMLC-Cell-Info Grouped AVP to Provide-Location-Answer
     pla.setESMLCCellInfo(esmlcCellInfoAvp);
 
-    // *** Serving-Node *** //
+    /** Serving-Node **/
     // SGSN-Number
     String sgsnNumberStr = "59899004501";
     byte[] sgsnNumber = sgsnNumberStr.getBytes();
@@ -452,7 +567,7 @@ public class SLgFactoriesTest {
     PeriodicLDRInfoAvp periodicLDRInfoAvp = slgAvpFactory.createPeriodicLDRInformation();
     ESMLCCellInfoAvp esmlcCellInfoAvp = slgAvpFactory.createESMLCCellInfo();
 
-    // ** LCS-EPS-Client-Name ** //
+    /** LCS-EPS-Client-Name **/
     // LCS-Name-String
     String lcsNameString = "Restcomm Geolocation API";
     lcsEpsClientNameAvp.setLCSNameString(lcsNameString);
@@ -464,7 +579,7 @@ public class SLgFactoriesTest {
     // Add LCS-EPS-Client-Name Grouped AVP to Location-Report-Request
     lrr.setLCSEPSClientName(lcsEpsClientNameAvp);
 
-    // ** GERAN-Positioning-Info *** //
+    /** GERAN-Positioning-Info **/
     // GERAN-Positioning-Data
     String geranPosData = "42545339343342534333";
     byte[] geranPositioningData = geranPosData.getBytes();
@@ -476,7 +591,7 @@ public class SLgFactoriesTest {
     // Add GERAN-Positioning-Info AVP to Location-Report-Request
     lrr.setGERANPositioningInfo(geranPositioningInfoAvp);
 
-    // ** UTRAN-Positioning-Info *** //
+    /** UTRAN-Positioning-Info **/
     // UTRAN-Positioning-Data
     String utranPosData = "42545339343342534333";
     byte[] utranPositioningData = utranPosData.getBytes();
@@ -492,7 +607,7 @@ public class SLgFactoriesTest {
     // Add UTRAN-Positioning-Info AVP to Location-Report-Request
     lrr.setUTRANPositioningInfo(utranPositioningInfoAvp);
 
-    // ** Periodic-LDR-Info ** //
+    /** Periodic-LDR-Info **/
     // Reporting-Amount
     long reportingAmount = 1L;
     periodicLDRInfoAvp.setReportingAmount(reportingAmount);
@@ -502,7 +617,7 @@ public class SLgFactoriesTest {
     // Add Periodic-LDR-Info Grouped AVP to Location-Report-Request
     lrr.setPeriodicLDRInformation(periodicLDRInfoAvp);
 
-    // *** ESMLC-Cell-Info *** //
+    /** ESMLC-Cell-Info **/
     // ECGI
     String ecgiStr = "654E4239343337";
     byte[] ecgi = ecgiStr.getBytes();
@@ -513,7 +628,7 @@ public class SLgFactoriesTest {
     // Add ESMLC-Cell-Info Grouped AVP to Location-Report-Request
     lrr.setESMLCCellInfo(esmlcCellInfoAvp);
 
-    // *** Serving-Node *** //
+    /** Serving-Node **/
     // SGSN-Number
     String sgsnNumberStr = "59899004501";
     byte[] sgsnNumber = sgsnNumberStr.getBytes();
@@ -549,7 +664,7 @@ public class SLgFactoriesTest {
     // Add Serving-Node Grouped AVP to Location-Report-Request
     lrr.setServingNode(servingNodeAvp);
 
-    // ** Deferred-MT-LR-Data ** //
+    /** Deferred-MT-LR-Data **/
     // Deferred-Location-Type
     long deferredLocationType = 5L;
     deferredMTLRDataAvp.setDeferredLocationType(deferredLocationType);
@@ -561,7 +676,7 @@ public class SLgFactoriesTest {
     // Add Deferred-MT-LR-Data Grouped AVP to Location-Report-Request
     lrr.setDeferredMTLRData(deferredMTLRDataAvp);
 
-    // ** Delayed-Location-Reporting-Data ** //
+    /** Delayed-Location-Reporting-Data **/
     // Termination-Cause
     long terminationCauseDLRD = 9L;
     delayedLocationReportingDataAvp.setTerminationCause(terminationCauseDLRD);
@@ -632,7 +747,7 @@ public class SLgFactoriesTest {
     ReportingPLMNListAvp reportingPLMNListAvp = slgAvpFactory.createReportingPLMNList();
     PLMNIDListAvp plmnIdListAvp = slgAvpFactory.createPLMNIDList();
 
-    // *** Reporting-PLMN-List *** //
+    /** Reporting-PLMN-List **/
     // PLMN-ID-List
     String visitedPLMNIdListString = "222";
     byte[] visitedPLMNIdList = visitedPLMNIdListString.getBytes();

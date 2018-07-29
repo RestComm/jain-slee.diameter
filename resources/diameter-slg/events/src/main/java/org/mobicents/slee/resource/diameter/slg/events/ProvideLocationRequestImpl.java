@@ -21,10 +21,15 @@
 
 package org.mobicents.slee.resource.diameter.slg.events;
 
+import net.java.slee.resource.diameter.base.events.avp.Address;
 import net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType;
 import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
 import net.java.slee.resource.diameter.slg.events.ProvideLocationRequest;
+import net.java.slee.resource.diameter.slg.events.avp.AreaEventInfoAvp;
 import net.java.slee.resource.diameter.slg.events.avp.ELPAVPCodes;
+import net.java.slee.resource.diameter.slg.events.avp.MotionEventInfoAvp;
+import net.java.slee.resource.diameter.slg.events.avp.PeriodicLDRInfoAvp;
+import net.java.slee.resource.diameter.slg.events.avp.ReportingPLMNListAvp;
 import net.java.slee.resource.diameter.slg.events.avp.SLgLocationType;
 import net.java.slee.resource.diameter.slg.events.avp.LCSEPSClientNameAvp;
 import net.java.slee.resource.diameter.slg.events.avp.LCSClientType;
@@ -38,11 +43,15 @@ import net.java.slee.resource.diameter.slg.events.avp.SupportedFeaturesAvp;
 import org.jdiameter.api.Message;
 
 import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
+import org.mobicents.slee.resource.diameter.slg.events.avp.AreaEventInfoAvpImpl;
 import org.mobicents.slee.resource.diameter.slg.events.avp.LCSEPSClientNameAvpImpl;
 import org.mobicents.slee.resource.diameter.slg.events.avp.LCSRequestorNameAvpImpl;
 import org.mobicents.slee.resource.diameter.slg.events.avp.LCSQoSAvpImpl;
 import org.mobicents.slee.resource.diameter.slg.events.avp.LCSPrivacyCheckNonSessionAvpImpl;
 import org.mobicents.slee.resource.diameter.slg.events.avp.LCSPrivacyCheckSessionAvpImpl;
+import org.mobicents.slee.resource.diameter.slg.events.avp.MotionEventInfoAvpImpl;
+import org.mobicents.slee.resource.diameter.slg.events.avp.PeriodicLDRInfoAvpImpl;
+import org.mobicents.slee.resource.diameter.slg.events.avp.ReportingPLMNListAvpImpl;
 import org.mobicents.slee.resource.diameter.slg.events.avp.SupportedFeaturesAvpImpl;
 
 /**
@@ -564,6 +573,165 @@ public class ProvideLocationRequestImpl extends DiameterMessageImpl implements P
   @Override
   public void setPLRFlags(long plrFlags) throws IllegalStateException {
     addAvp(ELPAVPCodes.PLR_FLAGS, ELPAVPCodes.SLg_VENDOR_ID, plrFlags);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#hasLCSReferenceNumber()
+   */
+  @Override
+  public boolean hasLCSReferenceNumber() {
+    return hasAvp(ELPAVPCodes.LCS_REFERENCE_NUMBER, ELPAVPCodes.SLg_VENDOR_ID);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#getLCSReferenceNumber()
+   */
+  @Override
+  public byte[] getLCSReferenceNumber() {
+    return getAvpAsOctetString(ELPAVPCodes.LCS_REFERENCE_NUMBER, ELPAVPCodes.SLg_VENDOR_ID);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#setLCSReferenceNumber(byte[])
+   */
+  @Override
+  public void setLCSReferenceNumber(byte[] lcsReferenceNumber) throws IllegalStateException {
+    addAvp(ELPAVPCodes.LCS_REFERENCE_NUMBER, ELPAVPCodes.SLg_VENDOR_ID, lcsReferenceNumber);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#hasAreaEventInfo()
+   */
+  @Override
+  public boolean hasAreaEventInfo() {
+    return hasAvp(ELPAVPCodes.AREA_EVENT_INFO, ELPAVPCodes.SLg_VENDOR_ID);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#getAreaEventInfo()
+   */
+  @Override
+  public AreaEventInfoAvp getAreaEventInfo() {
+    return (AreaEventInfoAvp) getAvpAsCustom(ELPAVPCodes.AREA_EVENT_INFO, ELPAVPCodes.SLg_VENDOR_ID, AreaEventInfoAvpImpl.class);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#setAreaEventInfo(net.java.slee.resource.diameter.slg.events.avp.AreaEventInfoAvp)
+   */
+  @Override
+  public void setAreaEventInfo(AreaEventInfoAvp areaEventInfo) throws IllegalStateException {
+    addAvp(ELPAVPCodes.AREA_EVENT_INFO, ELPAVPCodes.SLg_VENDOR_ID, areaEventInfo.byteArrayValue());
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#hasGMLCAddress()
+   */
+  @Override
+  public boolean hasGMLCAddress() {
+    return hasAvp(ELPAVPCodes.GMLC_ADDRESS, ELPAVPCodes.SLg_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#getGMLCAddress()
+   */
+  @Override
+  public Address getGMLCAddress() {
+    return getAvpAsAddress(ELPAVPCodes.GMLC_ADDRESS, ELPAVPCodes.SLg_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#setGMLCAddress(net.java.slee.resource.diameter.base.events.avp.Address)
+   */
+  @Override
+  public void setGMLCAddress(Address gmlcAddress) {
+    addAvp(ELPAVPCodes.GMLC_ADDRESS, ELPAVPCodes.SLg_VENDOR_ID, gmlcAddress);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#hasPeriodicLDRInformation()
+   */
+  @Override
+  public boolean hasPeriodicLDRInformation() {
+    return hasAvp(ELPAVPCodes.PERIODIC_LDR_INFORMATION, ELPAVPCodes.SLg_VENDOR_ID);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#getPeriodicLDRInformation()
+   */
+  @Override
+  public PeriodicLDRInfoAvp getPeriodicLDRInformation() {
+    return (PeriodicLDRInfoAvp) getAvpAsCustom(ELPAVPCodes.PERIODIC_LDR_INFORMATION, ELPAVPCodes.SLg_VENDOR_ID, PeriodicLDRInfoAvpImpl.class);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#setPeriodicLDRInformation(net.java.slee.resource.diameter.slg.events.avp.PeriodicLDRInfoAvp)
+   */
+  @Override
+  public void setPeriodicLDRInformation(PeriodicLDRInfoAvp periodicLDRInfoAvp) throws IllegalStateException {
+    addAvp(ELPAVPCodes.PERIODIC_LDR_INFORMATION, ELPAVPCodes.SLg_VENDOR_ID, periodicLDRInfoAvp.byteArrayValue());
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#hasReportingPLMNList()
+   */
+  @Override
+  public boolean hasReportingPLMNList() {
+    return hasAvp(ELPAVPCodes.REPORTING_PLMN_LIST, ELPAVPCodes.SLg_VENDOR_ID);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#getReportingPLMNList()
+   */
+  @Override
+  public ReportingPLMNListAvp getReportingPLMNList() {
+    return (ReportingPLMNListAvp) getAvpAsCustom(ELPAVPCodes.REPORTING_PLMN_LIST, ELPAVPCodes.SLg_VENDOR_ID, ReportingPLMNListAvpImpl.class);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#setReportingPLMNList(net.java.slee.resource.diameter.slg.events.avp.ReportingPLMNListAvp)
+   */
+  @Override
+  public void setReportingPLMNList(ReportingPLMNListAvp reportingPLMNList) throws IllegalStateException {
+    addAvp(ELPAVPCodes.REPORTING_PLMN_LIST, ELPAVPCodes.SLg_VENDOR_ID, reportingPLMNList.byteArrayValue());
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#hasMotionEventInfo()
+   */
+  @Override
+  public boolean hasMotionEventInfo() {
+    return hasAvp(ELPAVPCodes.MOTION_EVENT_INFO, ELPAVPCodes.SLg_VENDOR_ID);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#getMotionEventInfo()
+   */
+  @Override
+  public MotionEventInfoAvp getMotionEventInfo() {
+    return (MotionEventInfoAvp) getAvpAsCustom(ELPAVPCodes.MOTION_EVENT_INFO, ELPAVPCodes.SLg_VENDOR_ID, MotionEventInfoAvpImpl.class);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slg.events.ProvideLocationRequest#setMotionEventInfo(net.java.slee.resource.diameter.slg.events.avp.MotionEventInfoAvp)
+   */
+  @Override
+  public void setMotionEventInfo(MotionEventInfoAvp motionEventInfoAvp) throws IllegalStateException {
+    addAvp(ELPAVPCodes.MOTION_EVENT_INFO, ELPAVPCodes.SLg_VENDOR_ID, motionEventInfoAvp.byteArrayValue());
   }
 
   /* (non-Javadoc)
