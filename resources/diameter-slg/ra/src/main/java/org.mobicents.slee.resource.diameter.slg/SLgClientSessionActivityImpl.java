@@ -104,25 +104,20 @@ public class SLgClientSessionActivityImpl extends SLgSessionActivityImpl impleme
   }
 
   public ProvideLocationRequest createProvideLocationRequest() {
-    // Make sure we have the correct type of Request
-    if (!(lastRequest instanceof ProvideLocationRequest)) {
-      logger.warn("Invalid type of answer for this activity.");
-      return null;
-    }
 
-    try {
-      // Create the request
-      ProvideLocationRequest lrr = (ProvideLocationRequest) this.slgMessageFactory.createSLgMessage(lastRequest.getHeader(), new DiameterAvp[]{}, ProvideLocationRequest.COMMAND_CODE, slgMessageFactory.getApplicationId());
+    ProvideLocationRequest plr = super.getSLgMessageFactory().createProvideLocationRequest(super.getSessionId());
 
-      // Fill session related AVPs, if present
-      fillSessionAVPs(lrr);
+      // If there's a Destination-Host, add the AVP
+      if (destinationHost != null) {
+        plr.setDestinationHost(destinationHost);
+      }
 
-      return lrr;
-    } catch (InternalException e) {
-      logger.error("Failed to create Location-Report-Answer.", e);
-    }
+      if (destinationRealm != null) {
+        plr.setDestinationRealm(destinationRealm);
+      }
 
-    return null;
+      return plr;
+
   }
 
   public ProvideLocationRequest createProvideLocationRequest(String sessionId) throws IllegalArgumentException {

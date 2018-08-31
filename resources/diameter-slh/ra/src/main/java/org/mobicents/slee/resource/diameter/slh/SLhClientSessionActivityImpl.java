@@ -105,19 +105,19 @@ public class SLhClientSessionActivityImpl extends SLhSessionActivityImpl impleme
    */
   public LCSRoutingInfoRequest createLCSRoutingInfoRequest() {
 
-    try {
-      // Create the request
-      LCSRoutingInfoRequest rir = (LCSRoutingInfoRequest) this.slhMessageFactory.createSLhMessage(lastRequest.getHeader(), new DiameterAvp[]{}, LCSRoutingInfoRequest.COMMAND_CODE, slhMessageFactory.getApplicationId());
+      LCSRoutingInfoRequest rir = super.getSLhMessageFactory().createLCSRoutingInfoRequest(super.getSessionId());
 
-      // Fill session related AVPs, if present
-      fillSessionAVPs(rir);
+      // If there's a Destination-Host, add the AVP
+      if (destinationHost != null) {
+        rir.setDestinationHost(destinationHost);
+      }
+
+      if (destinationRealm != null) {
+        rir.setDestinationRealm(destinationRealm);
+      }
 
       return rir;
-    } catch (InternalException e) {
-      logger.error("Failed to create LCS Routing-Info-Request." + e);
-    }
 
-    return null;
   }
 
 
