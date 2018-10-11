@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<deploy-config>
+    <ra-entity resource-adaptor-id="ResourceAdaptorID[name=DiameterSLhResourceAdaptor,vendor=net.java,version=0.8.1]"
+               entity-name="DiameterSLh">
+        <properties file=""/>
+        <ra-link name="DiameterSLh"/>
+    </ra-entity>
+</deploy-config>

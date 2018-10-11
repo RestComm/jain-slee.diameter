@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "../User_Guide.ent">
+%BOOK_ENTITIES;
+]>
+
+<section id="ratype_activities">
+
+	<title>Activities</title>
+
+	<para>&THIS.RA; Type &THIS.VERSION; defines the following Activities:</para>
+
+	<variablelist>
+		<varlistentry>
+			<term>net.java.slee.resource.diameter.slg.SLgClientSession</term>
+			<listitem>
+				<para>This type of activity represents the client side of SLg session. Provide-Location-Request
+					(PLR) and Location-Report-Answer (LRA) messages can be created and sent in this Activity,
+					receiving the respective Answer (or timeout) later on this Activity.
+				</para>
+				<para>This activity type can be created with call to the proper <methodname>
+					createSLgClientSessionActivity
+				</methodname> method of <classname>net.java.slee.resource.diameter.slg.SLgProvider</classname>. It
+					ends once underlying SLg session ends.
+				</para>
+				<para>State machine for client SLg sessions can be found at <ulink
+						url="http://www.3gpp.org/ftp/Specs/archive/29_series/29.172/29172-e10.zip">3GPP TS
+					29.172</ulink>.
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>net.java.slee.resource.diameter.slg.SLgServerSession</term>
+			<listitem>
+				<para>This type of activity represents the server side of SLg session. Provide-Location-Request
+					(PLR) and Location-Report-Answer (LRA) messages are received in this Activity and respective
+					Requests/Answers are sent from it.
+				</para>
+				<para>This activity type is implicitly created by the Resource Adaptor upon reception of either
+					Provide-Location-Request (PLR) and Location-Report-Answer message. It ends once underlying
+					session ends.
+				</para>
+				<para>State machine for client SLg sessions can be found at <ulink
+						url="http://www.3gpp.org/ftp/Specs/archive/29_series/29.172/29172-e10.zip">3GPP TS
+					29.172</ulink>.
+				</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+
+	<para>
+		All activities define methods required to properly function and expose necessary information to	<acronym>
+		JAIN SLEE
+	</acronym> services.
+		SLg Server Activity is defined as follows:
+	</para>
+
+	<programlisting role="JAVA" language="Java">
+		public ProvideLocationAnswer createProvideLocationAnswer();
+
+		public void sendProvideLocationAnswer(ProvideLocationAnswer pla) throws IOException;
+
+		public LocationReportRequest createLocationReportRequest();
+
+		public void sendLocationReportRequest(LocationReportRequest lrr) throws IOException;
+	</programlisting>
+
+	<variablelist>
+		<varlistentry>
+			<term>public ProvideLocationAnswer createProvideLocationAnswer();</term>
+			<listitem>
+				<para>This method creates a SLg-specific Provide-Location-Answer message pre-populated with the AVPs
+					appropriate for this session.
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>public void sendProvideLocationAnswer(ProvideLocationAnswer pla) throws IOException;</term>
+			<listitem>
+				<para>This method sends a Provide-Location-Answer message to the peer.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>public LocationReportRequest createLocationReportRequest();</term>
+			<listitem>
+				<para>This method creates a SLg-specific Location-Report-Request message pre-populated with the AVPs
+					appropriate for this session.
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>public void sendLocationReportRequest(LocationReportRequest lrr) throws IOException;</term>
+			<listitem>
+				<para>This method sends a Location-Report-Request message to the peer.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+
+	<para>SLg Client Activity is defined as follows:</para>
+
+	<programlisting role="JAVA" language="Java">
+		public ProvideLocationRequest createProvideLocationRequest();
+
+		public void sendProvideLocationRequest(ProvideLocationRequest plr) throws IOException;
+
+		public LocationReportAnswer createLocationReportAnswer();
+
+		public void sendLocationReportAnswer(LocationReportAnswer lra) throws IOException;
+	</programlisting>
+
+	<variablelist>
+		<varlistentry>
+			<term>public ProvideLocationRequest createProvideLocationRequest();</term>
+			<listitem>
+				<para>This method creates a SLg-specific Provide-Location-Request message pre-populated with the AVPs
+					appropriate for this session.
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>public void sendProvideLocationRequest(ProvideLocationRequest plr) throws IOException;</term>
+			<listitem>
+				<para>This method sends a Provide-Location-Request message.</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>public LocationReportAnswer createLocationReportAnswer();</term>
+			<listitem>
+				<para>This method creates a SLg-specific Location-Report-Answer message pre-populated with the AVPs
+					appropriate for this session.
+				</para>
+			</listitem>
+		</varlistentry>
+		<varlistentry>
+			<term>public void sendLocationReportAnswer(LocationReportAnswer lra) throws IOException;</term>
+			<listitem>
+				<para>This method sends a Location-Report-Answer message.</para>
+			</listitem>
+		</varlistentry>
+	</variablelist>
+
+	<note>
+		<para>It is safe to type cast all the mentioned Diameter Activities to it's super interface <classname>
+			net.java.slee.resource.diameter.base.DiameterActivity
+		</classname> defined in Diameter Base Activities section.
+		</para>
+	</note>
+</section>
