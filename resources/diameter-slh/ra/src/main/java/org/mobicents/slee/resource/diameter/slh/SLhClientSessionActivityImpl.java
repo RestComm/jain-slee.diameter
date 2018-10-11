@@ -59,7 +59,7 @@ public class SLhClientSessionActivityImpl extends SLhSessionActivityImpl impleme
    */
   public SLhClientSessionActivityImpl(SLhMessageFactory slhMessageFactory, SLhAVPFactory slhAvpFactory, ClientSLhSession session, EventListener<Request, Answer> raEventListener, DiameterIdentity destinationHost,
                                       DiameterIdentity destinationRealm, Stack stack) {
-    super(slhMessageFactory, slhAvpFactory, null, (EventListener<Request, Answer>) session, destinationRealm, destinationRealm);
+    super(slhMessageFactory, slhAvpFactory, null, (EventListener<Request, Answer>) session, destinationHost, destinationRealm);
     // FIXME: remove stack?
 
     setSession(session);
@@ -133,9 +133,6 @@ public class SLhClientSessionActivityImpl extends SLhSessionActivityImpl impleme
     } catch (org.jdiameter.api.validation.AvpNotAllowedException e) {
       throw new AvpNotAllowedException("Message validation failed.", e, e.getAvpCode(), e.getVendorId());
     } catch (Exception e) {
-      if (logger.isDebugEnabled()) {
-        logger.debug("Failed to send message.", e);
-      }
       throw new IOException("Failed to send message, due to: " + e);
     }
   }
