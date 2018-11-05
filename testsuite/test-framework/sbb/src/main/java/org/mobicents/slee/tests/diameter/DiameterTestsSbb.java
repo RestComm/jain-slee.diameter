@@ -20,6 +20,7 @@ import net.java.slee.resource.diameter.base.DiameterProvider;
 import net.java.slee.resource.diameter.base.AccountingServerSessionActivity;
 import net.java.slee.resource.diameter.base.events.AccountingAnswer;
 import net.java.slee.resource.diameter.base.events.DiameterMessage;
+import net.java.slee.resource.diameter.base.events.TimeOutMessage;
 import net.java.slee.resource.diameter.base.events.avp.DiameterAvp;
 import net.java.slee.resource.diameter.base.events.avp.GroupedAvp;
 
@@ -216,12 +217,17 @@ public abstract class DiameterTestsSbb implements javax.slee.Sbb {
     logger.info( "Abort-Session-Answer received." );
   }
 
+  public void onTimeOutMessage(net.java.slee.resource.diameter.base.events.TimeOutMessage asa, ActivityContextInterface aci)
+  {
+    logger.info( "Time-Out-Message received." );
+  }
+
   public void onAccountingRequest(net.java.slee.resource.diameter.base.events.AccountingRequest acr, ActivityContextInterface aci)
   {
     long start = System.currentTimeMillis();
     logger.info( "Accounting-Request received. [" + acr + "]" );
 
-    boolean actAsProxy = false;
+    boolean actAsProxy = true;
 
     try
     {

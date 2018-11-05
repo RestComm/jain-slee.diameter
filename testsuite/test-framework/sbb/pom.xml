@@ -18,6 +18,23 @@
       <artifactId>base-ratype</artifactId>
       <version>${restcomm.diameter.resources.base.version}</version>
     </dependency>
-  </dependencies>
-  
+    
+    <dependency>
+      <groupId>org.mobicents.resources</groupId>
+      <artifactId>restcomm-slee-ra-diameter-base-events</artifactId>
+      <version>${restcomm.diameter.resources.base.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mobicents.resources</groupId>
+      <artifactId>restcomm-slee-ra-diameter-base-ra</artifactId>
+      <version>${restcomm.diameter.resources.base.version}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.mobicents.resources</groupId>
+      <artifactId>restcomm-slee-ra-diameter-base-ratype</artifactId>
+      <version>${restcomm.diameter.resources.base.version}</version>
+    </dependency>
+  </dependencies>  
 </project>
