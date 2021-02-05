@@ -45,26 +45,37 @@ import net.java.slee.resource.diameter.sh.events.avp.UserIdentityAvp;
  * Message Format
  * &lt; User-Data-Request &gt; ::=   &lt; Diameter Header: 306, REQ, PXY, 16777217 &gt;
  *                             &lt; Session-Id &gt;
- *                             { Vendor-Specific-Application-Id }
- *                             { Auth-Session-State }
- *                             { Origin-Host }
- *                             { Origin-Realm }
- *                             [ Destination-Host ]
- *                             { Destination-Realm }
- *                             *[ Supported-Features ]
- *                             { User-Identity }
- *                             [ Server-Name ]
- *                             *[ Service-Indication ]
- *                             *{ Data-Reference }
- *                             *[ Identity-Set ]
- *                             [ Requested-Domain ]
- *                             [ Current-Location ]
- *                             *[ DSAI-Tag ]
- *                             [ Session-Priority ]
- *                             [ Requested-Nodes ]
- *                             *[ AVP ]
- *                             *[ Proxy-Info ]
- *                             *[ Route-Record ]
+ *                             < Session-Id >
+ * 							    [ DRMP ]
+ *                              { Vendor-Specific-Application-Id }
+ *                              { Auth-Session-State }
+ *                              { Origin-Host }
+ *                              { Origin-Realm }
+ *                              [ Destination-Host ]
+ *                              { Destination-Realm }
+ *                              *[ Supported-Features ]
+ *                              { User-Identity }
+ *                              [ Wildcarded-Public-Identity ]
+ *                              [ Wildcarded-IMPU ]
+ *                              [ Server-Name ]
+ *                              *[ Service-Indication ]
+ *                              *{ Data-Reference }
+ *                              *[ Identity-Set ]
+ *                              [ Requested-Domain ]
+ *                              [ Current-Location ]
+ *                              *[ DSAI-Tag ]
+ *                              [ Session-Priority ]
+ *                              [ User-Name ]
+ *                              [ Requested-Nodes ]
+ *                              [ Serving-Node-Indication ]
+ *                              [ Pre-paging-Supported ]
+ *                              [ Local-Time-Zone-Indication ]
+ *                              [ UDR-Flags ]
+ *                              [ Call-Reference-Info ]
+ *                              [ OC-Supported-Features ]
+ * 								*[ AVP ]
+ * 								*[ Proxy-Info ]
+ * 								*[ Route-Record ]
  * </pre>
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
@@ -311,4 +322,26 @@ public interface UserDataRequest extends DiameterShMessage {
    *             if setRequestedNodes has already been called
    */
   void setRequestedNodes(long requestedNodes);
+
+  /**
+   * Returns true if the UDR-Flags AVP is present in the message.
+   */
+  boolean hasUDRFlags();
+
+  /**
+   * Returns the value of the UDR-Flags AVP, of type Unsigned32.
+   *
+   * @return the value of the UDR-Flags AVP or null if it has not been set
+   *         on this message
+   */
+  long getUDRFlags();
+
+  /**
+   * Sets the value of the UDR-Flags AVP, of type Unsigned32.
+   *
+   * @throws IllegalStateException
+   *             if setUDRFlags has already been called
+   */
+  void setUDRFlags(long udrFlags);
+
 }

@@ -21,6 +21,9 @@
 
 package org.mobicents.slee.resource.diameter.slh.events;
 
+import net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType;
+import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
+import net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp;
 import org.jdiameter.api.Message;
 import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
 import net.java.slee.resource.diameter.base.events.avp.Address;
@@ -30,6 +33,7 @@ import net.java.slee.resource.diameter.slh.events.avp.LCSRoutingInfoAVPCodes;
 import net.java.slee.resource.diameter.slh.events.avp.AdditionalServingNodeAvp;
 import net.java.slee.resource.diameter.slh.events.avp.ServingNodeAvp;
 
+import org.mobicents.slee.resource.diameter.base.events.avp.ExperimentalResultAvpImpl;
 import org.mobicents.slee.resource.diameter.slh.events.avp.AdditionalServingNodeAvpImpl;
 import org.mobicents.slee.resource.diameter.slh.events.avp.ServingNodeAvpImpl;;
 
@@ -45,6 +49,48 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   public LCSRoutingInfoAnswerImpl(Message message) {
     super(message);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slh.events.LCSRoutingInfoAnswer#hasExperimentalResult()
+   */
+  public boolean hasExperimentalResult() {
+    return hasAvp(DiameterAvpCodes.EXPERIMENTAL_RESULT);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slh.events.LCSRoutingInfoAnswer#getExperimentalResult()
+   */
+  public ExperimentalResultAvp getExperimentalResult() {
+    return (ExperimentalResultAvp) getAvpAsCustom(DiameterAvpCodes.EXPERIMENTAL_RESULT, ExperimentalResultAvpImpl.class);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slh.events.LCSRoutingInfoAnswer#setExperimentalResult(net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp)
+   */
+  public void setExperimentalResult(ExperimentalResultAvp experimentalResult) {
+    addAvp(DiameterAvpCodes.EXPERIMENTAL_RESULT, experimentalResult.byteArrayValue());
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slh.events.LCSRoutingInfoAnswer#hasAuthSessionState()
+   */
+  public boolean hasAuthSessionState() {
+    return hasAvp(DiameterAvpCodes.AUTH_SESSION_STATE);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slh.events.LCSRoutingInfoAnswer#getAuthSessionState()
+   */
+  public AuthSessionStateType getAuthSessionState() {
+    return (AuthSessionStateType) getAvpAsEnumerated(DiameterAvpCodes.AUTH_SESSION_STATE, AuthSessionStateType.class);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.slh.events.LCSRoutingInfoAnswer#setAuthSessionState(net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType)
+   */
+  public void setAuthSessionState(AuthSessionStateType authSessionState) {
+    addAvp(DiameterAvpCodes.AUTH_SESSION_STATE, authSessionState.getValue());
   }
 
   /*

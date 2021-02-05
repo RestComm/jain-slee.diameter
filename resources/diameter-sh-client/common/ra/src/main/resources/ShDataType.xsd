@@ -86,11 +86,78 @@
 			<xs:minLength value="0"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="tIPv4Address" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tIPv6Prefix" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tIPv6InterfaceIdentifier" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tIP-SM-GW-Number" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="tString" final="list restriction">
 		<xs:restriction base="xs:string">
 			<xs:minLength value="0"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="tServicePriorityLevel" final="list restriction">
+		<xs:restriction base="xs:unsignedByte">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="4"/>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">PRIORITY-0</label>
+						<definition xml:lang="en">Maximum priority level</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en"> PRIORITY-1</label>
+						<definition xml:lang="en">Priority level 1</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en"> PRIORITY-2</label>
+						<definition xml:lang="en"> Priority level 2</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="3">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en"> PRIORITY-3</label>
+						<definition xml:lang="en"> Priority level 3</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en"> PRIORITY-4</label>
+						<definition xml:lang="en">Minimum priority level</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+
 	<xs:simpleType name="tMSISDN" final="list restriction">
 		<xs:restriction base="xs:string">
 			<xs:minLength value="0"/>
@@ -207,7 +274,7 @@
 			<xs:enumeration value="5">
 				<xs:annotation>
 					<xs:documentation>
-						<label xml:lang="en">notProvidedFromSGSN</label>
+						<label xml:lang="en">notProvidedFromSGSNorMME</label>
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -298,6 +365,22 @@
 			<xs:length value="16"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="tE-UTRANCellGlobalId" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:length value="12"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tNRCellGlobalId" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="14"/>
+			<xs:maxLength value="15"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tTrackingAreaId" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:length value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="tAddressString" final="list restriction">
 		<xs:restriction base="xs:string">
 			<xs:minLength value="4"/>
@@ -353,9 +436,61 @@
 			<xs:minInclusive value="0"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="tUEIPReachabilityMME" final="list restriction">
+		<xs:restriction base="xs:unsignedByte">
+			<xs:maxInclusive value="1"/>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">REACHABLE</label>
+						<definition xml:lang="en">MME notified that the UE is reachable again</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tUEIPReachabilitySGSN" final="list restriction">
+		<xs:restriction base="xs:unsignedByte">
+			<xs:maxInclusive value="1"/>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">REACHABLE</label>
+						<definition xml:lang="en">SGSN notified that the UE is reachable again</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tUEIPReachabilityAMF3GPP" final="list restriction">
+		<xs:restriction base="xs:unsignedByte">
+			<xs:maxInclusive value="1"/>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">REACHABLE</label>
+						<definition xml:lang="en">AMF3GPP notified that the UE is reachable again</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tUEIPReachabilityAMFnon3GPP" final="list restriction">
+		<xs:restriction base="xs:unsignedByte">
+			<xs:maxInclusive value="1"/>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">REACHABLE</label>
+						<definition xml:lang="en">AMFnon3GPP notified that the UE is reachable again</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:simpleType name="tDirectionOfRequest" final="list restriction">
 		<xs:restriction base="xs:unsignedByte">
-			<xs:maxInclusive value="3"/>
+			<xs:maxInclusive value="4"/>
 			<xs:enumeration value="0">
 				<xs:annotation>
 					<xs:documentation>
@@ -385,6 +520,14 @@
 					<xs:documentation>
 						<label xml:lang="en">ORIGINATING_UNREGISTERED</label>
 						<definition xml:lang="en">Originating Session for an unregistered user</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="4">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">ORIGINATING_CDIV</label>
+						<definition xml:lang="en">Originating Session for call diversion</definition>
 					</xs:documentation>
 				</xs:annotation>
 			</xs:enumeration>
@@ -426,6 +569,174 @@
 			<xs:maxInclusive value="65535"/>
 		</xs:restriction>
 	</xs:simpleType>
+	<xs:simpleType name="tIMSVoiceOverPSSessionSupport" final="list restriction">
+		<xs:restriction base="xs:unsignedByte">
+			<xs:maxInclusive value="2"/>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">IMS-VOICE-OVER-PS-NOT-SUPPORTED</label>
+						<definition xml:lang="en">IMS voice is not supported</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en"> IMS-VOICE-OVER-PS-SUPPORTED </label>
+						<definition xml:lang="en"> IMS voice is supported </definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">IMS-VOICE-OVER-PS-SUPPORT-UNKNOWN</label>
+						<definition xml:lang="en">Support of IMS voice is unknown</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tRATtype" final="list restriction">
+		<xs:restriction base="xs:int">
+			<xs:annotation>
+				<xs:documentation>
+					<label xml:lang="en"> Radio Access Technology Type </label>
+					<definition xml:lang="en"> See subclause 5.3.31 in 3GPP TS 29.212 </definition>
+				</xs:documentation>
+			</xs:annotation>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tAccessType" final="restriction list">
+		<xs:restriction base="xs:unsignedByte">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="1"/>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">3GPP-ACCESS</label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">NON-3GPP-ACCESS</label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tCSGId" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:length value="8"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tAccessMode" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:length value="4"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tDateTime">
+		<xs:restriction base="xs:dateTime"/>
+	</xs:simpleType>
+	<xs:simpleType name="tVisitedPLMNID" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="5"/>
+			<xs:maxLength value="6"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tTimeZone" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="2"/>
+			<xs:maxLength value="3"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tDaylightSavingTime" final="restriction list">
+		<xs:restriction base="xs:unsignedByte">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="1"/>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">NO_ADJUSTMENT</label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">PLUS_ONE_HOUR_ADJUSTMENT</label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="2">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">PLUS_TWO_HOURS_ADJUSTMENT</label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tMSISDNType" final="list restriction">
+		<xs:restriction base="xs:unsignedByte">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="1"/>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">BASIC</label>
+						<definition xml:lang="en">MSISDN is the MSISDN or the Basic MSISDN in case of multinumbering</definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">ADDITIONAL</label>
+						<definition xml:lang="en">MSISDN is an Additional MSISDN, when feature Additional MSISDN is enabled </definition>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tIMSI" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tTWAN-SSID" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tTWAN-BSSID" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tTWANOperatorName" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tCivicAddress" final="list restriction">
+		<xs:restriction base="xs:base64Binary">
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tLogicalAccessID" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="tIMSPrivateUserIdentity" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+		</xs:restriction>
+	</xs:simpleType>
 	<xs:complexType name="tExtension">
 		<xs:sequence>
 			<xs:any processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
@@ -443,11 +754,129 @@
 			<xs:element name="Extension" type="tShIMSDataExtension3" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
-	
 	<xs:complexType name="tShIMSDataExtension3">
 		<xs:sequence>
-			<xs:element name="ServiceLevelTraceInfo" type="tServiceLevelTraceInfo" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ServiceLevelTraceInfo" type="tServiceLevelTraceInfo" minOccurs="0"/>
+			<xs:element name="IPv4Address" type="tIPv4Address" minOccurs="0"/>
+			<xs:element name="IPv6Prefix" type="tIPv6Prefix" minOccurs="0"/>
+			<xs:element name="IPv6InterfaceIdentifier" type="tIPv6InterfaceIdentifier" minOccurs="0"/>
+			<xs:element name="ServicePriorityLevel" type="tServicePriorityLevel" minOccurs="0"/>
+			<xs:element name="UEReachabilityForIP" type="tUEReachabilityForIP" minOccurs="0"/>
+			<xs:element name="SMSRegistrationInfo" type="tSMSRegistrationInfo" minOccurs="0"/>
+			<xs:element name="Extension" type="tShIMSDataExtension4" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tShIMSDataExtension4">
+		<xs:sequence>
+			<xs:element name="STN-SR" type="tMSISDN" minOccurs="0"/>
+			<xs:element name="UE-SRVCC-Capability" type="tUE-SRVCC-Capability" minOccurs="0"/>
+			<xs:element name="ExtendedPriority" type="tExtendedPriority" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element minOccurs="0" name="CSRN" type= "tMSISDN" />
+			<xs:element name="Extension" type="tShIMSDataExtension5" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tShIMSDataExtension5">
+		<xs:sequence>
+			<xs:element name="ReferenceLocationInformation" type= "tReferenceLocationInformation" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Extension" type="tShIMSDataExtension6" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tShIMSDataExtension6">
+		<xs:sequence>
+			<xs:element name="MTRRIndication" type= "tBool" minOccurs="0"/>
 			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="tUE-SRVCC-Capability" final="restriction list">
+		<xs:restriction base="xs:unsignedByte">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="1"/>
+			<xs:enumeration value="0">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">UE-SRVCC-CAPABILITY-NOT-SUPPORTED</label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+			<xs:enumeration value="1">
+				<xs:annotation>
+					<xs:documentation>
+						<label xml:lang="en">UE-SRVCC-CAPABILITY-SUPPORTED</label>
+					</xs:documentation>
+				</xs:annotation>
+			</xs:enumeration>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="tExtendedPriority">
+		<xs:sequence>
+			<xs:element name="PriorityNamespace" type="tPriorityNamespace"/>
+			<xs:element name="PriorityLevel" type="tPriorityLevel"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="tPriorityNamespace" final="list restriction">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="tPriorityLevel" final="list restriction">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="tSCAddress" final="list restriction">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="0"/>
+			<xs:maxLength value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="tReferenceLocationInformation">
+		<xs:sequence>
+			<xs:element name="AccessType" type="tString" minOccurs="0"/>
+			<xs:element name="AccessInfo" type="tString" minOccurs="0"/>
+			<xs:element name="AccessValue" type="tString" minOccurs="0"/>
+			<xs:element minOccurs="0" name="Extension" type="tExtension"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tPSLocationInformation-Extension">
+		<xs:sequence>
+			<xs:element name="UserCSGInformation" type="tUserCSGInformation" minOccurs="0"/>
+			<xs:element name="Extension" type="tPSLocationInformation-Extension2" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tPSLocationInformation-Extension2">
+		<xs:sequence>
+			<xs:element name="VisitedPLMNID" type="tVisitedPLMNID" minOccurs="0"/>
+			<xs:element name="LocalTimeZone" type="tLocalTimeZone" minOccurs="0"/>
+			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
+			<xs:element name="RATtype" type="tRATtype" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tLocalTimeZone">
+		<xs:sequence>
+			<xs:element name="TimeZone" type="tTimeZone"/>
+			<xs:element name="DaylightSavingTime" type="tDaylightSavingTime"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tUserCSGInformation">
+		<xs:sequence>
+			<xs:element name="CSGId" type="tCSGId" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Extension" type="tUserCSGInformation-Extension" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tUserCSGInformation-Extension">
+		<xs:sequence>
+			<xs:element name="AccessMode" type="tAccessMode" minOccurs="0"/>
+			<xs:element name="CMI" type="tBool" minOccurs="0"/>
+			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tTWANLocationInformation">
+		<xs:sequence>
+			<xs:element name="TWAN-SSID" type="tTWAN-SSID" minOccurs="0"/>
+			<xs:element name="TWAN-BSSID" type="tTWAN-BSSID" minOccurs="0"/>
+			<xs:element name="TWAN-PLMNID" type="tVisitedPLMNID" minOccurs="0"/>
+			<xs:element name="CivicAddress" type="tCivicAddress" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="TWANOperatorName" type="tTWANOperatorName" minOccurs="0"/>
+			<xs:element name="LocalTimeZone" type="tLocalTimeZone" minOccurs="0"/>
+			<xs:element name="LogicalAccessID" type="tLogicalAccessID" minOccurs="0"/>
+			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="tSePoTriExtension">
@@ -459,7 +888,25 @@
 	<xs:complexType name="tPublicIdentityExtension2">
 		<xs:sequence>
 			<xs:element name="WildcardedIMPU" type="xs:anyURI" minOccurs="0"/>
+			<xs:element name="Extension" type="tPublicIdentityExtension3" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tPublicIdentityExtension3">
+		<xs:sequence>
+			<xs:element name="ExtendedMSISDN" type="tExtendedMSISDN" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Extension" type="tPublicIdentityExtension4" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tPublicIdentityExtension4">
+		<xs:sequence>
+			<xs:element name="EnhancedIMSPublicIdentifiers" type="tEnhancedIMSPublicIdentity" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tExtendedMSISDN">
+		<xs:sequence>
+			<xs:element name="MSISDN" type="tMSISDN" />
+			<xs:element name="MSISDNType" type="tMSISDNType" />
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="tPublicIdentityExtension">
@@ -475,7 +922,6 @@
 			<xs:element name="ImplicitIdentities" type="tPublicIdentity" minOccurs="0"/>
 			<xs:element name="AllIdentities" type="tPublicIdentity" minOccurs="0"/>
 			<xs:element name="AliasIdentities" type="tPublicIdentity" minOccurs="0"/>
-			<xs:element name="AliasesRepositoryData" type="tTransparentData" minOccurs="0" maxOccurs="unbounded"/>
 			<xs:element name="Extension" type="tSh-Data-Extension2" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -483,6 +929,68 @@
 	<xs:complexType name="tSh-Data-Extension2">
 		<xs:sequence>
 			<xs:element name="DeletedIdentities" type="tPublicIdentity" minOccurs="0"/>
+			<xs:element name="Extension" type="tSh-Data-Extension3" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tSh-Data-Extension3">
+		<xs:sequence>
+			<xs:element name="TADSinformation" type="tTADSinformation" minOccurs="0"/>
+			<xs:element name="Extension" type="tSh-Data-Extension4" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tTADSinformation">
+		<xs:sequence>
+			<xs:element name="IMSVoiceOverPSSessionSupport" type="tIMSVoiceOverPSSessionSupport"/>
+			<xs:element name="RATtype" type="tRATtype" minOccurs="0"/>
+			<xs:element name="Extension" type="tTADSinformationExtension" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tTADSinformationExtension">
+		<xs:sequence>
+			<xs:element name="LastUEActivityTime" type="tDateTime" minOccurs="0"/>
+			<xs:element name="Extension" type="tTADSinformationExtension2" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tTADSinformationExtension2">
+		<xs:sequence>
+			<xs:element name="AccessType" type="tAccessType" minOccurs="0"/>
+			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="tSh-Data-Extension4">
+		<xs:sequence>
+			<xs:element name="EPSUserState" type="tPSUserState" minOccurs="0"/>
+			<xs:element name="EPSLocationInformation" type="tEPSLocationInformation" minOccurs="0"/>
+			<xs:element name="Extension" type="tSh-Data-Extension5" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tSh-Data-Extension5">
+		<xs:sequence>
+			<xs:element name="IMSI" type="tIMSI" minOccurs="0"/>
+			<xs:element name="TWANLocationInformation" type="tTWANLocationInformation" minOccurs="0"/>
+			<xs:element name="IMSPrivateUserIdentity" type="tIMSPrivateUserIdentity" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Extension" type="tSh-Data-Extension6" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tSh-Data-Extension6">
+		<xs:sequence>
+			<xs:element name="IMEISV" type="tString" minOccurs="0"/>
+			<xs:element name="Extension" type="tSh-Data-Extension7" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tSh-Data-Extension7">
+		<xs:sequence>
+			<xs:element name="Sh-5GSLocationInformation" type="tSh-5GSLocationInformation" minOccurs="0"/>
+			<xs:element name="Sh-5GSUserState" type="tPSUserState" minOccurs="0"/>
 			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -497,6 +1005,28 @@
 			<xs:element name="CSUserState" type="tCSUserState" minOccurs="0"/>
 			<xs:element name="PSUserState" type="tPSUserState" minOccurs="0"/>
 			<xs:element name="Extension" type="tSh-Data-Extension" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tUEReachabilityForIP">
+		<xs:sequence>
+			<xs:element name="UEIPReachabilityMME" type="tUEIPReachabilityMME" minOccurs="0"/>
+			<xs:element name="Extension" type="tUEReachabilityForIP-Extension" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tUEReachabilityForIP-Extension">
+		<xs:sequence>
+			<xs:element name="UEIPReachabilitySGSN" type="tUEIPReachabilitySGSN" minOccurs="0"/>
+			<xs:element name="Extension" type="tUEReachabilityForIP-Extension2" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tUEReachabilityForIP-Extension2">
+		<xs:sequence>
+			<xs:element name="UEIPReachabilityAMF3GPP" type="tUEIPReachabilityAMF3GPP" minOccurs="0"/>
+			<xs:element name="UEIPReachabilityAMFnon3GPP" type="tUEIPReachabilityAMFnon3GPP" minOccurs="0"/>
+			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
@@ -545,6 +1075,28 @@
 			<xs:element name="MSCNumber" type="tISDNAddress" minOccurs="0"/>
 			<xs:element name="CurrentLocationRetrieved" type="tBool" minOccurs="0"/>
 			<xs:element name="AgeOfLocationInformation" type="tAgeOfLocationInformation" minOccurs="0"/>
+			<xs:element name="Extension" type="tCSLocationInformation-Extension" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tCSLocationInformation-Extension">
+		<xs:sequence>
+			<xs:element name="UserCSGInformation" type="tUserCSGInformation" minOccurs="0"/>
+			<xs:element name="Extension" type="tCSLocationInformationExtension2" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tCSLocationInformationExtension2">
+		<xs:sequence>
+			<xs:element name="E-UTRANCellGlobalId" type="tE-UTRANCellGlobalId" minOccurs="0"/>
+			<xs:element name="TrackingAreaId" type="tTrackingAreaId" minOccurs="0"/>
+			<xs:element name="Extension" type="tCSLocationInformationExtension3" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tCSLocationInformationExtension3">
+		<xs:sequence>
+			<xs:element name="LocalTimeZone" type="tLocalTimeZone" minOccurs="0"/>
 			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -562,13 +1114,56 @@
 			<xs:element name="SGSNNumber" type="tISDNAddress" minOccurs="0"/>
 			<xs:element name="CurrentLocationRetrieved" type="tBool" minOccurs="0"/>
 			<xs:element name="AgeOfLocationInformation" type="tAgeOfLocationInformation" minOccurs="0"/>
-			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
+			<xs:element name="Extension" type="tPSLocationInformation-Extension" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tEPSLocationInformation">
+		<xs:sequence>
+			<xs:element name="E-UTRANCellGlobalId" type="tE-UTRANCellGlobalId" minOccurs="0"/>
+			<xs:element name="TrackingAreaId" type="tTrackingAreaId" minOccurs="0"/>
+			<xs:element name="GeographicalInformation" type="tGeographicalInformation" minOccurs="0"/>
+			<xs:element name="GeodeticInformation" type="tGeodeticInformation" minOccurs="0"/>
+			<xs:element name="MMEName" type="tString" minOccurs="0"/>
+			<xs:element name="CurrentLocationRetrieved" type="tBool" minOccurs="0"/>
+			<xs:element name="AgeOfLocationInformation" type="tAgeOfLocationInformation" minOccurs="0"/>
+			<xs:element name="UserCSGInformation" type="tUserCSGInformation" minOccurs="0"/>
+			<xs:element name="Extension" type="tEPSLocationInformation-Extension" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tEPSLocationInformation-Extension">
+		<xs:sequence>
+			<xs:element name="VisitedPLMNID" type="tVisitedPLMNID" minOccurs="0"/>
+			<xs:element name="LocalTimeZone" type="tLocalTimeZone" minOccurs="0"/>
+			<xs:element name="Extension" type="tEPSLocationInformation-Extension2" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tEPSLocationInformation-Extension2">
+		<xs:sequence>
+			<xs:element name="RATtype" type="tRATtype" minOccurs="0"/>
+			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tSh-5GSLocationInformation">
+		<xs:sequence>
+			<xs:element name="NRCellGlobalId" type="tNRCellGlobalId" minOccurs="0"/>
+			<xs:element name="E-UTRANCellGlobalId" type="tE-UTRANCellGlobalId" minOccurs="0"/>
+			<xs:element name="TrackingAreaId" type="tTrackingAreaId" minOccurs="0"/>
+			<xs:element name="GeographicalInformation" type="tGeographicalInformation" minOccurs="0"/>
+			<xs:element name="AMFAddress" type="tString" minOccurs="0"/>
+			<xs:element name="SMSFAddress" type="tString" minOccurs="0"/>
+			<xs:element name="CurrentLocationRetrieved" type="tBool" minOccurs="0"/>
+			<xs:element name="AgeOfLocationInformation" type="tAgeOfLocationInformation" minOccurs="0"/>
+			<xs:element name="VisitedPLMNID" type="tVisitedPLMNID" minOccurs="0"/>
+			<xs:element name="LocalTimeZone" type="tLocalTimeZone" minOccurs="0"/>
+			<xs:element name="RATtype" type="tRATtype" minOccurs="0"/>
+			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="tISDNAddress">
 		<xs:sequence>
-			<xs:element name="Address" type="tAddressString" maxOccurs="9"/>
+			<xs:element name="Address" type="tAddressString"/>
 			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -581,11 +1176,21 @@
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
+	<xs:complexType name="tEnhancedIMSPublicIdentity">
+		<xs:sequence>
+			<xs:element name="IMSPublicIdentity" type="tIMSPublicIdentity" />
+			<xs:element name="IdentityType" type="tIdentityType" />
+			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+
 	<xs:complexType name="tInitialFilterCriteria">
 		<xs:sequence>
 			<xs:element name="Priority" type="tPriority"/>
 			<xs:element name="TriggerPoint" type="tTrigger" minOccurs="0"/>
 			<xs:element name="ApplicationServer" type="tApplicationServer"/>
+			<xs:element name="ProfilePartIndicator" type="tProfilePartIndicator" minOccurs="0"/>
 			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -593,7 +1198,7 @@
 	<xs:complexType name="tTrigger">
 		<xs:sequence>
 			<xs:element name="ConditionTypeCNF" type="tBool"/>
-			<xs:element name="SPT" type="tSePoTri" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SPT" type="tSePoTri" maxOccurs="unbounded"/>
 			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
@@ -634,7 +1239,7 @@
 			<xs:element name="ServerName" type="tSIP_URL"/>
 			<xs:element name="DefaultHandling" type="tDefaultHandling" minOccurs="0"/>
 			<xs:element name="ServiceInfo" type="tServiceInfo" minOccurs="0"/>
-			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
+			<xs:element name="Extension" type="tApplicationServerExtension" minOccurs="0"/>
 			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
@@ -652,6 +1257,38 @@
 		<xs:sequence>
 			<xs:element name="DSAI-Tag" type="tDSAI-Tag"/>
 			<xs:element name="DSAI-Value" type="tDSAI-Value"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tSMSRegistrationInfo">
+		<xs:sequence>
+			<xs:element name="IP-SM-GW-Number" type="tIP-SM-GW-Number"/>
+			<xs:element name="Extension" type="tSMSRegistrationInfoExtension" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tSMSRegistrationInfoExtension">
+		<xs:sequence>
+			<xs:element name="SCAddress" type="tSCAddress" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tApplicationServerExtension">
+		<xs:sequence>
+			<xs:element name="IncludeRegisterRequest" type="tIncludeRegisterRequest" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="IncludeRegisterResponse" type="tIncludeRegisterResponse" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tIncludeRegisterRequest">
+		<xs:sequence>
+			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="tIncludeRegisterResponse">
+		<xs:sequence>
+			<xs:element name="Extension" type="tExtension" minOccurs="0"/>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
 		</xs:sequence>
 	</xs:complexType>
 	<xs:element name="Sh-Data" type="tSh-Data"/>

@@ -26,10 +26,10 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import javax.xml.bind.JAXBContext;
+/*import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
+import javax.xml.bind.Unmarshaller;*/
 
 import net.java.slee.resource.diameter.base.events.avp.DiameterAvpCodes;
 import net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp;
@@ -56,10 +56,10 @@ public class UserDataAnswerImpl extends DiameterShMessageImpl implements UserDat
 
   private static final long serialVersionUID = -6240588207973076841L;
 
-  private static JAXBContext jaxbContext = initJAXBContext();
+  //private static JAXBContext jaxbContext = initJAXBContext();
   private static UserDataObjectFactory udof = new UserDataObjectFactoryImpl(new ObjectFactory());
 
-  private static JAXBContext initJAXBContext() {
+  /*private static JAXBContext initJAXBContext() {
     try {
       return JAXBContext.newInstance(org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShData.class);
     }
@@ -67,7 +67,7 @@ public class UserDataAnswerImpl extends DiameterShMessageImpl implements UserDat
       // we can't throw exception
       return null;
     }
-  }
+  }*/
 
   /**
    * 
@@ -104,11 +104,11 @@ public class UserDataAnswerImpl extends DiameterShMessageImpl implements UserDat
   public ShData getUserDataObject() throws IOException {
     ShData shDataObject = null;
     try {
-      Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+      //Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
 
       byte[] data = getAvpAsRaw(DiameterShAvpCodes.USER_DATA, DiameterShAvpCodes.SH_VENDOR_ID);
-      JAXBElement<TShData> jaxbElem = udof.createShData((TShData) unmarshaller.unmarshal(new ByteArrayInputStream(data)));
-      shDataObject = (ShData) jaxbElem.getValue();
+      //JAXBElement<TShData> jaxbElem = udof.createShData((TShData) unmarshaller.unmarshal(new ByteArrayInputStream(data)));
+      //shDataObject = (ShData) jaxbElem.getValue();
     }
     catch (Exception e) {
       throw new IOException("Failed to unmarshal User-Data AVP into JAXB Object", e);
@@ -130,10 +130,10 @@ public class UserDataAnswerImpl extends DiameterShMessageImpl implements UserDat
    */
   public void setUserDataObject(ShData userData) throws IOException {
     try {
-      Marshaller marshaller = jaxbContext.createMarshaller();
+      //Marshaller marshaller = jaxbContext.createMarshaller();
 
       ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      marshaller.marshal(userData, baos);
+      //marshaller.marshal(userData, baos);
       addAvp(DiameterShAvpCodes.USER_DATA, DiameterShAvpCodes.SH_VENDOR_ID, baos.toByteArray());
     }
     catch (Exception e) {
@@ -167,26 +167,26 @@ public class UserDataAnswerImpl extends DiameterShMessageImpl implements UserDat
 
   /* 
    * (non-Javadoc)
-   * @see net.java.slee.resource.diameter.sh.events.SubscribeNotificationsAnswer#hasWildcardedPSI()
+   * @see net.java.slee.resource.diameter.sh.events.SubscribeNotificationsAnswer#hasWildcardedPublicIdentity()
    */
-  public boolean hasWildcardedPSI() {
-    return hasAvp(DiameterShAvpCodes.WILDCARDED_PSI, DiameterShAvpCodes.SH_VENDOR_ID);
+  public boolean hasWildcardedPublicIdentity() {
+    return hasAvp(DiameterShAvpCodes.WILDCARDED_PUBLIC_IDENTITY, DiameterShAvpCodes.SH_VENDOR_ID);
   }
 
   /* 
    * (non-Javadoc)
-   * @see net.java.slee.resource.diameter.sh.events.SubscribeNotificationsAnswer#getWildcardedPSI()
+   * @see net.java.slee.resource.diameter.sh.events.SubscribeNotificationsAnswer#getWildcardedPublicIdentity()
    */
-  public String getWildcardedPSI() {
-    return getAvpAsUTF8String(DiameterShAvpCodes.WILDCARDED_PSI, DiameterShAvpCodes.SH_VENDOR_ID);
+  public String getWildcardedPublicIdentity() {
+    return getAvpAsUTF8String(DiameterShAvpCodes.WILDCARDED_PUBLIC_IDENTITY, DiameterShAvpCodes.SH_VENDOR_ID);
   }
 
   /* 
    * (non-Javadoc)
-   * @see net.java.slee.resource.diameter.sh.events.SubscribeNotificationsAnswer#setWildcardedPSI(String)
+   * @see net.java.slee.resource.diameter.sh.events.SubscribeNotificationsAnswer#setWildcardedPublicIdentity(String)
    */
-  public void setWildcardedPSI(String wildcardedPSI) {
-    addAvp(DiameterShAvpCodes.WILDCARDED_PSI, DiameterShAvpCodes.SH_VENDOR_ID, wildcardedPSI);
+  public void setWildcardedPublicIdentity(String wildcardedPublicIdentity) {
+    addAvp(DiameterShAvpCodes.WILDCARDED_PUBLIC_IDENTITY, DiameterShAvpCodes.SH_VENDOR_ID, wildcardedPublicIdentity);
   }
   
   /* 

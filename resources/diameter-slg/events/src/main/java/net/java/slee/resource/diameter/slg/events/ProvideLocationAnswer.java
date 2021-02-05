@@ -117,15 +117,11 @@ public interface ProvideLocationAnswer extends DiameterMessage {
   void setResultCode(long resultCode);
 
   /**
-   * Returns true if the Experimental-Result AVP is present in the message.
-   *
    * @return true if the Experimental-Result AVP is present in the message, false otherwise
    */
   public boolean hasExperimentalResult();
 
   /**
-   * Returns the value of the Experimental-Result AVP, of type Grouped.
-   *
    * @return the value of the Experimental-Result AVP, of type Grouped.
    */
   public ExperimentalResultAvp getExperimentalResult();
@@ -138,15 +134,11 @@ public interface ProvideLocationAnswer extends DiameterMessage {
   public void setExperimentalResult(ExperimentalResultAvp experimentalResult);
 
   /**
-   * Returns true if the Experimental-Result AVP is present in the message.
-   *
    * @return true if the Experimental-Result AVP is present in the message, false otherwise
    */
   public boolean hasAuthSessionState();
 
   /**
-   * Returns the value of the Auth-Session-State AVP, of type Enumerated.
-   *
    * @return the value of the Auth-Session-State AVP, of type Enumerated
    */
   public AuthSessionStateType getAuthSessionState();

@@ -247,8 +247,8 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
     }
 
     try {
-      if(tracer.isInfoEnabled()) {
-        tracer.info("Activating Diameter ShServer RA Entity");
+      if(tracer.isFineEnabled()) {
+        tracer.fine("Activating Diameter ShServer RA Entity");
       }
 
       this.diameterMultiplexerObjectName = new ObjectName("diameter.mobicents:service=DiameterStackMultiplexer");
@@ -258,14 +258,14 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
       if (ManagementFactory.getPlatformMBeanServer().isRegistered(this.diameterMultiplexerObjectName)) {
         // trying to get via MBeanServer
         object = ManagementFactory.getPlatformMBeanServer().invoke(this.diameterMultiplexerObjectName, "getMultiplexerMBean", new Object[]{}, new String[]{});
-        if (tracer.isInfoEnabled()) {
-          tracer.info("Trying to get via Platform MBeanServer: " + this.diameterMultiplexerObjectName + ", object: " + object);
+        if (tracer.isFineEnabled()) {
+          tracer.fine("Trying to get via Platform MBeanServer: " + this.diameterMultiplexerObjectName + ", object: " + object);
         }
       } else {
         // trying to get via locateJBoss
         object = MBeanServerLocator.locateJBoss().invoke(this.diameterMultiplexerObjectName, "getMultiplexerMBean", new Object[]{}, new String[]{});
-        if (tracer.isInfoEnabled()) {
-          tracer.info("Trying to get via JBoss MBeanServer: " + this.diameterMultiplexerObjectName + ", object: " + object);
+        if (tracer.isFineEnabled()) {
+          tracer.fine("Trying to get via JBoss MBeanServer: " + this.diameterMultiplexerObjectName + ", object: " + object);
         }
       }
 
@@ -316,8 +316,8 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
     //synchronized (this.activities) {
     //  for (ActivityHandle activityHandle : activities.keySet()) {
     //    try {
-    //      if(tracer.isInfoEnabled()) {
-    //        tracer.info("Ending activity [" + activityHandle + "]");
+    //      if(tracer.isFineEnabled()) {
+    //        tracer.fine("Ending activity [" + activityHandle + "]");
     //      }
     //
     //      activities.get(activityHandle).endActivity();
@@ -328,8 +328,8 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
     //  }
     //}
 
-    if(tracer.isInfoEnabled()) {
-      tracer.info("Diameter ShServer RA :: entityDeactivating completed.");
+    if(tracer.isFineEnabled()) {
+      tracer.fine("Diameter ShServer RA :: entityDeactivating completed.");
     }
   }
 
@@ -343,8 +343,8 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
     //}
     activities = null;
 
-    if(tracer.isInfoEnabled()) {
-      tracer.info("Diameter ShServer RA :: INACTIVE completed.");
+    if(tracer.isFineEnabled()) {
+      tracer.fine("Diameter ShServer RA :: INACTIVE completed.");
     }
   }
 
@@ -421,7 +421,8 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
   // Mandatory callback methods ------------------------------------------
 
   public void queryLiveness(ActivityHandle handle) {
-    tracer.info("Diameter ShServer RA :: queryLiveness :: handle[" + handle + "].");
+    if(tracer.isFineEnabled())
+      tracer.fine("Diameter ShServer RA :: queryLiveness :: handle[" + handle + "].");
     if(!(handle instanceof DiameterActivityHandle)) {
       return;
     }
@@ -468,8 +469,8 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
   // Optional callback methods -------------------------------------------
 
   public void eventProcessingFailed(ActivityHandle handle, FireableEventType eventType, Object event, Address address, ReceivableService service, int flags, FailureReason reason) {
-    if(tracer.isInfoEnabled()) {
-      tracer.info("Diameter ShServer RA :: eventProcessingFailed :: handle[" + handle + "], eventType[" + eventType + "], event[" + event + "], address[" + address + "], flags[" + flags + "], reason[" + reason + "].");
+    if(tracer.isFineEnabled()) {
+      tracer.fine("Diameter ShServer RA :: eventProcessingFailed :: handle[" + handle + "], eventType[" + eventType + "], event[" + event + "], address[" + address + "], flags[" + flags + "], reason[" + reason + "].");
     }
     if(!(handle instanceof DiameterActivityHandle)) {
       return;
@@ -479,8 +480,8 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
   }
 
   public void eventProcessingSuccessful(ActivityHandle handle, FireableEventType eventType, Object event, Address address, ReceivableService service, int flags) {
-    if(tracer.isInfoEnabled()) {
-      tracer.info("Diameter ShServer RA :: eventProcessingSuccessful :: handle[" + handle + "], eventType[" + eventType + "], event[" + event + "], address[" + address + "], flags[" + flags + "].");
+    if(tracer.isFineEnabled()) {
+      tracer.fine("Diameter ShServer RA :: eventProcessingSuccessful :: handle[" + handle + "], eventType[" + eventType + "], event[" + event + "], address[" + address + "], flags[" + flags + "].");
     }
     if(!(handle instanceof DiameterActivityHandle)) {
       return;
@@ -513,7 +514,8 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
   }
 
   public void activityEnded(ActivityHandle handle) {
-    tracer.info("Diameter ShServer RA :: activityEnded :: handle[" + handle + ".");
+    if(tracer.isFineEnabled())
+      tracer.fine("Diameter ShServer RA :: activityEnded :: handle[" + handle + ".");
     if(!(handle instanceof DiameterActivityHandle)) {
       return;
     }
@@ -525,7 +527,7 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
   }
 
   public void activityUnreferenced(ActivityHandle handle) {
-    if(tracer.isFineEnabled()) {
+    if (tracer.isFineEnabled()) {
       tracer.fine("Diameter ShServer RA :: activityUnreferenced :: handle[" + handle + "].");
     }
     //this.activityEnded(handle);
@@ -731,8 +733,8 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
       // Put it into our activities map
       activities.put(activity.getActivityHandle(), activity);
 
-      if(tracer.isInfoEnabled()) {
-        tracer.info("Activity started [" + activity.getActivityHandle() + "]");
+      if(tracer.isFineEnabled()) {
+        tracer.fine("Activity started [" + activity.getActivityHandle() + "]");
       }
     }
     catch (Exception e) {
@@ -767,8 +769,8 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
     this.raProvider = new ShServerProviderImpl(this);
     this.shAvpFactory = new DiameterShAvpFactoryImpl(this.baseAvpFactory);
 
-    if(tracer.isInfoEnabled()) {
-      tracer.info("Diameter ShServer RA :: Successfully initialized stack.");
+    if(tracer.isFineEnabled()) {
+      tracer.fine("Diameter ShServer RA :: Successfully initialized stack.");
     }
   }
   /**
@@ -802,8 +804,8 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
     }
 
     try {
-      if(tracer.isInfoEnabled()) {
-        tracer.info("Received Message Result-Code: " + ans.getResultCode().getUnsigned32());
+      if(tracer.isFineEnabled()) {
+        tracer.fine("Received Message Result-Code: " + ans.getResultCode().getUnsigned32());
       }
     }
     catch (AvpDataException ignore) {
@@ -812,8 +814,8 @@ public class DiameterShServerResourceAdaptor  implements ResourceAdaptor, Diamet
   }
 
   public void timeoutExpired(Request req) {
-    if(tracer.isInfoEnabled()) {
-      tracer.info("Diameter ShServer RA :: timeoutExpired :: " + "Request[" + req + "].");
+    if(tracer.isFineEnabled()) {
+      tracer.fine("Diameter ShServer RA :: timeoutExpired :: " + "Request[" + req + "].");
     }
 
     try {

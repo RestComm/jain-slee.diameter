@@ -224,26 +224,26 @@ public class SubscribeNotificationsRequestImpl extends DiameterShMessageImpl imp
 
   /* 
    * (non-Javadoc)
-   * @see net.java.slee.resource.diameter.sh.server.events.SubscribeNotificationsRequest#hasWildcardedPSI()
+   * @see net.java.slee.resource.diameter.sh.server.events.SubscribeNotificationsRequest#hasWildcardedPublicIdentity()
    */
-  public boolean hasWildcardedPSI() {
-    return hasAvp(DiameterShAvpCodes.WILDCARDED_PSI, DiameterShAvpCodes.SH_VENDOR_ID);
+  public boolean hasWildcardedPublicIdentity() {
+    return hasAvp(DiameterShAvpCodes.WILDCARDED_PUBLIC_IDENTITY, DiameterShAvpCodes.SH_VENDOR_ID);
   }
 
   /* 
    * (non-Javadoc)
-   * @see net.java.slee.resource.diameter.sh.server.events.SubscribeNotificationsRequest#getWildcardedPSI()
+   * @see net.java.slee.resource.diameter.sh.server.events.SubscribeNotificationsRequest#getWildcardedPublicIdentity()
    */
-  public String getWildcardedPSI() {
-    return getAvpAsUTF8String(DiameterShAvpCodes.WILDCARDED_PSI, DiameterShAvpCodes.SH_VENDOR_ID);
+  public String getWildcardedPublicIdentity() {
+    return getAvpAsUTF8String(DiameterShAvpCodes.WILDCARDED_PUBLIC_IDENTITY, DiameterShAvpCodes.SH_VENDOR_ID);
   }
 
   /* 
    * (non-Javadoc)
-   * @see net.java.slee.resource.diameter.sh.server.events.SubscribeNotificationsRequest#setWildcardedPSI(String)
+   * @see net.java.slee.resource.diameter.sh.server.events.SubscribeNotificationsRequest#setWildcardedPublicIdentity(String)
    */
-  public void setWildcardedPSI(String wildcardedPSI) {
-    addAvp(DiameterShAvpCodes.WILDCARDED_PSI, DiameterShAvpCodes.SH_VENDOR_ID, wildcardedPSI);
+  public void setWildcardedPublicIdentity(String wildcardedPublicIdentity) {
+    addAvp(DiameterShAvpCodes.WILDCARDED_PUBLIC_IDENTITY, DiameterShAvpCodes.SH_VENDOR_ID, wildcardedPublicIdentity);
   }
   
   /* 

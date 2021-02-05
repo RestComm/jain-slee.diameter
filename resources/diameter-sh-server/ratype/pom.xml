@@ -4,21 +4,21 @@
 	<parent>
 		<groupId>org.mobicents.resources</groupId>
 		<artifactId>restcomm-slee-ra-diameter-sh-server</artifactId>
-		<version>7.0.0-SNAPSHOT</version>
+		<version>7.2.0.SNAPSHOT</version>
 	</parent>
 
 	<artifactId>restcomm-slee-ra-diameter-sh-server-ratype</artifactId>
 
-	<name>Restcomm :: Diameter Resources :: ${pom.artifactId}</name>
+	<name>Restcomm :: Diameter Resources :: ${project.artifactId}</name>
 
 	<dependencies>
 		<dependency>
-			<groupId>${pom.groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>restcomm-slee-ra-diameter-sh-server-events</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>${pom.groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>restcomm-slee-ra-diameter-sh-common-ratype</artifactId>
 			<version>${project.version}</version>
 		</dependency>

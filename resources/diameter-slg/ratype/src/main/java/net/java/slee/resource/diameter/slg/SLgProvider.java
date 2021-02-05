@@ -79,6 +79,7 @@ public interface SLgProvider {
    * @throws CreateActivityException
    */
   SLgClientSessionActivity createSLgClientSessionActivity(DiameterIdentity destinationHost, DiameterIdentity destinationRealm) throws CreateActivityException;
+  SLgClientSessionActivity createSLgClientSessionActivity(DiameterIdentity destinationHost, DiameterIdentity destinationRealm, String sessionId) throws CreateActivityException;
 
   /**
    * Return a message factory to be used to create SLg messages.

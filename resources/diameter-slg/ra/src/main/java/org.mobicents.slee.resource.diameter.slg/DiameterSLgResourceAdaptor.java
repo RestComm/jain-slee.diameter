@@ -95,6 +95,11 @@ import org.mobicents.slee.resource.diameter.base.events.ExtensionDiameterMessage
 import org.mobicents.slee.resource.diameter.base.handlers.AuthorizationSessionFactory;
 import org.mobicents.slee.resource.diameter.base.handlers.DiameterRAInterface;
 
+import org.mobicents.slee.resource.diameter.slg.EventIDCache;
+import org.mobicents.slee.resource.diameter.slg.SLgAVPFactoryImpl;
+import org.mobicents.slee.resource.diameter.slg.SLgClientSessionActivityImpl;
+import org.mobicents.slee.resource.diameter.slg.SLgMessageFactoryImpl;
+import org.mobicents.slee.resource.diameter.slg.SLgServerSessionActivityImpl;
 import org.mobicents.slee.resource.diameter.slg.events.ProvideLocationRequestImpl;
 import org.mobicents.slee.resource.diameter.slg.events.ProvideLocationAnswerImpl;
 import org.mobicents.slee.resource.diameter.slg.events.LocationReportRequestImpl;
@@ -239,8 +244,8 @@ public class DiameterSLgResourceAdaptor implements ResourceAdaptor, DiameterList
     }
 
     try {
-      if (tracer.isInfoEnabled()) {
-        tracer.info("Activating Diameter SLg RA Entity");
+      if (tracer.isFineEnabled()) {
+        tracer.fine("Activating Diameter SLg RA Entity");
       }
 
       this.diameterMultiplexerObjectName = new ObjectName("diameter.mobicents:service=DiameterStackMultiplexer");
@@ -250,14 +255,14 @@ public class DiameterSLgResourceAdaptor implements ResourceAdaptor, DiameterList
       if (ManagementFactory.getPlatformMBeanServer().isRegistered(this.diameterMultiplexerObjectName)) {
         // trying to get via MBeanServer
         object = ManagementFactory.getPlatformMBeanServer().invoke(this.diameterMultiplexerObjectName, "getMultiplexerMBean", new Object[]{}, new String[]{});
-        if (tracer.isInfoEnabled()) {
-          tracer.info("Trying to get via Platform MBeanServer: " + this.diameterMultiplexerObjectName + ", object: " + object);
+        if (tracer.isFineEnabled()) {
+          tracer.fine("Trying to get via Platform MBeanServer: " + this.diameterMultiplexerObjectName + ", object: " + object);
         }
       } else {
         // trying to get via locateJBoss
         object = MBeanServerLocator.locateJBoss().invoke(this.diameterMultiplexerObjectName, "getMultiplexerMBean", new Object[]{}, new String[]{});
-        if (tracer.isInfoEnabled()) {
-          tracer.info("Trying to get via JBoss MBeanServer: " + this.diameterMultiplexerObjectName + ", object: " + object);
+        if (tracer.isFineEnabled()) {
+          tracer.fine("Trying to get via JBoss MBeanServer: " + this.diameterMultiplexerObjectName + ", object: " + object);
         }
       }
 
@@ -303,8 +308,8 @@ public class DiameterSLgResourceAdaptor implements ResourceAdaptor, DiameterList
       tracer.severe("Failed to unregister SLg RA from Diameter Mux.", e);
     }
 
-    if (tracer.isInfoEnabled()) {
-      tracer.info("Diameter SLg RA :: raStopping completed.");
+    if (tracer.isFineEnabled()) {
+      tracer.fine("Diameter SLg RA :: raStopping completed.");
     }
   }
 
@@ -315,8 +320,8 @@ public class DiameterSLgResourceAdaptor implements ResourceAdaptor, DiameterList
 
     activities = null;
 
-    if (tracer.isInfoEnabled()) {
-      tracer.info("Diameter SLg RA :: raInactive completed.");
+    if (tracer.isFineEnabled()) {
+      tracer.fine("Diameter SLg RA :: raInactive completed.");
     }
   }
 
@@ -390,8 +395,8 @@ public class DiameterSLgResourceAdaptor implements ResourceAdaptor, DiameterList
 
   // Mandatory callback methods ------------------------------------------
   public void queryLiveness(ActivityHandle handle) {
-    if (tracer.isInfoEnabled()) {
-      tracer.info("Diameter SLg RA :: queryLiveness :: handle[" + handle + "].");
+    if (tracer.isFineEnabled()) {
+      tracer.fine("Diameter SLg RA :: queryLiveness :: handle[" + handle + "].");
     }
     if (!(handle instanceof DiameterActivityHandle)) {
       return;
@@ -438,14 +443,14 @@ public class DiameterSLgResourceAdaptor implements ResourceAdaptor, DiameterList
 
   // Optional callback methods -------------------------------------------
   public void eventProcessingFailed(ActivityHandle handle, FireableEventType eventType, Object event, Address address, ReceivableService service, int flags, FailureReason reason) {
-    if (tracer.isInfoEnabled()) {
-      tracer.info("Diameter SLg RA :: eventProcessingFailed :: handle[" + handle + "], eventType[" + eventType + "], event[" + event + "], address[" + address + "], flags[" + flags + "], reason[" + reason + "].");
+    if (tracer.isFineEnabled()) {
+      tracer.fine("Diameter SLg RA :: eventProcessingFailed :: handle[" + handle + "], eventType[" + eventType + "], event[" + event + "], address[" + address + "], flags[" + flags + "], reason[" + reason + "].");
     }
   }
 
   public void eventProcessingSuccessful(ActivityHandle handle, FireableEventType eventType, Object event, Address address, ReceivableService service, int flags) {
-    if (tracer.isInfoEnabled()) {
-      tracer.info("Diameter SLg RA :: eventProcessingSuccessful :: handle[" + handle + "], eventType[" + eventType + "], event[" + event + "], address[" + address + "], flags[" + flags + "].");
+    if (tracer.isFineEnabled()) {
+      tracer.fine("Diameter SLg RA :: eventProcessingSuccessful :: handle[" + handle + "], eventType[" + eventType + "], event[" + event + "], address[" + address + "], flags[" + flags + "].");
     }
   }
 
@@ -456,7 +461,8 @@ public class DiameterSLgResourceAdaptor implements ResourceAdaptor, DiameterList
   }
 
   public void activityEnded(ActivityHandle activityHandle) {
-    tracer.info("Diameter SLg RA :: activityEnded :: handle[" + activityHandle + ".");
+    if (tracer.isFineEnabled())
+      tracer.fine("Diameter SLg RA :: activityEnded :: handle[" + activityHandle + ".");
     if (this.activities != null) {
       synchronized (this.activities) {
         this.activities.remove((DiameterActivityHandle) activityHandle);
@@ -593,8 +599,8 @@ public class DiameterSLgResourceAdaptor implements ResourceAdaptor, DiameterList
       // Put it into our activities map
       activities.put(activity.getActivityHandle(), activity);
 
-      if (tracer.isInfoEnabled()) {
-        tracer.info("Activity started [" + activity.getActivityHandle() + "]");
+      if (tracer.isFineEnabled()) {
+        tracer.fine("Activity started [" + activity.getActivityHandle() + "]");
       }
     } catch (Exception e) {
       tracer.severe("Error creating activity", e);
@@ -618,8 +624,8 @@ public class DiameterSLgResourceAdaptor implements ResourceAdaptor, DiameterList
     this.stack = this.diameterMux.getStack();
     this.messageTimeout = stack.getMetaData().getConfiguration().getLongValue(MessageTimeOut.ordinal(), (Long) MessageTimeOut.defValue());
 
-    if (tracer.isInfoEnabled()) {
-      tracer.info("Diameter SLg RA :: Successfully initialized stack.");
+    if (tracer.isFineEnabled()) {
+      tracer.fine("Diameter SLg RA :: Successfully initialized stack.");
     }
   }
 
@@ -670,8 +676,8 @@ public class DiameterSLgResourceAdaptor implements ResourceAdaptor, DiameterList
     }
 
     try {
-      if (tracer.isInfoEnabled()) {
-        tracer.info("Received Message Result-Code: " + answer.getResultCode().getUnsigned32());
+      if (tracer.isFineEnabled()) {
+        tracer.fine("Received Message Result-Code: " + answer.getResultCode().getUnsigned32());
       }
     } catch (AvpDataException ignore) {
       // ignore, this was just for informational purposes...
@@ -683,8 +689,8 @@ public class DiameterSLgResourceAdaptor implements ResourceAdaptor, DiameterList
    * @see org.jdiameter.api.EventListener#timeoutExpired(org.jdiameter.api.Request)
    */
   public void timeoutExpired(Request request) {
-    if (tracer.isInfoEnabled()) {
-      tracer.info("Diameter SLg RA :: timeoutExpired :: Request[" + request + "].");
+    if (tracer.isFineEnabled()) {
+      tracer.fine("Diameter SLg RA :: timeoutExpired :: Request[" + request + "].");
     }
 
     try {
@@ -710,7 +716,7 @@ public class DiameterSLgResourceAdaptor implements ResourceAdaptor, DiameterList
     serverActivity.setSessionListener(this);
   }
 
-  public void ClientSLgessionCreated(ClientSLgSession clientSLgSession) {
+  public void ClientSLgSessionCreated(ClientSLgSession clientSLgSession) {
     SLgMessageFactoryImpl sessionMsgFactory = new SLgMessageFactoryImpl(clientSLgSession.getSessions().get(0), stack, new DiameterIdentity[]{});
 
     // Set the first configured Application-Id as default for message factory
@@ -886,9 +892,23 @@ public class DiameterSLgResourceAdaptor implements ResourceAdaptor, DiameterList
 
     public SLgClientSessionActivity createSLgClientSessionActivity(DiameterIdentity destinationHost, DiameterIdentity destinationRealm) throws CreateActivityException {
       try {
-        ClientSLgSession session = ((ISessionFactory) stack.getSessionFactory()).getNewAppSession(null, ApplicationId.createByAuthAppId(10415L, 16777255L), ClientSLgSession.class);
-        SLgClientSessionActivityImpl activity = new SLgClientSessionActivityImpl(ra.slgMessageFactory, ra.slgAvpFactory, session, (EventListener<Request, Answer>) session, destinationHost, destinationRealm, stack);
+        ClientSLgSession session = ((ISessionFactory) stack.getSessionFactory()).getNewAppSession(null,
+            ApplicationId.createByAuthAppId(10415L, 16777255L), ClientSLgSession.class);
+        SLgClientSessionActivityImpl activity = new SLgClientSessionActivityImpl(ra.slgMessageFactory, ra.slgAvpFactory,
+            session, (EventListener<Request, Answer>) session, destinationHost, destinationRealm, stack);
         addActivity(activity, false);
+        return activity;
+      } catch (Exception e) {
+        throw new CreateActivityException("Internal exception while creating SLg Client Activity", e);
+      }
+    }
+
+    public SLgClientSessionActivity createSLgClientSessionActivity(DiameterIdentity destinationHost, DiameterIdentity destinationRealm, String sessionId) throws CreateActivityException {
+      try {
+        ClientSLgSession session = stack.getSession(sessionId, ClientSLgSession.class);
+        SLgClientSessionActivityImpl activity = new SLgClientSessionActivityImpl(ra.slgMessageFactory, ra.slgAvpFactory,
+            session, (EventListener<Request, Answer>) session, destinationHost, destinationRealm, stack);
+        activity.setSessionListener(this.ra);
         return activity;
       } catch (Exception e) {
         throw new CreateActivityException("Internal exception while creating SLg Client Activity", e);

@@ -4,28 +4,28 @@
 	<parent>
 		<groupId>org.mobicents.resources</groupId>
 		<artifactId>restcomm-slee-ra-diameter-cca-common</artifactId>
-		<version>7.0.0-SNAPSHOT</version>
+		<version>7.2.0.SNAPSHOT</version>
 	</parent>
 
 	<artifactId>restcomm-slee-ra-diameter-cca-common-library</artifactId>
 
-	<name>Restcomm :: Diameter Resources :: ${pom.artifactId}</name>
+	<name>Restcomm :: Diameter Resources :: ${project.artifactId}</name>
 
 	<dependencies>
 		<dependency>
-			<groupId>${pom.groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>restcomm-slee-ra-diameter-cca-common-events</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>${pom.groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>restcomm-slee-ra-diameter-cca-common-ratype</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>${pom.groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>restcomm-slee-ra-diameter-cca-common-ra</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 
 	</dependencies>
@@ -35,6 +35,7 @@
 			<plugin>
 				<groupId>org.mobicents.tools</groupId>
 				<artifactId>maven-library-plugin</artifactId>
+				<version>1.0.0.FINAL</version>
 				<executions>
 					<execution>
 						<goals>

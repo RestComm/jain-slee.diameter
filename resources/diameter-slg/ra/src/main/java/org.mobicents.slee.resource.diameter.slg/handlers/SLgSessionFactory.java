@@ -97,7 +97,8 @@ public class SLgSessionFactory extends SLgSessionFactoryImpl {
    */
   @Override
   public void stateChanged(Enum oldState, Enum newState) {
-    logger.info("Diameter SLg Session Factory :: stateChanged :: oldState[" + oldState + "], newState[" + newState + "]");
+    if (logger.isDebugEnabled())
+      logger.debug("Diameter SLg Session Factory :: stateChanged :: oldState[" + oldState + "], newState[" + newState + "]");
   }
 
   /* (non-Javadoc)
@@ -115,25 +116,29 @@ public class SLgSessionFactory extends SLgSessionFactoryImpl {
 
   @Override
   public void doProvideLocationRequestEvent(ServerSLgSession serverSLgSession, ProvideLocationRequest provideLocationRequest) throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
-    logger.info("Diameter SLg Session Factory :: doProvideLocationRequest :: appSession[" + serverSLgSession + "], Request[" + provideLocationRequest + "]");
+    if (logger.isDebugEnabled())
+      logger.debug("Diameter SLg Session Factory :: doProvideLocationRequest :: appSession[" + serverSLgSession + "], Request[" + provideLocationRequest + "]");
     doFireEvent(serverSLgSession, provideLocationRequest.getMessage());
   }
 
   @Override
   public void doProvideLocationAnswerEvent(ClientSLgSession clientSLgSession, ProvideLocationRequest provideLocationRequest, ProvideLocationAnswer provideLocationAnswer) throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
-    logger.info("Diameter SLg Session Factory :: doProvideLocationAnswer :: appSession[" + clientSLgSession + "], Request[" + provideLocationRequest + "], Answer[" + provideLocationAnswer + "]");
+    if (logger.isDebugEnabled())
+      logger.debug("Diameter SLg Session Factory :: doProvideLocationAnswer :: appSession[" + clientSLgSession + "], Request[" + provideLocationRequest + "], Answer[" + provideLocationAnswer + "]");
     doFireEvent(clientSLgSession, provideLocationAnswer.getMessage());
   }
 
   @Override
   public void doLocationReportRequestEvent(ClientSLgSession clientSLgSession, LocationReportRequest locationReportRequest) throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
-    logger.info("Diameter SLg Session Factory :: doLocationReportRequest :: appSession[" + clientSLgSession + "], Request[" + locationReportRequest + "]");
+    if (logger.isDebugEnabled())
+      logger.debug("Diameter SLg Session Factory :: doLocationReportRequest :: appSession[" + clientSLgSession + "], Request[" + locationReportRequest + "]");
     doFireEvent(clientSLgSession, locationReportRequest.getMessage());
   }
 
   @Override
   public void doLocationReportAnswerEvent(ServerSLgSession serverSLgSession, LocationReportRequest locationReportRequest, LocationReportAnswer locationReportAnswer) throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
-    logger.info("Diameter SLg Session Factory :: doLocationReportAnswer :: appSession[" + serverSLgSession + "], Request[" + locationReportRequest + "], Answer[" + locationReportAnswer + "]");
+    if (logger.isDebugEnabled())
+      logger.debug("Diameter SLg Session Factory :: doLocationReportAnswer :: appSession[" + serverSLgSession + "], Request[" + locationReportRequest + "], Answer[" + locationReportAnswer + "]");
     doFireEvent(serverSLgSession, locationReportAnswer.getMessage());
   }
 
@@ -142,8 +147,8 @@ public class SLgSessionFactory extends SLgSessionFactoryImpl {
    */
   @Override
   public void doOtherEvent(AppSession appSession, AppRequestEvent request, AppAnswerEvent answer) throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
-    logger.info("Diameter SLg Session Factory :: doOtherEvent :: appSession[" + appSession + "], Request[" + request + "]");
-
+    if (logger.isDebugEnabled())
+      logger.debug("Diameter SLg Session Factory :: doOtherEvent :: appSession[" + appSession + "], Request[" + request + "]");
     doFireEvent(appSession, answer != null ? answer.getMessage() : request.getMessage());
   }
 

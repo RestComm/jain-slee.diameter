@@ -26,6 +26,7 @@ import java.util.List;
 
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TExtension;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TISDNAddress;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TPSLocationInformationExtension;
 import org.w3c.dom.Element;
 
 /**
@@ -246,20 +247,20 @@ public interface PSLocationInformation {
    * 
    * @return
    *     possible object is
-   *     {@link TExtension }
+   *     {@link TPSLocationInformationExtension }
    *     
    */
-  public abstract Extension getExtension();
+  public abstract PSLocationInformationExtension getExtension();
 
   /**
    * Sets the value of the extension property.
    * 
    * @param value
    *     allowed object is
-   *     {@link TExtension }
+   *     {@link TPSLocationInformationExtension }
    *     
    */
-  public abstract void setExtension(Extension value);
+  public abstract void setExtension(PSLocationInformationExtension value);
 
   /**
    * Gets the value of the any property.

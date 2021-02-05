@@ -23,6 +23,7 @@ package org.mobicents.slee.resource.diameter.slg;
 
 import java.io.IOException;
 
+import net.java.slee.resource.diameter.base.events.DiameterHeader;
 import net.java.slee.resource.diameter.base.events.avp.AvpNotAllowedException;
 import net.java.slee.resource.diameter.base.events.avp.DiameterAvp;
 import net.java.slee.resource.diameter.base.events.avp.DiameterIdentity;
@@ -53,7 +54,7 @@ import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
  *
  * @author <a href="mailto:fernando.mendioroz@gmail.com"> Fernando Mendioroz </a>
  */
-public class SLgClientSessionActivityImpl extends SLgSessionActivityImpl implements SLgClientSessionActivity {
+public class SLgClientSessionActivityImpl extends org.mobicents.slee.resource.diameter.slg.SLgSessionActivityImpl implements SLgClientSessionActivity {
 
   private static final long serialVersionUID = 7518916596996009148L;
   protected transient ClientSLgSession clientSLgSession;
@@ -61,7 +62,6 @@ public class SLgClientSessionActivityImpl extends SLgSessionActivityImpl impleme
   public SLgClientSessionActivityImpl(SLgMessageFactory slgMessageFactory, SLgAVPFactory slgAvpFactory, ClientSLgSession session, EventListener<Request, Answer> raEventListener, DiameterIdentity destinationHost, DiameterIdentity destinationRealm, Stack stack) {
     super(slgMessageFactory, slgAvpFactory, session.getSessions().get(0), raEventListener, destinationHost, destinationRealm);
     // FIXME: remove stack?
-
     setSession(session);
     super.setCurrentWorkingSession(session.getSessions().get(0));
   }
@@ -99,7 +99,8 @@ public class SLgClientSessionActivityImpl extends SLgSessionActivityImpl impleme
       // endpoint.endActivity(this.getActivityHandle());
       super.baseListener.endActivity(this.getActivityHandle());
     } catch (Exception e) {
-      logger.error("Failed to end activity [" + this + "].", e);
+      logger.error("Failed to end activity [" + this +
+              "], baseListener [" + super.baseListener + "], activityHandle [" + this.getActivityHandle() + "].", e);
     }
   }
 
@@ -144,7 +145,7 @@ public class SLgClientSessionActivityImpl extends SLgSessionActivityImpl impleme
 
 
   public LocationReportAnswer createLocationReportAnswer() {
-    //Make sure we have the correct type of Request
+    // Make sure we have the correct type of Request
     if (!(lastRequest instanceof LocationReportRequest)) {
       logger.warn("Invalid type of answer for this activity.");
       return null;
@@ -153,6 +154,23 @@ public class SLgClientSessionActivityImpl extends SLgSessionActivityImpl impleme
     try {
       //Create the answer
       LocationReportAnswer lra = (LocationReportAnswer) this.slgMessageFactory.createSLgMessage(lastRequest.getHeader(), new DiameterAvp[]{}, LocationReportAnswer.COMMAND_CODE, slgMessageFactory.getApplicationId());
+
+      // Fill session related AVPs, if present
+      fillSessionAVPs(lra);
+
+      return lra;
+    } catch (InternalException e) {
+      logger.error("Failed to create Provide-Location-Answer.", e);
+    }
+
+    return null;
+  }
+
+  public LocationReportAnswer createLocationReportAnswer(DiameterHeader header) {
+    try {
+      //Create the answer
+      LocationReportAnswer lra = (LocationReportAnswer) this.slgMessageFactory.createSLgMessage(header,
+          new DiameterAvp[]{}, LocationReportAnswer.COMMAND_CODE, slgMessageFactory.getApplicationId());
 
       // Fill session related AVPs, if present
       fillSessionAVPs(lra);

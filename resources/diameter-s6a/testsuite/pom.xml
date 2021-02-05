@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>org.mobicents.resources</groupId>
 		<artifactId>restcomm-slee-ra-diameter-s6a</artifactId>
-		<version>7.0.0-SNAPSHOT</version>
+		<version>7.2.0.SNAPSHOT</version>
 	</parent>
 
 	<artifactId>restcomm-slee-ra-diameter-s6a-testsuite</artifactId>

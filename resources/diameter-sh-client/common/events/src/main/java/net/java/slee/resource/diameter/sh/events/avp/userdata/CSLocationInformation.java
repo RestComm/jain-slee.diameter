@@ -24,7 +24,7 @@ package net.java.slee.resource.diameter.sh.events.avp.userdata;
 
 import java.util.List;
 
-import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TExtension;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TCSLocationInformationExtension;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TISDNAddress;
 import org.w3c.dom.Element;
 
@@ -50,7 +50,7 @@ import org.w3c.dom.Element;
  *         &lt;element name="MSCNumber" type="{}tISDNAddress" minOccurs="0"/>
  *         &lt;element name="CurrentLocationRetrieved" type="{}tBool" minOccurs="0"/>
  *         &lt;element name="AgeOfLocationInformation" type="{}tAgeOfLocationInformation" minOccurs="0"/>
- *         &lt;element name="Extension" type="{}tExtension" minOccurs="0"/>
+ *         &lt;element name="Extension" type="{}tCSLocationInformation-Extension" minOccurs="0"/>
  *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -58,7 +58,7 @@ import org.w3c.dom.Element;
  * &lt;/complexType>
  * </pre>
  * 
- * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
+ * @author <a href="mailto:fernando.mendioroz@gmail.com"> Fernando Mendioroz </a>
  */
 public interface CSLocationInformation {
 
@@ -267,20 +267,20 @@ public interface CSLocationInformation {
    * 
    * @return
    *     possible object is
-   *     {@link TExtension }
+   *     {@link TCSLocationInformationExtension }
    *     
    */
-  public abstract Extension getExtension();
+  public abstract CSLocationInformationExtension getExtension();
 
   /**
    * Sets the value of the extension property.
    * 
    * @param value
    *     allowed object is
-   *     {@link TExtension }
+   *     {@link TCSLocationInformationExtension }
    *     
    */
-  public abstract void setExtension(Extension value);
+  public abstract void setExtension(CSLocationInformationExtension value);
 
   /**
    * Gets the value of the any property.

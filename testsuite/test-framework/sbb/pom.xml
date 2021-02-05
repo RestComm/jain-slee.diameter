@@ -10,7 +10,7 @@
 
   <artifactId>test-framework-slee-sbb</artifactId>
     
-  <name>Restcomm :: Diameter Testsuite :: ${pom.artifactId}</name>
+  <name>Restcomm :: Diameter Testsuite :: ${project.artifactId}</name>
 
   <dependencies>
     <dependency>

@@ -140,8 +140,8 @@ public class ShServerSessionFactory extends ShSessionFactoryImpl {
   }
 
   public void stateChanged(Enum oldState, Enum newState) {
-    if(tracer.isInfoEnabled()) {
-      tracer.info("Diameter ShServerSessionFactory :: stateChanged :: oldState[" + oldState + "], newState[" + newState + "]");
+    if(tracer.isFineEnabled()) {
+      tracer.fine("Diameter ShServerSessionFactory :: stateChanged :: oldState[" + oldState + "], newState[" + newState + "]");
     }
   }
 
@@ -152,8 +152,8 @@ public class ShServerSessionFactory extends ShSessionFactoryImpl {
   @Override
   public void stateChanged(AppSession source, Enum oldState, Enum newState) {
     //		ra.stateChanged(source, oldState, newState);
-    if(tracer.isInfoEnabled()) {
-      tracer.info("Diameter ShServerSessionFactory :: stateChanged :: source[" + source + "] ::oldState[" + oldState + "], newState[" + newState + "]");
+    if(tracer.isFineEnabled()) {
+      tracer.fine("Diameter ShServerSessionFactory :: stateChanged :: source[" + source + "] ::oldState[" + oldState + "], newState[" + newState + "]");
     }
   }
 

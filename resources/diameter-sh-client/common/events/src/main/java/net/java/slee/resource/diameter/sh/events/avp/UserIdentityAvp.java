@@ -69,15 +69,15 @@ public interface UserIdentityAvp extends GroupedAvp {
   public boolean hasMsisdn();
 
   /**
-   * Returns the value of the MSISDN AVP, of type OctetString.
+   * Returns the value of the MSISDN AVP of type OctetString.
    * A return value of null implies that the AVP has not been set.
    */
-  public String getMsisdn();
+  public byte[] getMsisdn();
 
   /**
-   * Sets the value of the MSISDN AVP, of type OctetString.
+   * Sets the value of the MSISDN AVP of type OctetString.
    * @throws IllegalStateException if setMsisdn has already been called
    */
-  public void setMsisdn(String msisdn);
+  public void setMsisdn(byte[] msisdn);
 
 }

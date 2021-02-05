@@ -54,7 +54,7 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.ShData;
  *                                             [ Experimental-Result ]
  *                                             { Origin-Host }
  *                                             { Origin-Realm }
- *                                             [ Wildcarded-PSI ]
+ *                                             [ Wildcarded-Public-Identity ]
  *                                             [ Wildcarded-IMPU ]
  *                                             *[ Supported-Features ]
  *                                             [ User-Data ]
@@ -207,27 +207,27 @@ public interface SubscribeNotificationsAnswer extends DiameterShMessage {
   void setUserDataObject(ShData userData) throws IOException;
   
   /**
-   * Returns true if the Wildcarded-PSI AVP is present in the message.
+   * Returns true if the Wildcarded-Public-Identity AVP is present in the message.
    */
-  boolean hasWildcardedPSI();
+  boolean hasWildcardedPublicIdentity();
 
   /**
-   * Returns the value of the Wildcarded-PSI AVP, of type UTF8String. Use
-   * {@link #hasWildcardedPSI()} to check the existence of this AVP.
+   * Returns the value of the Wildcarded-Public-Identity AVP, of type UTF8String. Use
+   * {@link #hasWildcardedPublicIdentity()} to check the existence of this AVP.
    * 
-   * @return the value of the Wildcarded-PSI AVP
+   * @return the value of the Wildcarded-Public-Identity AVP
    * @throws IllegalStateException
-   *             if the Wildcarded-PSI AVP has not been set on this message
+   *             if the Wildcarded-Public-Identity AVP has not been set on this message
    */
-  String getWildcardedPSI();
+  String getWildcardedPublicIdentity();
 
   /**
-   * Sets the value of the Wildcarded-PSI AVP, of type UTF8String.
+   * Sets the value of the Wildcarded-Public-Identity AVP, of type UTF8String.
    * 
    * @throws IllegalStateException
-   *             if setWildcardedPSI has already been called
+   *             if setWildcardedPublicIdentity has already been called
    */
-  void setWildcardedPSI(String wildcardedPSI); 
+  void setWildcardedPublicIdentity(String wildcardedPublicIdentity); 
   
   /**
    * Returns true if the Wildcarded-IMPU AVP is present in the message.

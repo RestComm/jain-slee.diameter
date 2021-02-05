@@ -14,7 +14,7 @@
   <artifactId>test-framework-parent</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 
-  <name>Restcomm :: Diameter Testsuite :: ${pom.artifactId}</name>
+  <name>Restcomm :: Diameter Testsuite :: ${project.artifactId}</name>
 
   <properties>
     <restcomm.diameter.resources.base.version>3.0.0-SNAPSHOT</restcomm.diameter.resources.base.version>

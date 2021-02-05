@@ -89,7 +89,8 @@ public class SLhSessionFactory extends SLhSessionFactoryImpl {
   @Override
   public void stateChanged(AppSession source, Enum oldState, Enum newState) {
     //slhaResourceAdaptor.stateChanged(source, oldState, newState);
-    logger.info("Diameter SLh Session Factory :: stateChanged :: source[" + source + "] :: oldState[" + oldState + "], newState[" + newState + "]");
+    if (logger.isDebugEnabled())
+      logger.debug("Diameter SLh Session Factory :: stateChanged :: source[" + source + "] :: oldState[" + oldState + "], newState[" + newState + "]");
   }
 
   /* (non-Javadoc)
@@ -97,7 +98,8 @@ public class SLhSessionFactory extends SLhSessionFactoryImpl {
    */
   @Override
   public void stateChanged(Enum oldState, Enum newState) {
-    logger.info("Diameter SLh Session Factory :: stateChanged :: oldState[" + oldState + "], newState[" + newState + "]");
+    if (logger.isDebugEnabled())
+      logger.debug("Diameter SLh Session Factory :: stateChanged :: oldState[" + oldState + "], newState[" + newState + "]");
   }
 
   /* (non-Javadoc)
@@ -126,8 +128,8 @@ public class SLhSessionFactory extends SLhSessionFactoryImpl {
    */
   @Override
   public void doOtherEvent(AppSession appSession, AppRequestEvent request, AppAnswerEvent answer) throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
-    logger.info("Diameter SLh Session Factory :: doOtherEvent :: appSession[" + appSession + "], Request[" + request + "]");
-
+    if (logger.isDebugEnabled())
+      logger.debug("Diameter SLh Session Factory :: doOtherEvent :: appSession[" + appSession + "], Request[" + request + "]");
     slhResourceAdaptor.fireEvent(appSession.getSessionId(), answer != null ? answer.getMessage() : request.getMessage());
   }
 

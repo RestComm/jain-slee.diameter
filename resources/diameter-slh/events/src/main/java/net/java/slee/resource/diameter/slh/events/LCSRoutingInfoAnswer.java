@@ -23,6 +23,8 @@ package net.java.slee.resource.diameter.slh.events;
 
 import net.java.slee.resource.diameter.base.events.DiameterMessage;
 import net.java.slee.resource.diameter.base.events.avp.Address;
+import net.java.slee.resource.diameter.base.events.avp.AuthSessionStateType;
+import net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp;
 import net.java.slee.resource.diameter.base.events.avp.FailedAvp;
 
 import net.java.slee.resource.diameter.slh.events.avp.AdditionalServingNodeAvp;
@@ -81,6 +83,40 @@ public interface LCSRoutingInfoAnswer extends DiameterMessage {
    * @throws IllegalStateException if setResultCode has already been called
    */
   void setResultCode(long resultCode);
+
+  /**
+   * @return true if the Experimental-Result AVP is present in the message, false otherwise
+   */
+  public boolean hasExperimentalResult();
+
+  /**
+   * @return the value of the Experimental-Result AVP, of type Grouped.
+   */
+  public ExperimentalResultAvp getExperimentalResult();
+
+  /**
+   * Sets the value of the Experimental-Result AVP, of type Grouped.
+   *
+   * @param experimentalResult
+   */
+  public void setExperimentalResult(ExperimentalResultAvp experimentalResult);
+
+  /**
+   * @return true if the Experimental-Result AVP is present in the message, false otherwise
+   */
+  public boolean hasAuthSessionState();
+
+  /**
+   * @return the value of the Auth-Session-State AVP, of type Enumerated
+   */
+  public AuthSessionStateType getAuthSessionState();
+
+  /**
+   * Sets the value of the Auth-Session-State AVP, of type Enumerated.
+   *
+   * @param authSessionState
+   */
+  public void setAuthSessionState(AuthSessionStateType authSessionState);
 
   /**
    * Returns the set of Failed-AVP AVPs.

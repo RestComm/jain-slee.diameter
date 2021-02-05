@@ -32,6 +32,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 import net.java.slee.resource.diameter.sh.events.avp.userdata.CSLocationInformation;
+import net.java.slee.resource.diameter.sh.events.avp.userdata.CSLocationInformationExtension;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.Extension;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.ISDNAddress;
 
@@ -58,7 +59,7 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.ISDNAddress;
  *         &lt;element name="MSCNumber" type="{}tISDNAddress" minOccurs="0"/>
  *         &lt;element name="CurrentLocationRetrieved" type="{}tBool" minOccurs="0"/>
  *         &lt;element name="AgeOfLocationInformation" type="{}tAgeOfLocationInformation" minOccurs="0"/>
- *         &lt;element name="Extension" type="{}tExtension" minOccurs="0"/>
+ *         &lt;element name="Extension" type="{}tCSLocationInformation-Extension" minOccurs="0"/>
  *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -66,7 +67,7 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.ISDNAddress;
  * &lt;/complexType>
  * </pre>
  * 
- * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
+ * @author <a href="mailto:fernando.mendioroz@gmail.com"> Fernando Mendioroz </a>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "tCSLocationInformation", propOrder = {
@@ -106,7 +107,7 @@ public class TCSLocationInformation implements CSLocationInformation {
     @XmlElement(name = "AgeOfLocationInformation")
     protected Integer ageOfLocationInformation;
     @XmlElement(name = "Extension")
-    protected TExtension extension;
+    protected TCSLocationInformationExtension extension;
     @XmlAnyElement(lax = true)
     protected List<Object> any;
 
@@ -251,17 +252,17 @@ public class TCSLocationInformation implements CSLocationInformation {
     }
 
     /* (non-Javadoc)
-     * @see org.mobicents.slee.resource.diameter.sh.events.avp.userdata.CSLocationInformation#getExtension()
+     * @see org.mobicents.slee.resource.diameter.sh.events.avp.userdata.CSLocationInformation#getCSLocationInformatioExtension()
      */
-    public Extension getExtension() {
+    public CSLocationInformationExtension getExtension() {
         return extension;
     }
 
     /* (non-Javadoc)
-     * @see org.mobicents.slee.resource.diameter.sh.events.avp.userdata.CSLocationInformation#setExtension(org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TExtension)
+     * @see org.mobicents.slee.resource.diameter.sh.events.avp.userdata.CSLocationInformation#setExtension(org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TCSLocationInformatioExtension)
      */
-    public void setExtension(Extension value) {
-        this.extension = (TExtension) value;
+    public void setExtension(CSLocationInformationExtension csLocationInformationExtension) {
+        this.extension = (TCSLocationInformationExtension) csLocationInformationExtension;
     }
 
     /* (non-Javadoc)

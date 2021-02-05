@@ -31,23 +31,22 @@ import javax.xml.bind.annotation.XmlAnyElement;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-import net.java.slee.resource.diameter.sh.events.avp.userdata.Extension;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.PublicIdentity;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.ShDataExtension2;
-
+import net.java.slee.resource.diameter.sh.events.avp.userdata.ShDataExtension3;
 
 /**
  * <p>Java class for tSh-Data-Extension2 complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="tSh-Data-Extension2">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="DeletedIdentities" type="{}tPublicIdentity" minOccurs="0"/>
- *         &lt;element name="Extension" type="{}tExtension" minOccurs="0"/>
+ *         &lt;element name="Extension" type="{}tSh-Data-Extension3" minOccurs="0"/>
  *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -56,6 +55,7 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.ShDataExtension2;
  * </pre>
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
+ * @author <a href="mailto:fernando.mendioroz@gmail.com"> Fernando Mendioroz </a>
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "tSh-Data-Extension2", propOrder = {
@@ -68,7 +68,7 @@ public class TShDataExtension2 implements ShDataExtension2 {
     @XmlElement(name = "DeletedIdentities")
     protected TPublicIdentity deletedIdentities;
     @XmlElement(name = "Extension")
-    protected TExtension extension;
+    protected TShDataExtension3 extension;
     @XmlAnyElement(lax = true)
     protected List<Object> any;
 
@@ -82,22 +82,22 @@ public class TShDataExtension2 implements ShDataExtension2 {
     /* (non-Javadoc)
      * @see org.mobicents.slee.resource.diameter.sh.events.avp.userdata.ShDataExtension2#setDeletedIdentities(org.mobicents.slee.resource.diameter.sh.events.avp.userdata.PublicIdentity)
      */
-    public void setDeletedIdentities(PublicIdentity value) {
-        this.deletedIdentities = (TPublicIdentity) value;
+    public void setDeletedIdentities(PublicIdentity publicIdentity) {
+        this.deletedIdentities = (TPublicIdentity) publicIdentity;
     }
 
     /* (non-Javadoc)
      * @see org.mobicents.slee.resource.diameter.sh.events.avp.userdata.ShDataExtension2#getExtension()
      */
-    public Extension getExtension() {
+    public ShDataExtension3 getExtension() {
         return extension;
     }
 
     /* (non-Javadoc)
-     * @see org.mobicents.slee.resource.diameter.sh.events.avp.userdata.ShDataExtension2#setExtension(org.mobicents.slee.resource.diameter.sh.events.avp.userdata.Extension)
+     * @see org.mobicents.slee.resource.diameter.sh.events.avp.userdata.ShDataExtension2#setExtension(org.mobicents.slee.resource.diameter.sh.events.avp.userdata.ShDataExtension3)
      */
-    public void setExtension(Extension value) {
-        this.extension = (TExtension) value;
+    public void setExtension(ShDataExtension3 shDataExtension3) {
+        this.extension = (TShDataExtension3) shDataExtension3;
     }
 
     /* (non-Javadoc)

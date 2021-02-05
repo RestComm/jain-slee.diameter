@@ -129,6 +129,13 @@ public class UserDataRequestImpl extends DiameterShMessageImpl implements UserDa
   }
 
   /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.sh.server.events.UserDataRequest#getUDRFlags()
+   */
+  public long getUDRFlags() {
+    return getAvpAsUnsigned32(DiameterShAvpCodes.UDR_FLAGS, DiameterShAvpCodes.SH_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
    * @see net.java.slee.resource.diameter.sh.server.events.UserDataRequest#hasCurrentLocation()
    */
   public boolean hasCurrentLocation() {
@@ -168,6 +175,13 @@ public class UserDataRequestImpl extends DiameterShMessageImpl implements UserDa
    */
   public boolean hasRequestedNodes() {
     return hasAvp(DiameterShAvpCodes.REQUESTED_NODES, DiameterShAvpCodes.SH_VENDOR_ID);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.sh.server.events.UserDataRequest#hasUDRFlags()
+   */
+  public boolean hasUDRFlags() {
+    return hasAvp(DiameterShAvpCodes.UDR_FLAGS, DiameterShAvpCodes.SH_VENDOR_ID);
   }
 
   /* (non-Javadoc)
@@ -276,5 +290,12 @@ public class UserDataRequestImpl extends DiameterShMessageImpl implements UserDa
    */
   public void setRequestedNodes(long requestedNodes) {
     addAvp(DiameterShAvpCodes.REQUESTED_NODES, DiameterShAvpCodes.SH_VENDOR_ID, requestedNodes);
+  }
+
+  /* (non-Javadoc)
+   * @see net.java.slee.resource.diameter.sh.server.events.UserDataRequest#setRequestedNodes(long)
+   */
+  public void setUDRFlags(long udrFlags) {
+    addAvp(DiameterShAvpCodes.UDR_FLAGS, DiameterShAvpCodes.SH_VENDOR_ID, udrFlags);
   }
 }

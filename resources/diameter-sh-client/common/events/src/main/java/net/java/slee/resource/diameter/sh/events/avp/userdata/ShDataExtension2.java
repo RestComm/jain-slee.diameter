@@ -24,8 +24,8 @@ package net.java.slee.resource.diameter.sh.events.avp.userdata;
 
 import java.util.List;
 
-import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TExtension;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TPublicIdentity;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShDataExtension3;
 import org.w3c.dom.Element;
 
 /**
@@ -39,7 +39,7 @@ import org.w3c.dom.Element;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="DeletedIdentities" type="{}tPublicIdentity" minOccurs="0"/>
- *         &lt;element name="Extension" type="{}tExtension" minOccurs="0"/>
+ *         &lt;element name="Extension" type="{}tSh-Data-Extension3" minOccurs="0"/>
  *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -48,6 +48,7 @@ import org.w3c.dom.Element;
  * </pre>
  * 
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
+ * @author <a href="mailto:fernando.mendioroz@gmail.com"> Fernando Mendioroz </a>
  */
 public interface ShDataExtension2 {
 
@@ -76,20 +77,20 @@ public interface ShDataExtension2 {
    * 
    * @return
    *     possible object is
-   *     {@link TExtension }
+   *     {@link TShDataExtension3 }
    *     
    */
-  public abstract Extension getExtension();
+  public abstract ShDataExtension3 getExtension();
 
   /**
-   * Sets the value of the extension property.
+   * Sets the value of the shDataExtension3 property.
    * 
-   * @param value
+   * @param shDataExtension3
    *     allowed object is
-   *     {@link TExtension }
+   *     {@link TShDataExtension3 }
    *     
    */
-  public abstract void setExtension(Extension value);
+  public abstract void setExtension(ShDataExtension3 shDataExtension3);
 
   /**
    * Gets the value of the any property.

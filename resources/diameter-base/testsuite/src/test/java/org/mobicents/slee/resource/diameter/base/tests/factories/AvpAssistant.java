@@ -540,7 +540,6 @@ public class AvpAssistant {
 	public void testHassers(Object object, boolean expected) throws Exception {
 		for (Method m : object.getClass().getMethods()) {
 			if (!methodsToIgnore.contains(m.getName()) && m.getName().startsWith("has")) {
-				// System.out.println("==> " + m.getName() + " <==");
 
 				Object obtained = m.invoke(object);
 

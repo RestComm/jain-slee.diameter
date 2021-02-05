@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlType;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.Extension;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.ISDNAddress;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.PSLocationInformation;
+import net.java.slee.resource.diameter.sh.events.avp.userdata.PSLocationInformationExtension;
 
 
 /**
@@ -57,7 +58,7 @@ import net.java.slee.resource.diameter.sh.events.avp.userdata.PSLocationInformat
  *         &lt;element name="SGSNNumber" type="{}tISDNAddress" minOccurs="0"/>
  *         &lt;element name="CurrentLocationRetrieved" type="{}tBool" minOccurs="0"/>
  *         &lt;element name="AgeOfLocationInformation" type="{}tAgeOfLocationInformation" minOccurs="0"/>
- *         &lt;element name="Extension" type="{}tExtension" minOccurs="0"/>
+ *         &lt;element name="Extension" type="{}tPSLocationInformation-Extension" minOccurs="0"/>
  *         &lt;any processContents='lax' namespace='##other' maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -102,7 +103,7 @@ public class TPSLocationInformation implements PSLocationInformation {
     @XmlElement(name = "AgeOfLocationInformation")
     protected Integer ageOfLocationInformation;
     @XmlElement(name = "Extension")
-    protected TExtension extension;
+    protected TPSLocationInformationExtension extension;
     @XmlAnyElement(lax = true)
     protected List<Object> any;
 
@@ -235,15 +236,15 @@ public class TPSLocationInformation implements PSLocationInformation {
     /* (non-Javadoc)
      * @see org.mobicents.slee.resource.diameter.sh.events.avp.userdata.PSLocationInformation#getExtension()
      */
-    public Extension getExtension() {
+    public PSLocationInformationExtension getExtension() {
         return extension;
     }
 
     /* (non-Javadoc)
      * @see org.mobicents.slee.resource.diameter.sh.events.avp.userdata.PSLocationInformation#setExtension(org.mobicents.slee.resource.diameter.sh.events.avp.userdata.Extension)
      */
-    public void setExtension(Extension value) {
-        this.extension = (TExtension) value;
+    public void setExtension(PSLocationInformationExtension value) {
+        this.extension = (TPSLocationInformationExtension) value;
     }
 
     /* (non-Javadoc)

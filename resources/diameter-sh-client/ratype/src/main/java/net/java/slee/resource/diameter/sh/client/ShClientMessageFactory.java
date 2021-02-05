@@ -42,58 +42,58 @@ public interface ShClientMessageFactory extends MessageFactory {
 
   /**
    * Create a UserDataRequest using the given parameters to populate the User-Identity and Data-Reference AVPs.
-   * @return a UserDataRequest object that can be sent using {@link ShClientActivity#sendUserDataRequest(net.java.slee.resource.diameter.sh.events.types.UserDataRequest)} 
+   * @return a UserDataRequest object that can be sent using {@link ShClientActivity#sendUserDataRequest(net.java.slee.resource.diameter.sh.events.UserDataRequest)}
    */
   UserDataRequest createUserDataRequest(UserIdentityAvp userIdentity, DataReferenceType reference);
 
   /**
    * Create an empty UserDataRequest that will need to have AVPs set on it before being sent.
-   * @return a UserDataRequest object that can be sent using {@link ShClientActivity#sendUserDataRequest(net.java.slee.resource.diameter.sh.events.types.UserDataRequest)} 
+   * @return a UserDataRequest object that can be sent using {@link ShClientActivity#sendUserDataRequest(net.java.slee.resource.diameter.sh.events.UserDataRequest)}
    */
   UserDataRequest createUserDataRequest();
 
   /**
    * Create a ProfileUpdateRequest using the given parameters to populate the User-Identity, Data-Reference and User-Data AVPs.
-   * @return a ProfileUpdateRequest object that can be sent using {@link ShClientActivity#sendProfileUpdateRequest(net.java.slee.resource.diameter.sh.events.types.ProfileUpdateRequest)} 
+   * @return a ProfileUpdateRequest object that can be sent using {@link ShClientActivity#sendProfileUpdateRequest(net.java.slee.resource.diameter.sh.events.ProfileUpdateRequest)}
    */
   ProfileUpdateRequest createProfileUpdateRequest(UserIdentityAvp userIdentity, DataReferenceType reference, byte[] userData);
 
   /**
    * Create an empty ProfileUpdateRequest that will need to have AVPs set on it before being sent.
    * 
-   * @return a ProfileUpdateRequest object that can be sent using {@link ShClientActivity#sendProfileUpdateRequest(net.java.slee.resource.diameter.sh.events.types.ProfileUpdateRequest)} 
+   * @return a ProfileUpdateRequest object that can be sent using {@link ShClientActivity#sendProfileUpdateRequest(net.java.slee.resource.diameter.sh.events.ProfileUpdateRequest)}
    */
   ProfileUpdateRequest createProfileUpdateRequest();
 
   /**
    * Create a SubscribeNotificationsRequest using the given parameters to populate the User-Identity, Data-Reference and Subs-Req-Type AVPs.
    * 
-   * @return a SubscribeNotificationsRequest object that can be sent using {@link ShClientActivity#sendSubscribeNotificationsRequest(net.java.slee.resource.diameter.sh.events.types.SubscribeNotificationsRequest)} 
-   * or {@link ShClientNotificationActivity#sendSubscribeNotificationsRequest(net.java.slee.resource.diameter.sh.events.types.SubscribeNotificationsRequest)}
+   * @return a SubscribeNotificationsRequest object that can be sent using {@link ShClientActivity#sendSubscribeNotificationsRequest(net.java.slee.resource.diameter.sh.events.SubscribeNotificationsRequest)}
+   * or {@link ShClientSubscriptionActivity#sendSubscribeNotificationsRequest(net.java.slee.resource.diameter.sh.events.SubscribeNotificationsRequest)}
    */
   SubscribeNotificationsRequest createSubscribeNotificationsRequest(UserIdentityAvp userIdentity, DataReferenceType reference, SubsReqType subscriptionType);
 
   /**
    * Create an empty SubscribeNotificationsRequest that will need to have AVPs set on it before being sent.
    * 
-   * @return a SubscribeNotificationsRequest object that can be sent using {@link ShClientActivity#sendSubscribeNotificationsRequest(net.java.slee.resource.diameter.sh.events.types.SubscribeNotificationsRequest)} 
-   * or {@link ShClientNotificationActivity#sendSubscribeNotificationsRequest(net.java.slee.resource.diameter.sh.events.types.SubscribeNotificationsRequest)}
+   * @return a SubscribeNotificationsRequest object that can be sent using {@link ShClientActivity#sendSubscribeNotificationsRequest(net.java.slee.resource.diameter.sh.events.SubscribeNotificationsRequest)}
+   * or {@link ShClientSubscriptionActivity#sendSubscribeNotificationsRequest(net.java.slee.resource.diameter.sh.events.SubscribeNotificationsRequest)}
    */
   SubscribeNotificationsRequest createSubscribeNotificationsRequest();
 
   /**
    * Create a PushNotificationAnswer containing a Result-Code or Experimental-Result AVP populated with the given value.
    * If <code>isExperimentalResultCode</code> is <code>true</code>, the <code>resultCode</code> parameter will be set
-   * in a {@link org.mobicents.slee.resource.diameter.base.types.ExperimentalResultAvp} AVP, if it is <code>false</code> it 
+   * in a {@link net.java.slee.resource.diameter.base.events.avp.ExperimentalResultAvp} AVP, if it is <code>false</code> it
    * will be sent as a standard Result-Code AVP.
    * 
-   * @return a PushNotificationAnswer object that can be sent using {@link ShClientNotificationActivity#sendPushNotificationAnswer(net.java.slee.resource.diameter.sh.events.types.PushNotificationAnswer)} 
+   * @return a PushNotificationAnswer object that can be sent using {@link ShClientSubscriptionActivity#sendPushNotificationAnswer(net.java.slee.resource.diameter.sh.events.PushNotificationAnswer)}
    */
   PushNotificationAnswer createPushNotificationAnswer(PushNotificationRequest request, long resultCode, boolean isExperimentalResultCode);
 
   /**
    * Create an empty PushNotificationAnswer that will need to have AVPs set on it before being sent.
-   * @return a PushNotificationAnswer object that can be sent using {@link ShClientNotificationActivity#sendPushNotificationAnswer(net.java.slee.resource.diameter.sh.events.types.PushNotificationAnswer)}
+   * @return a PushNotificationAnswer object that can be sent using {@link ShClientSubscriptionActivity#sendPushNotificationAnswer(net.java.slee.resource.diameter.sh.events.PushNotificationAnswer)}
    */
   PushNotificationAnswer createPushNotificationAnswer(PushNotificationRequest request);
 }

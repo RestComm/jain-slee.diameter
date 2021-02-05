@@ -54,26 +54,26 @@ public class UserIdentityAvpImpl extends GroupedAvpImpl implements UserIdentityA
 
   /* 
    * (non-Javadoc)
-   * @see net.java.slee.resource.diameter.sh.events.avp.UserIdentityAvp#getMsisdn()
-   */
-  public String getMsisdn() {
-    return getAvpAsUTF8String(DiameterShAvpCodes.MSISDN, DiameterShAvpCodes.SH_VENDOR_ID);
-  }
-
-  /* 
-   * (non-Javadoc)
-   * @see net.java.slee.resource.diameter.sh.events.avp.UserIdentityAvp#getPublicIdentity()
-   */
-  public String getPublicIdentity() {
-    return getAvpAsUTF8String(DiameterShAvpCodes.PUBLIC_IDENTITY, DiameterShAvpCodes.SH_VENDOR_ID);
-  }
-
-  /* 
-   * (non-Javadoc)
    * @see net.java.slee.resource.diameter.sh.events.avp.UserIdentityAvp#hasMsisdn()
    */
   public boolean hasMsisdn() {
     return hasAvp(DiameterShAvpCodes.MSISDN, DiameterShAvpCodes.SH_VENDOR_ID);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.sh.events.avp.UserIdentityAvp#getMsisdn()
+   */
+  public byte[] getMsisdn() {
+    return getAvpAsOctetString(DiameterShAvpCodes.MSISDN, DiameterShAvpCodes.SH_VENDOR_ID);
+  }
+
+  /*
+   * (non-Javadoc)
+   * @see net.java.slee.resource.diameter.sh.events.avp.UserIdentityAvp#setMsisdn(byte[])
+   */
+  public void setMsisdn(byte[] msisdn) {
+    addAvp(DiameterShAvpCodes.MSISDN, DiameterShAvpCodes.SH_VENDOR_ID, msisdn);
   }
 
   /* (non-Javadoc)
@@ -83,15 +83,15 @@ public class UserIdentityAvpImpl extends GroupedAvpImpl implements UserIdentityA
     return hasAvp(DiameterShAvpCodes.PUBLIC_IDENTITY, DiameterShAvpCodes.SH_VENDOR_ID);
   }
 
-  /* 
+  /*
    * (non-Javadoc)
-   * @see net.java.slee.resource.diameter.sh.events.avp.UserIdentityAvp#setMsisdn(java.lang.String)
+   * @see net.java.slee.resource.diameter.sh.events.avp.UserIdentityAvp#getPublicIdentity()
    */
-  public void setMsisdn(String msisdn) {
-    addAvp(DiameterShAvpCodes.MSISDN, DiameterShAvpCodes.SH_VENDOR_ID, msisdn);
+  public String getPublicIdentity() {
+    return getAvpAsUTF8String(DiameterShAvpCodes.PUBLIC_IDENTITY, DiameterShAvpCodes.SH_VENDOR_ID);
   }
 
-  /* 
+  /*
    * (non-Javadoc)
    * @see net.java.slee.resource.diameter.sh.events.avp.UserIdentityAvp#setPublicIdentity(java.lang.String)
    */

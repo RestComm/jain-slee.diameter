@@ -46,7 +46,7 @@ public class MessageData implements Serializable {
 
   private String sessionId = null;
   private String publicIdentity = null;
-  private String msisdn = null;
+  private byte[] msisdn = null;
 
   private DataReferenceType dataReference;
   private DataReferenceType[] dataReferences;
@@ -138,7 +138,7 @@ public class MessageData implements Serializable {
    * @return the msisdn
    */
   public byte[] getMsisdn() {
-    return msisdn != null ? msisdn.getBytes() : null;
+    return msisdn != null ? msisdn : null;
   }
 
   /**

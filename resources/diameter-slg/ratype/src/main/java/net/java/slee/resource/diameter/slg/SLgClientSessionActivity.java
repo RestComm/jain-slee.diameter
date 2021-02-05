@@ -23,6 +23,7 @@ package net.java.slee.resource.diameter.slg;
 
 import java.io.IOException;
 
+import net.java.slee.resource.diameter.base.events.DiameterHeader;
 import net.java.slee.resource.diameter.slg.events.ProvideLocationRequest;
 import net.java.slee.resource.diameter.slg.events.LocationReportAnswer;
 
@@ -36,6 +37,7 @@ public interface SLgClientSessionActivity extends SLgSessionActivity {
   void sendProvideLocationRequest(ProvideLocationRequest plr) throws IOException;
 
   LocationReportAnswer createLocationReportAnswer();
+  LocationReportAnswer createLocationReportAnswer(DiameterHeader header);
 
   void sendLocationReportAnswer(LocationReportAnswer lra) throws IOException;
 

@@ -38,6 +38,7 @@ import net.java.slee.resource.diameter.sh.events.avp.DataReferenceType;
 import net.java.slee.resource.diameter.sh.events.avp.DiameterShAvpCodes;
 import net.java.slee.resource.diameter.sh.events.avp.UserIdentityAvp;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.ShData;
+import net.java.slee.resource.diameter.sh.events.avp.userdata.TWANLocationInformation;
 import net.java.slee.resource.diameter.sh.events.avp.userdata.UserDataObjectFactory;
 
 import org.jdiameter.api.Message;
@@ -46,6 +47,9 @@ import org.mobicents.slee.resource.diameter.sh.events.avp.UserIdentityAvpImpl;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.ObjectFactory;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TApplicationServer;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TCSLocationInformation;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TCSLocationInformationExtension;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TCSLocationInformationExtension2;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TCSLocationInformationExtension3;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TChargingInformation;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TDSAI;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TExtension;
@@ -53,7 +57,10 @@ import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.THeader;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TIFCs;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TISDNAddress;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TInitialFilterCriteria;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TLocalTimeZone;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TPSLocationInformation;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TPSLocationInformationExtension;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TPSLocationInformationExtension2;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TPublicIdentity;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TPublicIdentityExtension;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TPublicIdentityExtension2;
@@ -61,15 +68,27 @@ import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TSePoTri;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TSePoTriExtension;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TServiceData;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TSessionDescription;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TSh5GSLocationInformation;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShData;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShDataExtension;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShDataExtension2;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShDataExtension3;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShDataExtension4;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShDataExtension5;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShDataExtension6;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShDataExtension7;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShIMSData;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShIMSDataExtension;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShIMSDataExtension2;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TShIMSDataExtension3;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TTADSInformation;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TTADSInformationExtension;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TTADSInformationExtension2;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TTWANLocationInformation;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TTransparentData;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TTrigger;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TUserCSGInformation;
+import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.TUserCSGInformationExtension;
 import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.UserDataObjectFactoryImpl;
 
 /**
@@ -229,16 +248,30 @@ public class ProfileUpdateRequestImpl extends DiameterShMessageImpl implements P
       ctxClasses.add(TSePoTriExtension.class);
       ctxClasses.add(TShIMSDataExtension.class);
       ctxClasses.add(TCSLocationInformation.class);
+      ctxClasses.add(TCSLocationInformationExtension.class);
+      ctxClasses.add(TCSLocationInformationExtension2.class);
+      ctxClasses.add(TCSLocationInformationExtension3.class);
+      ctxClasses.add(TLocalTimeZone.class);
       ctxClasses.add(TInitialFilterCriteria.class);
       ctxClasses.add(TServiceData.class);
       ctxClasses.add(TShIMSDataExtension2.class);
       ctxClasses.add(TChargingInformation.class);
       ctxClasses.add(TPSLocationInformation.class);
+      ctxClasses.add(TPSLocationInformationExtension.class);
+      ctxClasses.add(TPSLocationInformationExtension2.class);
       ctxClasses.add(TSessionDescription.class);
       ctxClasses.add(TShIMSDataExtension3.class);
       ctxClasses.add(TDSAI.class);
       ctxClasses.add(TPublicIdentity.class);
       ctxClasses.add(TShData.class);
+      ctxClasses.add(TShDataExtension.class);
+      ctxClasses.add(TShDataExtension2.class);
+      ctxClasses.add(TShDataExtension3.class);
+      ctxClasses.add(TShDataExtension4.class);
+      ctxClasses.add(TShDataExtension5.class);
+      ctxClasses.add(TShDataExtension6.class);
+      ctxClasses.add(TShDataExtension7.class);
+      ctxClasses.add(TSh5GSLocationInformation.class);
       ctxClasses.add(TTransparentData.class);
       ctxClasses.add(TExtension.class);
       ctxClasses.add(TPublicIdentityExtension.class);
@@ -246,7 +279,12 @@ public class ProfileUpdateRequestImpl extends DiameterShMessageImpl implements P
       ctxClasses.add(TTrigger.class);
       ctxClasses.add(THeader.class);
       ctxClasses.add(TPublicIdentityExtension2.class);
-      ctxClasses.add(TShDataExtension2.class);
+      ctxClasses.add(TTADSInformation.class);
+      ctxClasses.add(TTADSInformationExtension.class);
+      ctxClasses.add(TTADSInformationExtension2.class);
+      ctxClasses.add(TUserCSGInformation.class);
+      ctxClasses.add(TUserCSGInformationExtension.class);
+      ctxClasses.add(TTWANLocationInformation.class);
       //ctxClasses.add(UserDataObjectFactoryImpl.class);
 
       for(Class<?> clazz : classes) {
@@ -266,26 +304,26 @@ public class ProfileUpdateRequestImpl extends DiameterShMessageImpl implements P
 
   /* 
    * (non-Javadoc)
-   * @see net.java.slee.resource.diameter.sh.events.ProfileUpdateRequest#hasWildcardedPSI()
+   * @see net.java.slee.resource.diameter.sh.events.ProfileUpdateRequest#hasWildcardedPublicIdentity()
    */
-  public boolean hasWildcardedPSI() {
-    return hasAvp(DiameterShAvpCodes.WILDCARDED_PSI, DiameterShAvpCodes.SH_VENDOR_ID);
+  public boolean hasWildcardedPublicIdentity() {
+    return hasAvp(DiameterShAvpCodes.WILDCARDED_PUBLIC_IDENTITY, DiameterShAvpCodes.SH_VENDOR_ID);
   }
 
   /* 
    * (non-Javadoc)
-   * @see net.java.slee.resource.diameter.sh.events.ProfileUpdateRequest#getWildcardedPSI()
+   * @see net.java.slee.resource.diameter.sh.events.ProfileUpdateRequest#getWildcardedPublicIdentity()
    */
-  public String getWildcardedPSI() {
-    return getAvpAsUTF8String(DiameterShAvpCodes.WILDCARDED_PSI, DiameterShAvpCodes.SH_VENDOR_ID);
+  public String getWildcardedPublicIdentity() {
+    return getAvpAsUTF8String(DiameterShAvpCodes.WILDCARDED_PUBLIC_IDENTITY, DiameterShAvpCodes.SH_VENDOR_ID);
   }
 
   /* 
    * (non-Javadoc)
-   * @see net.java.slee.resource.diameter.sh.events.ProfileUpdateRequest#setWildcardedPSI(String)
+   * @see net.java.slee.resource.diameter.sh.events.ProfileUpdateRequest#setWildcardedPublicIdentity(String)
    */
-  public void setWildcardedPSI(String wildcardedPSI) {
-    addAvp(DiameterShAvpCodes.WILDCARDED_PSI, DiameterShAvpCodes.SH_VENDOR_ID, wildcardedPSI);
+  public void setWildcardedPublicIdentity(String wildcardedPublicIdentity) {
+    addAvp(DiameterShAvpCodes.WILDCARDED_PUBLIC_IDENTITY, DiameterShAvpCodes.SH_VENDOR_ID, wildcardedPublicIdentity);
   }
   
   /* 

@@ -4,12 +4,12 @@
 	<parent>
 		<groupId>org.mobicents.resources</groupId>
 		<artifactId>restcomm-slee-ra-diameter-rx</artifactId>
-		<version>7.0.0-SNAPSHOT</version>
+		<version>7.2.0.SNAPSHOT</version>
 	</parent>
 
 	<artifactId>restcomm-slee-ra-diameter-rx-ra-DU</artifactId>
 
-	<name>Restcomm :: Diameter Resources :: ${pom.artifactId}</name>
+	<name>Restcomm :: Diameter Resources :: ${project.artifactId}</name>
 
 	<dependencies>
 		<!-- This has been commented out since it was already included in the Ro-RA,
@@ -28,19 +28,19 @@
 
 		<!-- components -->
 		<dependency>
-			<groupId>${pom.groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>restcomm-slee-ra-diameter-rx-events</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>${pom.groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>restcomm-slee-ra-diameter-rx-ratype</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
-			<groupId>${pom.groupId}</groupId>
+			<groupId>${project.groupId}</groupId>
 			<artifactId>restcomm-slee-ra-diameter-rx-ra</artifactId>
-			<version>${pom.version}</version>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -48,7 +48,7 @@
 		<profile>
 			<id>du-jboss5</id>
 			<build>
-				<finalName>diameter-${pom.artifactId}-${pom.version}</finalName>
+				<finalName>diameter-${project.artifactId}-${project.version}</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.mobicents.tools</groupId>
@@ -73,7 +73,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<build>
-				<finalName>diameter-${pom.artifactId}-${pom.version}</finalName>
+				<finalName>diameter-${project.artifactId}-${project.version}</finalName>
 				<plugins>
 					<plugin>
 						<groupId>org.mobicents.tools</groupId>

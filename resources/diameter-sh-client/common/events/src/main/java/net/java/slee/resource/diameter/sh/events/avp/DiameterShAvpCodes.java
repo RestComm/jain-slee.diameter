@@ -228,12 +228,12 @@ public class DiameterShAvpCodes {
    * AVP Code defined by Diameter specification for Wildcarded-PSI AVP.  Data type
    * is UTF8String.
    */
-  public static final int WILDCARDED_PSI = 634;
+  public static final int WILDCARDED_PUBLIC_IDENTITY = 634;
 
   /**
-   * AVP Data Type defined by Diameter specification for Wildcarded-PSI AVP.
+   * AVP Data Type defined by Diameter specification for WILDCARDED_PUBLIC_IDENTITY AVP.
    */
-  public static final DiameterAvpType WILDCARDED_PSI_AVP_TYPE = DiameterAvpType.fromString("UTF8String");
+  public static final DiameterAvpType WILDCARDED_PUBLIC_IDENTITY_AVP_TYPE = DiameterAvpType.fromString("UTF8String");
 
   /**
    * AVP Code defined by Diameter specification for WILDCARDED_IMPU AVP.  Data type
@@ -270,7 +270,7 @@ public class DiameterShAvpCodes {
 
   /**
    * AVP Code defined by Diameter specification for REQUESTED_NODES AVP.  Data type
-   * is UTF8String.
+   * is Unsigned32.
    */
   public static final int REQUESTED_NODES = 713;
 
@@ -288,5 +288,16 @@ public class DiameterShAvpCodes {
   /**
    * AVP Data Type defined by Diameter specification for SESSION_PRIORITY AVP.
    */
-  public static final DiameterAvpType ONE_TIME_NOTIFICATION_AVP_TYPE = DiameterAvpType.fromString("Enumerated");  
+  public static final DiameterAvpType ONE_TIME_NOTIFICATION_AVP_TYPE = DiameterAvpType.fromString("Enumerated");
+
+  /**
+   * AVP Code defined by Diameter specification for UDR_FLAGS AVP.  Data type
+   * is Unsigned32.
+   */
+  public static final int UDR_FLAGS = 719;
+
+  /**
+   * AVP Data Type defined by Diameter specification for UDR_FLAGS AVP.
+   */
+  public static final DiameterAvpType UDR_FLAGS_AVP_TYPE = DiameterAvpType.fromString("Unsigned32");
 }
