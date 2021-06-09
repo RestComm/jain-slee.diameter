@@ -55,7 +55,7 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
 
 public class DataReferenceType implements Serializable, Enumerated {
 
-  private static final long serialVersionUID = -8270968643651090042L;
+  private static final long serialVersionUID = 1L;
 
   /**
    * Int value equal to one passed in UDR/SNR - it indicates that data is repository data - see TS29.328 for description

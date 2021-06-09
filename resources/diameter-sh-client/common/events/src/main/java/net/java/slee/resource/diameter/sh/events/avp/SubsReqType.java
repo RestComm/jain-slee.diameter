@@ -43,7 +43,7 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
  */
 public class SubsReqType implements Serializable, Enumerated {
 
-  private static final long serialVersionUID = -7748012167965997571L;
+  private static final long serialVersionUID = 1L;
 
   /**
    * Int value equal in diameter message - it indicates subscription request - subscirbe to updates - see TS29.328 for description

@@ -56,7 +56,7 @@ import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.UserDataObjec
  */
 public class SubscribeNotificationsAnswerImpl extends DiameterShMessageImpl implements SubscribeNotificationsAnswer {
 
-  private static final long serialVersionUID = -66848235143082970L;
+  private static final long serialVersionUID = 1L;
 
   private static JAXBContext jaxbContext = initJAXBContext();
   private static UserDataObjectFactory udof = new UserDataObjectFactoryImpl(new ObjectFactory());

@@ -69,7 +69,7 @@ import org.mobicents.slee.resource.diameter.sh.events.avp.UserIdentityAvpImpl;
  */
 public class ShServerActivityImpl extends DiameterActivityImpl implements ShServerActivity, StateChangeListener<AppSession> {
 
-  private static final long serialVersionUID = -5297270149541413224L;
+  private static final long serialVersionUID = 1L;
 
   protected transient ServerShSession serverSession = null;
 

@@ -55,7 +55,7 @@ import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
  */
 public class GxServerSessionActivityImpl extends GxSessionActivityImpl implements GxServerSessionActivity, StateChangeListener<AppSession> {
 
-  private static final long serialVersionUID = 5230054776594429948L;
+  private static final long serialVersionUID = 1L;
   private static Logger logger = Logger.getLogger(GxServerSessionActivityImpl.class);
   protected transient ServerGxSession session = null;
   protected transient GxCreditControlRequest lastRequest = null;

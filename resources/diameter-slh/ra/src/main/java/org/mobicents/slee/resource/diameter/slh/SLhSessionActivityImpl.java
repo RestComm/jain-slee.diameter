@@ -46,7 +46,7 @@ import org.mobicents.slee.resource.diameter.base.DiameterActivityImpl;
  */
 public abstract class SLhSessionActivityImpl extends DiameterActivityImpl implements SLhSessionActivity, StateChangeListener<AppSession> {
 
-  private static final long serialVersionUID = 4374137032596394588L;
+  private static final long serialVersionUID = 1L;
 
   protected boolean terminated = false;
 

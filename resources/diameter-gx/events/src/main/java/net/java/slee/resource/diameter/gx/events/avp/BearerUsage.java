@@ -37,7 +37,7 @@ public class BearerUsage implements Enumerated, Serializable {
     public static final int IMS_SIGNALLING = 1;
     public static final BearerUsage _GENERAL = new BearerUsage(GENERAL);
     public static final BearerUsage _IMS_SIGNALLING = new BearerUsage(GENERAL);
-    private static final long serialVersionUID = 1727547260959850765L;
+    private static final long serialVersionUID = 1L;
 
     private int value;
 

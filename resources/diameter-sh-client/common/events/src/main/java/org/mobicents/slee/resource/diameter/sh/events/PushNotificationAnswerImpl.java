@@ -40,7 +40,7 @@ import org.mobicents.slee.resource.diameter.sh.events.DiameterShMessageImpl;
  */
 public class PushNotificationAnswerImpl extends DiameterShMessageImpl implements PushNotificationAnswer {
 
-  private static final long serialVersionUID = 5893646835644420572L;
+  private static final long serialVersionUID = 1L;
 
   /**
    * 

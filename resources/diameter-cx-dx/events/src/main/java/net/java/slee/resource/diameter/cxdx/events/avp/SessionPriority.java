@@ -53,7 +53,7 @@ import java.io.StreamCorruptedException;
  */
 public class SessionPriority implements Serializable, Enumerated {
 
-  private static final long serialVersionUID = 6175897437829561030L;
+  private static final long serialVersionUID = 1L;
 
   /**
    * Value indicating Priority 0

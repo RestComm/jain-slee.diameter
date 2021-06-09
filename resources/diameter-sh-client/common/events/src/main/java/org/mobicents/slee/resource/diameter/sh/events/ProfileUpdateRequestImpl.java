@@ -100,7 +100,7 @@ import org.mobicents.slee.resource.diameter.sh.events.avp.userdata.UserDataObjec
  */
 public class ProfileUpdateRequestImpl extends DiameterShMessageImpl implements ProfileUpdateRequest {
 
-  private static final long serialVersionUID = -5829214729454907100L;
+  private static final long serialVersionUID = 1L;
 
   private static JAXBContext jaxbContext = initJAXBContext();
   private static UserDataObjectFactory udof = new UserDataObjectFactoryImpl(new ObjectFactory());

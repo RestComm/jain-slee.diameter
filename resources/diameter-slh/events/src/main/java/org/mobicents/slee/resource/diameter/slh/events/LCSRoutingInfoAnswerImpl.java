@@ -99,7 +99,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public boolean hasUserName() {
-    return hasAvp(LCSRoutingInfoAVPCodes.USER_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
+    return hasAvp(LCSRoutingInfoAVPCodes.USER_NAME);
   }
 
   /*
@@ -108,7 +108,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public String getUserName() {
-    return getAvpAsUTF8String(LCSRoutingInfoAVPCodes.USER_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID);
+    return getAvpAsUTF8String(LCSRoutingInfoAVPCodes.USER_NAME);
   }
 
   /*
@@ -117,7 +117,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setUserName(String imsi) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.USER_NAME, LCSRoutingInfoAVPCodes.SLh_VENDOR_ID, imsi);
+    addAvp(LCSRoutingInfoAVPCodes.USER_NAME, imsi);
   }
 
   /*

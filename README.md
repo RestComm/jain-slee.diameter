@@ -20,6 +20,8 @@ The following Diameter applications are natively supported
 - Diameter Rx (3GPP TS 29.214)
 - Diameter S6a/S6d (3GPP TS 29.272)
 - Diameter S13 (3GPP TS 29.272)
+- Diameter SLh (3GPP TS 29.173)
+- Diameter SLg (EPC Location Protocol, 3GPP TS 29.172)
 
 ## Questions ?
 

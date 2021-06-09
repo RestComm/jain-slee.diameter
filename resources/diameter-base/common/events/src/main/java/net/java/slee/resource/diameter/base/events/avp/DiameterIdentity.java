@@ -47,7 +47,7 @@ import java.io.Serializable;
  */
 public class DiameterIdentity implements Serializable
 {
-  private static final long serialVersionUID = -7248928425138452437L;
+  private static final long serialVersionUID = 1L;
 
   private String identity;
 
