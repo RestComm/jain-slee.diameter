@@ -45,13 +45,13 @@ import org.mobicents.slee.resource.diameter.ro.events.RoCreditControlAnswerImpl;
  */
 public abstract class RoSessionActivityImpl extends DiameterActivityImpl implements RoSessionActivity {
 
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 5037967180962414949L;
 
   protected transient RoMessageFactory roMessageFactory;
 
   /**
-   * @param roMessageFactory
-   * @param roAvpFactory
+   * @param messageFactory
+   * @param avpFactory
    * @param session
    * @param raEventListener
    * @param destinationHost

@@ -1,30 +1,125 @@
-# Java compiled #
-#################
+##############################
+## Java
+##############################
+.mtj.tmp/
 *.class
+*.jar
+*.war
+*.ear
+*.nar
+hs_err_pid*
 
-# Eclipse #
-###########
+##############################
+## Maven
+##############################
+~
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+pom.xml.bak
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+# ignore mvn-rpmbuild repo
+/.m2
+
+##############################
+## Gradle
+##############################
+bin/
+build/
+.gradle
+.gradletasknamecache
+gradle-app.setting
+!gradle-wrapper.jar
+
+##############################
+## IntelliJ IDEA
+##############################
+out/
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
+.idea
+
+##############################
+## Eclipse
+##############################
+.settings/
+bin/
+tmp/
+.metadata
 .classpath
 .project
-.settings
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.loadpath
+.factorypath
 
-# IntelliJ IDEA #
-#################
-.idea/
-*.iml
-*.iws
+##############################
+## NetBeans
+##############################
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+catalog.xml
 
-# Maven #
-#########
-target
+##############################
+## Visual Studio Code
+##############################
+.vscode/
 
-# OS generated files #
-######################
+##############################
+## OS X
+##############################
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-Icon?
-ehthumbs.db
-Thumbs.db
+
+##############################
+## Generated directories
+##############################
+logs/
+LICENSE4J-Runtime-Library/
+
+# ignore .svn metadata files
+.svn
+
+
+maven-ant-tasks.jar
+test-output
+transaction.log
+
+# vim files
+*.swp
+/.gitk-tmp.*
+atlassian-ide-plugin.xml
+
+# temp files
+*~
+
+# hprof dumps
+/*.hprof
+# ignore 'randomly' strewn around logs
+server.log
+
+# H2 databases produced by tests
+*.h2.db
+
+# JBoss transaction generated files
+PutObjectStoreDirHere
+
+/bin
+/HtppSimulatorParameters.xml
+

@@ -71,7 +71,7 @@ import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
  */
 public class S6aServerSessionImpl extends S6aSessionImpl implements S6aServerSessionActivity {
 
-  private static final long serialVersionUID = 7518916596996009148L;
+  private static final long serialVersionUID = 1L;
   protected transient ServerS6aSession appSession;
 
   public S6aServerSessionImpl(S6aMessageFactory s6aMessageFactory, S6aAVPFactory s6aAvpFactory, ServerS6aSession session, EventListener<Request, Answer> raEventListener, DiameterIdentity destinationHost, DiameterIdentity destinationRealm, Stack stack) {

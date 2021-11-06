@@ -55,7 +55,7 @@ import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
  */
 public class S13ClientSessionImpl extends S13SessionImpl implements S13ClientSessionActivity {
 
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 7518916596996009148L;
   protected transient ClientS13Session appSession;
 
   public S13ClientSessionImpl(S13MessageFactory s13MessageFactory, S13AVPFactory s13AvpFactory, ClientS13Session session, EventListener<Request, Answer> raEventListener, DiameterIdentity destinationHost, DiameterIdentity destinationRealm, Stack stack) {

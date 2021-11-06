@@ -47,7 +47,7 @@ public class SendDataIndicationType implements Serializable, Enumerated {
   /**
    * 
    */
-  private static final long serialVersionUID = 220559116111005191L;
+  private static final long serialVersionUID = 1L;
   /**
    * Value indicating that user data has not been requested by sender
    */

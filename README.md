@@ -21,19 +21,10 @@ The following Diameter applications are natively supported
 - Diameter S6a/S6d (3GPP TS 29.272)
 - Diameter S13 (3GPP TS 29.272)
 - Diameter SLh (3GPP TS 29.173)
-- Diameter SLg (EPC Location Protocol, 3GPP TS 29.172)
+- Diameter SLg (3GPP TS 29.172)
 
 ## Questions ?
 
 Please ask your question on [StackOverflow](http://stackoverflow.com/questions/tagged/restcomm) or the 
 [Google Groups mailing list](http://groups.google.com/group/restcomm).
 
-
-## License
-
-RestComm is lead by [TeleStax](http://www.telestax.com/), Inc. and developed collaboratively by a community of individual 
-and enterprise contributors.
-
-RestComm is licensed under dual license policy. The default license is the Free Open Source GNU Affero GPL v3.0. 
-Alternatively a commercial license can be obtained from Telestax 
-([contact form](https://www.restcomm.com/contact/))

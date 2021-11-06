@@ -117,7 +117,7 @@ public class LCSRoutingInfoAnswerImpl extends DiameterMessageImpl implements LCS
    */
   @Override
   public void setUserName(String imsi) throws IllegalStateException {
-    addAvp(LCSRoutingInfoAVPCodes.USER_NAME, imsi);
+    addAvp(LCSRoutingInfoAVPCodes.USER_NAME, 0, imsi);
   }
 
   /*

@@ -115,7 +115,7 @@ import org.mobicents.slee.resource.diameter.gx.handlers.GxSessionFactory;
  */
 public class DiameterGxResourceAdaptor implements ResourceAdaptor, DiameterListener, DiameterRAInterface {
 
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -1142455412819771222L;
 
     // Config Properties Names ---------------------------------------------
     private static final String AUTH_APPLICATION_IDS = "authApplicationIds";

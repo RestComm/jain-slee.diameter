@@ -54,7 +54,7 @@ import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
  */
 public class RoClientSessionActivityImpl extends RoSessionActivityImpl implements RoClientSessionActivity, StateChangeListener<AppSession> {
 
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 6391181777305378777L;
 
   protected transient ClientRoSession session;
 

@@ -45,7 +45,7 @@ import org.jdiameter.common.impl.app.slh.LCSRoutingInfoRequestImpl;
  */
 public class SLhClientSessionActivityImpl extends SLhSessionActivityImpl implements SLhClientSessionActivity {
 
-  private static final long serialVersionUID = 6391181777305378777L;
+  private static final long serialVersionUID = 1L;
 
   protected transient ClientSLhSession clientSLhSession;
 

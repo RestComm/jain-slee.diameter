@@ -43,7 +43,7 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
  */
 public class OneTimeNotificationType implements Serializable, Enumerated {
 
-  private static final long serialVersionUID = 8726237939719241849L;
+  private static final long serialVersionUID = 1L;
 
   public static final int _ONE_TIME_NOTIFICATION_REQUESTED = 0;
 

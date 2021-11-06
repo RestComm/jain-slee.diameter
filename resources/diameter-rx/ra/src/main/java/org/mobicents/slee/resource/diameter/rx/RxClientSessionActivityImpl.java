@@ -58,17 +58,18 @@ import org.mobicents.slee.resource.diameter.base.events.DiameterMessageImpl;
  */
 public class RxClientSessionActivityImpl extends RxSessionActivityImpl implements RxClientSessionActivity, StateChangeListener<AppSession> {
 
-  private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 6391181777305378777L;
 
   protected transient ClientRxSession session;
 
   /**
    *
-   * @param rxMessageFactory
-   * @param rxAvpFactory
+   * @param messageFactory
+   * @param avpFactory
    * @param session
    * @param destinationHost
    * @param destinationRealm
+   * @param endpoint
    * @param stack
    */
   public RxClientSessionActivityImpl(final RxMessageFactory rxMessageFactory, final RxAvpFactory rxAvpFactory, final ClientRxSession session,

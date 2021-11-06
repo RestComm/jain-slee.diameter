@@ -58,8 +58,8 @@ public abstract class RxSessionActivityImpl extends DiameterActivityImpl impleme
   protected transient RxMessageFactory rxMessageFactory;
 
   /**
-   * @param rxMessageFactory
-   * @param rxAvpFactory
+   * @param messageFactory
+   * @param avpFactory
    * @param session
    * @param raEventListener
    * @param destinationHost

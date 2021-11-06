@@ -53,7 +53,7 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
  */
 public class SessionPriorityType implements Serializable, Enumerated {
 
-  private static final long serialVersionUID = 6175897437829561030L;
+  private static final long serialVersionUID = 1L;
 
   /**
    * Value indicating Priority 0

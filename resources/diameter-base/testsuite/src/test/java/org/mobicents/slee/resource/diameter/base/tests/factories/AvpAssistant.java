@@ -331,6 +331,7 @@ public class AvpAssistant {
 					// System.out.println("Current message: \r\n" + snr);
 
 					Object obtained = m.invoke(message);
+					if (obtained == null) continue;
 					// System.out.println("Got value " + obtained.toString());
 					boolean passed = false;
 					try {

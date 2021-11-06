@@ -44,7 +44,7 @@ import net.java.slee.resource.diameter.base.events.avp.Enumerated;
  */
 public class IdentitySetType implements Serializable, Enumerated {
 
-  private static final long serialVersionUID = -1735412334098260950L;
+  private static final long serialVersionUID = 1L;
 
   /**
    * Int value equal in diameter message - it indicates IMS identities - All - see TS29.328 for description
